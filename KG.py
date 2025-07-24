@@ -2,6 +2,10 @@ import csv
 from collections import defaultdict
 from typing import List, Dict
 import openai  # Make sure you have openai installed and your API key set
+import os  # <-- Add this line to use environment variables
+from dotenv import load_dotenv  # <-- Add this line to load .env file
+
+load_dotenv()  # <-- Load environment variables from .env
 
 # Helper function to call LLM for relationship extraction (if needed)
 def extract_relationships_llm(row: Dict[str, str], system_prompt: str, api_key: str) -> Dict[str, List[str]]:
@@ -70,7 +74,7 @@ MERGE (p:Process {{name: "{process_name}"}});
 MERGE (param:Parameter {{name: "{parameter}"}});
 MERGE (p)-[:HAS_PARAMETER]->(param);
 
-MERGE (dev:Deviation {{name: "{deviation}", ref: "{ref}"}});
+MERGE (dev:Deviation {{name: "{deviation}", ref: "{ref}"}}); 
 MERGE (param)-[:HAS_DEVIATION]->(dev);
 """
             for cause_item in causes:
@@ -112,6 +116,11 @@ MERGE (param)-[:HAS_DEVIATION]->(dev);
     return cypher_code
 
 # Usage example:
-# For LLM-powered extraction, set use_llm=True and provide your OpenAI API key.
-# cypher_queries = generate_cypher_from_hazop_csv("HAZOP_006.csv", output_file="hazop_kg.cypher", use_llm=True, openai_api_key="YOUR_OPENAI_API_KEY")
-cypher_queries = generate_cypher_from_hazop_csv("HAZOP_006.csv", output_file="hazop_kg.cypher")
+# For LLM-powered extraction, set use_llm=True and provide your OpenAI API key from environment variable.
+cypher_queries = generate_cypher_from_hazop_csv(
+    "HAZOP_006.csv",
+    output_file="hazop_kg.cypher",
+    use_llm=True,
+    openai_api_key=os.getenv("OPENAI_API_KEY")  # <-- Use environment variable
+)
+#cypher_queries = generate_cypher_from_hazop_csv("HAZOP_006.csv", output_file="hazop_kg.cypher")
