@@ -79,8 +79,11 @@ MERGE (param)-[:HAS_DEVIATION]->(dev);
 """
             for cause_item in causes:
                 if cause_item:
-                    query += f'MERGE (c:Cause {{description: "{cause_item}"}});\n'
-                    query += f'MERGE (dev)-[:HAS_CAUSE]->(c);\n'
+                    query += (
+                        f'MATCH (c:Cause {{description: "{cause_item}"}})\n'
+                        f'MATCH (dev:Deviation {{name: "{deviation}", ref: "{ref}"}})\n'
+                        f'MERGE (dev)-[:HAS_CAUSE]->(c);\n'
+                    )
 
             for consequence_item in consequences:
                 if consequence_item:
