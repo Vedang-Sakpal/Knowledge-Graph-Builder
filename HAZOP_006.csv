@@ -1,5 +1,5 @@
 ﻿Ref.,Parameter,Deviation,Possible Cause,Consequence,Safeguard/Protection,No,Action,On
-1,Quantity/step,No B is added—step omitted,"Operator error, e.g., shift handover. MV307 closed after maintenance",Spoilt batch,Detected at sampling and can easily be corrected. Batch sheet requires analysis to be signed off by supervisor,1.1,Start-up check to confirm that MV307 is open,TB
+1,Quantity,No B is added—step omitted,"Operator error, e.g., shift handover. MV307 closed after maintenance",Spoilt batch,Detected at sampling and can easily be corrected. Batch sheet requires analysis to be signed off by supervisor,1.1,Start-up check to confirm that MV307 is open,TB
 ,,,,,,1.2,Operating procedure to include a sight glass check that flow is established,
 2,Quantity,Excess of B is added,F2 not fully emptied from last batch,Excess of B in product; batch will be out of specification,Detected at sampling but a special procedure will then be required,2.1,Operating procedure to include a check on vessel F2 before B is measured out,TB
 3,Quantity,Too little of B is added,Blockage in line or at OP1,Batch out of specification and process delay,Detected at sampling,3.1,Check procedure for clearing line and OP1 when transfer line holds component B,FL
@@ -14,7 +14,6 @@
 ,,,,,,8.2,8.2 Include sensing of BD action to give alarm and to close AV203,AW
 ,,,,,,8.3,8.3 Consider removal of OP2 from the cooling water inlet line so full cooling capacity will be available. Take into account the original purpose of OP2 in controlling heating rates/cooling profiles/blowdown of condensate,FL
 9,Flow (rate),Too slow,Partial blockage in line or at orifice plate OP1,Batch time extended,Operator will note problem when seeking to move to next stage,9.1,Covered by actions 3.1 and 3.2,FL
-,,,,,,,,TB
 10,Flow,Elsewhere,Crack or leak at BD2 (action 8.2 only detects full burst),Loss of contaminated nitrogen to dump tank and eventually to atmosphere,None,10.1,Put BD2 on a regular checking schedule,FL
 11,Temperature,High,Control problem or faulty temperature signal (reads low),"Overheating will occur, with contributions from the heating system. Most serious condition would be common effect since both temperature probes are in the same pocket in F2",None unless the fault also leads to a low temperature alarm when operator intervention could be expected,11.1,Check whether it is possible to physically separate the two temperature probes (control and protection) to reduce common cause effects,FL
 12,Temperature,High,Loss of cooling water (a low probability event),Overheating. Runaway if cooling water is not restored or the addition halted,TICA32/33 are located in the manned control room and BD2 relieves to dump tank,12.1,Covered by action 7.3,AW
