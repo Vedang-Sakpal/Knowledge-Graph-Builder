@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated HAZOP Generation Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals & Tech Blue -->
+    <!-- Application Structure Plan: A single-page, scrollable narrative structure is chosen to guide the user logically through a complex technical framework. It starts with a high-level introduction (the "Why"), moves to an interactive visual overview of the framework (the "How"), and then allows deep dives into specific components (the "Details"). This top-down approach makes the dense information digestible for various audiences, from managers needing an overview to engineers wanting technical specifics. Navigation is supported by a sticky header and clickable elements in the main diagram, ensuring easy movement between sections without losing context. This structure prioritizes understanding and exploration over a rigid, chapter-by-chapter replication of the source report. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Overall Framework -> Goal: Organize/Inform -> Viz: Interactive HTML/CSS Diagram -> Interaction: Click-to-scroll -> Justification: Provides a visual map of the system, acting as an interactive table of contents. Superior to a static image. -> Library/Method: Tailwind CSS Flexbox/Grid.
+        - Report Info: Uncertainty Quantification (UQ) Method Comparison -> Goal: Compare/Justify -> Viz: Bar Chart -> Interaction: Hover tooltips -> Justification: A bar chart is the clearest way to visually compare multiple methods across a set of criteria, immediately highlighting the advantages of the chosen hybrid approach. -> Library/Method: Chart.js (Canvas).
+        - Report Info: Code Snippets (Cypher, Python, Prompt) -> Goal: Inform -> Viz: Styled Text Blocks -> Interaction: Copy-to-clipboard button -> Justification: Presents code in a readable, familiar format and adds utility for users who may want to experiment with the queries. -> Library/Method: HTML `<pre>`, `<code>`, JS for copy functionality.
+        - Report Info: Dual Outputs (KG vs. Excel) -> Goal: Organize/Compare -> Viz: Tabbed Interface -> Interaction: Click to switch views -> Justification: Efficiently presents two different views of the output data in the same screen space, preventing clutter and allowing direct comparison. -> Library/Method: Vanilla JS and Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #2c3e50;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #4A90E2;
+        }
+        .diagram-box {
+            border: 2px solid #e0e0e0;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .diagram-box:hover {
+            border-color: #4A90E2;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .arrow {
+            color: #9ca3af;
+        }
+        .code-block {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            position: relative;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: #334155;
+            color: #94a3b8;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: background-color 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: #475569;
+        }
+        .tab {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            color: #4A90E2;
+            border-bottom-color: #4A90E2;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="font-bold text-xl text-gray-800">AI-Driven HAZOP</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#framework" class="nav-link text-gray-600 font-medium">Framework</a>
+                <a href="#analysis" class="nav-link text-gray-600 font-medium">AI Analysis</a>
+                <a href="#confidence" class="nav-link text-gray-600 font-medium">Confidence Scoring</a>
+                <a href="#outputs" class="nav-link text-gray-600 font-medium">Outputs</a>
+                <a href="#future" class="nav-link text-gray-600 font-medium">Future Vision</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800 md:text-5xl">A New Paradigm in Process Safety</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Traditional HAZOP studies are essential but time-consuming, subjective, and struggle with modern system complexity. This framework introduces a revolutionary approach, combining Knowledge Graphs and Large Language Models to create a dynamic, data-driven, and comprehensive process hazard analysis.
+                </p>
+            </div>
+        </section>
+
+        <section id="framework" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">The Automated HAZOP Framework</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">This is the core engine of our system. It transforms raw plant data into actionable safety insights through a three-stage process. Click on any stage to learn more.</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="diagram-box p-6 rounded-lg text-center w-full md:w-1/4" onclick="document.getElementById('kg-creation').scrollIntoView();">
+                        <div class="text-4xl mb-2">💾</div>
+                        <h3 class="font-bold text-xl mb-2">1. KG Creation</h3>
+                        <p class="text-sm text-gray-600">Building the Digital Twin by converting P&IDs and documents into a structured Knowledge Graph.</p>
+                    </div>
+
+                    <div class="text-4xl arrow hidden md:block">&rarr;</div>
+
+                    <div class="diagram-box p-6 rounded-lg text-center w-full md:w-1/4" onclick="document.getElementById('analysis').scrollIntoView();">
+                        <div class="text-4xl mb-2">🧠</div>
+                        <h3 class="font-bold text-xl mb-2">2. AI Analysis</h3>
+                        <p class="text-sm text-gray-600">The LLM reasons over the KG to identify deviations, causes, consequences, and safeguards.</p>
+                    </div>
+
+                    <div class="text-4xl arrow hidden md:block">&rarr;</div>
+                    
+                    <div class="diagram-box p-6 rounded-lg text-center w-full md:w-1/4" onclick="document.getElementById('outputs').scrollIntoView();">
+                        <div class="text-4xl mb-2">📊</div>
+                        <h3 class="font-bold text-xl mb-2">3. Synthesis & Output</h3>
+                        <p class="text-sm text-gray-600">Generating both a dynamic, queryable HAZOP KG and a traditional, formatted Excel report.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kg-creation" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Phase 1: Constructing the Digital Twin</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">The foundation of the entire system is the Process Knowledge Graph (KG). It's a rich, machine-readable model of the plant, created by integrating data from multiple sources to serve as the "single source of truth" for the AI.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-lg mb-2">P&ID to Graph</h3>
+                        <p class="text-gray-600 text-sm">Intelligent P&IDs are exported to the DEXPI standard format. We use Python libraries like `pyDEXPI` and `NetworkX` to parse this data and load it into a Neo4j graph database, creating the plant's topological backbone.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-lg mb-2">Semantic Enrichment</h3>
+                        <p class="text-gray-600 text-sm">The topological graph is enriched with operational context. An LLM reads process descriptions and MSDS files to extract and link critical data like operating pressures, temperatures, and chemical hazards to the correct components in the graph.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-lg mb-2">Automated Noding</h3>
+                        <p class="text-gray-600 text-sm">The traditionally manual process of defining HAZOP nodes is automated. An algorithm traverses the enriched KG, creating study nodes based on logical breaks like major equipment, changes in chemical composition, or control boundaries.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Phase 2: The AI Analysis Engine</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">This is where the magic happens. For each node, the system systematically generates deviations and uses a powerful Retrieval-Augmented Generation (RAG) technique to perform a deep causal analysis, grounded in project-specific data.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+                    <h3 class="font-semibold text-xl mb-4">The RAG-Powered Prompt</h3>
+                    <p class="text-gray-600 mb-6">The key is a sophisticated prompt that provides the LLM with rich context before asking it to reason. This context includes local P&ID topology, historical data from past HAZOPs, and relevant safety information. The prompt explicitly instructs the LLM to cite its sources, distinguishing between retrieved facts and novel, AI-inferred insights.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code>You are a world-class Process Safety Engineer...
+
+**Deviation to Analyze:**
+More Flow in Line PL-101
+
+**Context from P&ID and Process KG:**
+- Upstream Equipment: Pump P-101
+- Control: Flow is controlled by FIC-101
+- Downstream Equipment: Reactor R-101 (MAWP: 15 barg)
+
+**Context from Historical HAZOP Data:**
+- Similar Cause Found: 'Control valve FV-101 fails open'
+- Similar Consequence Found: 'Overpressure of downstream vessel'
+
+**Your Task:**
+1. Identify all credible **Causes**.
+2. Identify all potential **Consequences**.
+3. Identify all existing **Safeguards**.
+4. **Critical Instruction:** For every item, provide a `source` tag.
+   - If from context, cite the source (e.g., `source: "P&ID"`).
+   - If novel, label it `source: "LLM-Inferred"`.
+5. Format output as a single, valid JSON object.</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="confidence" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Quantifying AI Judgment with Confidence Scores</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Accepting AI output blindly is not an option in safety-critical applications. We employ a robust, hybrid method to calculate a confidence score for every single item the AI generates, providing a trustworthy measure of its own uncertainty.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="font-semibold text-xl mb-4">A Multi-Faceted Approach</h3>
+                        <p class="text-gray-600 mb-4">Our hybrid method is more reliable than simpler alternatives because it combines three distinct signals:</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 font-bold mr-3">1.</span>
+                                <div><strong class="text-gray-700">Internal Fluency:</strong> Measures how "smoothly" the LLM generated the text at a token level. High fluency suggests linguistic confidence.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 font-bold mr-3">2.</span>
+                                <div><strong class="text-gray-700">Output Stability:</strong> The analysis is run multiple times with slight randomness. Consistent outputs across runs indicate high model conviction.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 font-bold mr-3">3.</span>
+                                <div><strong class="text-gray-700">Semantic Consensus:</strong> We use embedding models to check that the *meaning* of the outputs is consistent, even if the wording differs.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="uqChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">Comparison of Uncertainty Quantification (UQ) Methodologies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="outputs" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Phase 3: Synthesis and Outputs</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">The final step is to synthesize the analysis into usable formats. The framework produces two powerful outputs: a dynamic, queryable Knowledge Graph for deep analysis and a traditional, formatted Excel report for communication and compliance.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg">
+                    <div class="flex border-b">
+                        <div id="tab-kg" class="tab active" onclick="switchTab('kg')">Knowledge Graph Explorer</div>
+                        <div id="tab-excel" class="tab" onclick="switchTab('excel')">Excel Report Preview</div>
+                    </div>
+                    <div class="p-6">
+                        <div id="content-kg">
+                            <h3 class="font-semibold text-xl mb-4">Querying the HAZOP Knowledge Graph</h3>
+                            <p class="text-gray-600 mb-6">The HAZOP KG is not a static document; it's a live model of process risk. Engineers can run sophisticated Cypher queries to uncover insights impossible to find in a flat file, such as identifying common cause failures or poorly protected high-risk scenarios.</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="font-medium text-gray-700 mb-1">Find High-Risk, Poorly Protected Scenarios:</p>
+                                    <div class="code-block">
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        <pre><code>MATCH (cons:Consequence)&lt;--(dev:Deviation)&lt;--(cause:Cause)
+WHERE cons.severity = 'High' AND NOT (cause)&lt;--(:Safeguard)
+RETURN cause.description, dev.description, cons.description</code></pre>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-700 mb-1">Find Common Cause Failures:</p>
+                                    <div class="code-block">
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        <pre><code>MATCH (c:Cause)-->(d:Deviation)
+WITH c, count(d) AS deviationCount
+WHERE deviationCount > 1
+RETURN c.description AS CommonCause, deviationCount
+ORDER BY deviationCount DESC</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="content-excel" class="hidden">
+                            <h3 class="font-semibold text-xl mb-4">Automated Excel Report Generation</h3>
+                            <p class="text-gray-600 mb-6">For documentation and review, the system automatically generates a formatted Excel worksheet. A Python script using `pandas` and `xlsxwriter` queries the KG, flattens the data, and applies formatting, including conditional highlighting for low-confidence items to guide human reviewers.</p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm text-left text-gray-500">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">Deviation</th>
+                                            <th scope="col" class="px-6 py-3">Causes</th>
+                                            <th scope="col" class="px-6 py-3">Consequences</th>
+                                            <th scope="col" class="px-6 py-3">Safeguards</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-white border-b">
+                                            <td class="px-6 py-4 font-medium">More Flow</td>
+                                            <td class="px-6 py-4">- Control valve fails open (Conf: 0.95, Src: Causes.csv)<br>- Operator error (Conf: 0.88, Src: LLM-Inferred)</td>
+                                            <td class="px-6 py-4">- Overpressure of Reactor (Conf: 0.98, Src: P&ID)<br>- Reaction runaway (Conf: 0.91, Src: LLM-Inferred)</td>
+                                            <td class="px-6 py-4">- High pressure alarm (Conf: 0.99, Src: P&ID)<br>- Relief valve (Conf: 1.00, Src: P&ID)</td>
+                                        </tr>
+                                        <tr class="bg-gray-50 border-b">
+                                            <td class="px-6 py-4 font-medium">Less Level</td>
+                                            <td class="px-6 py-4">- Upstream block valve closed (Conf: 0.92, Src: LLM-Inferred)<br>- Leak in vessel (Conf: 0.85, Src: Causes.csv)</td>
+                                            <td class="px-6 py-4">- Pump cavitates (Conf: 0.97, Src: Consequences.csv)</td>
+                                            <td class="px-6 py-4">- Low level alarm (Conf: 0.99, Src: P&ID)<br>- Operator rounds (Conf: 0.65, Src: Safeguards.csv)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">The Future is Collaborative and Systemic</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">This framework is more than an automation tool; it's an extensible platform for a new generation of process safety analysis, enabling continuous improvement and more advanced, systemic methodologies.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-lg mb-2">Human-in-the-Loop</h3>
+                        <p class="text-gray-600 text-sm">The system is a "Co-HAZOP" tool. It automates the grunt work, allowing human experts to focus their time on validating low-confidence or novel high-consequence scenarios, capturing their feedback directly in the KG.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-lg mb-2">Continuous Improvement</h3>
+                        <p class="text-gray-600 text-sm">The validated data from human reviews creates a virtuous cycle. This curated dataset is used to fine-tune the LLM and enrich the knowledge base, making the AI progressively smarter and more aligned with the facility's specific risks.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-lg mb-2">Beyond HAZOP to STPA</h3>
+                        <p class="text-gray-600 text-sm">The Process KG is the perfect foundation for more advanced analysis like System-Theoretic Process Analysis (STPA). The system can be extended to model control loops and identify unsafe control actions, addressing complex, systemic risks where traditional HAZOP falls short.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 AI-Driven Process Safety Initiative. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('uqChart').getContext('2d');
+            const uqChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Robustness', 'Reliability', 'Implementation Complexity'],
+                    datasets: [{
+                        label: 'Proposed Hybrid Method',
+                        data: [9, 9.5, 7],
+                        backgroundColor: 'rgba(74, 144, 226, 0.6)',
+                        borderColor: 'rgba(74, 144, 226, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Simpler Methods (Avg.)',
+                        data: [4, 3, 2],
+                        backgroundColor: 'rgba(200, 200, 200, 0.6)',
+                        borderColor: 'rgba(150, 150, 150, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            title: {
+                                display: true,
+                                text: 'Score (out of 10)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        function switchTab(tabName) {
+            const kgTab = document.getElementById('tab-kg');
+            const excelTab = document.getElementById('tab-excel');
+            const kgContent = document.getElementById('content-kg');
+            const excelContent = document.getElementById('content-excel');
+
+            if (tabName === 'kg') {
+                kgTab.classList.add('active');
+                excelTab.classList.remove('active');
+                kgContent.classList.remove('hidden');
+                excelContent.classList.add('hidden');
+            } else {
+                kgTab.classList.remove('active');
+                excelTab.classList.add('active');
+                kgContent.classList.add('hidden');
+                excelContent.classList.remove('hidden');
+            }
+        }
+
+        function copyCode(button) {
+            const pre = button.parentElement;
+            const code = pre.querySelector('code');
+            const text = code.innerText;
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                button.innerText = 'Copied!';
+                setTimeout(() => {
+                    button.innerText = 'Copy';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+            document.body.removeChild(textarea);
+        }
+    </script>
+
+</body>
+</html>
