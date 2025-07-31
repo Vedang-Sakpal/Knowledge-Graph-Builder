@@ -1,0 +1,1158 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.example.org/hazop-ontology#"
+     xml:base="http://www.example.org/hazop-ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#causedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#causedBy">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#connectsTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#connectsTo">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#&apos;Action Line&apos;"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#consistsOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#consistsOf">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Process"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Stream"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Chemical"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Node"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#controlledBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#controlledBy">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#flowsThrough -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#flowsThrough">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#hasDeviation -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#hasDeviation">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#hasDevice -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#hasDevice">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#hasInletOutlet -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#hasInletOutlet">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Action Line&apos;"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Stream"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#hasParameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#hasParameter">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Stream"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#hasPipe -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#hasPipe">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#hasPipeFitting -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#hasPipeFitting">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#hasStream -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#hasStream">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#measuredWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#measuredWith">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#preventedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#preventedBy">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#resultsIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.example.org/hazop-ontology#resultsIn">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+        <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#casNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#casNumber">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#category -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#category">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Deviation"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Pipe"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#controlStrategy -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#controlStrategy">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#description">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Cause"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Consequence"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Safeguard"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#designIntention -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#designIntention">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#designPressure -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#designPressure">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Pipe"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#designTemperature -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#designTemperature">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Pipe"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#diameter -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#diameter">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#engineeringControls -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#engineeringControls">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#explosionRisk -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#explosionRisk">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#failureMode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#failureMode">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#fireRisk -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#fireRisk">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#highAlarm -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#highAlarm">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#highHighAlarm -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#highHighAlarm">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#lowAlarm -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#lowAlarm">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#lowLowAlarm -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#lowLowAlarm">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#massrate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#massrate">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#material -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#material">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Pipe"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#molarrate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#molarrate">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#moleFraction -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#moleFraction">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#number -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#number">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#pressure -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#pressure">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#reactivity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#reactivity">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#relatedChemicals -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#relatedChemicals">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Cause"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Consequence"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Safeguard"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#relatedDevice -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#relatedDevice">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Cause"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Consequence"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Safeguard"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#relatedInstrument -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#relatedInstrument">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Cause"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Consequence"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Safeguard"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#relatedStream -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#relatedStream">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Cause"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Consequence"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Safeguard"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#setpoint -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#setpoint">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#specification -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#specification">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device"/>
+                    <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#temperature -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#temperature">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#toxicity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#toxicity">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#volumerate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.example.org/hazop-ontology#volumerate">
+        <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Cause -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Cause">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#description"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedChemicals"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedDevice"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedInstrument"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedStream"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Chemical -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Chemical">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#casNumber"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#engineeringControls"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#explosionRisk"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#fireRisk"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#moleFraction"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#reactivity"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#toxicity"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Consequence -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Consequence">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#description"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedChemicals"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedDevice"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedInstrument"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedStream"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Deviation -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Deviation">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#preventedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#resultsIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Device -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Device">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasInletOutlet"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasParameter"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#designPressure"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#designTemperature"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#material"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#number"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#specification"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Node -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Node">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasDevice"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasPipe"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasStream"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#designIntention"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Pipe -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Pipe">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasPipeFitting"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#designPressure"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#designTemperature"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#diameter"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#material"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Process -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Process">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#consistsOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Safeguard -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Safeguard">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#description"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedChemicals"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedDevice"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedInstrument"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedStream"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#Stream -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#Stream">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#consistsOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#flowsThrough"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasParameter"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#massrate"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#molarrate"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#pressure"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#temperature"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#volumerate"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#&apos;Action Line&apos; -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#&apos;Action Line&apos;">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasInletOutlet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+                            <rdf:Description rdf:about="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Action line</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos; -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#controlStrategy"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#failureMode"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#setpoint"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Controlling Instruments</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos; -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#failureMode"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#highAlarm"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#highHighAlarm"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#lowAlarm"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#lowLowAlarm"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Measuring Instruments</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos; -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#&apos;Pipe Fitting&apos;">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#connectsTo"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#&apos;Action Line&apos;"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#designPressure"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#failureMode"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#material"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#specification"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Pipe Fitting</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/hazop-ontology#&apos;Process Parameter&apos; -->
+
+    <owl:Class rdf:about="http://www.example.org/hazop-ontology#&apos;Process Parameter&apos;">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#controlledBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#&apos;Controlling Instrument&apos;"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasDeviation"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#measuredWith"/>
+                <owl:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#&apos;Measuring Instrument&apos;"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Process Parameter</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
