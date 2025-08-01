@@ -1,0 +1,2517 @@
+[
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "No",
+        "parameter": "Flow",
+        "deviation": "No Flow",
+        "causes": [
+            {
+                "description": "Pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.8852996762074313
+            },
+            {
+                "description": "Valve closure",
+                "source": "Operational",
+                "confidenceLevel": 0.7642371159378545
+            }
+        ],
+        "consequences": [
+            {
+                "description": "No heat transfer",
+                "source": "Process",
+                "confidenceLevel": 0.9664701434264793
+            },
+            {
+                "description": "Overheating of process fluid",
+                "source": "Process",
+                "confidenceLevel": 0.7389907186385033
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9060886391511185
+            },
+            {
+                "description": "Redundant pump",
+                "source": "Equipment",
+                "confidenceLevel": 0.7732012987274868
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "Less (Low)",
+        "parameter": "Flow",
+        "deviation": "Less (Low) Flow",
+        "causes": [
+            {
+                "description": "Partial pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.6576889305367102
+            },
+            {
+                "description": "Valve partially closed",
+                "source": "Operational",
+                "confidenceLevel": 0.6658648140117768
+            },
+            {
+                "description": "Fouling",
+                "source": "Process",
+                "confidenceLevel": 0.7385508717817771
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reduced heat transfer efficiency",
+                "source": "Process",
+                "confidenceLevel": 0.7387611141481842
+            },
+            {
+                "description": "Increased process fluid temperature",
+                "source": "Process",
+                "confidenceLevel": 0.7926820800567161
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Low flow alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8548079807235363
+            },
+            {
+                "description": "Regular cleaning schedule",
+                "source": "Maintenance",
+                "confidenceLevel": 0.7514756374862829
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "More (high)",
+        "parameter": "Flow",
+        "deviation": "More (high) Flow",
+        "causes": [
+            {
+                "description": "Pump overspeed",
+                "source": "Equipment",
+                "confidenceLevel": 0.826823211892632
+            },
+            {
+                "description": "Valve fully open",
+                "source": "Operational",
+                "confidenceLevel": 0.8385925333806588
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Increased pressure drop",
+                "source": "Process",
+                "confidenceLevel": 0.9945047474801227
+            },
+            {
+                "description": "Erosion",
+                "source": "Equipment",
+                "confidenceLevel": 0.8020916085607058
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "High flow alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9925797325475808
+            },
+            {
+                "description": "Flow control valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.8294932308333782
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "Reverse",
+        "parameter": "Flow",
+        "deviation": "Reverse Flow",
+        "causes": [
+            {
+                "description": "Valve malfunction",
+                "source": "Equipment",
+                "confidenceLevel": 0.6373835699768163
+            },
+            {
+                "description": "Pump reversal",
+                "source": "Equipment",
+                "confidenceLevel": 0.6361997212680403
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Damage to heat exchanger",
+                "source": "Equipment",
+                "confidenceLevel": 0.81053986383326
+            },
+            {
+                "description": "Process fluid contamination",
+                "source": "Process",
+                "confidenceLevel": 0.6458888744847318
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Check valves",
+                "source": "Equipment",
+                "confidenceLevel": 0.6792230414049355
+            },
+            {
+                "description": "Flow direction indicator",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7355247613266034
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "Fast",
+        "parameter": "Flow",
+        "deviation": "Fast Flow",
+        "causes": [
+            {
+                "description": "Sudden increase in pump speed",
+                "source": "Equipment",
+                "confidenceLevel": 0.8645941816787954
+            },
+            {
+                "description": "Unexpected valve opening",
+                "source": "Operational",
+                "confidenceLevel": 0.8756134128923763
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Erosion",
+                "source": "Equipment",
+                "confidenceLevel": 0.7115615915063641
+            },
+            {
+                "description": "Increased pressure drop",
+                "source": "Process",
+                "confidenceLevel": 0.7565452460617799
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "High flow alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9585963378826213
+            },
+            {
+                "description": "Pressure relief valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.7093194407581535
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "Slow",
+        "parameter": "Flow",
+        "deviation": "Slow Flow",
+        "causes": [
+            {
+                "description": "Partial blockage",
+                "source": "Process",
+                "confidenceLevel": 0.6250105557168508
+            },
+            {
+                "description": "Pump degradation",
+                "source": "Equipment",
+                "confidenceLevel": 0.9477395578245292
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reduced heat transfer",
+                "source": "Process",
+                "confidenceLevel": 0.6232316802048435
+            },
+            {
+                "description": "Increased process temperature",
+                "source": "Process",
+                "confidenceLevel": 0.6819967259183164
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Low flow alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7316970281150376
+            },
+            {
+                "description": "Regular inspection and cleaning",
+                "source": "Maintenance",
+                "confidenceLevel": 0.7637597094893281
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "Less (Low)",
+        "parameter": "Temperature",
+        "deviation": "Less (Low) Temperature",
+        "causes": [
+            {
+                "description": "Insufficient cooling water flow",
+                "source": "Process",
+                "confidenceLevel": 0.9680553544327902
+            },
+            {
+                "description": "Low cooling water temperature",
+                "source": "Process",
+                "confidenceLevel": 0.9756562216902432
+            },
+            {
+                "description": "Fouling",
+                "source": "Process",
+                "confidenceLevel": 0.945441739662869
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat transfer",
+                "source": "Process",
+                "confidenceLevel": 0.9929485295428268
+            },
+            {
+                "description": "Increased process temperature",
+                "source": "Process",
+                "confidenceLevel": 0.7221795956917297
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9959936960738365
+            },
+            {
+                "description": "Cooling water flow control",
+                "source": "Equipment",
+                "confidenceLevel": 0.7383252165712227
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "More (high)",
+        "parameter": "Temperature",
+        "deviation": "More (high) Temperature",
+        "causes": [
+            {
+                "description": "High process fluid temperature",
+                "source": "Process",
+                "confidenceLevel": 0.8466087119134889
+            },
+            {
+                "description": "Insufficient cooling water flow",
+                "source": "Process",
+                "confidenceLevel": 0.6794036042044308
+            },
+            {
+                "description": "Cooling water failure",
+                "source": "Process",
+                "confidenceLevel": 0.8722465902635164
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Equipment damage",
+                "source": "Equipment",
+                "confidenceLevel": 0.8256577040345278
+            },
+            {
+                "description": "Process upset",
+                "source": "Process",
+                "confidenceLevel": 0.678297401284254
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "High temperature alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9805767028294541
+            },
+            {
+                "description": "Pressure relief valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.7653494376170831
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "Fast",
+        "parameter": "Temperature",
+        "deviation": "Fast Temperature",
+        "causes": [
+            {
+                "description": "Failure of cooling system",
+                "source": "Equipment Failure",
+                "confidenceLevel": 0.600504990802612
+            },
+            {
+                "description": "Malfunction of temperature control valve",
+                "source": "Equipment Failure",
+                "confidenceLevel": 0.9421046057121938
+            },
+            {
+                "description": "Sudden increase in process fluid temperature",
+                "source": "Upstream Process",
+                "confidenceLevel": 0.9079154008435049
+            },
+            {
+                "description": "High ambient temperature",
+                "source": "Environmental",
+                "confidenceLevel": 0.6659415824358604
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Overheating of heat exchanger",
+                "source": "Equipment Damage",
+                "confidenceLevel": 0.744618584321796
+            },
+            {
+                "description": "Process fluid degradation",
+                "source": "Process upset",
+                "confidenceLevel": 0.8246149755434276
+            },
+            {
+                "description": "Potential for fire or explosion",
+                "source": "Hazard",
+                "confidenceLevel": 0.8702034971757655
+            },
+            {
+                "description": "Damage to downstream equipment",
+                "source": "Equipment Damage",
+                "confidenceLevel": 0.9830109604216967
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature interlock with cooling system (TIC301)",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9064865708781238
+            },
+            {
+                "description": "High temperature alarm and shutdown system",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7634897120052563
+            },
+            {
+                "description": "Pressure relief valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.6995867491999016
+            },
+            {
+                "description": "Emergency shutdown system",
+                "source": "Safety System",
+                "confidenceLevel": 0.9019940402434211
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Heat Exchanger",
+        "guideword": "Slow",
+        "parameter": "Temperature",
+        "deviation": "Slow Temperature",
+        "causes": [
+            {
+                "description": "Reduced flow rate of cooling fluid",
+                "source": "Equipment Failure",
+                "confidenceLevel": 0.6586001880077723
+            },
+            {
+                "description": "Fouling of heat exchanger tubes",
+                "source": "Equipment Degradation",
+                "confidenceLevel": 0.6384294364788682
+            },
+            {
+                "description": "Control problem or faulty temperature signal (reads high)",
+                "source": "Instrumentation Failure",
+                "confidenceLevel": 0.9681952841007936
+            },
+            {
+                "description": "Low ambient temperature",
+                "source": "Environmental",
+                "confidenceLevel": 0.8470583957277619
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat transfer",
+                "source": "Process upset",
+                "confidenceLevel": 0.6164458224149906
+            },
+            {
+                "description": "Reduced process efficiency",
+                "source": "Process upset",
+                "confidenceLevel": 0.7473489654802452
+            },
+            {
+                "description": "Increased energy consumption",
+                "source": "Process upset",
+                "confidenceLevel": 0.9418529950357665
+            },
+            {
+                "description": "Potential for product quality issues",
+                "source": "Process upset",
+                "confidenceLevel": 0.9059205013460772
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Regular inspection and cleaning of heat exchanger",
+                "source": "Maintenance",
+                "confidenceLevel": 0.7783227280925774
+            },
+            {
+                "description": "Temperature transmitter TIT002001/002002/002003/002004",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6243814800647839
+            },
+            {
+                "description": "Flow monitoring of cooling fluid",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6170074835323321
+            },
+            {
+                "description": "Alarm for low temperature",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8727069694957603
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "No",
+        "parameter": "Flow",
+        "deviation": "No Flow",
+        "causes": [
+            {
+                "description": "Pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.7172332573952263
+            },
+            {
+                "description": "Power failure",
+                "source": "Utility",
+                "confidenceLevel": 0.794334186380438
+            },
+            {
+                "description": "Suction blockage",
+                "source": "Process",
+                "confidenceLevel": 0.7425788134590704
+            }
+        ],
+        "consequences": [
+            {
+                "description": "No heat transfer",
+                "source": "Process",
+                "confidenceLevel": 0.6708994711302184
+            },
+            {
+                "description": "Equipment damage due to overheating",
+                "source": "Equipment",
+                "confidenceLevel": 0.9673282035026682
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Pump vibration monitoring",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8656648456135747
+            },
+            {
+                "description": "High/low pressure alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8311793378695544
+            },
+            {
+                "description": "Emergency shutdown system",
+                "source": "Safety System",
+                "confidenceLevel": 0.9951196388994791
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "Less (Low)",
+        "parameter": "Flow",
+        "deviation": "Less (Low) Flow",
+        "causes": [
+            {
+                "description": "Partial pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.7288775308375468
+            },
+            {
+                "description": "Suction restriction",
+                "source": "Process",
+                "confidenceLevel": 0.7189954415429421
+            },
+            {
+                "description": "Discharge restriction",
+                "source": "Process",
+                "confidenceLevel": 0.7442819760401838
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reduced heat transfer efficiency",
+                "source": "Process",
+                "confidenceLevel": 0.8779990192971147
+            },
+            {
+                "description": "Increased pump operating temperature",
+                "source": "Equipment",
+                "confidenceLevel": 0.6715530800004428
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow meter monitoring and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7161726339972695
+            },
+            {
+                "description": "Pressure differential monitoring",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7765698087851889
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "More (high)",
+        "parameter": "Flow",
+        "deviation": "More (high) Flow",
+        "causes": [
+            {
+                "description": "Control valve malfunction",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9604858447131968
+            },
+            {
+                "description": "Increased demand downstream",
+                "source": "Process",
+                "confidenceLevel": 0.7959886885765638
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Excessive wear on pump components",
+                "source": "Equipment",
+                "confidenceLevel": 0.6242819950108269
+            },
+            {
+                "description": "Increased energy consumption",
+                "source": "Utility",
+                "confidenceLevel": 0.8609312260488904
+            },
+            {
+                "description": "Potential for downstream flooding",
+                "source": "Process",
+                "confidenceLevel": 0.7567930062847742
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow control valve",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7342229909930598
+            },
+            {
+                "description": "High flow alarm and shutdown",
+                "source": "Safety System",
+                "confidenceLevel": 0.8933104403566359
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "Reverse",
+        "parameter": "Flow",
+        "deviation": "Reverse Flow",
+        "causes": [
+            {
+                "description": "Pump rotation reversal",
+                "source": "Equipment",
+                "confidenceLevel": 0.8625297545817526
+            },
+            {
+                "description": "Back pressure exceeding pump head",
+                "source": "Process",
+                "confidenceLevel": 0.9729002717569684
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Pump damage",
+                "source": "Equipment",
+                "confidenceLevel": 0.9937040427778747
+            },
+            {
+                "description": "Process upset",
+                "source": "Process",
+                "confidenceLevel": 0.7975761720564765
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Non-return valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.8863518792534559
+            },
+            {
+                "description": "Reverse flow alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8626192377660258
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "Fast",
+        "parameter": "Flow",
+        "deviation": "Fast Flow",
+        "causes": [
+            {
+                "description": "Control valve malfunction",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9487451149893467
+            },
+            {
+                "description": "Increased demand downstream",
+                "source": "Process",
+                "confidenceLevel": 0.8856610726863097
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Excessive wear on pump components",
+                "source": "Equipment",
+                "confidenceLevel": 0.9501854397509373
+            },
+            {
+                "description": "Increased energy consumption",
+                "source": "Utility",
+                "confidenceLevel": 0.7347222190587263
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow control valve",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6840538124985743
+            },
+            {
+                "description": "High flow alarm and shutdown",
+                "source": "Safety System",
+                "confidenceLevel": 0.8493272402142115
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "Slow",
+        "parameter": "Flow",
+        "deviation": "Slow Flow",
+        "causes": [
+            {
+                "description": "Partial pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.9661839795382712
+            },
+            {
+                "description": "Suction restriction",
+                "source": "Process",
+                "confidenceLevel": 0.7198694304398154
+            },
+            {
+                "description": "Discharge restriction",
+                "source": "Process",
+                "confidenceLevel": 0.8201752335657839
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reduced heat transfer efficiency",
+                "source": "Process",
+                "confidenceLevel": 0.8316155799100812
+            },
+            {
+                "description": "Increased pump operating temperature",
+                "source": "Equipment",
+                "confidenceLevel": 0.6055302554836249
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow meter monitoring and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8452495293345754
+            },
+            {
+                "description": "Pressure differential monitoring",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7411136403086218
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "Less (Low)",
+        "parameter": "Temperature",
+        "deviation": "Less (Low) Temperature",
+        "causes": [
+            {
+                "description": "Insufficient cooling",
+                "source": "Process",
+                "confidenceLevel": 0.9059670510964115
+            },
+            {
+                "description": "Leaks in the system",
+                "source": "Equipment",
+                "confidenceLevel": 0.6556865407786616
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reduced pump efficiency",
+                "source": "Equipment",
+                "confidenceLevel": 0.7910985220224312
+            },
+            {
+                "description": "Potential for cavitation",
+                "source": "Equipment",
+                "confidenceLevel": 0.7116960720591029
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature monitoring and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7405247240489599
+            },
+            {
+                "description": "Cooling water flow monitoring",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8346786873708808
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "More (high)",
+        "parameter": "Temperature",
+        "deviation": "More (high) Temperature",
+        "causes": [
+            {
+                "description": "Excessive friction losses",
+                "source": "Process",
+                "confidenceLevel": 0.8851596511646687
+            },
+            {
+                "description": "Insufficient cooling",
+                "source": "Process",
+                "confidenceLevel": 0.7262270423795393
+            },
+            {
+                "description": "Pump overheating",
+                "source": "Equipment",
+                "confidenceLevel": 0.6335955772204771
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Pump damage",
+                "source": "Equipment",
+                "confidenceLevel": 0.800494489614712
+            },
+            {
+                "description": "Reduced pump life",
+                "source": "Equipment",
+                "confidenceLevel": 0.9648264599106788
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature monitoring and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9811846535588453
+            },
+            {
+                "description": "Cooling system",
+                "source": "Equipment",
+                "confidenceLevel": 0.6090200054980329
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "Fast",
+        "parameter": "Temperature",
+        "deviation": "Fast Temperature",
+        "causes": [
+            {
+                "description": "Pump speed increase due to control malfunction",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6457249445082233
+            },
+            {
+                "description": "Reduced viscosity of whey permeate leading to increased flow",
+                "source": "Process",
+                "confidenceLevel": 0.7775395858284395
+            },
+            {
+                "description": "Bypass valve malfunction",
+                "source": "Equipment",
+                "confidenceLevel": 0.8573247605572899
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Increased heat transfer rate in heat exchanger, potentially exceeding design limits",
+                "source": "Process",
+                "confidenceLevel": 0.6898277581760968
+            },
+            {
+                "description": "Overheating of whey permeate, leading to degradation or fouling",
+                "source": "Process",
+                "confidenceLevel": 0.8107593057233071
+            },
+            {
+                "description": "Increased energy consumption",
+                "source": "Process",
+                "confidenceLevel": 0.7929502443756152
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "High temperature alarm and shutdown interlock (TIC301)",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9040902302824995
+            },
+            {
+                "description": "Pump speed control system with limits",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7128643413378261
+            },
+            {
+                "description": "Flow meter monitoring and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.899504515055914
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Pump",
+        "guideword": "Slow",
+        "parameter": "Temperature",
+        "deviation": "Slow Temperature",
+        "causes": [
+            {
+                "description": "Pump speed reduction due to control malfunction or blockage",
+                "source": "Instrumentation/Equipment",
+                "confidenceLevel": 0.9825950679336944
+            },
+            {
+                "description": "Increased viscosity of whey permeate due to temperature change",
+                "source": "Process",
+                "confidenceLevel": 0.679624329777105
+            },
+            {
+                "description": "Clogging of pump or piping",
+                "source": "Equipment",
+                "confidenceLevel": 0.8548841310898861
+            },
+            {
+                "description": "Low inlet temperature of whey permeate",
+                "source": "Process",
+                "confidenceLevel": 0.6963936580071614
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reduced heat transfer rate in heat exchanger, inefficient heating",
+                "source": "Process",
+                "confidenceLevel": 0.7148077494635853
+            },
+            {
+                "description": "Lower product quality due to insufficient heating",
+                "source": "Process",
+                "confidenceLevel": 0.8453287782232504
+            },
+            {
+                "description": "Increased processing time",
+                "source": "Process",
+                "confidenceLevel": 0.6337620078770713
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Low temperature alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7204776477520642
+            },
+            {
+                "description": "Regular pump maintenance and inspection",
+                "source": "Maintenance",
+                "confidenceLevel": 0.9881571374836275
+            },
+            {
+                "description": "Monitoring of whey permeate inlet temperature (TIT002001/002002/002003/002004)",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8126816023862404
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "No",
+        "parameter": "Flow",
+        "deviation": "No Flow",
+        "causes": [
+            {
+                "description": "Pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.8797222104944266
+            },
+            {
+                "description": "Blockage in feed line",
+                "source": "Equipment",
+                "confidenceLevel": 0.6084025189712912
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor shutdown",
+                "source": "Process",
+                "confidenceLevel": 0.9601928837330844
+            },
+            {
+                "description": "Incomplete reaction",
+                "source": "Process",
+                "confidenceLevel": 0.9718968567958949
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow alarm and automatic shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8398734455876155
+            },
+            {
+                "description": "Regular pump maintenance",
+                "source": "Maintenance",
+                "confidenceLevel": 0.8810175073271745
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "Less (Low)",
+        "parameter": "Flow",
+        "deviation": "Less (Low) Flow",
+        "causes": [
+            {
+                "description": "Reduced feed rate",
+                "source": "Process",
+                "confidenceLevel": 0.6492082885357205
+            },
+            {
+                "description": "Partial blockage",
+                "source": "Equipment",
+                "confidenceLevel": 0.9019089956782854
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Incomplete reaction",
+                "source": "Process",
+                "confidenceLevel": 0.6978317039954764
+            },
+            {
+                "description": "Reduced throughput",
+                "source": "Process",
+                "confidenceLevel": 0.9198105084272662
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow measurement and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7769067597448228
+            },
+            {
+                "description": "Regular inspection of feed lines",
+                "source": "Maintenance",
+                "confidenceLevel": 0.7792515283033438
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "More (high)",
+        "parameter": "Flow",
+        "deviation": "More (high) Flow",
+        "causes": [
+            {
+                "description": "Malfunctioning flow control valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.6401152454139395
+            },
+            {
+                "description": "Increased feed rate",
+                "source": "Process",
+                "confidenceLevel": 0.7189238788728866
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor overpressure",
+                "source": "Process",
+                "confidenceLevel": 0.8425727372892008
+            },
+            {
+                "description": "Increased reaction rate, potential runaway",
+                "source": "Process",
+                "confidenceLevel": 0.6559533439924713
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Pressure relief valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.7862979227941244
+            },
+            {
+                "description": "Flow control valve interlock",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8465070775130853
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "Reverse",
+        "parameter": "Flow",
+        "deviation": "Reverse Flow",
+        "causes": [
+            {
+                "description": "Pump reversal",
+                "source": "Equipment",
+                "confidenceLevel": 0.8097396647834915
+            },
+            {
+                "description": "Failure in check valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.8340668836588117
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Contamination of feedstock",
+                "source": "Process",
+                "confidenceLevel": 0.7962032341631824
+            },
+            {
+                "description": "Equipment damage",
+                "source": "Equipment",
+                "confidenceLevel": 0.8151314666848072
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Check valves",
+                "source": "Equipment",
+                "confidenceLevel": 0.6944862789101978
+            },
+            {
+                "description": "Reverse flow alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6190250694961715
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "Fast",
+        "parameter": "Flow",
+        "deviation": "Fast Flow",
+        "causes": [
+            {
+                "description": "Unexpected increase in feed rate",
+                "source": "Process",
+                "confidenceLevel": 0.7086651750682769
+            },
+            {
+                "description": "Malfunctioning flow control valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.7138040151568421
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor overpressure",
+                "source": "Process",
+                "confidenceLevel": 0.6503642992109456
+            },
+            {
+                "description": "Increased reaction rate, potential runaway",
+                "source": "Process",
+                "confidenceLevel": 0.8199640903074852
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Pressure relief valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.8470027470989281
+            },
+            {
+                "description": "Flow control valve interlock",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.698129977543104
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "Slow",
+        "parameter": "Flow",
+        "deviation": "Slow Flow",
+        "causes": [
+            {
+                "description": "Reduced feed rate",
+                "source": "Process",
+                "confidenceLevel": 0.9295978843435099
+            },
+            {
+                "description": "Partial blockage",
+                "source": "Equipment",
+                "confidenceLevel": 0.7469848341024417
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Incomplete reaction",
+                "source": "Process",
+                "confidenceLevel": 0.9407521061491598
+            },
+            {
+                "description": "Reduced throughput",
+                "source": "Process",
+                "confidenceLevel": 0.8994372733443439
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow measurement and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.911612345623815
+            },
+            {
+                "description": "Regular inspection of feed lines",
+                "source": "Maintenance",
+                "confidenceLevel": 0.9035924501760569
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "Less (Low)",
+        "parameter": "Temperature",
+        "deviation": "Less (Low) Temperature",
+        "causes": [
+            {
+                "description": "Reduced heating",
+                "source": "Process",
+                "confidenceLevel": 0.8280648856231184
+            },
+            {
+                "description": "Heat exchanger malfunction",
+                "source": "Equipment",
+                "confidenceLevel": 0.8390204634158496
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Slow or incomplete reaction",
+                "source": "Process",
+                "confidenceLevel": 0.610195616546439
+            },
+            {
+                "description": "Reduced yield",
+                "source": "Process",
+                "confidenceLevel": 0.6413976949655918
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature measurement and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7217512837063853
+            },
+            {
+                "description": "Heat exchanger maintenance",
+                "source": "Maintenance",
+                "confidenceLevel": 0.8385630504492922
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "More (high)",
+        "parameter": "Temperature",
+        "deviation": "More (high) Temperature",
+        "causes": [
+            {
+                "description": "Excessive heating",
+                "source": "Process",
+                "confidenceLevel": 0.7454594761343888
+            },
+            {
+                "description": "Malfunctioning temperature control",
+                "source": "Equipment",
+                "confidenceLevel": 0.7028903090293113
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor overpressure",
+                "source": "Process",
+                "confidenceLevel": 0.7571196420381212
+            },
+            {
+                "description": "Runaway reaction",
+                "source": "Process",
+                "confidenceLevel": 0.7393546257324518
+            },
+            {
+                "description": "Equipment damage",
+                "source": "Equipment",
+                "confidenceLevel": 0.6033655421244929
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature control system",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.808475349505786
+            },
+            {
+                "description": "Pressure relief valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.9513170277335796
+            },
+            {
+                "description": "Emergency shutdown system",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7529803770493402
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "Fast",
+        "parameter": "Temperature",
+        "deviation": "Fast Temperature",
+        "causes": [
+            {
+                "description": "Exothermic reaction runaway due to catalyst deactivation or contamination.",
+                "source": "Chemical kinetics",
+                "confidenceLevel": 0.7411143258012154
+            },
+            {
+                "description": "Failure of cooling system (TIC301).",
+                "source": "Equipment failure",
+                "confidenceLevel": 0.7027176476676105
+            },
+            {
+                "description": "Malfunction of temperature control system (incorrect setpoint or faulty controller).",
+                "source": "Instrumentation failure",
+                "confidenceLevel": 0.7574549534519889
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor overpressure leading to rupture.",
+                "source": "Pressure buildup",
+                "confidenceLevel": 0.9044697973318427
+            },
+            {
+                "description": "High temperature leading to equipment damage or fire.",
+                "source": "Thermal stress",
+                "confidenceLevel": 0.8476025613927151
+            },
+            {
+                "description": "Release of hazardous materials (HCl).",
+                "source": "Equipment failure",
+                "confidenceLevel": 0.6422872226908943
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature interlock with cooling system (TIC301).",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6639984769010582
+            },
+            {
+                "description": "Pressure relief valve (PRV).",
+                "source": "Equipment",
+                "confidenceLevel": 0.8147526935803351
+            },
+            {
+                "description": "Emergency shutdown system (ESD).",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8762974639903818
+            },
+            {
+                "description": "Fire and gas detection system.",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7389902191281701
+            }
+        ]
+    },
+    {
+        "node": "Node for Equipment Reactor",
+        "guideword": "Slow",
+        "parameter": "Temperature",
+        "deviation": "Slow Temperature",
+        "causes": [
+            {
+                "description": "Reduced reactant flow rate.",
+                "source": "Process conditions",
+                "confidenceLevel": 0.6340117771987699
+            },
+            {
+                "description": "Fouling of heat exchanger.",
+                "source": "Equipment degradation",
+                "confidenceLevel": 0.8294033990347714
+            },
+            {
+                "description": "Control problem or faulty temperature signal (reads high).",
+                "source": "Instrumentation failure",
+                "confidenceLevel": 0.8691645845526879
+            },
+            {
+                "description": "Low ambient temperature.",
+                "source": "Environmental conditions",
+                "confidenceLevel": 0.8288837614570574
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Incomplete reaction.",
+                "source": "Process conditions",
+                "confidenceLevel": 0.9413625990954445
+            },
+            {
+                "description": "Reduced product yield.",
+                "source": "Process conditions",
+                "confidenceLevel": 0.8314444167531871
+            },
+            {
+                "description": "Increased reaction time.",
+                "source": "Process conditions",
+                "confidenceLevel": 0.6122335463818881
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature transmitter TIT002001/002002/002003/002004 (monitoring).",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9831212417209045
+            },
+            {
+                "description": "Manual override for heating system.",
+                "source": "Operational procedure",
+                "confidenceLevel": 0.8945939496301203
+            },
+            {
+                "description": "Regular inspection and cleaning of heat exchanger.",
+                "source": "Maintenance procedure",
+                "confidenceLevel": 0.9366396692456335
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "No",
+        "parameter": "Flow",
+        "deviation": "No Flow",
+        "causes": [
+            {
+                "description": "Pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.6693174720144718
+            },
+            {
+                "description": "Valve closure",
+                "source": "Operational",
+                "confidenceLevel": 0.967670777080934
+            }
+        ],
+        "consequences": [
+            {
+                "description": "No cooling of process fluid",
+                "source": "Process",
+                "confidenceLevel": 0.8225232765138631
+            },
+            {
+                "description": "Potential overheating and equipment damage",
+                "source": "Process",
+                "confidenceLevel": 0.8626535856519043
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8706556139756105
+            },
+            {
+                "description": "Redundant pump",
+                "source": "Equipment",
+                "confidenceLevel": 0.8317925128920397
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "Less (Low)",
+        "parameter": "Flow",
+        "deviation": "Less (Low) Flow",
+        "causes": [
+            {
+                "description": "Partial pump failure",
+                "source": "Equipment",
+                "confidenceLevel": 0.863998383226822
+            },
+            {
+                "description": "Valve partially closed",
+                "source": "Operational",
+                "confidenceLevel": 0.8816571862052613
+            },
+            {
+                "description": "Fouling of heat exchanger",
+                "source": "Process",
+                "confidenceLevel": 0.6623693391553348
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reduced cooling efficiency",
+                "source": "Process",
+                "confidenceLevel": 0.9762071802346958
+            },
+            {
+                "description": "Increased process temperature",
+                "source": "Process",
+                "confidenceLevel": 0.80787223912322
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Low flow alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6982069182694627
+            },
+            {
+                "description": "Regular heat exchanger cleaning",
+                "source": "Maintenance",
+                "confidenceLevel": 0.922121387324622
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "More (high)",
+        "parameter": "Flow",
+        "deviation": "More (high) Flow",
+        "causes": [
+            {
+                "description": "Valve malfunction",
+                "source": "Equipment",
+                "confidenceLevel": 0.8637489654145499
+            },
+            {
+                "description": "Control system error",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.849618908715804
+            },
+            {
+                "description": "Operator error",
+                "source": "Human",
+                "confidenceLevel": 0.8144767806577857
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Excessive cooling, potential for process upset",
+                "source": "Process",
+                "confidenceLevel": 0.9400107616858571
+            },
+            {
+                "description": "Increased energy consumption",
+                "source": "Operational",
+                "confidenceLevel": 0.9483826169462909
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "High flow alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9146147364308279
+            },
+            {
+                "description": "Flow control valve",
+                "source": "Equipment",
+                "confidenceLevel": 0.8889426367409861
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "Reverse",
+        "parameter": "Flow",
+        "deviation": "Reverse Flow",
+        "causes": [
+            {
+                "description": "Valve malfunction",
+                "source": "Equipment",
+                "confidenceLevel": 0.9413277898915505
+            },
+            {
+                "description": "Pump reversal",
+                "source": "Equipment",
+                "confidenceLevel": 0.82053117007064
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Process fluid contamination",
+                "source": "Process",
+                "confidenceLevel": 0.7583711668717482
+            },
+            {
+                "description": "Equipment damage",
+                "source": "Equipment",
+                "confidenceLevel": 0.7476113788415544
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Check valves",
+                "source": "Equipment",
+                "confidenceLevel": 0.6444417686285756
+            },
+            {
+                "description": "Reverse flow alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7118086506221784
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "Fast",
+        "parameter": "Flow",
+        "deviation": "Fast Flow",
+        "causes": [
+            {
+                "description": "Sudden increase in cooling demand",
+                "source": "Process",
+                "confidenceLevel": 0.9412468406213114
+            },
+            {
+                "description": "Control system malfunction",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7822406186666562
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Erosion of heat exchanger tubes",
+                "source": "Equipment",
+                "confidenceLevel": 0.9082894113437965
+            },
+            {
+                "description": "Increased energy consumption",
+                "source": "Operational",
+                "confidenceLevel": 0.7270997675552485
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow limit switch",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7590029384742115
+            },
+            {
+                "description": "Robust heat exchanger design",
+                "source": "Equipment",
+                "confidenceLevel": 0.6849749828683966
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "Slow",
+        "parameter": "Flow",
+        "deviation": "Slow Flow",
+        "causes": [
+            {
+                "description": "Partial blockage in the line",
+                "source": "Process",
+                "confidenceLevel": 0.7223206741866416
+            },
+            {
+                "description": "Pump degradation",
+                "source": "Equipment",
+                "confidenceLevel": 0.9113597797473189
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient cooling",
+                "source": "Process",
+                "confidenceLevel": 0.788762545587655
+            },
+            {
+                "description": "Increased process temperature",
+                "source": "Process",
+                "confidenceLevel": 0.7123515544744454
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow monitoring and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9336317094781227
+            },
+            {
+                "description": "Regular inspection and maintenance",
+                "source": "Maintenance",
+                "confidenceLevel": 0.9697810528607017
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "Less (Low)",
+        "parameter": "Temperature",
+        "deviation": "Less (Low) Temperature",
+        "causes": [
+            {
+                "description": "Reduced cooling water temperature",
+                "source": "Utility",
+                "confidenceLevel": 0.6299755663735135
+            },
+            {
+                "description": "Low cooling water flow",
+                "source": "Process",
+                "confidenceLevel": 0.70506462064861
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient cooling",
+                "source": "Process",
+                "confidenceLevel": 0.6539277835904493
+            },
+            {
+                "description": "Potential for freezing in cold climates",
+                "source": "Process",
+                "confidenceLevel": 0.7895378511354111
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature monitoring and alarm",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9963241541158812
+            },
+            {
+                "description": "Trace heating (if applicable)",
+                "source": "Equipment",
+                "confidenceLevel": 0.9881283771697642
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "More (high)",
+        "parameter": "Temperature",
+        "deviation": "More (high) Temperature",
+        "causes": [
+            {
+                "description": "Increased process temperature",
+                "source": "Process",
+                "confidenceLevel": 0.6261880162657257
+            },
+            {
+                "description": "Failure of cooling system",
+                "source": "Equipment",
+                "confidenceLevel": 0.6266445091158781
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Process upset",
+                "source": "Process",
+                "confidenceLevel": 0.8226005734762669
+            },
+            {
+                "description": "Equipment damage",
+                "source": "Equipment",
+                "confidenceLevel": 0.6960648706187978
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "High temperature alarm and shutdown",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8748965977163905
+            },
+            {
+                "description": "Redundant cooling system",
+                "source": "Equipment",
+                "confidenceLevel": 0.9728523552326448
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "Fast",
+        "parameter": "Temperature",
+        "deviation": "Fast Temperature",
+        "causes": [
+            {
+                "description": "Malfunction in cooling system (e.g., pump failure, valve malfunction)",
+                "source": "Equipment Failure",
+                "confidenceLevel": 0.717250111400084
+            },
+            {
+                "description": "Sudden increase in ambient temperature",
+                "source": "External Factors",
+                "confidenceLevel": 0.6524965999982268
+            },
+            {
+                "description": "Exothermic reaction runaway",
+                "source": "Process",
+                "confidenceLevel": 0.9288372106505667
+            },
+            {
+                "description": "Control system failure (e.g., controller malfunction, incorrect setpoint)",
+                "source": "Instrumentation/Control",
+                "confidenceLevel": 0.7089000613579185
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor over-temperature, potential for runaway reaction",
+                "source": "Process",
+                "confidenceLevel": 0.7113083737762405
+            },
+            {
+                "description": "Component damage due to thermal stress",
+                "source": "Equipment Damage",
+                "confidenceLevel": 0.796829646597428
+            },
+            {
+                "description": "Product degradation or off-spec product",
+                "source": "Product Quality",
+                "confidenceLevel": 0.8397539351786205
+            },
+            {
+                "description": "Potential for fire or explosion",
+                "source": "Safety",
+                "confidenceLevel": 0.688008251005111
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature interlock with cooling system (TIC301) - immediate shutdown",
+                "source": "Instrumentation/Control",
+                "confidenceLevel": 0.6608315058096079
+            },
+            {
+                "description": "High temperature alarm and shutdown system",
+                "source": "Instrumentation/Control",
+                "confidenceLevel": 0.9215855853606628
+            },
+            {
+                "description": "Emergency shutdown system (ESD)",
+                "source": "Safety",
+                "confidenceLevel": 0.8375517373446237
+            },
+            {
+                "description": "Regular maintenance and inspection of cooling system",
+                "source": "Maintenance",
+                "confidenceLevel": 0.7826745108892574
+            }
+        ]
+    },
+    {
+        "node": "Node for Miscellaneous To section 200",
+        "guideword": "Slow",
+        "parameter": "Temperature",
+        "deviation": "Slow Temperature",
+        "causes": [
+            {
+                "description": "Reduced cooling capacity (e.g., fouling, scaling)",
+                "source": "Equipment Failure",
+                "confidenceLevel": 0.6327822816733961
+            },
+            {
+                "description": "Low utility flow rate",
+                "source": "Utilities",
+                "confidenceLevel": 0.6739501534118766
+            },
+            {
+                "description": "Control system failure (e.g., controller malfunction, incorrect setpoint)",
+                "source": "Instrumentation/Control",
+                "confidenceLevel": 0.8289542827448662
+            },
+            {
+                "description": "Blockage in cooling lines",
+                "source": "Equipment Failure",
+                "confidenceLevel": 0.6830482478624971
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat removal from reactor",
+                "source": "Process",
+                "confidenceLevel": 0.8619007173799776
+            },
+            {
+                "description": "Increased reaction time",
+                "source": "Process",
+                "confidenceLevel": 0.787781047111511
+            },
+            {
+                "description": "Reduced product yield or quality",
+                "source": "Product Quality",
+                "confidenceLevel": 0.9225484177158977
+            },
+            {
+                "description": "Potential for prolonged exposure to elevated temperatures leading to degradation",
+                "source": "Process",
+                "confidenceLevel": 0.7838423331253599
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Low temperature alarm",
+                "source": "Instrumentation/Control",
+                "confidenceLevel": 0.8004991015113829
+            },
+            {
+                "description": "Regular cleaning and maintenance of heat exchanger",
+                "source": "Maintenance",
+                "confidenceLevel": 0.9342130148873071
+            },
+            {
+                "description": "Flow monitoring of cooling utility",
+                "source": "Instrumentation/Control",
+                "confidenceLevel": 0.9198356711827481
+            },
+            {
+                "description": "Operator intervention to adjust cooling flow rate",
+                "source": "Operational Procedure",
+                "confidenceLevel": 0.8066451147158289
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "No",
+        "parameter": "Flow",
+        "deviation": "No Flow",
+        "causes": [
+            {
+                "description": "Blockage in the joint",
+                "source": "Physical obstruction",
+                "confidenceLevel": 0.7847743726366341
+            },
+            {
+                "description": "Joint failure (leakage)",
+                "source": "Mechanical failure",
+                "confidenceLevel": 0.8145874660337277
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor overheating",
+                "source": "Loss of cooling",
+                "confidenceLevel": 0.7163815064620753
+            },
+            {
+                "description": "HCl degradation/reaction runaway",
+                "source": "Loss of temperature control",
+                "confidenceLevel": 0.835916823142669
+            },
+            {
+                "description": "Heat exchanger damage",
+                "source": "Overheating",
+                "confidenceLevel": 0.6950293682976747
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7652205943307985
+            },
+            {
+                "description": "Regular inspection and maintenance of joints",
+                "source": "Preventive maintenance",
+                "confidenceLevel": 0.6194546120717374
+            },
+            {
+                "description": "Emergency shutdown system",
+                "source": "Process safety system",
+                "confidenceLevel": 0.7331493977181038
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "Less (Low)",
+        "parameter": "Flow",
+        "deviation": "Less (Low) Flow",
+        "causes": [
+            {
+                "description": "Partial blockage in the joint",
+                "source": "Physical obstruction",
+                "confidenceLevel": 0.8887792370916452
+            },
+            {
+                "description": "Reduced cooling water supply",
+                "source": "External system failure",
+                "confidenceLevel": 0.9896005432875556
+            },
+            {
+                "description": "Valve partially closed",
+                "source": "Operational error",
+                "confidenceLevel": 0.7677794685213647
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat transfer",
+                "source": "Reduced cooling capacity",
+                "confidenceLevel": 0.9819529384503843
+            },
+            {
+                "description": "Reactor temperature increase",
+                "source": "Insufficient cooling",
+                "confidenceLevel": 0.953569002060775
+            },
+            {
+                "description": "Reduced process efficiency",
+                "source": "Suboptimal operating conditions",
+                "confidenceLevel": 0.8438860974633029
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.880684737734012
+            },
+            {
+                "description": "Cooling water supply monitoring",
+                "source": "Process control",
+                "confidenceLevel": 0.634539663222884
+            },
+            {
+                "description": "Operator training and procedures",
+                "source": "Human factors",
+                "confidenceLevel": 0.9099744447020306
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "More (high)",
+        "parameter": "Flow",
+        "deviation": "More (high) Flow",
+        "causes": [
+            {
+                "description": "Valve malfunction",
+                "source": "Mechanical failure",
+                "confidenceLevel": 0.8012319024734962
+            },
+            {
+                "description": "Increased cooling water supply",
+                "source": "External system malfunction",
+                "confidenceLevel": 0.8559368013145976
+            },
+            {
+                "description": "Control system error",
+                "source": "Instrumentation failure",
+                "confidenceLevel": 0.9866221825564709
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Erosion of the joint",
+                "source": "High velocity flow",
+                "confidenceLevel": 0.6033802121492308
+            },
+            {
+                "description": "Excessive cooling leading to process upset",
+                "source": "Temperature deviation",
+                "confidenceLevel": 0.7711421085410276
+            },
+            {
+                "description": "Increased energy consumption",
+                "source": "Higher flow rate",
+                "confidenceLevel": 0.6886383976656409
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow control valve",
+                "source": "Process control",
+                "confidenceLevel": 0.8724231175709443
+            },
+            {
+                "description": "Flow sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.736679352040703
+            },
+            {
+                "description": "Pressure relief valve",
+                "source": "Process safety system",
+                "confidenceLevel": 0.8727856986423206
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "Reverse",
+        "parameter": "Flow",
+        "deviation": "Reverse Flow",
+        "causes": [
+            {
+                "description": "Pump failure",
+                "source": "Mechanical failure",
+                "confidenceLevel": 0.9241692745790099
+            },
+            {
+                "description": "Valve malfunction",
+                "source": "Mechanical failure",
+                "confidenceLevel": 0.7568984432547707
+            },
+            {
+                "description": "Control system error",
+                "source": "Instrumentation failure",
+                "confidenceLevel": 0.8102116412525167
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Contamination of the reactor",
+                "source": "Backflow of process fluids",
+                "confidenceLevel": 0.9126402120899983
+            },
+            {
+                "description": "Damage to equipment",
+                "source": "Reverse flow stress",
+                "confidenceLevel": 0.8378801434017932
+            },
+            {
+                "description": "Process upset",
+                "source": "Unexpected flow direction",
+                "confidenceLevel": 0.6942485979368459
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Check valves",
+                "source": "Process safety system",
+                "confidenceLevel": 0.83404331188705
+            },
+            {
+                "description": "Flow direction sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6341637324910417
+            },
+            {
+                "description": "Emergency shutdown system",
+                "source": "Process safety system",
+                "confidenceLevel": 0.9317260916091288
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "Fast",
+        "parameter": "Flow",
+        "deviation": "Fast Flow",
+        "causes": [
+            {
+                "description": "Sudden increase in cooling water supply",
+                "source": "External system malfunction",
+                "confidenceLevel": 0.8831272149872826
+            },
+            {
+                "description": "Valve malfunction",
+                "source": "Mechanical failure",
+                "confidenceLevel": 0.6822197755900992
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Erosion of the joint",
+                "source": "High velocity flow",
+                "confidenceLevel": 0.64616159637789
+            },
+            {
+                "description": "Water hammer",
+                "source": "Sudden flow changes",
+                "confidenceLevel": 0.978514602107718
+            },
+            {
+                "description": "Joint failure",
+                "source": "Mechanical stress",
+                "confidenceLevel": 0.7020221150317962
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow control valve",
+                "source": "Process control",
+                "confidenceLevel": 0.6574092417225257
+            },
+            {
+                "description": "Flow sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8003461867773511
+            },
+            {
+                "description": "Pressure relief valve",
+                "source": "Process safety system",
+                "confidenceLevel": 0.8085664015849714
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "Slow",
+        "parameter": "Flow",
+        "deviation": "Slow Flow",
+        "causes": [
+            {
+                "description": "Partial blockage",
+                "source": "Physical obstruction",
+                "confidenceLevel": 0.7923543807127449
+            },
+            {
+                "description": "Reduced cooling water supply",
+                "source": "External system failure",
+                "confidenceLevel": 0.9888842496718323
+            },
+            {
+                "description": "Valve partially closed",
+                "source": "Operational error",
+                "confidenceLevel": 0.8457959826966026
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat transfer",
+                "source": "Reduced cooling capacity",
+                "confidenceLevel": 0.8926839898406891
+            },
+            {
+                "description": "Reactor temperature increase",
+                "source": "Insufficient cooling",
+                "confidenceLevel": 0.8820580532312488
+            },
+            {
+                "description": "Reduced process efficiency",
+                "source": "Suboptimal operating conditions",
+                "confidenceLevel": 0.6936711254294763
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Flow sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6707055425675057
+            },
+            {
+                "description": "Cooling water supply monitoring",
+                "source": "Process control",
+                "confidenceLevel": 0.6060286710422199
+            },
+            {
+                "description": "Operator training and procedures",
+                "source": "Human factors",
+                "confidenceLevel": 0.7679501940716928
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "Less (Low)",
+        "parameter": "Temperature",
+        "deviation": "Less (Low) Temperature",
+        "causes": [
+            {
+                "description": "Reduced cooling water temperature",
+                "source": "External system failure",
+                "confidenceLevel": 0.8691681423750861
+            },
+            {
+                "description": "Insufficient cooling water flow",
+                "source": "Flow restriction",
+                "confidenceLevel": 0.739367040541205
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat transfer",
+                "source": "Low temperature difference",
+                "confidenceLevel": 0.8971473363345184
+            },
+            {
+                "description": "Reactor temperature increase",
+                "source": "Insufficient cooling",
+                "confidenceLevel": 0.9572020020380652
+            },
+            {
+                "description": "Process upset",
+                "source": "Temperature deviation",
+                "confidenceLevel": 0.7181362331731129
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.7441450906001649
+            },
+            {
+                "description": "Cooling water temperature monitoring",
+                "source": "Process control",
+                "confidenceLevel": 0.6830572610061404
+            },
+            {
+                "description": "Emergency shutdown system",
+                "source": "Process safety system",
+                "confidenceLevel": 0.7370801816109243
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "More (high)",
+        "parameter": "Temperature",
+        "deviation": "More (high) Temperature",
+        "causes": [
+            {
+                "description": "Increased cooling water temperature",
+                "source": "External system malfunction",
+                "confidenceLevel": 0.6263772531209779
+            },
+            {
+                "description": "Reduced cooling water flow",
+                "source": "Flow restriction",
+                "confidenceLevel": 0.9117905460888038
+            },
+            {
+                "description": "Heat exchanger fouling",
+                "source": "Process conditions",
+                "confidenceLevel": 0.9186652384203173
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat transfer",
+                "source": "Small temperature difference",
+                "confidenceLevel": 0.7872545083671261
+            },
+            {
+                "description": "Reactor overheating",
+                "source": "Insufficient cooling",
+                "confidenceLevel": 0.8620288016616198
+            },
+            {
+                "description": "Process upset",
+                "source": "Temperature deviation",
+                "confidenceLevel": 0.7323380712866947
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature sensors and alarms",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.9594568581668429
+            },
+            {
+                "description": "Cooling water temperature monitoring",
+                "source": "Process control",
+                "confidenceLevel": 0.6921359535907617
+            },
+            {
+                "description": "Regular heat exchanger cleaning",
+                "source": "Preventive maintenance",
+                "confidenceLevel": 0.7736588412048436
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "Fast",
+        "parameter": "Temperature",
+        "deviation": "Fast Temperature",
+        "causes": [
+            {
+                "description": "Exothermic reaction runaway in reactor",
+                "source": "Reactor operation",
+                "confidenceLevel": 0.6050128046399234
+            },
+            {
+                "description": "Failure of cooling system (TIC301)",
+                "source": "Equipment failure",
+                "confidenceLevel": 0.8214530399827777
+            },
+            {
+                "description": "Malfunction of temperature transmitter (TIT002001/002002/002003/002004) reading high",
+                "source": "Instrumentation failure",
+                "confidenceLevel": 0.683963308288618
+            },
+            {
+                "description": "High ambient temperature exceeding design limits",
+                "source": "Environmental factors",
+                "confidenceLevel": 0.828624211519745
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Reactor overpressure and potential rupture",
+                "source": "Physical damage",
+                "confidenceLevel": 0.7339031588519976
+            },
+            {
+                "description": "HCl release to atmosphere",
+                "source": "Toxic release",
+                "confidenceLevel": 0.9287130714267405
+            },
+            {
+                "description": "Damage to heat exchanger (D-100)",
+                "source": "Equipment damage",
+                "confidenceLevel": 0.6007525814820924
+            },
+            {
+                "description": "Fire or explosion",
+                "source": "Ignition source",
+                "confidenceLevel": 0.6371682637408269
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Temperature interlock with cooling system (TIC301)",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.8385680758803647
+            },
+            {
+                "description": "Pressure relief valve on reactor",
+                "source": "Equipment",
+                "confidenceLevel": 0.7858150915558672
+            },
+            {
+                "description": "Emergency shutdown system (ESD)",
+                "source": "System",
+                "confidenceLevel": 0.9111106435612832
+            },
+            {
+                "description": "Fire and gas detection system",
+                "source": "System",
+                "confidenceLevel": 0.9693956966091728
+            }
+        ]
+    },
+    {
+        "node": "Node for Piping_and_fitting Joint",
+        "guideword": "Slow",
+        "parameter": "Temperature",
+        "deviation": "Slow Temperature",
+        "causes": [
+            {
+                "description": "Reduced flow rate of cooling medium",
+                "source": "Process conditions",
+                "confidenceLevel": 0.9339271978238151
+            },
+            {
+                "description": "Fouling of heat exchanger (D-100)",
+                "source": "Equipment degradation",
+                "confidenceLevel": 0.9446075387230356
+            },
+            {
+                "description": "Malfunction of temperature transmitter (TIT002001/002002/002003/002004) reading low",
+                "source": "Instrumentation failure",
+                "confidenceLevel": 0.9749000455293331
+            },
+            {
+                "description": "Low ambient temperature",
+                "source": "Environmental factors",
+                "confidenceLevel": 0.8102011874384754
+            }
+        ],
+        "consequences": [
+            {
+                "description": "Inefficient heat removal from reactor",
+                "source": "Process deviation",
+                "confidenceLevel": 0.6575890690233933
+            },
+            {
+                "description": "Reduced reaction rate",
+                "source": "Process deviation",
+                "confidenceLevel": 0.760193565377166
+            },
+            {
+                "description": "Increased reaction time",
+                "source": "Process deviation",
+                "confidenceLevel": 0.720760687032861
+            }
+        ],
+        "safeguards": [
+            {
+                "description": "Regular inspection and cleaning of heat exchanger (D-100)",
+                "source": "Maintenance",
+                "confidenceLevel": 0.6084067016965072
+            },
+            {
+                "description": "Temperature monitoring and alarm system",
+                "source": "Instrumentation",
+                "confidenceLevel": 0.6494524063716719
+            },
+            {
+                "description": "Operator intervention and adjustment of cooling system",
+                "source": "Operational procedure",
+                "confidenceLevel": 0.6465502849885248
+            }
+        ]
+    }
+]
