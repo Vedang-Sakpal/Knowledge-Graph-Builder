@@ -41,8 +41,8 @@ def main():
     pipeline_scripts = {
         "01_ontology_loader.py": False,
         "02_semantic_enrichment.py": False,
-        #"03_single_node.py": False, 
-        "03_manual_noding.py": True,  # This script is interactive
+        "03_single_node.py": False, 
+        #"03_manual_noding.py": True,  # This script is interactive
         "04_hazop_analysis_engine.py": False,
         "05_report_generator.py": False
     }
