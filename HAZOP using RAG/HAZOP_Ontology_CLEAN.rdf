@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:ns1="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:nodeID="N414992dab9ea4686b5231b16b3698529">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#resultsIn">
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#temperature">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#engineeringControls">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb07b733583604b48b0d43475a1e504a5">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#reactivity"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nade98b5ea6e84141ab14583922859a2f">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#causedBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb18c73cb224d455692e1760cc8032ca2">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#hasPipe">
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nba197f7726a1496cbf0afa216a117844">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#resultsIn"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#molarrate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Controlling_Instrument">
+    <rdfs:subClassOf rdf:nodeID="N994ad97697794c7e9d76d4c4a812a946"/>
+    <rdfs:subClassOf rdf:nodeID="N400301e00aee43948accc80b63315ed5"/>
+    <rdfs:subClassOf rdf:nodeID="N2ef15c1a543d40238315cc2bbe292232"/>
+    <rdfs:subClassOf rdf:nodeID="N1e80dd752b0047fa8ee1d5db766257d0"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Controlling Instruments</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ne16d0781876249398b2eb301363f6531">
+    <rdf:rest rdf:nodeID="N19aaf4c477c749b0a0f5d51b930b1eb0"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Device">
+    <rdfs:subClassOf rdf:nodeID="N71d7a7ae47a24f1c893ddcbe2bc5178e"/>
+    <rdfs:subClassOf rdf:nodeID="Nd4a888ac0d6f45b1b47bfc4180245337"/>
+    <rdfs:subClassOf rdf:nodeID="N026c8ef0cc3948c3b6f7fd509f825edd"/>
+    <rdfs:subClassOf rdf:nodeID="N336fedabb05c446ca72ca2019c2bea75"/>
+    <rdfs:subClassOf rdf:nodeID="Nf256e68bc31647499a47962f910876e9"/>
+    <rdfs:subClassOf rdf:nodeID="Nf10ea66bed224b378465c4919e5f3ff1"/>
+    <rdfs:subClassOf rdf:nodeID="N6e7a8e3988d241818eaf56ea851c69e7"/>
+    <rdfs:subClassOf rdf:nodeID="N1e32952dc08f4ca99aade81961071898"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N3366b80df05945a988bbd311b6b58c6a">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N047f2e77a28e49d99594f4b02e92886d">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2405554d701b4a5e97031a68d121cbe4">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#explosionRisk"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N0a63ac89d4c248e7b256de057638150b">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+    <rdf:rest rdf:nodeID="Nfaa34291cccb403288dceede69d9b9e1"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb94c341a4d8146b694dae44ef725293e">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#lowLowAlarm"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf10ea66bed224b378465c4919e5f3ff1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2e3145b6c601414294c520e52514da37">
+    <rdf:rest rdf:nodeID="N3366b80df05945a988bbd311b6b58c6a"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#consistsOf">
+    <rdfs:range rdf:nodeID="Ne0cda9b5625043219b2fc11ab5d85036"/>
+    <rdfs:domain rdf:nodeID="N4cae1ad8f9f54c5a9382fb0974bf5e61"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#lowLowAlarm">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N04603288004e4ad9973c1b96bac3181d">
+    <ns1:unionOf rdf:nodeID="N5c3f7ca44ac440888b1f07bcf2ea94d9"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Pipe_Fitting">
+    <rdfs:label>Pipe Fitting</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="N6b618343f42e435dbd65bef9ffc81b53"/>
+    <rdfs:subClassOf rdf:nodeID="N5a29d7480559425c9f70bdc712002711"/>
+    <rdfs:subClassOf rdf:nodeID="N3241497833e94c879e12b5fcb1ae8838"/>
+    <rdfs:subClassOf rdf:nodeID="Nf7c3ef278ca343f793fbb6f01dd0ba59"/>
+    <rdfs:subClassOf rdf:nodeID="Nb39173b3d2f04a148c3a1917a781c50e"/>
+    <rdfs:subClassOf rdf:nodeID="N5ccf6e51b73e4b07a0f6d07af2b5d752"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N931279c545814becb9c71e2e0682591e">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nec90f435faed422bacf33b9de0048201">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedDevice"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2c9d9f32038d4f4388d7ceb9d17f69ba">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="Nd25c97cc5e0842e4a91fc9e715acc9e6"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#lowAlarm">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N266c0454ec1e47bd85c9230c08c24c09">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#designPressure">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:nodeID="Na9810cc9189a432ea728214cd8953f42"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#relatedChemicals">
+    <rdfs:domain rdf:nodeID="N7f3c115be1414a3fa8bb7540bfc00d3d"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Process_Parameter">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="N414992dab9ea4686b5231b16b3698529"/>
+    <rdfs:subClassOf rdf:nodeID="N773e8c7ecb2643ec9b6eda8c85eda92d"/>
+    <rdfs:subClassOf rdf:nodeID="Nb65edc96657e4701910519de4d242219"/>
+    <rdfs:subClassOf rdf:nodeID="N6f2e060aedab49a3bfe223feecaac8a4"/>
+    <rdfs:label>Process Parameter</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfea20fbbf2ed4026b608377908cf831f">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#flowsThrough"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N04f65ec96e0142e39ffe1a43727c7ff2">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#designIntention"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ne0cda9b5625043219b2fc11ab5d85036">
+    <ns1:unionOf rdf:nodeID="N7146e51d2a004573bcd1577e26a38fc8"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfaa34291cccb403288dceede69d9b9e1">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Action_Line">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Action line</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Ncf296a7c009140108c2e1f1b172b9bbc"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf7c3ef278ca343f793fbb6f01dd0ba59">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#failureMode"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfc2628e6f7984358ae9c9248ff1e6eb9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasPipe"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Cause">
+    <rdfs:subClassOf rdf:nodeID="N2b7a061e987c40098604d5fe8bb8a409"/>
+    <rdfs:subClassOf rdf:nodeID="N89f30428782e4c2589e22def9553e969"/>
+    <rdfs:subClassOf rdf:nodeID="Nec90f435faed422bacf33b9de0048201"/>
+    <rdfs:subClassOf rdf:nodeID="N032fe0af3ec8401fb8c65a92587d3c81"/>
+    <rdfs:subClassOf rdf:nodeID="N9ed0b877115d4aa8922f2ed79bba8daa"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#flowsThrough">
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2b7a061e987c40098604d5fe8bb8a409">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedInstrument"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Measuring_Instrument">
+    <rdfs:label>Measuring Instruments</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="N956b797d468243a28ce4de0e8e2d552b"/>
+    <rdfs:subClassOf rdf:nodeID="Nb18c73cb224d455692e1760cc8032ca2"/>
+    <rdfs:subClassOf rdf:nodeID="Nb94c341a4d8146b694dae44ef725293e"/>
+    <rdfs:subClassOf rdf:nodeID="N79be9e977f764735b22ac827c9cfdc3d"/>
+    <rdfs:subClassOf rdf:nodeID="N54282b2b3ab44276bf6aed3c267790af"/>
+    <rdfs:subClassOf rdf:nodeID="Nadce56e330a8466fb75d601ed5e84dcb"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N9c5869f134564ab09043bbb122d94bd9">
+    <rdf:rest rdf:nodeID="N8e7559e75bea4c26bf3b79b0fb44ed1a"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#highHighAlarm">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ncf296a7c009140108c2e1f1b172b9bbc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasInletOutlet"/>
+    <ns1:someValuesFrom rdf:nodeID="N52866dd4aac74926a03b89209c16a6f6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb39173b3d2f04a148c3a1917a781c50e">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#designPressure"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd4a888ac0d6f45b1b47bfc4180245337">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasInletOutlet"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb64dacffbf7242c8b070ec1156e0a438">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#designPressure"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N55e512adf8bb49049b6472f5f580d174">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#casNumber"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4e7794e75b4c4c97afabe1379e732f87">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedInstrument"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N026c8ef0cc3948c3b6f7fd509f825edd">
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Process_Parameter"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasParameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4cae1ad8f9f54c5a9382fb0974bf5e61">
+    <ns1:unionOf rdf:nodeID="Nbcfc8ab6bcb44c149d2b2de6596291dd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N32fac589bc9445fb96144bfd6e921383">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="N721fe2c5acd5473680cf762887471c3e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5477be64fefe46c9807e4c94f12c5afe">
+    <rdf:rest rdf:nodeID="Nc8d0006571e44e0890f7c1a7b823dfab"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#toxicity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf256e68bc31647499a47962f910876e9">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#designPressure"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ndb96a81f56a444aeb9a0d0e156e9247a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasStream"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#connectsTo">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Action_Line"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8643559b0f8b4d4db546d0d13f2dd1f2">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#description"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#pressure">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N33dfeac32dba4c4e9acd76cb8e217882">
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasPipeFitting"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Safeguard">
+    <rdfs:subClassOf rdf:nodeID="Nfce1144139874f12be8ee7021d2601a3"/>
+    <rdfs:subClassOf rdf:nodeID="N2c3fcc4646ee4eb1b54fcf2430d198d6"/>
+    <rdfs:subClassOf rdf:nodeID="Ndf082115e5474e31ad13c88bb4de1894"/>
+    <rdfs:subClassOf rdf:nodeID="N51f7191902df40e1829f4a8dd0986a6c"/>
+    <rdfs:subClassOf rdf:nodeID="N40fab37b18154ec6bb487d44ad4f995b"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#causedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N40fab37b18154ec6bb487d44ad4f995b">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedChemicals"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb4e9d6324c1b4378b2151e4a478139c2">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#highAlarm">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na61f3e3c50d4415aae7c0e3ecb665978">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedStream"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na9810cc9189a432ea728214cd8953f42">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="Na22bcda10fef487b83a6085f2376db9c"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6b618343f42e435dbd65bef9ffc81b53">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#specification"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na37322202177456fa280c062a97a53df">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="Nf587dc7252d0480eafe2ae1567ecde8a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N336fedabb05c446ca72ca2019c2bea75">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#material"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Stream">
+    <rdfs:subClassOf rdf:nodeID="N1cba5bceaa344b279b4ebd1e107c017e"/>
+    <rdfs:subClassOf rdf:nodeID="N10d22ad073f646af858807124d2d920a"/>
+    <rdfs:subClassOf rdf:nodeID="Nd4f87370a64d4988891c08d7d1a9c93f"/>
+    <rdfs:subClassOf rdf:nodeID="N3c71f2e6a4404cb8848377fe74943b30"/>
+    <rdfs:subClassOf rdf:nodeID="Ncc5afec2bcb64615a6967bb599355626"/>
+    <rdfs:subClassOf rdf:nodeID="N43b2e5fa8b424b408cc2d2f7b8ba2a0e"/>
+    <rdfs:subClassOf rdf:nodeID="Nfea20fbbf2ed4026b608377908cf831f"/>
+    <rdfs:subClassOf rdf:nodeID="Nd978e4d275194fe7b1594626920d24c5"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Pipe">
+    <rdfs:subClassOf rdf:nodeID="N8330bc0d2c67427eb8c5a48d409d508a"/>
+    <rdfs:subClassOf rdf:nodeID="N1ab8831e9a624f938427ac789cdad8e5"/>
+    <rdfs:subClassOf rdf:nodeID="Nb64dacffbf7242c8b070ec1156e0a438"/>
+    <rdfs:subClassOf rdf:nodeID="N23a2e57731994a85b9f607c3f4291df5"/>
+    <rdfs:subClassOf rdf:nodeID="N080aa12cffd347c8ab10255a1bcc5553"/>
+    <rdfs:subClassOf rdf:nodeID="N33dfeac32dba4c4e9acd76cb8e217882"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#casNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N54282b2b3ab44276bf6aed3c267790af">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#highAlarm"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5ccf6e51b73e4b07a0f6d07af2b5d752">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#material"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nbcfc8ab6bcb44c149d2b2de6596291dd">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Process"/>
+    <rdf:rest rdf:nodeID="N931279c545814becb9c71e2e0682591e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N773e8c7ecb2643ec9b6eda8c85eda92d">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#controlledBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N43b2e5fa8b424b408cc2d2f7b8ba2a0e">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#molarrate"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N994ad97697794c7e9d76d4c4a812a946">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#failureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2c3fcc4646ee4eb1b54fcf2430d198d6">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedInstrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb65edc96657e4701910519de4d242219">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasDeviation"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Deviation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="Nade98b5ea6e84141ab14583922859a2f"/>
+    <rdfs:subClassOf rdf:nodeID="N03992e406d34492c868e20fe9e77fa71"/>
+    <rdfs:subClassOf rdf:nodeID="Nba197f7726a1496cbf0afa216a117844"/>
+    <rdfs:subClassOf rdf:nodeID="Nb2f3871ed7714a8cb6ff804309be3695"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N10d22ad073f646af858807124d2d920a">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#consistsOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#diameter">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N9ea2670b5b6a415484c04c8372c1c04c">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+    <rdf:rest rdf:nodeID="N8b7bb36e28c946feaf8e812e4953c9a2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#explosionRisk">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N1ab8831e9a624f938427ac789cdad8e5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#material"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ndf082115e5474e31ad13c88bb4de1894">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#description"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb2f3871ed7714a8cb6ff804309be3695">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#preventedBy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Node">
+    <rdfs:subClassOf rdf:nodeID="Ndb96a81f56a444aeb9a0d0e156e9247a"/>
+    <rdfs:subClassOf rdf:nodeID="N04f65ec96e0142e39ffe1a43727c7ff2"/>
+    <rdfs:subClassOf rdf:nodeID="Nfc2628e6f7984358ae9c9248ff1e6eb9"/>
+    <rdfs:subClassOf rdf:nodeID="N2ba9c6f60cc4471c929beb5d7e8f59b2"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N3241497833e94c879e12b5fcb1ae8838">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#volumerate">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N956b797d468243a28ce4de0e8e2d552b">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#highHighAlarm"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nee886fb87c1348a08222781f6db94d5a">
+    <ns1:unionOf rdf:nodeID="Ne16d0781876249398b2eb301363f6531"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ncc5afec2bcb64615a6967bb599355626">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#massrate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#measuredWith">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Process_Parameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#moleFraction">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N3c71f2e6a4404cb8848377fe74943b30">
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Process_Parameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasParameter"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N23a2e57731994a85b9f607c3f4291df5">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#diameter"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#hasStream">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N22f7c48dbc2942bb83817a51fd28fc6e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedChemicals"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N400301e00aee43948accc80b63315ed5">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N23ee3bdcf8264204a39f531104d869e5">
+    <rdf:rest rdf:nodeID="N275834b5d6db4f97a3e33618c23c376f"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N71d7a7ae47a24f1c893ddcbe2bc5178e">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#designTemperature"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#controlledBy">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Process_Parameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#category">
+    <rdfs:domain rdf:nodeID="N2c9d9f32038d4f4388d7ceb9d17f69ba"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Consequence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="N22f7c48dbc2942bb83817a51fd28fc6e"/>
+    <rdfs:subClassOf rdf:nodeID="N8643559b0f8b4d4db546d0d13f2dd1f2"/>
+    <rdfs:subClassOf rdf:nodeID="Na61f3e3c50d4415aae7c0e3ecb665978"/>
+    <rdfs:subClassOf rdf:nodeID="N4e7794e75b4c4c97afabe1379e732f87"/>
+    <rdfs:subClassOf rdf:nodeID="Nc3e81ff03fd14302b5970f0d10575d05"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8f0f037791c04992bae1be8ce231962f">
+    <ns1:unionOf rdf:nodeID="N88435bad5dbb4c7baba7eea1544f2bf1"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#material">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:nodeID="Nee886fb87c1348a08222781f6db94d5a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N1e32952dc08f4ca99aade81961071898">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#specification"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ncfaa9d877bcb438b898ba07659093546">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N14e3894364f544499974dd961ac14aea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#toxicity"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6e7a8e3988d241818eaf56ea851c69e7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#number"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nc3e81ff03fd14302b5970f0d10575d05">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedDevice"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#designIntention">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nae2f77473ad141158c6ede0977460968">
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#consistsOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Process">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="Nae2f77473ad141158c6ede0977460968"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd6ac9f051848401691dc30726731832a">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N59622e89cc194fd398a28ff5b4550c6f">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+    <rdf:rest rdf:nodeID="N76144fc5b79848cf947557c1ee97fea9"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#massrate">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8b7bb36e28c946feaf8e812e4953c9a2">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N19aaf4c477c749b0a0f5d51b930b1eb0">
+    <rdf:rest rdf:nodeID="Ncfaa9d877bcb438b898ba07659093546"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nbd4ba57cea2440fc97025f7666ea15fa">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="N4b2db20f7bd946eea5934b05a0f53c1d"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf675ae2a465b43cf8ce4b54469235ee2">
+    <ns1:unionOf rdf:nodeID="N7a013cc294854279acf1100f49cb68c3"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#hasDeviation">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Process_Parameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na16aa2a9607c462284ef7d67fdf35511">
+    <rdf:rest rdf:nodeID="Ncd3324f42a2541d9a480fea00dd7ddc8"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N89f30428782e4c2589e22def9553e969">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedStream"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N080aa12cffd347c8ab10255a1bcc5553">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#designTemperature"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N51f7191902df40e1829f4a8dd0986a6c">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#Chemical">
+    <rdfs:subClassOf rdf:nodeID="N6edeb60fd9914962bfc88a975a3b553d"/>
+    <rdfs:subClassOf rdf:nodeID="N2405554d701b4a5e97031a68d121cbe4"/>
+    <rdfs:subClassOf rdf:nodeID="Nb07b733583604b48b0d43475a1e504a5"/>
+    <rdfs:subClassOf rdf:nodeID="Nb3077794a8804edd8e7ff3f7b1a94cf8"/>
+    <rdfs:subClassOf rdf:nodeID="N14e3894364f544499974dd961ac14aea"/>
+    <rdfs:subClassOf rdf:nodeID="N280623fefec9426ab1af1ca427611cc8"/>
+    <rdfs:subClassOf rdf:nodeID="N55e512adf8bb49049b6472f5f580d174"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#hasInletOutlet">
+    <rdfs:range rdf:nodeID="Nc6219079787a4bf2bc7da6978c54ac81"/>
+    <rdfs:domain rdf:nodeID="N8f0f037791c04992bae1be8ce231962f"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N88435bad5dbb4c7baba7eea1544f2bf1">
+    <rdf:rest rdf:nodeID="Nfe3e1799c1fb4ffbaa7344374bf0dafd"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#setpoint">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N275834b5d6db4f97a3e33618c23c376f">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4b2db20f7bd946eea5934b05a0f53c1d">
+    <rdf:rest rdf:nodeID="N0449a44f69ce42a2be4d536fff3e9359"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#specification">
+    <rdfs:domain rdf:nodeID="Nc3e3c2abbaca44d28bf6b299c952aed5"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N80e21b63a05c450aa93e1f15bcff8c64">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N52866dd4aac74926a03b89209c16a6f6">
+    <ns1:unionOf rdf:nodeID="N5477be64fefe46c9807e4c94f12c5afe"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#hasPipeFitting">
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#relatedDevice">
+    <rdfs:domain rdf:nodeID="N04603288004e4ad9973c1b96bac3181d"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#preventedBy">
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nadce56e330a8466fb75d601ed5e84dcb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#lowAlarm"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#hasParameter">
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Process_Parameter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="N32fac589bc9445fb96144bfd6e921383"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N79be9e977f764735b22ac827c9cfdc3d">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#failureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf587dc7252d0480eafe2ae1567ecde8a">
+    <rdf:rest rdf:nodeID="N2c535611259e49aba9110215cb7ce93e"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#reactivity">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8e7559e75bea4c26bf3b79b0fb44ed1a">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N76144fc5b79848cf947557c1ee97fea9">
+    <rdf:rest rdf:nodeID="N83d0356dda3141f3bd96fcf79ed15755"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2aae0080085e4f0fa9cb34b33b474259">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Process_Parameter"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N7a013cc294854279acf1100f49cb68c3">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+    <rdf:rest rdf:nodeID="N9c5869f134564ab09043bbb122d94bd9"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf495ee7c4aa5410781bd9676456ba97e">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd978e4d275194fe7b1594626920d24c5">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#temperature"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#failureMode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:nodeID="Nf675ae2a465b43cf8ce4b54469235ee2"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#fireRisk">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N896609ade0d24d2cb33edd5fd75a068c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nc6219079787a4bf2bc7da6978c54ac81">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="Nadf7daac818b4d16a1d4800f87f7639e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8330bc0d2c67427eb8c5a48d409d508a">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N1cba5bceaa344b279b4ebd1e107c017e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#volumerate"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8c4a5fa88ad94743959e330b733c60fd">
+    <rdf:rest rdf:nodeID="Nd6ac9f051848401691dc30726731832a"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ncd3324f42a2541d9a480fea00dd7ddc8">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+    <rdf:rest rdf:nodeID="N73ce35f4015c498c94d7b988216d1d90"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#relatedStream">
+    <rdfs:domain rdf:nodeID="N05885eb950824d3082865e08bf14eb52"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nc8d0006571e44e0890f7c1a7b823dfab">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N280623fefec9426ab1af1ca427611cc8">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#engineeringControls"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N7146e51d2a004573bcd1577e26a38fc8">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Chemical"/>
+    <rdf:rest rdf:nodeID="Nb4e9d6324c1b4378b2151e4a478139c2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N032fe0af3ec8401fb8c65a92587d3c81">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedChemicals"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nc3e3c2abbaca44d28bf6b299c952aed5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="N0a63ac89d4c248e7b256de057638150b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2ba9c6f60cc4471c929beb5d7e8f59b2">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#hasDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb3dd5394b1ce47a590449991bda7da6c">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+    <rdf:rest rdf:nodeID="N32557de54d3a443381fc748b6c7f0280"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2c535611259e49aba9110215cb7ce93e">
+    <rdf:rest rdf:nodeID="N266c0454ec1e47bd85c9230c08c24c09"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N73ce35f4015c498c94d7b988216d1d90">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe_Fitting"/>
+    <rdf:rest rdf:nodeID="N2aae0080085e4f0fa9cb34b33b474259"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd25c97cc5e0842e4a91fc9e715acc9e6">
+    <rdf:rest rdf:nodeID="Nb3dd5394b1ce47a590449991bda7da6c"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Deviation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb3077794a8804edd8e7ff3f7b1a94cf8">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#moleFraction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N0449a44f69ce42a2be4d536fff3e9359">
+    <rdf:rest rdf:nodeID="Nf495ee7c4aa5410781bd9676456ba97e"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Consequence"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nd4f87370a64d4988891c08d7d1a9c93f">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#pressure"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6f2e060aedab49a3bfe223feecaac8a4">
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Measuring_Instrument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#measuredWith"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N03992e406d34492c868e20fe9e77fa71">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#category"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#controlStrategy">
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Controlling_Instrument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5a29d7480559425c9f70bdc712002711">
+    <ns1:someValuesFrom rdf:resource="http://www.example.org/hazop-ontology#Action_Line"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#connectsTo"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N83d0356dda3141f3bd96fcf79ed15755">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Safeguard"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N7f3c115be1414a3fa8bb7540bfc00d3d">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <ns1:unionOf rdf:nodeID="N59622e89cc194fd398a28ff5b4550c6f"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nabbb5166d509436e8d9e306114afb638">
+    <rdf:rest rdf:nodeID="N9ea2670b5b6a415484c04c8372c1c04c"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfe3e1799c1fb4ffbaa7344374bf0dafd">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Action_Line"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N844a79f9657c437f8e9a0c0e31ab387c">
+    <rdf:rest rdf:nodeID="N047f2e77a28e49d99594f4b02e92886d"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2ef15c1a543d40238315cc2bbe292232">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#controlStrategy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#hasDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Node"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N721fe2c5acd5473680cf762887471c3e">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+    <rdf:rest rdf:nodeID="N80e21b63a05c450aa93e1f15bcff8c64"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#designTemperature">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:nodeID="Nb35360e6d71e4b459300e93e128c9ae2"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5c3f7ca44ac440888b1f07bcf2ea94d9">
+    <rdf:rest rdf:nodeID="N8c4a5fa88ad94743959e330b733c60fd"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Cause"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#number">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#relatedInstrument">
+    <rdfs:domain rdf:nodeID="Nbd4ba57cea2440fc97025f7666ea15fa"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6edeb60fd9914962bfc88a975a3b553d">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#fireRisk"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb35360e6d71e4b459300e93e128c9ae2">
+    <ns1:unionOf rdf:nodeID="N23ee3bdcf8264204a39f531104d869e5"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N1e80dd752b0047fa8ee1d5db766257d0">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#setpoint"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na22bcda10fef487b83a6085f2376db9c">
+    <rdf:rest rdf:nodeID="N844a79f9657c437f8e9a0c0e31ab387c"/>
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Device"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N9ed0b877115d4aa8922f2ed79bba8daa">
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#description"/>
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.example.org/hazop-ontology#description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:nodeID="Na37322202177456fa280c062a97a53df"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfce1144139874f12be8ee7021d2601a3">
+    <ns1:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <ns1:onProperty rdf:resource="http://www.example.org/hazop-ontology#relatedStream"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nadf7daac818b4d16a1d4800f87f7639e">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Stream"/>
+    <rdf:rest rdf:nodeID="N2e3145b6c601414294c520e52514da37"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N32557de54d3a443381fc748b6c7f0280">
+    <rdf:first rdf:resource="http://www.example.org/hazop-ontology#Pipe"/>
+    <rdf:rest rdf:nodeID="Na16aa2a9607c462284ef7d67fdf35511"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N05885eb950824d3082865e08bf14eb52">
+    <ns1:unionOf rdf:nodeID="Nabbb5166d509436e8d9e306114afb638"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>
