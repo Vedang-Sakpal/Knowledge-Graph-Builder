@@ -1,21 +1,11 @@
-# --- Imports ---
-# config: A local file (config.py) to store secrets like API keys and database passwords.
 import config
-# neo4j: The official Python driver for connecting to the Neo4j graph database.
 from neo4j import GraphDatabase
-# google.generativeai: The Python SDK for Google's Gemini Large Language Models (LLM).
 import google.generativeai as genai
-# json: For parsing JSON data returned by the API.
 import json
-# os: For interacting with the operating system, like creating directories and managing file paths.
 import os
-# fitz: Also known as PyMuPDF, a library for extracting text and data from PDF files.
 import fitz
-# time: For adding delays (e.g., to respect API rate limits).
 import time
-# hashlib: For creating a unique hash (fingerprint) of content for caching.
 import hashlib
-# pickle: For saving and loading Python objects to/from files (used for caching API results).
 import pickle
 
 # --- Helper Functions ---
