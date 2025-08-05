@@ -148,7 +148,7 @@ class AutomaticNoder:
                 
                 CALL {
                     WITH start
-                    MATCH path = (start)-[:Connected_to*0..3]-(connected)
+                    MATCH path = (start)-[:Connected_to*0..2]-(connected)
                     WHERE (connected:Equipment OR connected:Utility_and_supply 
                            OR connected:Piping_and_fitting OR connected:Miscellaneous)
                     AND NOT EXISTS((connected)<-[:ANALYZES]-(:HAZOPNode))

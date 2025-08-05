@@ -291,44 +291,63 @@ Please provide your response as a valid JSON object only, with no additional tex
     def enrich_graph(self, extracted_data):
         """
         Takes the structured JSON from the LLM and writes it to the Neo4j database.
+        This version uses 'Id' as the primary key for Equipment nodes.
         """
         print("Enriching the Neo4j graph with extracted data...")
         with self.driver.session() as session:
-            # Handle equipment data if it was extracted.
-            if 'equipment_parameters' in extracted_data:
-                for item in extracted_data.get('equipment_parameters', []):
-                    name = item.get('name')
-                    params = item.get('parameters', {})
-                    if name:
-                        # This Cypher query finds a node by its 'name' and adds/updates its properties.
-                        # `SET n += $params` is an efficient way to merge properties.
-                        query = "MATCH (n {name: $name}) SET n += $params"
-                        session.run(query, name=name, params=params)
-                        print(f"Enriched component '{name}' with parameters.")
+            # --- Handle Equipment and Stream Data (from process description) ---
+            if 'equipment' in extracted_data:
+                for item in extracted_data.get('equipment', []):
+                    # <<< CHANGE: Get 'equipmentId' from the JSON
+                    equipment_id = item.get('equipmentId')
+                    if equipment_id:
+                        params = flatten_dict(item)
+                        # <<< CHANGE: Ensure the 'Id' property is set for the query
+                        params['id'] = equipment_id
+                        # <<< CHANGE: MERGE on the 'Id' property
+                        query = "MERGE (n:Equipment {id: $id}) SET n += $params"
+                        session.run(query, id=equipment_id, params=params)
+                        print(f"Enriched Equipment '{equipment_id}' with parameters.")
 
-            # Handle chemical data if it was extracted.
+            if 'streams' in extracted_data:
+                 for stream in extracted_data.get('streams', []):
+                    # <<< CHANGE: Get source and destination by 'Id'
+                    source_id = stream.get('sourceEquipmentId')
+                    destination_id = stream.get('destinationEquipmentId')
+                    if source_id and destination_id:
+                        rel_props = flatten_dict(stream)
+                        # <<< CHANGE: MATCH source and destination on their 'Id' property
+                        query = """
+                        MATCH (src:Equipment {id: $source_id})
+                        MATCH (dest:Equipment {id: $destination_id})
+                        MERGE (src)-[r:FLOWS_TO]->(dest)
+                        SET r = $props
+                        """
+                        session.run(query, source_id=source_id, destination_id=destination_id, props=rel_props)
+                        print(f"Created/Updated stream from '{source_id}' to '{destination_id}'.")
+
+            # --- Handle Chemical Data (from MSDS batch processing) ---
             if 'chemical_data' in extracted_data:
                 for chem in extracted_data.get('chemical_data', []):
-                    name = chem.get('chemical_name')
-                    properties = chem.get('properties', {})
-                    vessel_name = chem.get('stored_in_vessel_name')
+                    name = chem.get('chemicalName')
+                    # This key comes from the MSDS prompt ('identifiedVessel')
+                    vessel_id = chem.get('identifiedVessel')
+
                     if name:
-                        # Use the flatten_dict helper to prepare properties for Neo4j.
-                        flattened_properties = flatten_dict(properties)
-                        all_props = {'name': name}
-                        all_props.update(flattened_properties)
-                        
-                        # `MERGE` finds a Chemical node with that name or creates a new one if it doesn't exist.
-                        # `SET c = $all_props` overwrites all properties with the newly extracted ones.
+                        all_props = flatten_dict(chem)
+                        all_props['name'] = name # Chemical nodes will still use 'name'
+
                         session.run("MERGE (c:Chemical {name: $name}) SET c = $all_props", name=name, all_props=all_props)
                         print(f"Added/Updated chemical: {name}")
-                        
-                        # If the vessel where the chemical is stored was identified, create a relationship.
-                        if vessel_name:
-                            # This `MERGE` creates a `CONTAINS` relationship between the vessel and the chemical,
-                            # but only if it doesn't already exist.
-                            session.run("MATCH (v {name: $vessel_name}), (c:Chemical {name: $chem_name}) MERGE (v)-[:CONTAINS]->(c)", vessel_name=vessel_name, chem_name=name)
-                            print(f"Linked '{name}' to vessel '{vessel_name}'.")
+
+                        if vessel_id:
+                            # <<< CHANGE: Match the vessel (Equipment) on its 'Id' property
+                            session.run("""
+                                MATCH (v:Equipment {id: $vessel_id})
+                                MATCH (c:Chemical {name: $chem_name})
+                                MERGE (v)-[:CONTAINS]->(c)
+                            """, vessel_id=vessel_id, chem_name=name)
+                            print(f"Linked '{name}' to vessel '{vessel_id}'.")
 
 def main():
     """Main execution function to run the semantic enrichment process."""
@@ -337,77 +356,63 @@ def main():
     # --- Step 1: Process the general process description file ---
     process_desc_text = enricher.get_text_from_file(config.PROCESS_DESC_PATH)
     if process_desc_text:
-        # Prompt for extracting high-level operating parameters for equipment.
+        # <<< CHANGE: The prompt is updated to use 'Id' fields for equipment.
         process_prompt = """
         You are a senior process design and safety engineer creating a detailed digital model of a process for a comprehensive HAZOP study. From the provided text, perform two tasks:
-    1.  Extract data for all major tagged **equipment** (e.g., 'V-101', 'P-201').
-    2.  Extract data for all **process streams** or **pipes** that connect the equipment, defining the material flow and its properties.
+        1.  Extract data for all major tagged **equipment** (e.g., 'V-101', 'P-201').
+        2.  Extract data for all **process streams** or **pipes** that connect the equipment, defining the material flow and its properties.
 
-    The final output must be a single, valid JSON object with two top-level keys: "equipment" and "streams".
+        The final output must be a single, valid JSON object with two top-level keys: "equipment" and "streams".
 
-    For the **"equipment"** list, include:
-    - `equipmentName` and `equipmentType`.
-    - `operatingParameters` (temperature, pressure).
-    - `designLimits` (design temperature, design pressure).
-    - `materialOfConstruction`.
+        For the **"equipment"** list, include:
+        - `equipmentId`: The unique tag for the equipment (e.g., "RX-101").
+        - `equipmentType`.
+        - `operatingParameters` (temperature, pressure).
+        - `designLimits` (design temperature, design pressure).
+        - `materialOfConstruction`.
 
-    For the **"streams"** list, include:
-    - `streamName`: The name or description of the pipe/line.
-    - `sourceEquipment`: The tag name where the flow originates.
-    - `destinationEquipment`: The tag name where the flow terminates.
-    - `transportedMaterial`: The name of the chemical or mixture flowing in the pipe.
-    - `properties`: The conditions within the pipe (temperature, pressure, flowRate).
+        For the **"streams"** list, include:
+        - `streamName`: The name or description of the pipe/line.
+        - `sourceEquipmentId`: The tag Id where the flow originates.
+        - `destinationEquipmentId`: The tag Id where the flow terminates.
+        - `transportedMaterial`: The name of the chemical or mixture flowing in the pipe.
+        - `properties`: The conditions within the pipe (temperature, pressure, flowRate).
 
-    Ensure all values include units. If a value is not found, use `null`.
+        Ensure all values include units. If a value is not found, use `null`.
 
-    Example Format:
-    {
-      "equipment": [
+        Example Format:
         {
-          "equipmentName": "V-101",
-          "equipmentType": "Feed Drum",
-          "operatingParameters": { "temperature": "50 C", "pressure": "5 barg" },
-          "designLimits": { "designTemperature": "100 C", "designPressure": "10 barg" },
-          "materialOfConstruction": "Carbon Steel"
-        },
-        {
-          "equipmentName": "P-101",
-          "equipmentType": "Centrifugal Pump",
-          "operatingParameters": { "dischargePressure": "8 barg" },
-          "designLimits": { "designPressure": "15 barg" },
-          "materialOfConstruction": "SS-316"
+          "equipment": [
+            {
+              "equipmentId": "V-101",
+              "equipmentType": "Feed Drum",
+              "operatingParameters": { "temperature": "50 C", "pressure": "5 barg" },
+              "designLimits": { "designTemperature": "100 C", "designPressure": "10 barg" },
+              "materialOfConstruction": "Carbon Steel"
+            }
+          ],
+          "streams": [
+            {
+              "streamName": "Pump P-101 Suction Line",
+              "sourceEquipmentId": "V-101",
+              "destinationEquipmentId": "P-101",
+              "transportedMaterial": "Crude Benzene",
+              "properties": { "temperature": "50 C", "pressure": "5 barg" }
+            }
+          ]
         }
-      ],
-      "streams": [
-        {
-          "streamName": "Pump P-101 Suction Line",
-          "sourceEquipment": "V-101",
-          "destinationEquipment": "P-101",
-          "transportedMaterial": "Crude Benzene",
-          "properties": {
-            "temperature": "50 C",
-            "pressure": "5 barg",
-            "flowRate": "25 m3/hr"
-          }
-        }
-      ]
-    }
         """
         extracted_process_data = enricher.extract_info_with_llm(process_desc_text, process_prompt)
         if extracted_process_data:
-            # IMPORTANT: Your `enrich_graph` function will need to be updated to handle this new
-            # structure with two keys ("equipment" and "streams") to create both nodes and relationships.
             enricher.enrich_graph(extracted_process_data)
 
     # --- Step 2: Process MSDS files in batches ---
-    # Use a config setting to limit the number of files processed in one run.
     max_msds_files = getattr(config, 'MAX_MSDS_FILES', 5) 
     enricher.batch_process_msds_files(config.MSDS_DIRECTORY_PATH, process_desc_text, max_msds_files)
     
     # --- Step 3: Clean up ---
     enricher.close()
     print("\nPhase 2: Semantic Enrichment complete.")
-
 # Standard Python entry point. The code inside this block runs only when
 # the script is executed directly (not when imported as a module).
 if __name__ == "__main__":
