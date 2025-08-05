@@ -1,0 +1,14 @@
+﻿Hazard,Causes,Consequences,Likelihood and Prevention,Emergency and Mitigation,Action
+No flow,"P-01 failure, Total blockage of HX-102 or HX-AP",Process stops,"Very unlikely Periodic pump maintenance, Monitor HX AP",Add a spare pump or bypass stream on HX-102,"Dynamic analysis of pump operation, add engineering upgrades"
+Loss flow,Malfunctioning of pump P-01,"Lower residence time, Lower conversion, Lower LA production",Likely Periodic pump maintenance,"Add clean-up procedure, add HX-102 bypass","Model HX fouling risk & ensure maintenance, adjust set up"
+More flow,Malfunctioning of pump P-01,"Higher residency time, Possible overflow","Unlikely Periodic pump maintenance, periodic product sampling","Emergency overflow tank, pump trip, level control",Retain & arrange periodic control on pump set up
+Loss pressure,Malfunctioning of pump P-01,"Partial evaporation, reaction rate reduced",Likely Periodic pump maintenance,HX clean-up procedure,Design a pressure padding orifice on HX-102
+More pressure,"Malfunctioning of pump P-01, Blocked hydrolysis reactor HX-102 or HX-AP","Damage to reactor or pump, Instrumentation malfunction (high pressure)","Unlikely Periodic pump maintenance, periodic product sampling","Pressure alarm, trip system, emergency vent",Design a pressure padding orifice on HX-102
+Loss temperature,"Too low hot utility temp. in HX-102, dirty HX-102","Losses due to thermal inefficiency, reaction rate gets reduced",Likely Periodic monitoring of hot utility maintenance,"Undesired product, regular stream analysis","Model HX fouling risk & ensure maintenance, adjust set up"
+More temperature,Too high hot utility temp. in HX-102,Possible equipment/material damage,Likely Control loop on hot utility,"Product recall, regular stream analysis","Temperature modelling & control, regular maintenance"
+Loss pH,Too high HCl flow,"Possible degradation, reaction rate gets reduced",Unlikely Control loop on HCl flow,"Low pH alarm, regular pH monitoring","Model HX fouling risk & ensure maintenance, adjust set up"
+More pH,Too low HCl flow,"Possible degradation, reaction rate gets reduced",Unlikely Control loop on HCl flow,No notable impact,Dynamic modelling on HCl control
+No Mixing,Broken mixer,"Bad mixing, reaction rate gets reduced","Very unlikely; Periodic maintenance of mixer, periodic product sampling",Mixer replacement procedure,Study of acidity effect on mixer blades
+Less mixing,Badly adjusted mixer,"Bad mixing, reaction rate gets reduced","Unlikely; Periodic mixer maintenance, periodic product sampling",Mixer adjustment and reparation,Mixing modelling and optimization
+More mixing,Badly adjusted mixer,"Bad mixing, vortex formation, 
+reaction rate gets reduced","Unlikely; Periodic mixer maintenance, periodic product sampling",Mixer adjustment and reparation procedure,Mixing modelling and optimization

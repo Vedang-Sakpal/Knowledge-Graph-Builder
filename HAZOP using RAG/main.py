@@ -44,7 +44,8 @@ def main():
         #"03_single_node.py": False,
         "03_automatic_noding.py": False,  
         "04_hazop_analysis_engine.py": False,
-        "05_report_generator.py": False
+        "05_report_generator.py": False,
+        "06_verify_accuracy.py": False
     }
 
     # Execute each script in the pipeline, passing the interactive flag.
