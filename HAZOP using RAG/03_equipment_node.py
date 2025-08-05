@@ -47,7 +47,8 @@ class AutomaticNoder:
 
     def create_node_per_equipment(self):
         """
-        Main noding logic: Creates one HAZOP node for each :Equipment node.
+        Main noding logic: Creates one HAZOP node for each :Equipment node,
+        naming the HAZOP node based on the equipment's Id.
         """
         print("\nStarting HAZOP noding: one node per equipment...")
         
@@ -64,18 +65,21 @@ class AutomaticNoder:
             # Iterate through each piece of equipment
             for record in equipment_list:
                 equipment_node = record["e"]
-                
-                # --- FIX: Use a unique identifier for the specific node ---
-                # Using the internal element_id is the most reliable way.
                 equipment_element_id = equipment_node.element_id
-                equipment_display_name = equipment_node.get('Id') or equipment_node.get('name', 'Unknown')
-
-                # Generate a unique ID for the new HAZOPNode
-                node_id = f"Node-{str(uuid.uuid4())[:8]}"
-                description = f"HAZOP analysis for Equipment: {equipment_display_name}"
                 
-                # --- FIX: The MATCH clause now uses the unique elementId ---
-                # This guarantees the CREATE operation runs only once per loop.
+                # Get the business Id from the equipment node (e.g., "P-101")
+                equipment_id = equipment_node.get('id')
+
+                # Skip any equipment that is missing the 'Id' property
+                if not equipment_id:
+                    print(f"  - SKIPPING: An equipment node is missing its 'Id' property.")
+                    continue
+
+                # --- NEW LOGIC: Create a predictable nodeID based on the Equipment's Id ---
+                node_id = f"Node-{equipment_id}"
+                description = f"HAZOP analysis for Equipment: {equipment_id}"
+                
+                # This query remains the same, but uses the new predictable node_id
                 session.run("""
                     MATCH (e) WHERE elementId(e) = $element_id
                     CREATE (n:HAZOPNode {nodeID: $node_id, description: $description})
@@ -83,7 +87,7 @@ class AutomaticNoder:
                 """, element_id=equipment_element_id, node_id=node_id, description=description)
                 
                 nodes_created += 1
-                print(f"  - Created HAZOPNode {node_id} for Equipment '{equipment_display_name}'")
+                print(f"  - Created HAZOPNode '{node_id}' for Equipment '{equipment_id}'")
 
         print(f"\nAutomatic HAZOP noding complete. Created {nodes_created} nodes.")
         return nodes_created
