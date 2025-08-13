@@ -48,7 +48,7 @@ class SemanticEnricher:
         """
         # Initialize the Neo4j database driver.
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
-        
+
         # --- Initialize Gemini API ---
         # Configure the API with the key from the config file.
         genai.configure(api_key=config.GEMINI_API_KEY)
@@ -61,7 +61,7 @@ class SemanticEnricher:
                 "max_output_tokens": 1500, # Limit the length of the response.
             }
         )
-        
+
         # --- Initialize Caching System ---
         # Caching saves API results to avoid making the same expensive call multiple times.
         self.cache_dir = "api_cache"
@@ -129,19 +129,19 @@ class SemanticEnricher:
         # Check the cache before making an expensive API call.
         cache_key = self._get_cache_key(context, prompt_template)
         cached_result = self._load_from_cache(cache_key)
-        
+
         if cached_result is not None:
             print("Using cached result instead of making API call.")
             return cached_result
 
         print(f"Making API call {self.api_call_count + 1}/{self.max_api_calls} to Gemini...")
-        
+
         # Truncate the context if it's too long to save on token costs.
         max_context_length = getattr(config, 'MAX_CONTEXT_LENGTH', 8000)
         if len(context) > max_context_length:
             print(f"Context too long ({len(context)} chars), truncating to {max_context_length} chars")
             context = context[:max_context_length] + "...[truncated]"
-        
+
         # Construct the full prompt for the LLM, clearly stating the required JSON format.
         full_prompt = f"""You are a data extraction expert. Extract information in structured JSON format. Be concise but accurate.
 
@@ -151,11 +151,11 @@ class SemanticEnricher:
 {context}
 
 Please provide your response as a valid JSON object only, with no additional text or explanations."""
-        
+
         try:
             # Make the actual API call to the Gemini model.
             response = self.model.generate_content(full_prompt)
-            
+
             # --- Extract JSON from the model's response ---
             # LLMs sometimes wrap JSON in markdown backticks, so we need to clean it up.
             response_text = response.text.strip()
@@ -163,17 +163,17 @@ Please provide your response as a valid JSON object only, with no additional tex
                 response_text = response_text[7:-3] # Remove ```json and ```
             elif response_text.startswith('```'):
                 response_text = response_text[3:-3] # Remove ``` and ```
-            
+
             # Parse the cleaned text into a Python dictionary.
             extracted_json = json.loads(response_text)
             self.api_call_count += 1
-            
+
             # Save the successful result to the cache for future use.
             self._save_to_cache(cache_key, extracted_json)
-            
+
             print("Successfully extracted information from Gemini API.")
             return extracted_json
-            
+
         except json.JSONDecodeError as e:
             # Handle cases where the LLM response is not valid JSON.
             print(f"JSON decoding error: {e}")
@@ -186,234 +186,187 @@ Please provide your response as a valid JSON object only, with no additional tex
             self.api_call_count += 1 # Count failed calls towards the limit.
             return None
 
-    # --- Batch Processing Method ---
-    def batch_process_msds_files(self, msds_dir, process_desc_text, max_files=None):
+    # --- Synonym Enrichment and Mapping ---
+    def enrich_chemicals_with_synonyms(self):
         """
-        Process multiple MSDS files in batches to minimize the number of API calls.
+        Finds chemicals in the DB without a 'synonyms' property, uses an LLM
+        to find synonyms, and updates the node.
+        """
+        print("\n--- Starting Chemical Synonym Enrichment ---")
+        with self.driver.session() as session:
+            # Find chemicals that haven't been enriched with synonyms yet.
+            result = session.run("MATCH (c:Chemical) WHERE c.synonyms IS NULL RETURN c.name AS name")
+            chemicals_to_enrich = [record["name"] for record in result]
+
+            if not chemicals_to_enrich:
+                print("All chemical nodes are already enriched with synonyms.")
+                return
+
+            print(f"Found {len(chemicals_to_enrich)} chemicals to enrich with synonyms.")
+
+            # --- IMPROVED PROMPT 1: Asks for commercial/brand names ---
+            synonym_prompt_template = """
+            For the substance identified as "{chemical_name}", provide a list of its common names, synonyms, formulas, and any major commercial or brand names.
+            Include the original name in the list.
+            Return a single JSON object with a key "synonyms" containing a list of strings.
+            Example: For "Whey Permeate", return {{"synonyms": ["Whey Permeate", "deproteinized whey", "dairy solids", "wheyco permeate"]}}.
+            """
+
+            for name in chemicals_to_enrich:
+                if self.api_call_count >= self.max_api_calls:
+                    print("API limit reached, stopping synonym enrichment.")
+                    break
+
+                print(f"Getting synonyms for: {name}")
+                # Use the template to create the final prompt for each chemical
+                final_prompt = synonym_prompt_template.format(chemical_name=name)
+                response = self.extract_info_with_llm(name, final_prompt)
+
+                try:
+                    if response and 'synonyms' in response and isinstance(response['synonyms'], list):
+                        synonyms = response['synonyms']
+                        # Ensure all synonyms are strings and lowercase for consistent matching
+                        synonyms_lower = list(set([str(s).lower() for s in synonyms]))
+
+                        # Add the original name to the list if not present, in lowercase
+                        if name.lower() not in synonyms_lower:
+                            synonyms_lower.append(name.lower())
+
+                        session.run(
+                            "MATCH (c:Chemical {name: $name}) SET c.synonyms = $synonyms",
+                            name=name,
+                            synonyms=synonyms_lower
+                        )
+                        print(f"Successfully added synonyms for '{name}': {synonyms_lower}")
+                    else:
+                        print(f"Could not retrieve or parse synonyms for '{name}'. Response received: {response}")
+
+                except KeyError:
+                    # This block will catch the specific error and provide better debug info
+                    print(f"KeyError while processing '{name}'. The AI response did not contain the expected 'synonyms' key.")
+                    print(f"Raw response dictionary keys: {response.keys() if isinstance(response, dict) else 'Not a dict'}")
+                    print(f"Full response: {response}")
+
+                time.sleep(2) # Rate limiting
+
+    def get_synonym_to_canonical_map(self):
+        """
+        Creates a dictionary mapping every synonym to its canonical chemical name.
+        """
+        print("\nBuilding synonym map from database...")
+        with self.driver.session() as session:
+            # UNWIND expands the list of synonyms into individual rows
+            result = session.run("""
+                MATCH (c:Chemical) WHERE c.synonyms IS NOT NULL
+                UNWIND c.synonyms AS synonym
+                RETURN synonym, c.name AS canonicalName
+            """)
+            # The map uses lowercase synonyms as keys for case-insensitive matching
+            synonym_map = {record["synonym"].lower(): record["canonicalName"] for record in result}
+            print(f"Built map with {len(synonym_map)} synonym entries.")
+            return synonym_map
+
+    # --- MSDS Processing Method ---
+    def process_msds_files(self, msds_dir, synonym_map, max_files=None):
+        """
+        Process MSDS files, using the synonym map to match them to canonical chemicals.
         """
         if not os.path.isdir(msds_dir):
             print(f"MSDS directory not found at {msds_dir}. Skipping MSDS enrichment.")
             return
 
-        # Get a list of all PDF and TXT files in the specified directory.
         msds_files = [f for f in os.listdir(msds_dir) if f.lower().endswith((".txt", ".pdf"))]
-        
-        # If max_files is set, only process a limited number of files.
+
         if max_files:
             msds_files = msds_files[:max_files]
-            print(f"Limited to processing {max_files} MSDS files to save API calls")
+            print(f"Limited to processing a maximum of {max_files} MSDS files.")
 
-        print(f"\nStarting MSDS enrichment from directory: {msds_dir}")
-        print(f"Found {len(msds_files)} MSDS files to process")
+        print(f"\n--- Starting MSDS Processing using Synonym Map ---")
+        print(f"Found {len(msds_files)} MSDS files to process.")
 
-        # Process files in batches (e.g., 3 files per API call).
-        batch_size = getattr(config, 'MSDS_BATCH_SIZE', 3)
-        
-        for i in range(0, len(msds_files), batch_size):
-            # Stop if the API limit is reached.
+        # --- IMPROVED PROMPT 2: Guides the AI to find the generic name ---
+        msds_prompt = """
+        You are an expert chemical safety specialist extracting critical hazard data from a Safety Data Sheet (SDS) or product specification sheet.
+        From the provided content, extract the following data for the substance.
+
+        Identify:
+        1.  `chemicalName`: The most common or generic chemical/substance name. If a brand name is present (e.g., 'wheyco Permeate'), extract the generic part (e.g., 'Whey Permeate'). Also identify the `casNumber` if available.
+        2.  `signalWord`: The hazard signal word (e.g., "Danger", "Warning").
+        3.  `physicalAndChemicalProperties`: Key physical data.
+        4.  `stabilityAndReactivity`: Information on reactivity hazards.
+        5.  `toxicologicalInformation`: Key toxicity data.
+
+        Provide your response as a single, valid JSON object.
+        """
+
+        for filename in msds_files:
             if self.api_call_count >= self.max_api_calls:
-                print("API limit reached, stopping MSDS processing")
+                print("API limit reached, stopping further MSDS processing.")
                 break
-                
-            batch_files = msds_files[i:i + batch_size]
-            combined_msds_content = ""
-            
-            # Combine the text from all files in the current batch into a single string.
-            for filename in batch_files:
-                file_path = os.path.join(msds_dir, filename)
-                msds_text = self.get_text_from_file(file_path)
-                if msds_text:
-                    # Truncate individual file text to ensure the combined context isn't excessively long.
-                    max_individual_length = 2000
-                    if len(msds_text) > max_individual_length:
-                        msds_text = msds_text[:max_individual_length] + "...[truncated]"
-                    combined_msds_content += f"\n\n=== MSDS FILE: {filename} ===\n{msds_text}"
 
-            if combined_msds_content:
-                # Create a combined context with both the general process and the batch of MSDS files.
-                combined_context = f"GENERAL PROCESS DESCRIPTION:\n{process_desc_text}\n\n---\n\nMSDS BATCH CONTENT:\n{combined_msds_content}"
-                
-                # A specific prompt designed for extracting chemical data from the batched content.
-                batch_msds_prompt = """
-                You are an expert chemical safety specialist extracting critical hazard data from one or more Safety Data Sheets (SDS) to support a HAZOP risk assessment.
-                From the provided context (which includes a general process description and SDS content), extract the following data for EACH chemical identified in the SDS files.
-                
-                For each chemical, identify:
-                1.  `chemicalName` and `casNumber`.
-                2.  `signalWord`: The hazard signal word (e.g., "Danger", "Warning").
-                3.  `physicalAndChemicalProperties`: Key physical data relevant to containment and fire/explosion hazards.
-                4.  `stabilityAndReactivity`: Information on reactivity hazards.
-                5.  `toxicologicalInformation`: Key toxicity data.
-                6.  `identifiedVessel`: Use the "GENERAL PROCESS DESCRIPTION" context to infer the name of the vessel or equipment where this chemical is primarily used or stored.
-                
-                Provide your response as a single, valid JSON object with a key "chemical_data" containing a list of objects. Ensure all values include units where applicable. If a value is not found, use `null`.
-                
-                Example Format:
-                {
-                  "chemical_data": [
-                    {
-                      "chemicalName": "Methanol",
-                      "casNumber": "67-56-1",
-                      "signalWord": "Danger",
-                      "identifiedVessel": "V-101",
-                      "physicalAndChemicalProperties": {
-                        "physicalState": "Liquid",
-                        "flashPoint": "11 C",
-                        "autoignitionTemperature": "464 C",
-                        "boilingPoint": "64.7 C",
-                        "vaporPressure": "128 hPa @ 20 C",
-                        "upperExplosiveLimit": "36 %",
-                        "lowerExplosiveLimit": "6 %"
-                      },
-                      "stabilityAndReactivity": {
-                        "reactivityHazards": "May react violently with strong oxidizing agents.",
-                        "conditionsToAvoid": "Heat, flames, sparks, and other ignition sources.",
-                        "incompatibleMaterials": "Strong acids, strong bases, oxidizing agents."
-                      },
-                      "toxicologicalInformation": {
-                        "routesOfExposure": "Inhalation, Skin, Eyes, Ingestion.",
-                        "healthEffects": "Toxic if swallowed, in contact with skin or if inhaled. Causes damage to organs (optic nerve)."
-                      }
-                    }
-                  ]
-                }"""
-                
-                extracted_batch_data = self.extract_info_with_llm(combined_context, batch_msds_prompt)
-                if extracted_batch_data:
-                    # If data is successfully extracted, add it to the graph.
-                    self.enrich_graph(extracted_batch_data)
-                    print(f"Processed batch of {len(batch_files)} files")
-                
-                # Wait for a few seconds between batch calls to be respectful of API rate limits.
-                time.sleep(5)
+            file_path = os.path.join(msds_dir, filename)
+            msds_text = self.get_text_from_file(file_path)
+
+            if not msds_text:
+                continue
+
+            extracted_data = self.extract_info_with_llm(msds_text, msds_prompt)
+
+            if extracted_data and isinstance(extracted_data, dict):
+                chem_name_from_msds = extracted_data.get('chemicalName')
+                if chem_name_from_msds:
+                    # Check if the extracted name (or its lowercase version) is in our synonym map
+                    canonical_name = synonym_map.get(chem_name_from_msds.lower())
+
+                    if canonical_name:
+                        print(f"Match found: '{chem_name_from_msds}' from '{filename}' maps to canonical chemical '{canonical_name}'. Enriching...")
+                        self.enrich_graph_with_chemical_data(extracted_data, canonical_name)
+                    else:
+                        print(f"Skipping: Chemical '{chem_name_from_msds}' from '{filename}' does not match any known chemical in the database.")
+                else:
+                    print(f"Skipping '{filename}': Could not extract a chemical name from the document.")
+
+            time.sleep(3) # Be respectful of API rate limits.
 
     # --- Graph Update Method ---
-    def enrich_graph(self, extracted_data):
+    def enrich_graph_with_chemical_data(self, chemical_data, canonical_name):
         """
-        Takes the structured JSON from the LLM and writes it to the Neo4j database.
-        This version uses 'Id' as the primary key for Equipment nodes.
+        Takes the structured JSON for a single chemical and updates its canonical node in Neo4j.
         """
-        print("Enriching the Neo4j graph with extracted data...")
+        print(f"Enriching the Neo4j graph for canonical chemical: {canonical_name}...")
         with self.driver.session() as session:
-            # --- Handle Equipment and Stream Data (from process description) ---
-            if 'equipment' in extracted_data:
-                for item in extracted_data.get('equipment', []):
-                    # <<< CHANGE: Get 'equipmentId' from the JSON
-                    equipment_id = item.get('equipmentId')
-                    if equipment_id:
-                        params = flatten_dict(item)
-                        # <<< CHANGE: Ensure the 'Id' property is set for the query
-                        params['id'] = equipment_id
-                        # <<< CHANGE: MERGE on the 'Id' property
-                        query = "MERGE (n:Equipment {id: $id}) SET n += $params"
-                        session.run(query, id=equipment_id, params=params)
-                        print(f"Enriched Equipment '{equipment_id}' with parameters.")
+            # Flatten the nested dictionary for Neo4j properties.
+            params = flatten_dict(chemical_data)
 
-            if 'streams' in extracted_data:
-                 for stream in extracted_data.get('streams', []):
-                    # <<< CHANGE: Get source and destination by 'Id'
-                    source_id = stream.get('sourceEquipmentId')
-                    destination_id = stream.get('destinationEquipmentId')
-                    if source_id and destination_id:
-                        rel_props = flatten_dict(stream)
-                        # <<< CHANGE: MATCH source and destination on their 'Id' property
-                        query = """
-                        MATCH (src:Equipment {id: $source_id})
-                        MATCH (dest:Equipment {id: $destination_id})
-                        MERGE (src)-[r:FLOWS_TO]->(dest)
-                        SET r = $props
-                        """
-                        session.run(query, source_id=source_id, destination_id=destination_id, props=rel_props)
-                        print(f"Created/Updated stream from '{source_id}' to '{destination_id}'.")
+            # This query finds the canonical chemical by its primary name and adds/updates its properties.
+            # Using 'SET n += $params' ensures we only add/update data without overwriting the node
+            # and its existing relationships.
+            query = "MERGE (n:Chemical {name: $canonical_name}) SET n += $params"
+            session.run(query, canonical_name=canonical_name, params=params)
+            print(f"Enriched Chemical Node '{canonical_name}' with new properties.")
 
-            # --- Handle Chemical Data (from MSDS batch processing) ---
-            if 'chemical_data' in extracted_data:
-                for chem in extracted_data.get('chemical_data', []):
-                    name = chem.get('chemicalName')
-                    # This key comes from the MSDS prompt ('identifiedVessel')
-                    vessel_id = chem.get('identifiedVessel')
-
-                    if name:
-                        all_props = flatten_dict(chem)
-                        all_props['name'] = name # Chemical nodes will still use 'name'
-
-                        session.run("MERGE (c:Chemical {name: $name}) SET c = $all_props", name=name, all_props=all_props)
-                        print(f"Added/Updated chemical: {name}")
-
-                        if vessel_id:
-                            # <<< CHANGE: Match the vessel (Equipment) on its 'Id' property
-                            session.run("""
-                                MATCH (v:Equipment {id: $vessel_id})
-                                MATCH (c:Chemical {name: $chem_name})
-                                MERGE (v)-[:CONTAINS]->(c)
-                            """, vessel_id=vessel_id, chem_name=name)
-                            print(f"Linked '{name}' to vessel '{vessel_id}'.")
 
 def main():
     """Main execution function to run the semantic enrichment process."""
     enricher = SemanticEnricher(config.NEO4J_URI, config.NEO4J_USERNAME, config.NEO4J_PASSWORD)
-    
-    # --- Step 1: Process the general process description file ---
-    process_desc_text = enricher.get_text_from_file(config.PROCESS_DESC_PATH)
-    if process_desc_text:
-        # <<< CHANGE: The prompt is updated to use 'Id' fields for equipment.
-        process_prompt = """
-        You are a senior process design and safety engineer creating a detailed digital model of a process for a comprehensive HAZOP study. From the provided text, perform two tasks:
-        1.  Extract data for all major tagged **equipment** (e.g., 'V-101', 'P-201').
-        2.  Extract data for all **process streams** or **pipes** that connect the equipment, defining the material flow and its properties.
 
-        The final output must be a single, valid JSON object with two top-level keys: "equipment" and "streams".
+    # --- Step 1: Pre-process the database to ensure all chemicals have synonym lists ---
+    enricher.enrich_chemicals_with_synonyms()
 
-        For the **"equipment"** list, include:
-        - `equipmentId`: The unique tag for the equipment (e.g., "RX-101").
-        - `equipmentType`.
-        - `operatingParameters` (temperature, pressure).
-        - `designLimits` (design temperature, design pressure).
-        - `materialOfConstruction`.
+    # --- Step 2: Build a map from any synonym to its canonical chemical name ---
+    synonym_map = enricher.get_synonym_to_canonical_map()
 
-        For the **"streams"** list, include:
-        - `streamName`: The name or description of the pipe/line.
-        - `sourceEquipmentId`: The tag Id where the flow originates.
-        - `destinationEquipmentId`: The tag Id where the flow terminates.
-        - `transportedMaterial`: The name of the chemical or mixture flowing in the pipe.
-        - `properties`: The conditions within the pipe (temperature, pressure, flowRate).
+    # --- Step 3: Process MSDS files using the synonym map for matching ---
+    if synonym_map:
+        max_msds_files = getattr(config, 'MAX_MSDS_FILES', 10)
+        enricher.process_msds_files(config.MSDS_DIRECTORY_PATH, synonym_map, max_msds_files)
+    else:
+        print("Could not build a synonym map. Skipping MSDS processing.")
 
-        Ensure all values include units. If a value is not found, use `null`.
-
-        Example Format:
-        {
-          "equipment": [
-            {
-              "equipmentId": "V-101",
-              "equipmentType": "Feed Drum",
-              "operatingParameters": { "temperature": "50 C", "pressure": "5 barg" },
-              "designLimits": { "designTemperature": "100 C", "designPressure": "10 barg" },
-              "materialOfConstruction": "Carbon Steel"
-            }
-          ],
-          "streams": [
-            {
-              "streamName": "Pump P-101 Suction Line",
-              "sourceEquipmentId": "V-101",
-              "destinationEquipmentId": "P-101",
-              "transportedMaterial": "Crude Benzene",
-              "properties": { "temperature": "50 C", "pressure": "5 barg" }
-            }
-          ]
-        }
-        """
-        extracted_process_data = enricher.extract_info_with_llm(process_desc_text, process_prompt)
-        if extracted_process_data:
-            enricher.enrich_graph(extracted_process_data)
-
-    # --- Step 2: Process MSDS files in batches ---
-    max_msds_files = getattr(config, 'MAX_MSDS_FILES', 5) 
-    enricher.batch_process_msds_files(config.MSDS_DIRECTORY_PATH, process_desc_text, max_msds_files)
-    
-    # --- Step 3: Clean up ---
+    # --- Step 4: Clean up ---
     enricher.close()
     print("\nPhase 2: Semantic Enrichment complete.")
-# Standard Python entry point. The code inside this block runs only when
-# the script is executed directly (not when imported as a module).
+
+# Standard Python entry point.
 if __name__ == "__main__":
     main()
