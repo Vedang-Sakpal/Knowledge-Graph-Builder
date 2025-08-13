@@ -3,5 +3,3 @@ OpenAI\__pycache__/
 config.py
 hazop_cache/
 api_cache/
-HAZOP_Report_Generated.xlsx
-hazop_results.json
