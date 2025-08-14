@@ -65,7 +65,6 @@ if __name__ == "__main__":
     # Ensure necessary files and directories exist before starting
     required_files = [
         config.ONTOLOGY_FILE_PATH,
-        config.PROCESS_DESC_PATH,
         config.CAUSES_CSV_PATH,
         config.CONSEQUENCES_CSV_PATH,
         config.SAFEGUARDS_CSV_PATH,
