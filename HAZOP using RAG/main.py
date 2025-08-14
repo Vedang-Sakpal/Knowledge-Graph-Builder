@@ -42,7 +42,7 @@ def main():
         "01_ontology_loader.py": False,
         "02_semantic_enrichment.py": False,
         "03_equipment_node.py": False,
-        #"03_automatic_noding.py": False,  
+        #"03_manual_noding.py": False,
         "04_hazop_analysis_engine.py": False,
         "05_report_generator.py": False,
         "06_verify_accuracy.py": False
