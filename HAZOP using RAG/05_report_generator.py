@@ -49,69 +49,52 @@ class ReportGenerator:
             output_path (str): The file path for the output Excel report.
         """
         if not hazop_data:
-            # If there's no data, print a message and exit the function
             print("No HAZOP data found to generate a report.")
             return
-        
+
         print(f"Generating Excel report at {output_path}...")
-        
-        # --- Helper Function for Formatting ---
+
         def format_list(items):
-            """
-            A nested helper function to format lists of causes, consequences, or safeguards
-            into a single, human-readable string with newlines for use in an Excel cell.
-            """
-            # Check if the input is a valid list to prevent errors
             if not isinstance(items, list):
                 return ""
-            # Format each item in the list into a standard string format
             return "\n".join([f"- {i.get('description', '')} (Conf: {i.get('confidenceLevel', 0):.2f}, Src: {i.get('source', 'N/A')})" for i in items])
-        
+
         # --- Data Transformation ---
-        # Convert the raw list of dictionaries into a "flat" structure suitable for a DataFrame.
-        # Each dictionary in this new list will represent one row in the Excel sheet.
-        flat_data = [{
-            "Node": item['node'],
-            "Guideword": item['guideword'],
-            "Parameter": item['parameter'],
-            "Deviation": item['deviation'],
-            "Causes": format_list(item['causes']),
-            "Consequences": format_list(item['consequences']),
-            "Safeguards": format_list(item['safeguards'])
-        } for item in hazop_data]
-        
-        # Create a pandas DataFrame from the flattened data
+        flat_data = []
+        for item in hazop_data:
+            row = {
+                "Node": item.get('node', ''),
+                "Guideword": item.get('guideword', ''),
+                "Parameter": item.get('parameter', ''),
+                "Deviation": item.get('deviation', ''),
+                "Causes": format_list(item.get('causes', [])),
+                "Consequences": format_list(item.get('consequences', [])),
+                "Safeguards": format_list(item.get('safeguards', [])),
+                "Recommendation": item.get('recommendation', '')  # NEW COLUMN
+            }
+            flat_data.append(row)
+
         df = pd.DataFrame(flat_data)
-        
-        # --- Excel Formatting and Writing ---
-        # Use ExcelWriter with the 'xlsxwriter' engine for advanced formatting
+
         with pd.ExcelWriter(output_path, engine='xlsxwriter') as writer:
-            # Write the DataFrame to an Excel sheet without the default pandas index
             df.to_excel(writer, sheet_name='HAZOP Worksheet', index=False)
-            
-            # Get the workbook and worksheet objects for direct formatting
             workbook, worksheet = writer.book, writer.sheets['HAZOP Worksheet']
-            
-            # Define various cell formats for a professional look
+
             header_fmt = workbook.add_format({'bold': True, 'text_wrap': True, 'valign': 'top', 'fg_color': '#D7E4BC', 'border': 1})
             cell_fmt = workbook.add_format({'text_wrap': True, 'valign': 'top'})
-            low_conf_fmt = workbook.add_format({'bg_color': '#FFC7CE', 'font_color': '#9C0006'}) # For low confidence items
+            low_conf_fmt = workbook.add_format({'bg_color': '#FFC7CE', 'font_color': '#9C0006'})
 
-            # Write the header row using the defined header format
             for col_num, value in enumerate(df.columns.values):
                 worksheet.write(0, col_num, value, header_fmt)
-            
-            # Set the column widths for better readability
-            worksheet.set_column('A:A', 40, cell_fmt)  # Node column
-            worksheet.set_column('B:D', 15, cell_fmt)  # Guideword, Parameter, Deviation
-            worksheet.set_column('E:G', 50, cell_fmt)  # Causes, Consequences, Safeguards
-            
-            # Freeze the top row so the headers are always visible when scrolling
+
+            worksheet.set_column('A:A', 40, cell_fmt)
+            worksheet.set_column('B:D', 15, cell_fmt)
+            worksheet.set_column('E:G', 50, cell_fmt)
+            worksheet.set_column('H:H', 50, cell_fmt)  # Recommendation column
+
             worksheet.freeze_panes(1, 0)
-            
-            # Apply conditional formatting to highlight cells containing low-confidence findings
             worksheet.conditional_format(f'E2:G{len(df)+1}', {'type': 'text', 'criteria': 'containing', 'value': '(Conf: 0.', 'format': low_conf_fmt})
-            
+
         print("Excel report generated successfully.")
 
 def main():
