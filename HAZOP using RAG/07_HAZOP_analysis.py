@@ -1,4 +1,3 @@
-import csv
 import json
 import re
 from typing import Dict, List, Any, Optional
@@ -6,8 +5,8 @@ from datetime import datetime
 
 from neo4j import GraphDatabase
 import google.generativeai as genai
-#from openpyxl import Workbook
-#from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
 # Assuming config.py exists with your API keys and Neo4j credentials
 import config
@@ -59,7 +58,10 @@ def load_applicable_deviations(equipment_name: str) -> List[Dict[str, str]]:
     """Load applicable deviations for the selected equipment from the CSV."""
     deviations = []
     try:
-        with open("Applicable_Deviations.csv", newline="", encoding="utf-8") as f:
+        # NOTE: This still reads from a CSV, as per the original design.
+        with open(config.APPLICABLE_DEVIATIONS_PATH, newline="", encoding="utf-8") as f:
+            # Using standard library's csv reader for simplicity here
+            import csv
             reader = csv.DictReader(f)
             for row in reader:
                 if row["EquipmentName"] == equipment_name:
@@ -77,7 +79,7 @@ def load_applicable_deviations(equipment_name: str) -> List[Dict[str, str]]:
 def load_process_description() -> str:
     """Load the generated process description."""
     try:
-        with open("Generated_process_description.md", "r", encoding="utf-8") as f:
+        with open(config.GENERATED_PROCESS_DESCRIPTION_PATH, "r", encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
         return "Process description not available."
@@ -95,7 +97,7 @@ def save_and_parse_llm_json(llm_raw_text: str, equipment_name: str) -> Optional[
     This prevents parsing errors by isolating the raw output first.
     """
     # Define the filename for the raw output
-    raw_filename = f"HAZOP_Analysis_{equipment_name.replace(' ', '_')}_raw_output.json"
+    raw_filename = f"Results/HAZOP_Analysis_{equipment_name.replace(' ', '_')}_raw_output.json"
 
     # --- Step 1: Clean the raw text ---
     # Remove markdown code fences (e.g., ```json ... ```) and strip whitespace
@@ -128,7 +130,8 @@ def save_and_parse_llm_json(llm_raw_text: str, equipment_name: str) -> Optional[
                 "guideword": item.get("guideword", "N/A"),
                 "causes": item.get("causes") if isinstance(item.get("causes"), list) else [str(item.get("causes", "N/A"))],
                 "consequences": item.get("consequences") if isinstance(item.get("consequences"), list) else [str(item.get("consequences", "N/A"))],
-                "safeguards": item.get("safeguards") if isinstance(item.get("safeguards"), list) else [str(item.get("safeguards", "N/A"))]
+                "safeguards": item.get("safeguards") if isinstance(item.get("safeguards"), list) else [str(item.get("safeguards", "N/A"))],
+                "recommendations": item.get("recommendations") if isinstance(item.get("recommendations"), list) else [str(item.get("recommendations", "N/A"))]
             })
         return normalized
     except json.JSONDecodeError as e:
@@ -144,16 +147,34 @@ def conduct_hazop_analysis(model, equipment: Dict[str, str], context: Dict[str, 
     """
 
     prompt = {
-        "analysis_task": "Perform HAZOP analysis based on the following data.",
-        "equipment": {
-            "name": equipment.get("name"),
-            "type": equipment.get("type"),
-        },
-        "p&id_context": context,
-        "process_description": process_description,
-        "deviations_to_analyze": deviations,
-        "required_output_format": "[{\"parameter\": \"...\", \"guideword\": \"...\", \"causes\": [\"...\"], \"consequences\": [\"...\"], \"safeguards\": [\"...\"]}, ...]"
-    }
+            "analysis_task": """
+            Perform a detailed Hazard and Operability (HAZOP) analysis for the specified equipment using the provided P&ID context and process description. Analyze the given deviations and generate the results strictly following the rules below.
+        
+            ### Rules for Identifying Causes:
+            1.  **Instrument & Control Failure:** Analyze causes arising from the failure of any specified instruments, control loops, and alarms associated with the equipment.
+            2.  **Process & Material Issues:** Based on operating conditions, design parameters, and chemical safety data, identify causes related to equipment damage (e.g., corrosion), blockages, or leaks. Consider material compatibility and chemical reactions.
+            3.  **Stream Interactions:** For equipment with multiple streams (e.g., heat exchangers, separators), consider how interactions between streams could cause deviations.
+            4.  **Human Factors:** Include potential causes from human error, such as incorrect operator actions or maintenance mistakes.
+            5.  **Strict Constraint:** Do not assume the existence of any equipment or instrument that is not explicitly described in the provided context.
+        
+            ### Rules for Determining Consequences:
+            1.  **Chemical Hazards:** Evaluate consequences based on the properties of the chemicals involved (e.g., toxicity, flammability).
+            2.  **Equipment Damage:** Describe any potential damage to the equipment itself resulting from the deviation.
+            3.  **HSE Impact:** Detail the consequences for personnel safety, human health, and the environment (HSE).
+        
+            ### Rules for Safeguards & Recommendations:
+            1.  **Existing Safeguards:** In the 'safeguards' list, only include protective devices, alarms, and procedures that are explicitly present in the provided system information.
+            2.  **Recommendations:** In the 'recommendations' list, identify and suggest necessary safeguards that are missing from the current system but would mitigate the identified risk.
+            """,
+            "equipment": {
+                "name": equipment.get("name"),
+                "type": equipment.get("type"),
+            },
+            "p&id_context": context,
+            "process_description": process_description,
+            "deviations_to_analyze": deviations,
+            "required_output_format": "[{\"parameter\": \"...\", \"guideword\": \"...\", \"causes\": [\"...\"], \"consequences\": [\"...\"], \"safeguards\": [\"...\"], \"recommendations\": [\"...\"]}, ...]"
+        }
 
     response = model.generate_content(
         [
@@ -162,7 +183,6 @@ def conduct_hazop_analysis(model, equipment: Dict[str, str], context: Dict[str, 
     )
     raw_text = (response.text or "").strip()
     
-    # NEW: Use the robust save-and-parse function
     parsed_analysis = save_and_parse_llm_json(raw_text, equipment['name'])
     
     return parsed_analysis
@@ -192,48 +212,86 @@ def get_equipment_selection(equipments: List[Dict[str, str]]) -> Optional[Dict[s
             print("Please enter a valid number")
 
 
-def save_hazop_report_csv(equipment_name: str, analysis_data: List[Dict[str, Any]]):
-    """Save HAZOP analysis to a CSV file from the structured analysis data."""
-    filename = f"Results/HAZOP_Analysis_{equipment_name.replace(' ', '_')}.csv"
+def save_hazop_report_excel(equipment_name: str, analysis_data: List[Dict[str, Any]]):
+    """Save HAZOP analysis to a styled Excel file."""
+    filename = f"Results/HAZOP_Analysis_{equipment_name.replace(' ', '_')}.xlsx"
     
-    # Check if analysis_data is valid
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "HAZOP Analysis"
+
     if not analysis_data:
-        print("⚠️ No valid analysis data provided. CSV report will not be generated.")
-        # Optionally create a CSV with an error message
-        with open(filename, mode="w", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerow(["Error"])
-            writer.writerow(["Failed to generate HAZOP analysis due to parsing error. See console for details."])
+        print("⚠️ No valid analysis data provided. Excel report will contain an error message.")
+        ws.append(["Error", "Failed to generate HAZOP analysis due to a parsing error. See console for details."])
+        wb.save(filename)
         return
 
-    # Write CSV
-    with open(filename, mode="w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        
-        # Write header
-        writer.writerow([
-            "Equipment", "Parameter", "Guideword", "Deviation",
-            "Causes", "Consequences", "Safeguards", "Analysis Date"
-        ])
-        
-        # Write rows
-        for d in analysis_data:
-            parameter = d.get("parameter", "N/A")
-            guideword = d.get("guideword", "N/A")
-            deviation = f"{parameter} {guideword}".strip()
-            
-            # Join list items with a semicolon for better CSV readability
-            causes = "; ".join(d.get("causes", []))
-            consequences = "; ".join(d.get("consequences", []))
-            safeguards = "; ".join(d.get("safeguards", []))
-            
-            writer.writerow([
-                equipment_name, parameter, guideword, deviation,
-                causes, consequences, safeguards,
-                datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            ])
+    # --- Define Styles ---
+    header_font = Font(bold=True, color="FFFFFF", name="Calibri")
+    header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
+    header_align = Alignment(horizontal="center", vertical="center")
     
-    print(f"\n✅ HAZOP analysis saved to CSV: {filename}")
+    thin_border = Border(
+        left=Side(style='thin'), 
+        right=Side(style='thin'), 
+        top=Side(style='thin'), 
+        bottom=Side(style='thin')
+    )
+    
+    # Alignment for wrapping text in data cells
+    wrap_alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+
+    # --- Write Header ---
+    header = [
+        "Equipment", "Parameter", "Guideword", "Deviation",
+        "Causes", "Consequences", "Safeguards", "Recommendations", "Analysis Date"
+    ]
+    ws.append(header)
+    
+    # Apply styles to header row
+    for cell in ws[1]:
+        cell.font = header_font
+        cell.fill = header_fill
+        cell.alignment = header_align
+        cell.border = thin_border
+
+    # --- Write Data Rows ---
+    for d in analysis_data:
+        parameter = d.get("parameter", "N/A")
+        guideword = d.get("guideword", "N/A")
+        deviation = f"{parameter} {guideword}".strip()
+        
+        # Join list items with a newline for better Excel readability
+        causes = "\n".join(f"- {c}" for c in d.get("causes", []))
+        consequences = "\n".join(f"- {c}" for c in d.get("consequences", []))
+        safeguards = "\n".join(f"- {s}" for s in d.get("safeguards", []))
+        recommendations = "\n".join(f"- {r}" for r in d.get("recommendations", []))
+        
+        row_data = [
+            equipment_name, parameter, guideword, deviation,
+            causes, consequences, safeguards, recommendations,
+            datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        ]
+        ws.append(row_data)
+
+        # Apply border and wrap-text alignment to the new row
+        for col_idx in range(1, len(row_data) + 1):
+            cell = ws.cell(row=ws.max_row, column=col_idx)
+            cell.border = thin_border
+            # Apply wrap text to columns that need it
+            if col_idx in [5, 6, 7, 8]: # Causes, Consequences, Safeguards, Recommendations
+                cell.alignment = wrap_alignment
+
+    # --- Adjust Column Widths ---
+    column_widths = {'A': 20, 'B': 15, 'C': 15, 'D': 25, 'E': 50, 'F': 50, 'G': 50, 'H': 50, 'I': 20}
+    for col, width in column_widths.items():
+        ws.column_dimensions[col].width = width
+
+    try:
+        wb.save(filename)
+        print(f"\n✅ HAZOP analysis saved to Excel: {filename}")
+    except IOError as e:
+        print(f"❌ Error saving Excel file: {e}")
 
 
 def main():
@@ -272,10 +330,9 @@ def main():
                 print("3. Conducting HAZOP analysis with LLM... (This may take a moment)")
                 analysis = conduct_hazop_analysis(model, selected_equipment, context, deviations, process_description)
 
-                # Check if the analysis was successful before saving
                 if analysis:
-                    print("4. Saving HAZOP report to CSV...")
-                    save_hazop_report_csv(equipment_name, analysis)
+                    print("4. Saving HAZOP report to Excel...")
+                    save_hazop_report_excel(equipment_name, analysis)
                 else:
                     print("\nSkipping report generation due to an error in the analysis step.")
 
