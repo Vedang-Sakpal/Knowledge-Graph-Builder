@@ -1,6 +1,7 @@
 import config
 from neo4j import GraphDatabase
-import google.generativeai as genai
+import google.genai as genai
+from google.genai.types import GenerateContentConfig
 import json
 import os
 import fitz
@@ -49,17 +50,12 @@ class SemanticEnricher:
         # Initialize the Neo4j database driver.
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
-        # --- Initialize Gemini API ---
-        # Configure the API with the key from the config file.
-        genai.configure(api_key=config.GEMINI_API_KEY)
-        # Set up the specific generative model to use.
-        self.model = genai.GenerativeModel(
-            model_name=getattr(config, 'GEMINI_MODEL_NAME', 'gemini-1.5-flash'),
-            # Configure generation parameters for more predictable output.
-            generation_config={
-                "temperature": 0.1,  # Lower temperature means less random, more deterministic responses.
-                "max_output_tokens": 1500, # Limit the length of the response.
-            }
+        # --- Initialize Gemini API (new client) ---
+        self.genai_client = genai.Client(api_key=config.GEMINI_API_KEY)
+        self.model_name = getattr(config, 'GEMINI_MODEL_NAME', 'gemini-1.5-pro')
+        self.generation_config = GenerateContentConfig(
+            temperature=0.1,
+            max_output_tokens=1500,
         )
 
         # --- Initialize Caching System ---
@@ -102,7 +98,11 @@ class SemanticEnricher:
             # Handle PDF files using the fitz library.
             if file_path.lower().endswith('.pdf'):
                 doc = fitz.open(file_path)
-                text = "".join(page.get_text() for page in doc)
+                # PyMuPDF's Page.get_text exists at runtime; suppress type checker noise for this attribute.
+                pages_text = []
+                for page in doc:
+                    pages_text.append(page.get_text("text"))  # pyright: ignore[reportAttributeAccessIssue]
+                text = "".join(pages_text)
                 doc.close()
                 return text
             # Handle plain text or markdown files.
@@ -154,11 +154,15 @@ Please provide your response as a valid JSON object only, with no additional tex
 
         try:
             # Make the actual API call to the Gemini model.
-            response = self.model.generate_content(full_prompt)
+            response = self.genai_client.models.generate_content(
+                model=self.model_name,
+                contents=full_prompt,
+                config=self.generation_config,
+            )
 
             # --- Extract JSON from the model's response ---
             # LLMs sometimes wrap JSON in markdown backticks, so we need to clean it up.
-            response_text = response.text.strip()
+            response_text = (response.text or "").strip()
             if response_text.startswith('```json'):
                 response_text = response_text[7:-3] # Remove ```json and ```
             elif response_text.startswith('```'):
@@ -281,7 +285,7 @@ Please provide your response as a valid JSON object only, with no additional tex
             msds_files = msds_files[:max_files]
             print(f"Limited to processing a maximum of {max_files} MSDS files.")
 
-        print(f"\n--- Starting MSDS Processing using Synonym Map ---")
+        print("\n--- Starting MSDS Processing using Synonym Map ---")
         print(f"Found {len(msds_files)} MSDS files to process.")
 
         # --- IMPROVED PROMPT 2: Guides the AI to find the generic name ---

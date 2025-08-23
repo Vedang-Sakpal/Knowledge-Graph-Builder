@@ -1,0 +1,312 @@
+[
+  {
+    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "guideword": "No",
+    "causes": [
+      "No Sour Water Feed: FCV-3 closed, Stripper feed Pump trip/failure, upstream blockage/isolation, no sour water from SW Storage.",
+      "No Steam Flow: FCV-5 closed, steam supply failure/isolation, FC-2 failure, loss of steam pressure.",
+      "No Reflux Flow: FCV-4 closed, Reflux Pump trip/failure, no condensed liquid in SWS OVHD Accumulator, LC-1 failure.",
+      "No Overhead Acid Gas Flow: Blockage in overhead line (e.g., condenser fouling), SWS OVHD Accumulator outlet valve closed/failed.",
+      "No Treated Water Bottoms Flow: FCV-6 closed, Bottoms Pump trip/failure, blockage in bottoms line, LC-2 failure."
+    ],
+    "consequences": [
+      "For No Feed: Column runs dry, overheating (if steam continues), loss of production.",
+      "For No Steam: Loss of stripping, off-spec treated water (H2S/NH3 in bottoms), column cooling, low temperature.",
+      "For No Reflux: Less efficient separation, higher overhead temperature, more water vapor to acid gas system.",
+      "For No Overhead Flow: Pressure buildup in SWS, PRV-2 lift, column damage, reduced stripping efficiency.",
+      "For No Bottoms Flow: Column floods, liquid carryover to overhead (damage to overhead equipment), loss of production."
+    ],
+    "safeguards": [
+      "FC-1 (Feed flow control), FC-2 (Steam flow control)",
+      "LC-1 (Reflux level control), LC-2 (Bottoms level control)",
+      "Low flow alarms (on feed, steam, reflux if flow meters present)",
+      "Low/High level alarms (l4 for bottoms, l3 for accumulator)",
+      "PRV-2 (Pressure Relief Valve)",
+      "Pump trips (low suction pressure, high discharge pressure)"
+    ]
+  },
+  {
+    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "guideword": "Less",
+    "causes": [
+      "Less Sour Water Feed Flow: FCV-3 partially closed/fouled, reduced Stripper feed Pump capacity, FC-1 setpoint reduced.",
+      "Less Steam Flow: FCV-5 partially closed/fouled, reduced steam supply pressure, FC-2 setpoint reduced/failure, partial blockage.",
+      "Less Reflux Flow: FCV-4 partially closed/fouled, reduced Reflux Pump capacity, LC-1 failure or low setpoint.",
+      "Less Overhead Acid Gas Flow: Partial blockage in overhead line (e.g., partial condenser fouling), SWS OVHD Accumulator outlet valve partially closed/fouled.",
+      "Less Treated Water Bottoms Flow: FCV-6 partially closed/fouled, reduced Bottoms Pump capacity, LC-2 setpoint reduced/failure."
+    ],
+    "consequences": [
+      "For Less Feed: Reduced production, lower bottoms level (if LC-2 slow), potentially over-stripping if steam ratio too high.",
+      "For Less Steam: Reduced stripping efficiency (H2S/NH3 in bottoms), column temperature drops, reduced vapor traffic.",
+      "For Less Reflux: Less efficient separation, higher overhead temperature, more water vapor to acid gas system.",
+      "For Less Overhead Flow: Increased pressure in SWS, reduced stripping efficiency, PRV-2 may eventually lift.",
+      "For Less Bottoms Flow: Level l4 in SWS increases, potential column flooding."
+    ],
+    "safeguards": [
+      "FC-1 (Feed flow control), FC-2 (Steam flow control)",
+      "LC-1 (Reflux level control), LC-2 (Bottoms level control)",
+      "Low flow alarms (on feed, steam, reflux if flow meters present)",
+      "High/Low temperature alarms in SWS",
+      "High/Low pressure alarms in SWS",
+      "Treated water quality analyzer and alarm"
+    ]
+  },
+  {
+    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "guideword": "More",
+    "causes": [
+      "More Sour Water Feed Flow: FCV-3 failed open, FC-1 failed high/setpoint increased, Stripper feed Pump overspeed.",
+      "More Steam Flow: FCV-5 failed open, FC-2 failed high/setpoint increased, high steam supply pressure, steam ratio controller failure.",
+      "More Reflux Flow: FCV-4 failed open, LC-1 failed high/setpoint increased, Reflux Pump overspeed.",
+      "More Overhead Acid Gas Flow: Reduced back pressure from downstream equipment, SWS OVHD Accumulator outlet valve failed open (usually a consequence of more steam, not a cause).",
+      "More Treated Water Bottoms Flow: FCV-6 failed open, LC-2 failed high/setpoint increased, Bottoms Pump overspeed."
+    ],
+    "consequences": [
+      "For More Feed: Increased load on column, potential for column flooding (if steam/bottoms cannot compensate), insufficient stripping if steam ratio too low, high bottoms level.",
+      "For More Steam: Increased vapor traffic, increased pressure in SWS, PRV-2 lift, increased temperature, excessive energy consumption, liquid carryover to overhead.",
+      "For More Reflux: Increased liquid load on top of column, reduced overhead temperature, potential for column flooding.",
+      "For More Overhead Flow: Reduced pressure in SWS, flashing of liquid, less efficient stripping.",
+      "For More Bottoms Flow: Low level l4 in SWS (column run dry), steam blow-through to bottoms, damage to pump."
+    ],
+    "safeguards": [
+      "FC-1 (Feed flow control), FC-2 (Steam flow control)",
+      "LC-1 (Reflux level control), LC-2 (Bottoms level control)",
+      "High flow alarms (on feed, steam, reflux if flow meters present)",
+      "High/Low level alarms (l4)",
+      "High/Low temperature alarms in SWS",
+      "High/Low pressure alarms in SWS",
+      "PRV-2 (Pressure Relief Valve)",
+      "Pump trips (low suction pressure, high discharge pressure)",
+      "ESD for high/low level/pressure"
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "More",
+    "causes": [
+      "More Steam Flow: FCV-5 failed open, FC-2 failed high.",
+      "Less Sour Water Feed Flow: FCV-3 closed/partially closed (if steam flow does not decrease proportionally).",
+      "Loss of reflux (less cooling at top of column).",
+      "High temperature feed (e.g., malfunction of feed preheater bypass)."
+    ],
+    "consequences": [
+      "Increased pressure in SWS, PRV-2 lift.",
+      "Overheating of column components/gaskets.",
+      "Increased H2S/NH3 solubility in condensed water (corrosion in overhead/reflux).",
+      "Carryover of heavier hydrocarbons to overhead.",
+      "Excessive energy consumption."
+    ],
+    "safeguards": [
+      "High temperature alarm in SWS (e.g., at bottom/middle).",
+      "High pressure alarm in SWS.",
+      "PRV-2 (Pressure Relief Valve).",
+      "FC-2 (Steam flow control based on ratio to feed).",
+      "ESD for very high temperature/pressure."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "Less",
+    "causes": [
+      "Less Steam Flow: FCV-5 partially/fully closed, FC-2 failed low.",
+      "More Sour Water Feed Flow: FCV-3 failed open (if steam flow does not increase proportionally).",
+      "Cold Sour Water Feed: Malfunction of Stripper OVHD Condenser (feed preheater), preheater bypass open.",
+      "More Reflux Flow: FCV-4 failed open, LC-1 failed high."
+    ],
+    "consequences": [
+      "Reduced stripping efficiency, H2S/NH3 not fully removed (off-spec treated water).",
+      "Increased solubility of acid gases in condensed water.",
+      "Increased liquid load in column (denser/more viscous liquid).",
+      "Reduced pressure in SWS.",
+      "Potential for liquid slugs in overhead line."
+    ],
+    "safeguards": [
+      "Low temperature alarm in SWS.",
+      "Treated water quality analyzer and alarm for H2S/NH3.",
+      "FC-2 (Steam flow control based on ratio to feed).",
+      "Low pressure alarm in SWS."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "More",
+    "causes": [
+      "More Steam Flow: FCV-5 failed open, FC-2 failed high.",
+      "Blockage in Overhead Acid Gas Flow: Condenser fouling, SWS OVHD Accumulator outlet valve closed/failed, downstream blockage.",
+      "Column flooding leading to liquid carryover and blockage of overhead line/condenser.",
+      "Loss of cooling in Stripper OVHD Condenser (e.g., reduced feed flow through exchanger)."
+    ],
+    "consequences": [
+      "PRV-2 lifts, venting acid gas to flare/atmosphere (environmental, safety concern).",
+      "Damage to column and associated equipment (rupture).",
+      "Reduced stripping efficiency (higher partial pressure of H2S/NH3 in liquid phase).",
+      "Reverse flow through feed line or other connections."
+    ],
+    "safeguards": [
+      "High pressure alarm in SWS.",
+      "PRV-2 (Pressure Relief Valve).",
+      "ESD for very high pressure.",
+      "High level alarm on l4 (as a consequence of flooding)."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "Less",
+    "causes": [
+      "Less Steam Flow: FCV-5 partially/fully closed, FC-2 failed low.",
+      "More Overhead Acid Gas Flow: Downstream vacuum/suction, SWS OVHD Accumulator outlet valve failed open.",
+      "Large leak/rupture in column (mechanical integrity failure).",
+      "Loss of liquid seal in SWS OVHD Accumulator (e.g., due to LC-1 failure)."
+    ],
+    "consequences": [
+      "Reduced stripping efficiency.",
+      "Flashing of liquid, leading to frothing/foaming, potentially off-spec treated water.",
+      "Risk of air ingress if pressure drops below atmospheric (explosive mixture with H2S).",
+      "Damage to vacuum-sensitive equipment."
+    ],
+    "safeguards": [
+      "Low pressure alarm in SWS.",
+      "Low steam flow alarm.",
+      "Vacuum breaker (if installed)."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "More",
+    "causes": [
+      "No/Less Treated Water Bottoms Flow: FCV-6 closed/failed, Bottoms Pump trip/failure, blockage in bottoms line, LC-2 failure.",
+      "More Sour Water Feed Flow: FCV-3 failed open (if LC-2 cannot compensate).",
+      "Excessive reflux/condensate formation (too much liquid from SWS OVHD Accumulator).",
+      "Foaming/frothing due to feed composition or operational issues, causing an apparent level increase."
+    ],
+    "consequences": [
+      "Column flooding (liquid fills column internals).",
+      "Liquid carryover to overhead, contaminating acid gas and potentially damaging SWS OVHD Condenser and SWS OVHD Accumulator.",
+      "Reduced stripping efficiency due to reduced vapor-liquid contact area.",
+      "Pressure surge in overhead."
+    ],
+    "safeguards": [
+      "LC-2 (Bottoms level control) modulating FCV-6.",
+      "High level alarm on l4.",
+      "High-high level trip on l4 (shuts down feed pump, reduces steam, trips bottoms pump on high level).",
+      "High pressure alarm in SWS (as a consequence of flooding)."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "Less",
+    "causes": [
+      "More Treated Water Bottoms Flow: FCV-6 failed open, LC-2 failed high.",
+      "No/Less Sour Water Feed Flow: FCV-3 closed/failed, Stripper feed Pump trip/failure (if LC-2 cannot compensate).",
+      "Excessive vaporization (overstripping) due to more steam than required relative to water feed.",
+      "Leak in column or bottoms line."
+    ],
+    "consequences": [
+      "Column runs dry (loss of liquid seal in sump).",
+      "Steam blow-through to bottoms outlet, potentially damaging Bottoms Pump (cavitation/overheating).",
+      "Loss of stripping contact.",
+      "Increased temperature in sump.",
+      "Thermal shock if cold feed returns to a hot, dry sump."
+    ],
+    "safeguards": [
+      "LC-2 (Bottoms level control) modulating FCV-6.",
+      "Low level alarm on l4.",
+      "Low-low level trip on l4 (shuts down bottoms pump, closes FCV-6, reduces steam/feed)."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "As Well As",
+    "causes": [
+      "Hydrocarbons (slop oil) in Sour Water Feed: Failure of Surge Drum-1 separation, SW Storage skimming, or upstream upset.",
+      "Inorganic salts/solids in Sour Water Feed: Upstream contamination, corrosion products.",
+      "Contaminants in Steam: Boiler feedwater treatment upset (e.g., carryover of chemicals), or mechanical issues."
+    ],
+    "consequences": [
+      "For Hydrocarbons: Foaming in SWS (reduces efficiency, leads to carryover), fouling of column internals/condenser, contamination of acid gas and treated water.",
+      "For Salts/Solids: Fouling of column internals, reduced heat transfer, damage to pumps, corrosion.",
+      "For Steam Contaminants: Fouling of column internals, corrosion, contamination of treated water.",
+      "General: Off-spec products (acid gas, treated water)."
+    ],
+    "safeguards": [
+      "Level sensors (l1, l2) in Surge Drum-1 for oil/water separation.",
+      "Visual inspection/sampling points for feed and products.",
+      "Process alarms for abnormal conditions (e.g., foaming leading to high delta P or level fluctuations).",
+      "Routine analysis of sour water feed and treated water."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "Otherthan",
+    "causes": [
+      "Treated Water (Bottoms) with H2S/NH3: Insufficient stripping (less steam, low temperature, high feed rate, poor steam distribution, foaming), feed composition changes (higher H2S/NH3 than design).",
+      "Acid Gas (Overhead) with excess water/steam: Insufficient condensation in SWS OVHD Condenser (e.g., high temperature feed to condenser, less feed flow through condenser, condenser fouling), too much reflux (sending back too much water)."
+    ],
+    "consequences": [
+      "For H2S/NH3 in Treated Water: Off-spec product, environmental discharge limits exceeded, further treatment required, corrosion in downstream equipment.",
+      "For Excess Water in Acid Gas: Reduced capacity of downstream Sulfur Recovery Unit, energy penalty, corrosion in overhead lines."
+    ],
+    "safeguards": [
+      "Treated water quality analyzer (H2S/NH3) with alarm.",
+      "FC-2 (Steam ratio control).",
+      "Temperature control in SWS (e.g., via steam flow).",
+      "SWS OVHD Accumulator level control (LC-1).",
+      "Temperature sensor in SWS OVHD Accumulator/overhead line."
+    ]
+  },
+  {
+    "parameter": "Phase",
+    "guideword": "Otherthan",
+    "causes": [
+      "Vapor in Liquid Lines (e.g., Bottoms Pump suction): Low level in SWS sump (leading to cavitation), high temperature in sump causing flashing, sudden pressure drop.",
+      "Liquid in Vapor Lines (e.g., Overhead Acid Gas): Column flooding (liquid carryover from high level), excessive condensation in overhead line (cold spots), foaming in column.",
+      "Two-phase flow in lines designed for single-phase due to pressure or temperature fluctuations."
+    ],
+    "consequences": [
+      "For Vapor in Liquid Lines: Pump cavitation, damage to pumps, loss of flow, loss of level control.",
+      "For Liquid in Vapor Lines: Damage to downstream compressors (if applicable), damage to SWS OVHD Condenser, contamination of acid gas, water hammer, pressure fluctuations.",
+      "Reduced stripping efficiency."
+    ],
+    "safeguards": [
+      "LC-2 (Bottoms level control) with low-low level trip for pump protection.",
+      "Low level alarm l4.",
+      "High level alarm l4 (to prevent flooding/liquid carryover).",
+      "Temperature/pressure controls to prevent flashing or excessive condensation.",
+      "Demister pads/vane packs in column top (design feature)."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Water/ steam/oil/chilled water/ brine/ electricity)",
+    "guideword": "More",
+    "causes": [
+      "More Steam Supply: High steam header pressure, FCV-5 failed open, FC-2 failed high.",
+      "More Electricity Supply (Fault): Short circuit, motor overload, equipment malfunction."
+    ],
+    "consequences": [
+      "For More Steam: Increased pressure in SWS, PRV-2 lift, increased temperature, excessive energy consumption, liquid carryover.",
+      "For More Electricity: Equipment damage, fire, power trip for pumps and controls."
+    ],
+    "safeguards": [
+      "High pressure alarm in SWS, PRV-2.",
+      "FC-2 (Steam flow control), High temperature alarm in SWS.",
+      "Overcurrent protection, motor overload trips, circuit breakers for electrical equipment."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Water/ steam/oil/chilled water/ brine/ electricity)",
+    "guideword": "Less",
+    "causes": [
+      "Less Steam Supply: Low steam header pressure, FCV-5 failed closed/partially closed, FC-2 failure, steam supply isolation.",
+      "Less/No Electricity Supply: Power outage, breaker trip, pump motor failure."
+    ],
+    "consequences": [
+      "For Less Steam: Loss of stripping action, off-spec treated water, column cooling, low temperature.",
+      "For Less/No Electricity: Trip of all associated pumps (Stripper feed Pump, Reflux Pump, Bottoms Pump), loss of all control valves (FCV-3, FCV-4, FCV-5, FCV-6), loss of instrumentation (l4). Leads to plant shutdown."
+    ],
+    "safeguards": [
+      "FC-2 (Steam flow control), Low steam flow alarm.",
+      "Low temperature alarm in SWS, Treated water quality analyzer and alarm.",
+      "Uninterruptible Power Supply (UPS) for critical controls/instrumentation, plant emergency generator (for essential services), ESD system."
+    ]
+  }
+]

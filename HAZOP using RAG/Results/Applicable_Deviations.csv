@@ -1,0 +1,316 @@
+EquipmentName,EquipmentType,Parameter,Guideword,Rationale
+Bottoms Pump,Pump,"Flow 
+(Inlet& Outlet)",No,Always applicable as per guidance.
+Bottoms Pump,Pump,"Flow 
+(Inlet& Outlet)",Less,Always applicable as per guidance.
+Bottoms Pump,Pump,"Flow 
+(Inlet& Outlet)",More,Always applicable as per guidance.
+Bottoms Pump,Pump,"Flow 
+(Inlet& Outlet)",Reverse,"Context does not provide information (e.g., check valves) to make it not applicable as per guidance."
+Bottoms Pump,Pump,Pressure,More,Always applicable as per guidance.
+Bottoms Pump,Pump,Pressure,Less,Always applicable as per guidance.
+Bottoms Pump,Pump,Vibration,More,"Conditions for 'Not applicable' (very small, low-speed, low consequence) are not fully met by the provided context."
+Bottoms Pump,Pump,Concentration,More,"A 'Bottoms Pump' typically handles a mixture or solution, fulfilling the applicability condition."
+Bottoms Pump,Pump,Concentration,Less,"A 'Bottoms Pump' typically handles a mixture or solution, fulfilling the applicability condition."
+Bottoms Pump,Pump,Power,More,Always applicable as per guidance.
+Bottoms Pump,Pump,Power,Less,Always applicable as per guidance.
+Bottoms Pump,Pump,Power,No/None,Always applicable as per guidance.
+Bottoms Pump,Pump,Speed,More,"Assumed centrifugal pump, which fulfills the applicability condition for a general industrial pump."
+Bottoms Pump,Pump,Speed,Less,"Assumed centrifugal pump, which fulfills the applicability condition for a general industrial pump."
+Bottoms Pump,Pump,Speed,No/None,"Assumed centrifugal pump, which fulfills the applicability condition for a general industrial pump."
+Oil Recovery Pump,Pump,"Flow 
+(Inlet& Outlet)",No,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,"Flow 
+(Inlet& Outlet)",Less,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,"Flow 
+(Inlet& Outlet)",More,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,"Flow 
+(Inlet& Outlet)",Reverse,Context does not provide information about check valves or one-way design to exclude this deviation. Reverse flow is a potential deviation for pumps.
+Oil Recovery Pump,Pump,Pressure,More,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,Pressure,Less,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,Vibration,More,"Context does not provide sufficient information to meet the conditions for 'not applicable' (e.g., very small, low-speed, no vibration monitoring, low consequence of failure)."
+Oil Recovery Pump,Pump,Vibration,Less,"No applicability note or exclusion provided, and vibration is a relevant characteristic for a pump."
+Oil Recovery Pump,Pump,Concentration,More,"An 'Oil Recovery Pump' implies handling a solution or mixture (e.g., oil with water/impurities)."
+Oil Recovery Pump,Pump,Concentration,Less,"An 'Oil Recovery Pump' implies handling a solution or mixture (e.g., oil with water/impurities)."
+Oil Recovery Pump,Pump,Power,More,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,Power,Less,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,Power,No/None,Guidance states 'Always applicable'.
+Oil Recovery Pump,Pump,Temperature,More,"For an 'Oil Recovery Pump', temperature is often a critical variable affecting fluid properties (e.g., viscosity, vapor pressure) and pump performance."
+Oil Recovery Pump,Pump,Temperature,Less,"For an 'Oil Recovery Pump', temperature is often a critical variable affecting fluid properties (e.g., viscosity, vapor pressure) and pump performance."
+Oil Recovery Pump,Pump,Speed,More,"It is assumed that the 'Oil Recovery Pump' is a centrifugal pump, which is a common type for industrial process pumps."
+Oil Recovery Pump,Pump,Speed,Less,"It is assumed that the 'Oil Recovery Pump' is a centrifugal pump, which is a common type for industrial process pumps."
+Oil Recovery Pump,Pump,Speed,No/None,"It is assumed that the 'Oil Recovery Pump' is a centrifugal pump, which is a common type for industrial process pumps."
+Reflux Pump,Pump,"Flow 
+(Inlet& Outlet)",No,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,"Flow 
+(Inlet& Outlet)",Less,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,"Flow 
+(Inlet& Outlet)",More,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,"Flow 
+(Inlet& Outlet)",Reverse,"The context does not explicitly state the presence of check valves or a physically one-way design, therefore reverse flow is a potential deviation."
+Reflux Pump,Pump,Pressure,More,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,Pressure,Less,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,Vibration,More,"The context does not provide information to confirm that the pump is very small, low-speed, and has low consequence of failure, which would make this deviation not applicable."
+Reflux Pump,Pump,Concentration,More,"A Reflux Pump inherently handles a solution or mixture, making concentration deviations applicable."
+Reflux Pump,Pump,Concentration,Less,"A Reflux Pump inherently handles a solution or mixture, making concentration deviations applicable."
+Reflux Pump,Pump,Power,More,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,Power,Less,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,Power,No/None,"As per guidance, 'Always applicable'."
+Reflux Pump,Pump,Temperature,More,"While no temperature transmitter is explicitly mentioned, for a 'Reflux Pump' handling reflux (often hot liquid), temperature is typically a critical variable."
+Reflux Pump,Pump,Temperature,Less,"While no temperature transmitter is explicitly mentioned, for a 'Reflux Pump' handling reflux (often hot liquid), temperature is typically a critical variable."
+Reflux Pump,Pump,Speed,More,Assuming a standard industrial 'Pump' is centrifugal in absence of specific type information.
+Reflux Pump,Pump,Speed,Less,Assuming a standard industrial 'Pump' is centrifugal in absence of specific type information.
+Reflux Pump,Pump,Speed,No/None,Assuming a standard industrial 'Pump' is centrifugal in absence of specific type information.
+SW Feed Pump,Pump,"Flow 
+(Inlet& Outlet)",No,Always applicable as per guidance.
+SW Feed Pump,Pump,"Flow 
+(Inlet& Outlet)",Less,Always applicable as per guidance.
+SW Feed Pump,Pump,"Flow 
+(Inlet& Outlet)",More,Always applicable as per guidance.
+SW Feed Pump,Pump,"Flow 
+(Inlet& Outlet)",Reverse,"The context does not provide information to exclude this deviation (e.g., presence of check valves or physically one-way design)."
+SW Feed Pump,Pump,Pressure,More,Always applicable as per guidance.
+SW Feed Pump,Pump,Pressure,Less,Always applicable as per guidance.
+SW Feed Pump,Pump,Vibration,More,"The context does not provide information to exclude this deviation (e.g., pump is very small, low-speed, no vibration monitoring, low consequence of failure)."
+SW Feed Pump,Pump,Vibration,Less,No specific exclusion criteria provided in the applicability note or context.
+SW Feed Pump,Pump,Concentration,More,"'SW Feed Pump' implies the presence of a solution or mixture (e.g., Seawater or Service Water)."
+SW Feed Pump,Pump,Concentration,Less,"'SW Feed Pump' implies the presence of a solution or mixture (e.g., Seawater or Service Water)."
+SW Feed Pump,Pump,Power,More,Always applicable as per guidance.
+SW Feed Pump,Pump,Power,Less,Always applicable as per guidance.
+SW Feed Pump,Pump,Power,No/None,Always applicable as per guidance.
+SW Feed Pump,Pump,Speed,More,"A 'Feed Pump' is commonly a centrifugal pump, and the context does not specify otherwise."
+SW Feed Pump,Pump,Speed,Less,"A 'Feed Pump' is commonly a centrifugal pump, and the context does not specify otherwise."
+SW Feed Pump,Pump,Speed,No/None,"A 'Feed Pump' is commonly a centrifugal pump, and the context does not specify otherwise."
+SW Storage,Storage Tank,Level,No/None,Always applicable as per guidance for a storage tank.
+SW Storage,Storage Tank,Level,More,Always applicable as per guidance for a storage tank.
+SW Storage,Storage Tank,Level,Less,Always applicable as per guidance for a storage tank.
+SW Storage,Storage Tank,Flow,More,Always applicable as per guidance. Storage tank has inflows and outflows.
+SW Storage,Storage Tank,Flow,Less,Always applicable as per guidance. Storage tank has inflows and outflows.
+SW Storage,Storage Tank,Flow,No,Always applicable as per guidance. Storage tank has inflows and outflows.
+SW Storage,Storage Tank,Flow,Reverse,"Context does not explicitly state that reverse flow is not possible (e.g., gravity transfer only with no backpressure)."
+SW Storage,Storage Tank,Pressure,More,Context does not state the tank is open to atmosphere or that there are no pressure concerns.
+SW Storage,Storage Tank,Pressure,Less,Context does not state the tank is open to atmosphere or that there are no pressure concerns.
+SW Storage,Storage Tank,Temperature,More,"Context does not explicitly state there are no heat sources, no temperature concerns, or that the tank is always at ambient conditions."
+SW Storage,Storage Tank,Temperature,Less,"Context does not explicitly state there are no heat sources, no temperature concerns, or that the tank is always at ambient conditions."
+SW Storage,Storage Tank,Temperature,Early,"Context does not explicitly state there are no heat sources, no temperature concerns, or that the tank is always at ambient conditions."
+SW Storage,Storage Tank,Temperature,Late,"Context does not explicitly state there are no heat sources, no temperature concerns, or that the tank is always at ambient conditions."
+SW Storage,Storage Tank,Composition,Otherthan,Context does not state that it is a dedicated tank with no possibility of contamination.
+SW Storage,Storage Tank,Composition,As Well As,Context does not state that it is a dedicated tank with no possibility of contamination.
+SW Storage,Storage Tank,Composition,Part of,Context does not state that it is a dedicated tank with no possibility of contamination.
+SW Storage,Storage Tank,Composition,Early,Context does not state that it is a dedicated tank with no possibility of contamination.
+SW Storage,Storage Tank,Composition,Late,Context does not state that it is a dedicated tank with no possibility of contamination.
+SW Storage,Storage Tank,Phase,Otherthan,"Context does not state that the material is always in a single phase by design, making unexpected phase changes possible."
+SW Storage,Storage Tank,Concentration,More,"The tank is for 'SW' (Service Water/Salt Water), which is typically a solution or mixture, making concentration deviations relevant."
+SW Storage,Storage Tank,Concentration,Less,"The tank is for 'SW' (Service Water/Salt Water), which is typically a solution or mixture, making concentration deviations relevant."
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Inlet& Outlet)",No,The applicability note 'Always applicable' is met. The equipment has defined inflows and outflows.
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Inlet& Outlet)",Less,The applicability note 'Always applicable' is met. The equipment has defined inflows and outflows.
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Inlet& Outlet)",More,The applicability note 'Always applicable' is met. The equipment has defined inflows and outflows.
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Inlet& Outlet)",Reverse,"The applicability note 'Not applicable if design has check valves or is physically one-way only,' is not met, as the context does not specify check valves or a physically one-way design. Therefore, reverse flow is applicable."
+SWS OVHD Accumulator,Reflux Drum/Separator,Pressure,More,The applicability note 'Always applicable' is met. Pressure is a critical parameter for any process equipment.
+SWS OVHD Accumulator,Reflux Drum/Separator,Pressure,Less,The applicability note 'Always applicable' is met. Pressure is a critical parameter for any process equipment.
+SWS OVHD Accumulator,Reflux Drum/Separator,Concentration,More,The applicability note 'Applicable if there is any solution or mixture is present' is met. A Reflux Drum/Separator typically handles process fluids which are mixtures or solutions.
+SWS OVHD Accumulator,Reflux Drum/Separator,Concentration,Less,The applicability note 'Applicable if there is any solution or mixture is present' is met. A Reflux Drum/Separator typically handles process fluids which are mixtures or solutions.
+SWS OVHD Accumulator,Reflux Drum/Separator,Composition,As Well As,The applicability note 'Always applicable' is met. Unintended components can be introduced into process fluids.
+SWS OVHD Accumulator,Reflux Drum/Separator,Composition,Otherthan,The applicability note 'Always applicable' is met. Deviations from expected composition are always possible.
+SWS OVHD Accumulator,Reflux Drum/Separator,Phase,Otherthan,"The applicability note 'Applicable only if phase change is possible.' is met. A Reflux Drum/Separator separates phases (liquid/gas), and phase changes like condensation or flashing are possible within such a vessel."
+SWS OVHD Accumulator,Reflux Drum/Separator,Level,No/None,"The applicability note 'Not applicable if it is gas only or solid only systems' is not met. The equipment is a Reflux Drum/Separator, indicating it handles liquid and gas, and a level sensor is present."
+SWS OVHD Accumulator,Reflux Drum/Separator,Level,More,"No specific applicability note, but level is a critical parameter for a Reflux Drum/Separator which holds liquid, and a level sensor is present in the context."
+SWS OVHD Accumulator,Reflux Drum/Separator,Level,Less,"No specific applicability note, but level is a critical parameter for a Reflux Drum/Separator which holds liquid, and a level sensor is present in the context."
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",No,The applicability note 'Always applicable' is met. The equipment has defined inflows and outflows involving liquid and gas phases.
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",Less,The applicability note 'Always applicable' is met. The equipment has defined inflows and outflows involving liquid and gas phases.
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",More,The applicability note 'Always applicable' is met. The equipment has defined inflows and outflows involving liquid and gas phases.
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",Reverse,"The applicability note 'Not applicable if design has check valves or is physically one-way only,' is not met, as the context does not specify check valves or a physically one-way design. Therefore, reverse flow is applicable."
+SWS OVHD Accumulator,Reflux Drum/Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",As Well As,"The applicability note 'Not applicable if there is single feed line, no possibility of multiple streams like bypass or purge' is not met. The context does not explicitly rule out multiple streams, bypasses, or purges, making 'As Well As' flow applicable."
+SWS OVHD Accumulator,Reflux Drum/Separator,Pressure,More,The applicability note 'Always applicable' is met. Pressure is a critical parameter for any process equipment.
+SWS OVHD Accumulator,Reflux Drum/Separator,Pressure,Less,The applicability note 'Always applicable' is met. Pressure is a critical parameter for any process equipment.
+SWS OVHD Accumulator,Reflux Drum/Separator,Level,No/None,"The applicability note 'Not applicable if it is gas only or solid only systems' is not met. The equipment is a Reflux Drum/Separator, indicating it handles liquid and gas, and a level sensor is present."
+SWS OVHD Accumulator,Reflux Drum/Separator,Level,More,"No specific applicability note, but level is a critical parameter for a Reflux Drum/Separator which holds liquid, and a level sensor is present in the context."
+SWS OVHD Accumulator,Reflux Drum/Separator,Level,Less,"No specific applicability note, but level is a critical parameter for a Reflux Drum/Separator which holds liquid, and a level sensor is present in the context."
+SWS OVHD Accumulator,Reflux Drum/Separator,Concentration,More,The applicability note 'Applicable if there is any solution or mixture is present' is met. A Reflux Drum/Separator typically handles process fluids which are mixtures or solutions.
+SWS OVHD Accumulator,Reflux Drum/Separator,Concentration,Less,The applicability note 'Applicable if there is any solution or mixture is present' is met. A Reflux Drum/Separator typically handles process fluids which are mixtures or solutions.
+SWS OVHD Accumulator,Reflux Drum/Separator,Phase,Otherthan,"The applicability note 'Applicable only if phase change is possible.' is met. A Reflux Drum/Separator separates phases (liquid/gas), and phase changes like condensation or flashing are possible within such a vessel."
+SWS OVHD Accumulator,Reflux Drum/Separator,Composition,As Well As,The applicability note 'Always applicable' is met. Unintended components can be introduced into process fluids.
+SWS OVHD Accumulator,Reflux Drum/Separator,Composition,Otherthan,The applicability note 'Always applicable' is met. Deviations from expected composition are always possible.
+SWS OVHD Accumulator,Reflux Drum/Separator,Temperature,More,The applicability note 'Always applicable' is met. Temperature is a fundamental process parameter for any process equipment.
+SWS OVHD Accumulator,Reflux Drum/Separator,Temperature,Less,The applicability note 'Always applicable' is met. Temperature is a fundamental process parameter for any process equipment.
+Sour Water Stripper,Column,"Flow 
+(Liquid/gas ; Inlet& Outlet ; Reflux line)",No,Always applicable as per guidance.
+Sour Water Stripper,Column,"Flow 
+(Liquid/gas ; Inlet& Outlet ; Reflux line)",Less,Always applicable as per guidance.
+Sour Water Stripper,Column,"Flow 
+(Liquid/gas ; Inlet& Outlet ; Reflux line)",More,Always applicable as per guidance.
+Sour Water Stripper,Column,"Flow 
+(Liquid/gas ; Inlet& Outlet ; Reflux line)",Reverse,"The context does not explicitly state the presence of check valves or a physically one-way design for all lines, so the condition for not being applicable is not met."
+Sour Water Stripper,Column,"Flow 
+(Liquid/gas ; Inlet& Outlet ; Reflux line)",As Well As,"The equipment has multiple inflow/outflow lines, meaning the condition for not being applicable (single feed line, no possibility of multiple streams) is not met."
+Sour Water Stripper,Column,Temperature,More,Always applicable as per guidance.
+Sour Water Stripper,Column,Temperature,Less,Always applicable as per guidance.
+Sour Water Stripper,Column,Pressure,More,Always applicable as per guidance.
+Sour Water Stripper,Column,Pressure,Less,Always applicable as per guidance.
+Sour Water Stripper,Column,Level,No/None,"The Sour Water Stripper processes sour water and has a level sensor, indicating it is not a gas-only or solid-only system, so the condition for not being applicable is not met."
+Sour Water Stripper,Column,Level,More,"The Sour Water Stripper processes sour water and has a level sensor, making level deviations applicable."
+Sour Water Stripper,Column,Level,Less,"The Sour Water Stripper processes sour water and has a level sensor, making level deviations applicable."
+Sour Water Stripper,Column,Composition,As Well As,Always applicable as per guidance.
+Sour Water Stripper,Column,Composition,Otherthan,Always applicable as per guidance.
+Sour Water Stripper,Column,Phase,Otherthan,Always applicable as per guidance.
+Sour Water Stripper,Column,"Flow 
+
+For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",No,"A Sour Water Stripper is a continuous process, thus the condition for not being applicable (batch process with no flow stage) is not met."
+Sour Water Stripper,Column,"Flow 
+
+For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",More,"A Sour Water Stripper is a continuous process, thus the condition for not being applicable (batch process with no flow stage) is not met."
+Sour Water Stripper,Column,"Flow 
+
+For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",Less,"A Sour Water Stripper is a continuous process, thus the condition for not being applicable (batch process with no flow stage) is not met."
+Sour Water Stripper,Column,"Flow 
+
+For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",Reverse,"The context does not state that all flows are gravity-only with NRVs, so the condition for not being applicable is not met."
+Sour Water Stripper,Column,Temperature,More,Always applicable as per guidance.
+Sour Water Stripper,Column,Temperature,Less,Always applicable as per guidance.
+Sour Water Stripper,Column,Pressure,More,Always applicable as per guidance.
+Sour Water Stripper,Column,Pressure,Less,Always applicable as per guidance.
+Sour Water Stripper,Column,Level,No/None,"The Sour Water Stripper processes sour water and has a level sensor, indicating it is not a gas-only or solid-only system, so the condition for not being applicable is not met."
+Sour Water Stripper,Column,Level,More,"The Sour Water Stripper processes sour water and has a level sensor, making level deviations applicable."
+Sour Water Stripper,Column,Level,Less,"The Sour Water Stripper processes sour water and has a level sensor, making level deviations applicable."
+Sour Water Stripper,Column,Composition,Otherthan,"The Sour Water Stripper processes a multi-component mixture, so the condition for not being applicable (single component reaction, no contamination) is not met."
+Sour Water Stripper,Column,Composition,As Well As,Applicable as there is a chance for additional components to present unexpectedly in sour water.
+Sour Water Stripper,Column,Composition,Part of,"The Sour Water Stripper processes a multi-component mixture (sour water), so the condition for not being applicable (single component reaction, no partial feed) is not met."
+Sour Water Stripper,Column,pH,High,"pH is typically critical for Sour Water Stripper operations due to the nature of sour water (H2S, NH3), making these deviations applicable."
+Sour Water Stripper,Column,pH,Low,"pH is typically critical for Sour Water Stripper operations due to the nature of sour water (H2S, NH3), making these deviations applicable."
+Sour Water Stripper,Column,Phase,Otherthan,"A Sour Water Stripper inherently involves phase changes (boiling/stripping and condensation), thus this deviation is applicable."
+Sour Water Stripper,Column,"Utility supply
+(Water/ steam/oil/chilled water/ brine/ electricity)",No/None,"The equipment has a flow controller for a steam pipe (FC-2), indicating a utility is connected, so the condition for not being applicable is not met."
+Sour Water Stripper,Column,"Utility supply
+(Water/ steam/oil/chilled water/ brine/ electricity)",More,"The equipment has a flow controller for a steam pipe (FC-2), indicating a utility is connected, so the condition for not being applicable is not met."
+Sour Water Stripper,Column,"Utility supply
+(Water/ steam/oil/chilled water/ brine/ electricity)",Less,"The equipment has a flow controller for a steam pipe (FC-2), indicating a utility is connected, so the condition for not being applicable is not met."
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Hot side , cold side)",No,Always applicable for heat exchangers.
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Hot side , cold side)",More,Always applicable for heat exchangers.
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Hot side , cold side)",Less,Always applicable for heat exchangers.
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Hot side , cold side)",Reverse,Applicable as no information is provided about check valves or design features preventing reverse flow.
+Stripper OVHD Condenser,Heat Exchanger,"Pressure
+(Hot / cold side)",More,Always applicable for heat exchangers.
+Stripper OVHD Condenser,Heat Exchanger,"Pressure
+(Hot / cold side)",Less,Always applicable for heat exchangers.
+Stripper OVHD Condenser,Heat Exchanger,"Temperature
+(Hot / cold)",More,Always applicable for heat exchangers.
+Stripper OVHD Condenser,Heat Exchanger,"Temperature
+(Hot / cold)",Less,Always applicable for heat exchangers.
+Stripper OVHD Condenser,Heat Exchanger,Phase  (Hot / cold),Otherthan,"A condenser inherently involves a phase change (vapor to liquid), so it is not a single-phase only system."
+Stripper OVHD Condenser,Heat Exchanger,Composition,Otherthan,Applicable due to the potential for cross-leakage between hot and cold streams in a heat exchanger.
+Stripper OVHD Condenser,Heat Exchanger,Composition,As Well As,Applicable due to the potential for cross-leakage between hot and cold streams in a heat exchanger.
+Stripper OVHD Condenser,Heat Exchanger,Level  (If exists),More,"A stripper overhead condenser accumulates liquid, making level a relevant parameter for control or operational considerations."
+Stripper OVHD Condenser,Heat Exchanger,Level  (If exists),Less,"A stripper overhead condenser accumulates liquid, making level a relevant parameter for control or operational considerations."
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Liquid/gas ; Inlet& Outlet",No,Always applicable for process lines.
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Liquid/gas ; Inlet& Outlet",Less,Always applicable for process lines.
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Liquid/gas ; Inlet& Outlet",More,Always applicable for process lines.
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Liquid/gas ; Inlet& Outlet",Reverse,Applicable as no information is provided about check valves or design features preventing reverse flow.
+Stripper OVHD Condenser,Heat Exchanger,"Flow 
+(Liquid/gas ; Inlet& Outlet",As Well As,Applicable as no information is provided about a single feed line or absence of bypass/purge streams.
+Stripper OVHD Condenser,Heat Exchanger,Pressure,More,Always applicable for equipment and lines.
+Stripper OVHD Condenser,Heat Exchanger,Pressure,Less,Always applicable for equipment and lines.
+Stripper OVHD Condenser,Heat Exchanger,Temperature,More,Always applicable for equipment and lines.
+Stripper OVHD Condenser,Heat Exchanger,Temperature,Less,Always applicable for equipment and lines.
+Stripper OVHD Condenser,Heat Exchanger,Level,More,"A condenser involves liquid accumulation, thus the condition 'not applicable if there is no liquid holdup' for non-applicability is not met."
+Stripper OVHD Condenser,Heat Exchanger,Level,Less,"A condenser produces liquid, thus it is not a 'vapor-only system without liquid accumulation' and is applicable."
+Stripper OVHD Condenser,Heat Exchanger,Composition,Other than,"As a heat exchanger, there are typically two distinct streams, presenting a contamination risk."
+Stripper OVHD Condenser,Heat Exchanger,Phase,Other than,"A condenser is designed for phase change (vapor to liquid); therefore, 'other than' is applicable if phase change is incomplete or unexpected."
+Stripper OVHD Condenser,Heat Exchanger,"Utility supply
+(Water/ steam/ electricity)",More,"A condenser typically uses a cooling utility, making utility supply relevant."
+Stripper OVHD Condenser,Heat Exchanger,"Utility supply
+(Water/ steam/ electricity)",Less,Applicable as no exclusion criteria are met.
+Stripper OVHD Condenser,Heat Exchanger,"Utility supply
+(Water/ steam/ electricity)",No,Applicable as no exclusion criteria are met.
+Stripper OVHD Condenser,Heat Exchanger,Operator sequence,Not carried out,"While automated, 'fully automated and operator intervention impossible' is not explicitly stated, and procedural errors remain plausible."
+Stripper OVHD Condenser,Heat Exchanger,Operator sequence,Early,Applicable as no exclusion criteria are met.
+Stripper OVHD Condenser,Heat Exchanger,Operator sequence,Late,Applicable as no exclusion criteria are met.
+Stripper OVHD Condenser,Heat Exchanger,Operator sequence,Reverse,Applicable as no exclusion criteria are met.
+Stripper OVHD Condenser,Heat Exchanger,Oxygen (Air) Ingress,As well as,Applicable as no information about the system being fully inerted or purged is provided.
+Stripper OVHD Condenser,Heat Exchanger,"Utility supply
+(Air/ cooler other other utilities)",More,"A condenser typically uses a cooling utility (e.g., air/cooler), making utility supply relevant. Not excluded as utilities are likely critical."
+Stripper OVHD Condenser,Heat Exchanger,"Utility supply
+(Air/ cooler other other utilities)",Less,Applicable as no exclusion criteria are met.
+Stripper OVHD Condenser,Heat Exchanger,"Utility supply
+(Air/ cooler other other utilities)",No/None,Applicable as no exclusion criteria are met.
+Stripper OVHD Condenser,Heat Exchanger,Level,No/None,"A condenser produces liquid, thus it is not a 'gas only system' and is applicable."
+Stripper OVHD Condenser,Heat Exchanger,Concentration,More,Applicable as stripper overhead is typically a mixture or solution where concentration is a relevant parameter.
+Stripper OVHD Condenser,Heat Exchanger,Concentration,Less,Applicable as stripper overhead is typically a mixture or solution where concentration is a relevant parameter.
+Stripper OVHD Condenser,Heat Exchanger,Phase,Otherthan,Applicable as phase change (vapor to liquid) is possible and expected in a condenser.
+Stripper feed Pump,Pump,"Flow 
+(Inlet& Outlet)",No,Guidance states 'Always applicable'.
+Stripper feed Pump,Pump,"Flow 
+(Inlet& Outlet)",Less,Guidance states 'Always applicable'.
+Stripper feed Pump,Pump,"Flow 
+(Inlet& Outlet)",More,Guidance states 'Always applicable'.
+Stripper feed Pump,Pump,"Flow 
+(Inlet& Outlet)",Reverse,Context does not explicitly state the presence of check valves or a physically one-way design that would prevent reverse flow.
+Stripper feed Pump,Pump,Pressure,More,Guidance states 'Always applicable'.
+Stripper feed Pump,Pump,Pressure,Less,Guidance states 'Always applicable'.
+Stripper feed Pump,Pump,Concentration,More,"The equipment is a 'Stripper feed Pump', implying it handles a solution or mixture."
+Stripper feed Pump,Pump,Concentration,Less,"The equipment is a 'Stripper feed Pump', implying it handles a solution or mixture."
+Stripper feed Pump,Pump,Power,More,Guidance states 'Always applicable'.
+Stripper feed Pump,Pump,Power,Less,Guidance states 'Always applicable'.
+Stripper feed Pump,Pump,Power,No/None,Guidance states 'Always applicable'.
+Surge Drum-1,Separator,"Flow 
+(Inlet& Outlet)",No,Always applicable as per guidance.
+Surge Drum-1,Separator,"Flow 
+(Inlet& Outlet)",Less,Always applicable as per guidance.
+Surge Drum-1,Separator,"Flow 
+(Inlet& Outlet)",More,Always applicable as per guidance.
+Surge Drum-1,Separator,"Flow 
+(Inlet& Outlet)",Reverse,No information in the context suggests the presence of check valves or a physically one-way design.
+Surge Drum-1,Separator,Pressure,More,Always applicable as per guidance.
+Surge Drum-1,Separator,Pressure,Less,Always applicable as per guidance.
+Surge Drum-1,Separator,Concentration,More,"Surge drums typically handle process fluids, which are often solutions or mixtures. No information in the context denies this."
+Surge Drum-1,Separator,Concentration,Less,"Surge drums typically handle process fluids, which are often solutions or mixtures. No information in the context denies this."
+Surge Drum-1,Separator,Power,More,The context does not specify that the surge drum is a manually driven or purely mechanical system with no variable/controllable power input.
+Surge Drum-1,Separator,Power,Less,No applicability restrictions provided.
+Surge Drum-1,Separator,Power,No/None,No applicability restrictions provided.
+Surge Drum-1,Separator,Composition,As Well As,Always applicable as per guidance.
+Surge Drum-1,Separator,Composition,Otherthan,Always applicable as per guidance.
+Surge Drum-1,Separator,Phase,Otherthan,"As a separator, it likely handles multiple phases, and phase change due to process conditions (e.g., temperature/pressure variations) is commonly possible in such equipment."
+Surge Drum-1,Separator,Level,No/None,"The context includes ""Low Level Sensor"" and ""High Level Sensor,"" indicating the presence of a liquid phase, thus it's not a gas-only or solid-only system."
+Surge Drum-1,Separator,Level,More,"No applicability restrictions provided, and level is a critical parameter for a surge drum, indicated by sensors."
+Surge Drum-1,Separator,Level,Less,"No applicability restrictions provided, and level is a critical parameter for a surge drum, indicated by sensors."
+Surge Drum-1,Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",No,Always applicable as per guidance.
+Surge Drum-1,Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",Less,Always applicable as per guidance.
+Surge Drum-1,Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",More,Always applicable as per guidance.
+Surge Drum-1,Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",Reverse,No information in the context suggests the presence of check valves or a physically one-way design.
+Surge Drum-1,Separator,"Flow 
+(Liquid/gas ; Inlet& Outlet",As Well As,The context does not explicitly state that there is a single feed line with no possibility of multiple streams like bypass or purge.
+Surge Drum-1,Separator,Pressure,More,Always applicable as per guidance.
+Surge Drum-1,Separator,Pressure,Less,Always applicable as per guidance.
+Surge Drum-1,Separator,Level,No/None,"The context includes ""Low Level Sensor"" and ""High Level Sensor,"" indicating the presence of a liquid phase, thus it's not a gas-only or solid-only system."
+Surge Drum-1,Separator,Level,More,"No applicability restrictions provided, and level is a critical parameter for a surge drum, indicated by sensors."
+Surge Drum-1,Separator,Level,Less,"No applicability restrictions provided, and level is a critical parameter for a surge drum, indicated by sensors."
+Surge Drum-1,Separator,Concentration,More,"Surge drums typically handle process fluids, which are often solutions or mixtures. No information in the context denies this."
+Surge Drum-1,Separator,Concentration,Less,"Surge drums typically handle process fluids, which are often solutions or mixtures. No information in the context denies this."
+Surge Drum-1,Separator,Utility supply,No/None,The context does not explicitly state that no utility is connected to the surge drum.
+Surge Drum-1,Separator,Utility supply,More,The context does not explicitly state that no utility is connected to the surge drum.
+Surge Drum-1,Separator,Utility supply,Less,The context does not explicitly state that no utility is connected to the surge drum.
+Surge Drum-1,Separator,Phase,Otherthan,"As a separator, it likely handles multiple phases, and phase change due to process conditions (e.g., temperature/pressure variations) is commonly possible in such equipment."
+Surge Drum-1,Separator,Composition,As Well As,Always applicable as per guidance.
+Surge Drum-1,Separator,Composition,Otherthan,Always applicable as per guidance.
+Surge Drum-1,Separator,Temperature,More,Always applicable as per guidance.
+Surge Drum-1,Separator,Temperature,Less,Always applicable as per guidance.

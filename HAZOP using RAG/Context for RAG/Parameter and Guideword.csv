@@ -1,26 +1,26 @@
-﻿Parameter,Guidewords,,,,,,,,
-,No,Less (Low),More (high) ,Part Of,As well as,Reverse,Other than ,Fast,Slow
-Flow,✔,✔,✔,,,✔,,✔,✔
-Temperature,,✔,✔,,,,,✔,✔
-Pressure,,✔,✔,,,,,✔,✔
-Level,,✔,✔,,,,,,
-Composition,,,,✔,✔,,✔,,
-Viscosity,,✔,✔,,,,,,
-Impurity,,,,,✔,,,,
-Concentration,,✔,✔,,,,,,
-Heating,✔,✔,✔,,,✔,,✔,✔
-Cooling,✔,✔,✔,,,✔,,✔,✔
-Mixing/stirring,✔,✔,✔,,,,,,
-Reaction rate,,✔,✔,,,,,✔,✔
-Separation ,✔,✔,✔,✔,,,,,
-Phase,,,,,,,✔,,
-Particle size,,✔,✔,,,,✔,,
-Position,✔,,,,,✔,,,
-Measure,✔,✔,✔,,,,,,
-Control,✔,✔,✔,,,,,,
-pH,,✔,✔,,,,✔,,
-Signal,✔,,,,,,,,
-Maintain,✔,,,,,,✔,,
-Vibration,,✔,✔,,,,,,
-Current,✔,✔,✔,,,,,,
-Start/Stop,,,,,,,,,
+﻿Parameter,Guidewords,,,,,
+,No,Less (Low),More (high) ,Part Of,As well as,Reverse
+Flow,✔,✔,✔,,,✔
+Temperature,,✔,✔,,,
+Pressure,,✔,✔,,,
+Level,,✔,✔,,,
+Composition,,,,✔,✔,
+Viscosity,,✔,✔,,,
+Impurity,,,,,✔,
+Concentration,,✔,✔,,,
+Heating,✔,✔,✔,,,✔
+Cooling,✔,✔,✔,,,✔
+Mixing/stirring,✔,✔,✔,,,
+Reaction rate,,✔,✔,,,
+Separation ,✔,✔,✔,✔,,
+Phase,,,,,,
+Particle size,,✔,✔,,,
+Position,✔,,,,,✔
+Measure,✔,✔,✔,,,
+Control,✔,✔,✔,,,
+pH,,✔,✔,,,
+Signal,✔,,,,,
+Maintain,✔,,,,,
+Vibration,,✔,✔,,,
+Current,✔,✔,✔,,,
+Start/Stop,,,,,,

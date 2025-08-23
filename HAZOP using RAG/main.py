@@ -42,10 +42,10 @@ def main():
         "01_ontology_loader.py": False,
         "02_semantic_enrichment.py": False,
         "03_equipment_node.py": False,
-        #"03_manual_noding.py": False,
-        "04_hazop_analysis_engine.py": False,
-        "05_report_generator.py": False,
-        "06_verify_accuracy.py": False
+        "04_parsing_P&ID.py": False,
+        "05_Understanding_process_using_LLM.py": False,
+        "06_Generate_applicable_deviations.py": False,
+        "07_HAZOP_analysis.py":False
     }
 
     # Execute each script in the pipeline, passing the interactive flag.
@@ -58,16 +58,16 @@ def main():
     print("======================================================")
     print("          Pipeline execution complete.                ")
     print("======================================================")
-    print(f"Check the Neo4j database for the HAZOP Knowledge Graph.")
+    print("Check the Neo4j database for the HAZOP Knowledge Graph.")
     print(f"Check the project directory for the generated '{config.EXCEL_REPORT_PATH}' file.")
 
 if __name__ == "__main__":
     # Ensure necessary files and directories exist before starting
     required_files = [
         config.ONTOLOGY_FILE_PATH,
-        config.CAUSES_CSV_PATH,
-        config.CONSEQUENCES_CSV_PATH,
-        config.SAFEGUARDS_CSV_PATH,
+        #config.CAUSES_CSV_PATH,
+        #config.CONSEQUENCES_CSV_PATH,
+        #config.SAFEGUARDS_CSV_PATH,
         config.PARAMETER_GUIDEWORD_CSV_PATH
     ]
     

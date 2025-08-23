@@ -10,38 +10,41 @@ It combines structured process data, a formal HAZOP ontology, chemical MSDS file
 ```
 HAZOP using RAG/
 │
-├── MSDS/                               # Material Safety Data Sheets for chemicals
+├── MSDS/                                         # Material Safety Data Sheets for chemicals
 │   ├── <chemical_name>.pdf / .txt
 │
-├── P&ID/                               # Digitalized P&ID Cypher files for Neo4j
+├── P&ID/                                         # Digitalized P&ID Cypher files for Neo4j
 │   ├── <pid_file>.cypher
 │
-├── Context/                            # Normalized knowledge extracted from 20 HAZOP reports
+├── Context/                                      # Normalized knowledge extracted from 20 HAZOP reports
 │   ├── Parameter_and_guideword.csv
 │   ├── Causes.csv
 │   ├── Consequences.csv
 │   ├── Safeguard.csv
 │
-├── Process Description/                # Process description in Markdown
+├── Process Description/                          # Process description in Markdown
 │   ├── <process_description>.md
 │
-├── Results/                            # Output reports
-│   ├── HAZOP_Report_Generated.xlsx
-│   ├── hazop_results.json
+├── Results/                                      # Output HAZOP reports and Generated Process Description 
+│   ├── HAZOP_Analysis_Equipment_name.xlsx
+│   ├── HAZOP_Analysis_Equipment_name.json
+│   ├── Generated_process_description.md
+│   ├── Applicable_deviations.md
 │
-├── HAZOP_Ontology_CLEAN.rdf            # Formal RDF ontology for HAZOP
+├── HAZOP_Ontology_CLEAN.rdf                      # Formal RDF ontology for HAZOP
 │
-├── config.py                           # Conatains the API key and credentials for connetcing Neo4j database and path for all files
-├── 01_ontology_loader.py               # Loads ontology & applies schema constraints in Neo4j
-├── 02_semantic_enrichment.py           # Enriches graph with chemical/MSDS data using LLM
-├── 03_equipment_node.py                # Creates one HAZOP node per equipment
-├── 03_manual_noding.py                 # Interactive manual node selection
-├── 04_hazop_analysis_engine.py         # RAG-based deviation, cause, consequence, safeguard generation
-├── 05_report_generator.py              # Generates formatted Excel report from JSON
-├── 06_verify_accuracy.py               # Compares generated report with original for accuracy
-├── main.py                             # Orchestrates the full pipeline
-├── requirements.txt                    # Python dependencies
-└── README.md                           # Project documentation (this file)
+├── config.py                                     # Conatains the API key and credentials for connetcing Neo4j database and path for all files
+├── 01_ontology_loader.py                         # Loads ontology & applies schema constraints in Neo4j
+├── 02_semantic_enrichment.py                     # Enriches graph with chemical/MSDS data using LLM
+├── 03_equipment_node.py                          # Creates one HAZOP node per equipment
+├── 04_prasing_P&ID.py                            # Clear the existing graph database and load the P&ID 
+├── 05_Understanding_process_using_LLM.py         # Using the basic knowledge process description generate more specific process description
+├── 06_Generate_applicbale_deviations.py          # Generates equipment specific deviatoins from the equipment and deviation csv file  
+├── 07_HAZOP_analysis.py                          # Conduct HAZOP analysis based on certain rules
+├── 08_verify_accuracy.py                         # Verify the generated report with the actual report 
+├── main.py                                       # Orchestrates the full pipeline
+├── requirements.txt                              # Python dependencies
+└── README.md                                     # Project documentation (this file)
 ```
 
 ---
@@ -57,22 +60,30 @@ HAZOP using RAG/
 
 3. **Node Creation**   
    - **Per Equipment** (`03_equipment_node.py`): One node per equipment.  
-   - **Manual** (`03_manual_noding.py`): User selects components to define nodes.
 
-1. **HAZOP Analysis (`04_hazop_analysis_engine.py`)**  
-   - Generates deviations from `Parameter_and_guideword.csv`.  
-   - Retrieves relevant causes, consequences, safeguards from historical CSVs.  
+4. **P&ID Parsing (`04_parsing_P&ID.py`)**  
+   - Clears existing graph data and loads P&ID information from Cypher files
+   - Establishes process flow relationships between equipment
+
+5. **Process Understanding (`05_Understanding_process_using_LLM.py`)**  
+   - Enhances basic process descriptions using LLM capabilities
+   - Generates detailed operational parameters and scenarios
+
+6. **Deviation Generation (`06_Generate_applicable_deviations.py`)**  
+   - Generates equipment-specific deviations from `Equipment_and_Deviations.csv`. 
+   - Matches equipment parameters with guidewords and store them in `Applicable_deviation.csv`.
+
+7. **HAZOP Analysis (`07_HAZOP_analysis.py`)**  
+   - Get the deviation from the `Applicable_deviation.csv` generated before this step.     
    - Uses RAG with LLM to produce structured analysis.  
-   - Writes results to Neo4j and saves intermediate JSON.
-
-2. **Report Generation (`05_report_generator.py`)**  
+   - Writes results to Neo4j and saves intermediate JSON. 
    - Converts JSON into a professionally formatted `.xlsx` HAZOP report.
 
-3. **Accuracy Verification (`06_verify_accuracy.py`)**  
+8. **Accuracy Verification (`08_verify_accuracy.py`)**  
    - Compares generated report against original using semantic similarity and recall.
 
-4. **Pipeline Execution (`main.py`)**  
-   - Runs all stages in sequence, checks prerequisites, and saves final output in `Results/`.
+9.  **Pipeline Execution (`main.py`)**  
+    - Runs all stages in sequence, checks prerequisites, and saves final output in `Results/`.
 
 ---
 
@@ -107,8 +118,11 @@ Dependencies include:
    ```
 
 3. **View results**:
-   - `Results/HAZOP_Report_Generated.xlsx` (Excel)
-   - `Results/hazop_results.json` (JSON)
+   - `Results/HAZOP_Analysis_Equipment_name.xlsx` (Excel)
+   - `Results/HAZOP_Analysis_Equipment_name.json` (JSON)
+   - `Results/Generated_process_description.dm` (Markdowm)
+   - `Results/Applicable_deviations.csv` (csv)
+   - 
 
 ---
 

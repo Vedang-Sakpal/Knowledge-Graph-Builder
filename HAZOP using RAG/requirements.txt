@@ -18,8 +18,8 @@ lxml
 # For generating formatted Excel files. Works with pandas.
 xlsxwriter
 
-# For making API calls to the Large Language Model (e.g., OpenAI).
-openai
+# For making API calls to the Large Language Model (Gemini / Google AI Python SDK).
+google-genai>=0.3.0
 
 # For creating vector embeddings for semantic search.
 sentence-transformers
