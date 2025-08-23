@@ -28,12 +28,12 @@ def main():
             
             # Execute the Cypher script to create the graph
             print("Running the Cypher script to create the graph...")
-            session.write_transaction(create_graph)
+            session.execute_write(create_graph)
             print("Graph has been successfully created.")
 
             # Now, query for the chemicals
             print("\nFetching chemical names from the database...")
-            chemicals = session.read_transaction(get_chemicals)
+            chemicals = session.execute_read(get_chemicals)
             
             # Print the list of chemicals
             if chemicals:
