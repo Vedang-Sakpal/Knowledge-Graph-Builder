@@ -1,102 +1,117 @@
-Here is the detailed analysis of the material and energy/control flow.
+This analysis synthesizes information from the provided Cypher script (representing P&ID data) and the Markdown process description to provide a comprehensive understanding of the Sour Water Stripper plant.
 
-***
+## 1. Main Material Streams
 
-### Comprehensive Process Analysis: Sour Water Stripper Plant
+The primary material flow in the sour water stripper plant involves processing an incoming refinery sour water stream to separate hydrocarbons and strip dissolved acid gases before the treated water is sent for further processing.
 
-This analysis integrates the specific equipment and control logic from the P&ID data with the operational context provided in the process description.
+1.  **Sour Water Feed and Slop Oil Separation:**
+    *   The `REFINERY Unit` (src1) supplies `SW from refinery pipe` containing sour water, hydrocarbons (slop oil), ammonia, and hydrogen sulfide.
+    *   This stream enters the `Surge Drum-1` (sg). Here, due to density differences, `slop oil` separates as a lighter phase, and sour water settles as a heavier phase.
+    *   The separated slop oil is drawn from `Surge Drum-1` via the `oil_rec_pump`, passes through `NRV-3`, and is then routed as `Slop pipe 2` to the `SLOP-OIL-CRUDE-TANK-WWT` (s4) for recovery.
+    *   A `vent pipe` from `Surge Drum-1` goes to `TO-FLARE-SYSTEM` (s2) for venting any light gases.
+    *   A `drain pipe` with a `Drain Valve` (dv) allows manual draining from `Surge Drum-1` to `DRAIN-TO-SEWER` (s1).
 
----
+2.  **Sour Water Storage and Pre-treatment:**
+    *   The separated sour water from the bottom of `Surge Drum-1` is pumped by the `SW Feed Pump` (sw_feed_pump), through `NRV-4` and `FCV-2` (which regulates flow), to the `SW Storage` (sw) tank.
+    *   In the `SW Storage` tank, any `residual carried-over hydrocarbons` are further skimmed off and sent to `TO-SKIM-RECYCLE` (s5).
+    *   A `vent pipe 2` from `SW Storage` connects to `PRV-1`, which vents to `TO-ATM` (s3) for overpressure protection.
 
-### 1. Main Material Streams
+3.  **Stripper Feed Preheating and Stripping:**
+    *   Sour water from the `SW Storage` tank is transferred by the `Stripper feed Pump` (stripper_feed_pump), through `NRV-5`, and then passes through a `Flow sensor 1` (f1) and `FCV-3` (which controls the flow rate).
+    *   This regulated sour water stream is then preheated in the `Stripper OVHD Condenser` (stripper_cond), utilizing heat from the hot overhead vapors of the stripper.
+    *   The preheated sour water is then fed into the `Sour Water Stripper` (sws) column.
+    *   `STEAM-IN` (src2) is introduced into the bottom of the `Sour Water Stripper` via `FCV-5` to strip out dissolved `ammonia (NH₃)` and `hydrogen sulfide (H₂S)`. These gases become volatile and are carried overhead with the steam.
+    *   `PRV-2` provides pressure relief for the `Sour Water Stripper`.
 
-The plant processes four primary material streams: the main sour water feed, the recovered slop oil, the overhead acid gas, and the final treated water.
+4.  **Overhead System and Reflux:**
+    *   The hot overhead vapor mixture (steam, H₂S, NH₃) from the `Sour Water Stripper` (sws) flows to the `Stripper OVHD Condenser` (stripper_cond). Here, the steam condenses, and the hot sour water feed provides the necessary cooling, simultaneously preheating the feed.
+    *   The condensed liquid and non-condensable gases flow into the `SWS OVHD Accumulator` (sws_acc).
+    *   The `non-condensable` acid gases (`H₂S, NH₃`) are separated from the condensate in the accumulator and sent to `ACID-GAS-TO-S-PLANT-EX` (s6) for further sulfur recovery or treatment.
+    *   A portion of the condensate (water) from the `SWS OVHD Accumulator` is pumped by the `Reflux Pump` (reflux_pump), through `NRV-6` and `FCV-4` (reflux control valve), and returned as `reflux` to the `Sour Water Stripper` to improve separation efficiency.
 
-**a) Sour Water Feed Stream:**
+5.  **Treated Water Effluent:**
+    *   The stripped water (now largely free of dissolved gases and hydrocarbons) accumulates at the bottom of the `Sour Water Stripper` (sws).
+    *   This treated water is pumped out by the `Bottoms Pump` (bottoms_pump), passes through `NRV-7` and `FCV-6` (which controls the flow/level), and is then sent to `WATER-TREATMENT` (s7) for final processing or safe disposal.
 
-1.  **Source:** Sour water originates from the `REFINERY Unit`.
-2.  **Initial Separation:** It first enters the **Surge Drum-1** (`sg`), a three-phase separator. Here, due to density differences, free hydrocarbons (slop oil) separate and form a top layer.
-3.  **Intermediate Storage:** The water phase is pumped by the **SW Feed Pump** through control valve `FCV-2` into the **SW Storage** tank. This tank provides buffer capacity and allows for any remaining trace hydrocarbons to be skimmed off (`TO-SKIM-RECYCLE`).
-4.  **Preheating:** From storage, the **Stripper feed Pump** sends the sour water through the **Stripper OVHD Condenser**. This is a critical energy integration step: the cold incoming feed is preheated by the hot overhead vapors leaving the stripper column, improving thermal efficiency.
-5.  **Stripper Entry:** The preheated sour water then enters the top section of the **Sour Water Stripper** (`sws`) to begin the stripping process.   
+## 2. Key Equipment and Purpose
 
-**b) Recovered Oil (Slop) Stream:**
+| Equipment Name (P&ID)         | Type (P&ID)     | Purpose (Process Description & P&ID)                                                                                                                                                                                                                                                                                                |
+| :---------------------------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Surge Drum-1` (sg)           | Vessel          | Receives raw sour water from the refinery. Acts as a buffer and primary separator where slop oil (lighter phase) is separated from the sour water (heavier phase) through gravity. It also has vent and drain connections.                                                                                                        |
+| `SW Storage` (sw)             | Storage Tank    | Stores the partially treated sour water after slop oil removal. Allows for further skimming of any residual hydrocarbons before the water is sent to the stripper. Acts as a buffer for the stripper feed.                                                                                                                   |
+| `Sour Water Stripper` (sws)   | Column          | The core processing unit. Preheated sour water is fed to this column, where steam is introduced to strip out dissolved acid gases like ammonia (NH₃) and hydrogen sulfide (H₂S) from the water.                                                                                                                                  |
+| `Stripper OVHD Condenser` (stripper_cond) | Heat Exchanger  | **Dual purpose:** Condenses the overhead vapor mixture (steam, H₂S, NH₃) from the `Sour Water Stripper` using the incoming cold sour water feed as the cooling medium. Simultaneously preheats the sour water feed before it enters the stripper, improving energy efficiency.                                   |
+| `SWS OVHD Accumulator` (sws_acc) | Vessel          | Receives the condensed overheads from the `Stripper OVHD Condenser`. Separates non-condensable acid gases (H₂S, NH₃) from the condensed water. The non-condensables are routed for further treatment, while the condensate is either refluxed or sent off.                                                              |
+| `Oil Recovery Pump` (oil_rec_pump) | Pump            | Pumps the separated slop oil from `Surge Drum-1` to the slop oil recovery system (`SLOP-OIL-CRUDE-TANK-WWT`).                                                                                                                                                                                                                |
+| `SW Feed Pump` (sw_feed_pump) | Pump            | Pumps the separated sour water from `Surge Drum-1` to the `SW Storage` tank.                                                                                                                                                                                                                                                        |
+| `Stripper feed Pump` (stripper_feed_pump) | Pump            | Pumps sour water from `SW Storage` to the `Stripper OVHD Condenser` for preheating, and then into the `Sour Water Stripper` column.                                                                                                                                                                                 |
+| `Reflux Pump` (reflux_pump)   | Pump            | Pumps a portion of the condensate from the `SWS OVHD Accumulator` back to the `Sour Water Stripper` as reflux to enhance separation efficiency.                                                                                                                                                                                |
+| `Bottoms Pump` (bottoms_pump) | Pump            | Pumps the treated (stripped) water from the bottom of the `Sour Water Stripper` to `WATER-TREATMENT` for further processing or disposal.                                                                                                                                                                                          |
+| `NRV-3`, `NRV-4`, `NRV-5`, `NRV-6`, `NRV-7` | Non-Return Valve | Prevent backflow in their respective lines (slop oil, SW feed to storage, SW feed to stripper, reflux, treated water effluent).                                                                                                                                                                                          |
+| `FCV-2`, `FCV-3`, `FCV-4`, `FCV-5`, `FCV-6` | Flow Control Valve | Regulate the flow rates in their respective lines as instructed by a controller. Key for process stability and efficiency.                                                                                                                                                                                      |
+| `PRV-1`, `PRV-2`              | Pressure Relief Valve | Safety devices designed to open and relieve excess pressure in the `SW Storage` tank and `Sour Water Stripper` respectively, preventing equipment damage and ensuring safe operation.                                                                                                                                      |
+| `Drain Valve` (dv)            | Manual Valve    | Allows for manual draining of `Surge Drum-1` to the sewer.                                                                                                                                                                                                                                                                          |
 
-1.  **Origin:** The separated hydrocarbon layer (HC-OIL) in **Surge Drum-1** is the source of this stream.
-2.  **Removal:** The **Oil Recovery Pump** draws this slop oil from the top of the surge drum.
-3.  **Destination:** The oil is pumped through a non-return valve (`NRV-3`) to its final sink: the `SLOP-OIL-CRUDE-TANK-WWT` for reprocessing or disposal.
+## 3. Detail the Control and Energy Flows
 
-**c) Overhead Acid Gas Stream:**
+### Control Loops:
 
-1.  **Origin:** Inside the **Sour Water Stripper**, steam strips volatile dissolved gases—primarily Hydrogen Sulfide (H₂S) and Ammonia (NH₃)—from the water. These gases, along with the stripping steam, exit from the top of the column.
-2.  **Condensation:** The hot vapor mixture flows to the **Stripper OVHD Condenser**, where the steam and some water vapor are condensed back into a liquid by exchanging heat with the incoming cold sour water feed.
-3.  **Separation:** The resulting two-phase mixture enters the **SWS OVHD Accumulator**. Here, the non-condensable acid gases (H₂S and NH₃) are separated from the condensed water (condensate).
-4.  **Destination:** The acid gases exit the top of the accumulator and are sent to the `ACID-GAS-TO-S-PLANT-EX` (likely a Sulfur Recovery Unit) for further processing.
+The plant incorporates several critical control loops to ensure stable and efficient operation:
 
-**d) Treated Water (Bottoms) Stream:**
+1.  **Surge Drum Low Level Control (Slop Oil Recovery):**
+    *   **Sensor:** `Level sensor 1` (l1), a low-level sensor on `Surge Drum-1`.
+    *   **Controller:** `LLC` (Low Level Controller).
+    *   **Final Control Element:** `Oil Recovery Pump` (oil_rec_pump).
+    *   **Operation:** If the liquid level in `Surge Drum-1` falls below a set low point, `l1` sends a signal to `LLC`. `LLC` then controls the `oil_rec_pump` to reduce or stop the pumping of slop oil, preventing the pump from running dry or taking suction from the water phase, and maintaining a minimum level for separation.
 
-1.  **Origin:** After the stripping process, the purified water collects at the bottom of the **Sour Water Stripper**.
-2.  **Removal:** The **Bottoms Pump** draws the hot, treated water from the column sump.
-3.  **Destination:** The water is pumped through non-return valve `NRV-7` and flow control valve `FCV-6` to the `WATER-TREATMENT` facility, its final sink.
+2.  **Surge Drum High Level Control (SW Feed to Storage):**
+    *   **Sensor:** `Level sensor 2` (l2), a high-level sensor on `Surge Drum-1`.
+    *   **Controller:** `HLC` (High Level Controller).
+    *   **Final Control Element:** `FCV-2` (Flow Control Valve on the `SW feed pipe` to `SW Storage`).
+    *   **Operation:** If the liquid level in `Surge Drum-1` rises above a set high point, `l2` signals `HLC`. `HLC` then modulates `FCV-2` to increase the flow of sour water to `SW Storage`, preventing overfilling of the surge drum. Conversely, if the level drops, `FCV-2` would close to maintain a minimum level.
 
----
+3.  **Stripper Feed and Steam Flow Ratio Control:**
+    *   **Process Variable (SW Feed Flow):** Flow measured by `Flow sensor 1` (f1) on the `SW feed pipe` to the `Stripper OVHD Condenser`.
+    *   **Controller 1 (SW Feed Flow):** `FC-1` (Flow Controller).
+    *   **Final Control Element 1 (SW Feed):** `FCV-3` (Flow Control Valve on the `SW feed pipe`).
+    *   **Controller 2 (Steam Flow):** `FC-2` (Flow Controller for `steam pipe`).
+    *   **Final Control Element 2 (Steam):** `FCV-5` (Flow Control Valve on the `steam pipe`).
+    *   **Operation:** `f1` measures the sour water feed rate and sends a signal to `FC-1`, which then adjusts `FCV-3` to maintain the desired sour water feed flow rate to the stripper. Crucially, `FC-1` also sends a signal to `FC-2`, indicating a cascade or ratio control setup. This implies that the steam flow rate (`FCV-5`) is adjusted by `FC-2` in proportion to the sour water feed rate, ensuring an optimal steam-to-sour-water ratio for efficient stripping.
 
-### 2. Key Equipment and Purpose
+4.  **SWS Overhead Accumulator Level Control (Reflux Control):**
+    *   **Sensor:** `Level sensor 3` (l3) on the `SWS OVHD Accumulator`.
+    *   **Controller:** `LC-1` (Level Controller).
+    *   **Final Control Element:** `FCV-4` (Flow Control Valve on the `reflux pipe`).
+    *   **Operation:** `l3` monitors the condensate level in the accumulator. `LC-1` receives this signal and adjusts `FCV-4` to control the amount of condensate returned as reflux to the `Sour Water Stripper`. This maintains a stable level in the accumulator and ensures proper reflux to the column.
 
-| Equipment Name (from P&ID)       | Type                 | Purpose|
-| -------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Surge Drum-1**                 | Separator            | Acts as the initial feed receiver and performs the bulk separation of immiscible hydrocarbons (slop oil) from the sour water feed via gravity. It is equipped with level sensors to manage the oil/water interface and overall liquid level.                                   |
-| **SW Storage**                   | Storage Tank         | Provides buffer capacity for the feed to the stripper, ensuring a stable flow. It also allows for secondary skimming of any residual hydrocarbons that may have carried over from the surge drum.                                                 |
-| **Sour Water Stripper**          | Column               | The core of the process. It's a distillation column where direct steam injection provides the heat and stripping medium to remove dissolved H₂S and NH₃ from the sour water, purifying it.                                                      |
-| **Stripper OVHD Condenser**      | Heat Exchanger       | Serves a dual purpose in an energy-efficient design: 1) It cools and partially condenses the overhead vapors from the stripper. 2) It simultaneously uses that heat to preheat the cold sour water feed before it enters the stripper, reducing the overall steam requirement. |
-| **SWS OVHD Accumulator**         | Reflux Drum/Separator | Separates the condensed liquid (condensate) from the non-condensable acid gases after the overhead condenser. The liquid level is controlled to provide reflux back to the stripper, while the gases are sent downstream.                         |
-| **Pumps** (5 total)                | Pump                 | Provide the motive force to transfer fluids between vessels and overcome system pressure drops. Each pump (Oil Recovery, SW Feed, Stripper Feed, Reflux, Bottoms) is dedicated to a specific liquid stream in the process.                     |
+5.  **Sour Water Stripper Bottoms Level Control (Treated Water Effluent):**
+    *   **Sensor:** `Level sensor 4` (l4) on the `Sour Water Stripper`.
+    *   **Controller:** `LC-2` (Level Controller).
+    *   **Final Control Element:** `FCV-6` (Flow Control Valve on the `treated water effluent pipe`).
+    *   **Operation:** `l4` measures the liquid level at the bottom of the `Sour Water Stripper`. `LC-2` uses this information to modulate `FCV-6`, thereby controlling the flow rate of the treated water effluent to `WATER-TREATMENT`. This prevents the stripper from running dry or overfilling with treated water.
 
----
+*   **Pressure Sensors for Pumps:** Pressure sensors (`p_oil_rec_pump`, `p_sw_feed_pump`, `p_stripper_feed_pump`, `p_reflux_pump`, `p_bottoms_pump`) are connected to their respective pumps. While these are explicitly mentioned as "pressure indicator" sensors, they typically feed into the control system for monitoring pump health, detecting cavitation, or indicating blockages, but are not shown as part of active control loops in this specific P&ID (i.e., they don't directly control a FCE).
 
-### 3. Detail the Control and Energy Flows
+### Energy Flows:
 
-The process is managed by several key control loops. The primary energy input is low-pressure steam injected into the stripper.
+*   **Steam Input:** The primary energy input to the process is `STEAM-IN` (src2), which is fed into the `Sour Water Stripper` (sws) via `FCV-5`. This steam provides the heat required to vaporize the dissolved ammonia and hydrogen sulfide from the sour water.
+*   **Heat Recovery/Exchange:** The `Stripper OVHD Condenser` (stripper_cond) plays a crucial role in energy efficiency. It recovers heat from the hot overhead vapors (steam, H₂S, NH₃) from the `Sour Water Stripper` by using the cold incoming sour water feed as a cooling medium. This preheats the feed before it enters the stripper, reducing the steam demand for the column, and simultaneously condenses the overheads.
 
-**Energy Flow:**
+## 4. Summarize Inputs and Outputs
 
-*   **Steam Injection:** Steam is the primary energy source, injected directly into the base of the **Sour Water Stripper** (`sws`). Its flow is regulated by control valve `FCV-5`. The latent heat of the steam provides the energy required to heat the water and volatilize the dissolved acid gases.   
+### Main Chemical Inputs to the Process:
 
-**Control Flows (Loops):**
+1.  **Refinery Sour Water:** From `REFINERY Unit` (src1), containing water, slop oil (hydrocarbons), ammonia (NH₃), and hydrogen sulfide (H₂S).
+2.  **Steam:** From `STEAM-IN` (src2), used as the stripping medium.
 
-*   **Surge Drum Level Control:**
-    *   **Low-Level (Oil Interface):** A low-level sensor (`l1`) detects the oil-water interface. The **Low Level Controller (`LLC`)** starts/stops the **Oil Recovery Pump** to skim the oil layer and maintain the interface at the desired point.
-    *   **High-Level (Water):** A high-level sensor (`l2`) prevents the drum from overflowing. The **High Level Controller (`HLC`)** manipulates control valve **`FCV-2`** on the outlet water line to increase flow to the SW Storage tank if the level gets too high.
+### Final Products or Waste Streams Leaving the System:
 
-*   **Stripper Feed and Steam Ratio Control (Cascade Loop):**
-    *   This is a sophisticated control scheme to maintain stripping efficiency.
-    *   **Primary Loop:** The flow of sour water feed to the stripper is measured by flow sensor **`f1`**. The **Flow Controller (`FC-1`)** adjusts control valve **`FCV-3`** to maintain the desired feed rate.
-    *   **Cascade/Ratio Loop:** The output from `FC-1` (representing the actual sour water flow) is sent as a setpoint to the steam **Flow Controller (`FC-2`)**. `FC-2` then adjusts the steam control valve **`FCV-5`** to maintain a constant, pre-defined ratio of steam to sour water, ensuring optimal and efficient stripping regardless of feed rate changes.
-
-*   **Stripper Bottoms Level Control:**
-    *   A level sensor (`l4`) in the sump of the **Sour Water Stripper** measures the amount of treated water.
-    *   The **Level Controller (`LC-2`)** modulates the **`FCV-6`** valve on the outlet of the **Bottoms Pump** to maintain a stable liquid level at the base of the column, preventing it from running dry or flooding.
-
-*   **Overhead Accumulator Level Control (Reflux Control):**
-    *   A level sensor (`l3`) in the **SWS OVHD Accumulator** measures the amount of condensed water.
-    *   The **Level Controller (`LC-1`)** controls the reflux flow back to the stripper by adjusting control valve **`FCV-4`** on the **Reflux Pump** discharge. This ensures a liquid seal in the accumulator and controls the amount of cooled liquid returned to the top of the column to enhance separation.
-
----
-
-### 4. Summarize Inputs and Outputs
-
-**Process Inputs:**
-
-*   **Sour Water:** (From `REFINERY Unit`) The main feed stream, containing water, dissolved H₂S and NH₃, and free hydrocarbons.
-*   **Steam:** (From `STEAM-IN`) The energy and stripping medium used in the Sour Water Stripper column.
-
-**Process Outputs (Products & Waste):**
-
-*   **Acid Gas (H₂S & NH₃):** (To `ACID-GAS-TO-S-PLANT-EX`) The primary gaseous product, containing concentrated hydrogen sulfide and ammonia, sent for further processing (e.g., conversion to sulfur).
-*   **Treated Water:** (To `WATER-TREATMENT`) The main liquid product, stripped of most of its contaminants and ready for reuse or final treatment.   
-*   **Slop Oil (HC-OIL):** (To `SLOP-OIL-CRUDE-TANK-WWT`) Recovered hydrocarbons skimmed from the feed, sent to be reprocessed with crude oil or treated in the wastewater plant.
-*   **Minor Streams:**
-    *   **Skimmed Hydrocarbons:** (To `TO-SKIM-RECYCLE`) Small amounts of oil skimmed from the storage tank.
-    *   **Vented Gases:** (To `TO-FLARE-SYSTEM` / `TO-ATM`) Vapors from surge drum and pressure relief from tanks are safely disposed of.
-    *   **Drainage:** (To `DRAIN-TO-SEWER`) Liquid drainage from equipment during maintenance.
-========================================================================
+1.  **Recovered Slop Oil:** Sent to `SLOP-OIL-CRUDE-TANK-WWT` (s4) from the `Surge Drum-1`.
+2.  **Hydrocarbon Oil Skim:** Sent to `TO-SKIM-RECYCLE` (s5) from the `SW Storage` tank.
+3.  **Acid Gases (H₂S, NH₃):** Non-condensables from the `SWS OVHD Accumulator` (sws_acc) sent to `ACID-GAS-TO-S-PLANT-EX` (s6) for further treatment (e.g., sulfur recovery).
+4.  **Treated Water Effluent:** Stripped water from the `Sour Water Stripper` (sws) sent to `WATER-TREATMENT` (s7) for final purification or safe disposal.
+5.  **Vents and Drains (Minor/Safety Streams):**
+    *   `TO-FLARE-SYSTEM` (s2): Vent from `Surge Drum-1`.
+    *   `TO-ATM` (s3): Vent from `SW Storage` via `PRV-1`.
+    *   `DRAIN-TO-SEWER` (s1): Manual drain from `Surge Drum-1`.
+    *   Pressure relief from `Sour Water Stripper` (prv2) (destination not explicitly specified, but typically to flare or a containment system).

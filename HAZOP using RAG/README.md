@@ -34,10 +34,10 @@ HAZOP using RAG/
 ├── HAZOP_Ontology_CLEAN.rdf                      # Formal RDF ontology for HAZOP
 │
 ├── config.py                                     # Conatains the API key and credentials for connetcing Neo4j database and path for all files
-├── 01_ontology_loader.py                         # Loads ontology & applies schema constraints in Neo4j
-├── 02_semantic_enrichment.py                     # Enriches graph with chemical/MSDS data using LLM
-├── 03_equipment_node.py                          # Creates one HAZOP node per equipment
-├── 04_prasing_P&ID.py                            # Clear the existing graph database and load the P&ID 
+├── 01_prasing_P&ID.py                            # Clear the existing graph database and load the P&ID 
+├── 02_ontology_loader.py                         # Loads ontology & applies schema constraints in Neo4j
+├── 03_semantic_enrichment.py                     # Enriches graph with chemical/MSDS data using LLM
+├── 04_equipment_node.py                          # Creates one HAZOP node per equipment
 ├── 05_Understanding_process_using_LLM.py         # Using the basic knowledge process description generate more specific process description
 ├── 06_Generate_applicbale_deviations.py          # Generates equipment specific deviatoins from the equipment and deviation csv file  
 ├── 07_HAZOP_analysis.py                          # Conduct HAZOP analysis based on certain rules
@@ -51,19 +51,19 @@ HAZOP using RAG/
 
 ## 🧠 Project Workflow
 
-1. **Ontology Loading (`01_ontology_loader.py`)**  
+1. **P&ID Parsing (`01_parsing_P&ID.py`)**  
+   - Clears existing graph data and loads P&ID information from Cypher files
+   - Establishes process flow relationships between equipment
+  
+2. **Ontology Loading (`02_ontology_loader.py`)**  
    - Loads `HAZOP_Ontology_CLEAN.rdf` into Neo4j and applies class-based uniqueness constraints.
 
-2. **Semantic Enrichment (`02_semantic_enrichment.py`)**  
+3. **Semantic Enrichment (`03_semantic_enrichment.py`)**  
    - Uses Gemini LLM to extract and normalize chemical/MSDS data.  
    - Populates Neo4j with synonyms, hazards, and operating parameters.
 
-3. **Node Creation**   
-   - **Per Equipment** (`03_equipment_node.py`): One node per equipment.  
-
-4. **P&ID Parsing (`04_parsing_P&ID.py`)**  
-   - Clears existing graph data and loads P&ID information from Cypher files
-   - Establishes process flow relationships between equipment
+4. **Node Creation**   
+   - **Per Equipment** (`04_equipment_node.py`): One node per equipment.  
 
 5. **Process Understanding (`05_Understanding_process_using_LLM.py`)**  
    - Enhances basic process descriptions using LLM capabilities

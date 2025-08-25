@@ -18,7 +18,7 @@ def get_llm_process_analysis(cypher_script_content, process_description_content)
     You are an expert process engineer specializing in analyzing chemical plant P&IDs and documentation.
     Your task is to synthesize the provided P&ID data (as a Cypher script) and a process description 
     (in Markdown) to create a comprehensive analysis of the material and energy/control flow for the 
-    Sour Water Stripper plant.
+    given chemical plant.
 
     --- P&ID DATA (CYPHER SCRIPT) ---
     {cypher_script_content}
@@ -31,8 +31,8 @@ def get_llm_process_analysis(cypher_script_content, process_description_content)
     Based on BOTH documents provided above, please perform the following analysis:
 
     1.  **Identify Main Material Streams**: Trace the primary flow paths from their source, through all major equipment, to their final sink. Describe what is happening at each stage.
-    2.  **Describe Key Equipment and Purpose**: For each major piece of equipment (e.g., Surge Drum, Stripper Column), explain its role in the process, referencing both documents.
-    3.  **Detail the Control and Energy Flows**: Explain how the process is controlled. Describe the key control loops, mentioning the sensor, the controller, and the final control element (like a valve or pump) it operates. Steam injection represents the primary energy input.
+    2.  **Describe Key Equipment and Purpose**: For each major piece of equipment, explain its role in the process, referencing both documents.
+    3.  **Detail the Control and Energy Flows**: Explain how the process is controlled. Describe the key control loops, mentioning the sensor, the controller, and the final control element (like a valve or pump) it operates.
     4.  **Summarize Inputs and Outputs**: List the main chemical inputs to the entire process and all the final products or waste streams leaving the system.
 
     Format your response using clear Markdown headings for each section.
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     print("\n✅ LLM Analysis Complete. Here is the generated report:")
     print("========================= GENERATED LLM ANALYSIS =========================")
     print(llm_analysis)
-    with open("Process_Description/Generated_process_description.md", "w", encoding="utf-8") as f:
+    with open("Results/Generated_process_description.md", "w", encoding="utf-8") as f:
         f.write(llm_analysis)
     print("\n✅ Analysis has been saved to Generated_process_description.md")
     print("========================================================================")
