@@ -123,7 +123,7 @@ if __name__ == '__main__':
     # Print and save the result
     print("\n✅ LLM Analysis Complete. Here is the generated report:")
     print("========================= GENERATED LLM ANALYSIS =========================")
-    print(llm_analysis)
+    #print(llm_analysis)
     
     output_filename = "Results/Generated_process_description.md"
     with open(output_filename, "w", encoding="utf-8") as f:
