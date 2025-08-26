@@ -39,10 +39,10 @@ def main():
 
     # The pipeline now explicitly defines which script requires user interaction.
     pipeline_scripts = {
-        "01_ontology_loader.py": False,
-        "02_semantic_enrichment.py": False,
-        "03_equipment_node.py": False,
-        "04_parsing_P&ID.py": False,
+        "01_parsing_P&ID.py": False,
+        "02_ontology_loader.py": False,
+        "03_semantic_enrichment.py": False,
+        "04_equipment_node.py": False,
         "05_Understanding_process_using_LLM.py": False,
         "06_Generate_applicable_deviations.py": False,
         "07_HAZOP_analysis.py":False
