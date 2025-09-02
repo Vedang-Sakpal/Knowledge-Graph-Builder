@@ -19,8 +19,7 @@ def get_graph_data_from_neo4j():
     cypher_script_from_db = ""
     
     # This APOC query exports the entire database into a single Cypher script.
-    # The {stream:true} config is added to send the output directly to the
-    # client instead of a file, bypassing the server's security setting.
+    # The {stream:true} config is added to send the output directly to the client instead of a file, bypassing the server's security setting.
     # --- THIS IS THE MODIFIED LINE ---
     query = "CALL apoc.export.cypher.all(null, {stream:true, format:'plain', useOptimizations: {type: 'none'}})"
 
@@ -43,7 +42,7 @@ def get_graph_data_from_neo4j():
     driver.close()
     return cypher_script_from_db
 
-def get_llm_process_analysis(cypher_script_content, process_description_content):
+def get_llm_process_analysis(cypher_script_content):
     """
     Uses a Generative LLM to analyze and describe a process flow.
     (This function remains unchanged from your original script)
@@ -66,16 +65,14 @@ def get_llm_process_analysis(cypher_script_content, process_description_content)
     {cypher_script_content}
     --- END OF CYPHER SCRIPT ---
 
-    --- PROCESS DESCRIPTION (MARKDOWN) ---
-    {process_description_content}
-    --- END OF PROCESS DESCRIPTION ---
-
     Based on BOTH documents provided above, please perform the following analysis:
 
     1.  **Identify Main Material Streams**: Trace the primary flow paths from their source, through all major equipment, to their final sink. Describe what is happening at each stage.
     2.  **Describe Key Equipment and Purpose**: For each major piece of equipment, explain its role in the process, referencing both documents.
     3.  **Detail the Control and Energy Flows**: Explain how the process is controlled. Describe the key control loops, mentioning the sensor, the controller, and the final control element (like a valve or pump) it operates.
     4.  **Summarize Inputs and Outputs**: List the main chemical inputs to the entire process and all the final products or waste streams leaving the system.
+
+    **Important Instruction:** The Cypher script uses temporary aliases like `(_0)` or `(n1)` to define nodes. **Ignore these aliases in your final report.** Refer to all equipment and components only by their properties, such as `name` or `tag`.
 
     Format your response using clear Markdown headings for each section.
     """
@@ -102,10 +99,6 @@ if __name__ == '__main__':
         if not cypher_content: # Exit if the database query failed
             print("Could not retrieve data from Neo4j. Aborting analysis.")
             exit()
-            
-        # 2. Read the process description file
-        with open(config.PROCESS_DESCRIPTION_PATH, "r") as f:
-            md_content = f.read()
 
     except FileNotFoundError as e:
         print(f"🚨 Error: Could not find the process description file: {e.filename}")
@@ -118,7 +111,7 @@ if __name__ == '__main__':
         exit()
 
     # Get the analysis from the LLM
-    llm_analysis = get_llm_process_analysis(cypher_content, md_content)
+    llm_analysis = get_llm_process_analysis(cypher_content)
 
     # Print and save the result
     print("\n✅ LLM Analysis Complete. Here is the generated report:")

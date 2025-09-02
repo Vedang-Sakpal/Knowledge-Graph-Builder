@@ -149,7 +149,7 @@ def map_equipment_type_to_csv_category(equipment_type: str) -> List[str]:
         "separator": ["separator", "reflux drum/separator", "scrubber"],
         "pump": ["pump"],
         "heat exchanger": ["heat exchanger", "condenser", "vaporiser", "inert gas chiller", "vacuum heater", "cooling water system"],
-        "column": ["columns separator", "column", "reactor"],
+        "column": ["columns separator", "column"],
         # Add more as needed
     }
 
@@ -171,7 +171,7 @@ def llm_filter_applicable(model, equipment: Dict[str, str], context: Dict[str, A
 
     system_instructions = (
         "You are a senior process safety engineer performing HAZOP pre-screening.\n"
-        "Given an equipment, its limited P&ID context, and a list of deviation candidates with applicability guidance,\n"
+        "Given an equipment, its P&ID context, and a list of deviation candidates with applicability guidance,\n"
         "return ONLY the deviations that are applicable.\n"
         "Strictly apply the guidance: if guidance says 'Always applicable', mark it applicable;\n"
         "if it describes conditions where it's not applicable, evaluate against the provided context.\n"

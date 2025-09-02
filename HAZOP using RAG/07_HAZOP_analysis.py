@@ -152,8 +152,8 @@ def conduct_hazop_analysis(model, equipment: Dict[str, str], context: Dict[str, 
         
             ### Rules for Identifying Causes:
             1.  **Instrument & Control Failure:** Analyze causes arising from the failure of any specified instruments, control loops, and alarms associated with the equipment.
-            2.  **Process & Material Issues:** Based on operating conditions, design parameters, and chemical safety data, identify causes related to equipment damage (e.g., corrosion), blockages, or leaks. Consider material compatibility and chemical reactions.
-            3.  **Stream Interactions:** For equipment with multiple streams (e.g., heat exchangers, separators), consider how interactions between streams could cause deviations.
+            2.  **Process & Material Issues:** Based on operating conditions, design parameters, and chemical safety data, identify causes related to equipment damage , blockages, or leaks. Consider material compatibility and chemical reactions.
+            3.  **Stream Interactions:** For equipment with multiple streams, consider how interactions between streams could cause deviations.
             4.  **Human Factors:** Include potential causes from human error, such as incorrect operator actions or maintenance mistakes.
             5.  **Strict Constraint:** Do not assume the existence of any equipment or instrument that is not explicitly described in the provided context.
         
