@@ -3,455 +3,480 @@
     "parameter": "Level",
     "guideword": "No/None",
     "causes": [
-      "No inflow to SW Storage: SW Feed Pump (62) failure (e.g., motor trip, mechanical failure), FCV-2 (77) fails closed, blockage in the line from Surge Drum-1 to SW Storage, operator closes FCV-2 incorrectly.",
-      "Continuous outflow from SW Storage: FCV-3 (78) fails open, Stripper feed Pump (63) running continuously at maximum rate, downstream demand higher than expected."
+      "Failure of SW Feed Pump (power loss, mechanical failure)",
+      "FCV-2 fails closed, stopping sour water flow from Surge Drum-1",
+      "Blockage in SW feed pipe-2",
+      "Upstream supply interruption from Surge Drum-1",
+      "Stripper feed Pump continues to operate, emptying the tank"
     ],
     "consequences": [
-      "Loss of sour water feed to the Stripper OVHD Condenser and Sour Water Stripper, leading to process upset and potential shutdown of the downstream unit.",
-      "Cavitation damage to the Stripper feed Pump (63) due to loss of suction head.",
-      "Exposure of the internal tank surfaces to air, potentially leading to increased corrosion or creating a flammable atmosphere if residual HC-OIL vapors are present.",
-      "Ineffective skimming of HC-OIL if no liquid level is maintained."
+      "Stripper feed Pump runs dry, leading to mechanical damage (e.g., cavitation, seal failure)",
+      "Loss of sour water feed to the Stripper OVHD Condenser and Sour Water Stripper, causing process upset or shutdown",
+      "Drawing in of vapors from the vent pipe into the Stripper feed Pump, leading to cavitation and potential damage"
     ],
-    "safeguards": [
-      "NRV-4 (73) on the SW Feed Pump (62) discharge line prevents backflow from SW Storage to Surge Drum-1 if the pump fails or stops."
-    ],
+    "safeguards": [],
     "recommendations": [
-      "Install a Low Level Alarm (LAL) on SW Storage (57) to alert operators of critically low levels.",
-      "Implement a Low-Low Level Trip (LALL) on SW Storage (57) to automatically stop the Stripper feed Pump (63) and/or close FCV-3 (78) to prevent cavitation and maintain minimum inventory.",
-      "Install a flow indicator/alarm (FIA/FAL) on the inflow line to SW Storage to monitor feed from Surge Drum-1."
+      "Install a low-level switch (LLS) with alarm on SW Storage",
+      "Implement an automatic trip to shut down the Stripper feed Pump on low-low level in SW Storage to prevent dry running",
+      "Install a low flow alarm on the outlet from SW Storage to indicate loss of feed to stripper"
     ]
   },
   {
     "parameter": "Level",
     "guideword": "More",
     "causes": [
-      "Continuous inflow to SW Storage: FCV-2 (77) fails open, SW Feed Pump (62) over-delivers, HLC (96) for Surge Drum-1 fails to control FCV-2 properly, leading to excessive flow into SW Storage.",
-      "No outflow from SW Storage: Stripper feed Pump (63) trip or failure, FCV-3 (78) fails closed, blockage in the outlet line to the Stripper OVHD Condenser, operator closes FCV-3 incorrectly.",
-      "Accumulation of residual HC-OIL not being effectively skimmed off, reducing effective water storage capacity."
+      "FCV-2 fails open or sticks open, leading to uncontrolled flow from Surge Drum-1",
+      "HLC (High Level Controller) for Surge Drum-1 fails, sending a continuous open signal to FCV-2",
+      "SW Feed Pump over-pumps due to control system malfunction or operator error",
+      "Stripper feed Pump failure (e.g., power loss, mechanical failure) preventing outflow",
+      "FCV-3 fails closed or is manually closed, blocking outflow to Stripper",
+      "Blockage in SW from storage pipe or downstream equipment (Stripper OVHD Condenser)"
     ],
     "consequences": [
-      "Tank overfill, leading to the release of hazardous sour water, HC-OIL, H2S, and NH3 to the atmosphere and ground.",
-      "Environmental contamination, potential for soil and water pollution.",
-      "Personnel exposure to toxic (H2S, NH3) and flammable (HC-OIL) substances, leading to health hazards or fire/explosion risks.",
-      "Damage to tank structure from hydrostatic pressure, or PRV-1 (83) lift and continuous venting to atmosphere."
+      "Overfilling of SW Storage tank, leading to a spill of sour water to the bund/ground, potentially releasing H2S/NH3 vapors",
+      "Environmental contamination and potential for personnel exposure to toxic and corrosive sour water",
+      "Structural damage to the tank due to hydrostatic overpressure if filled beyond design limits",
+      "Potential for release of flammable HC-OIL (if present) to the atmosphere, creating a fire/explosion hazard"
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) is designed to relieve overpressure, which can occur during overfilling if the vapor space is compressed or liquids are released through the vent.",
-      "FCV-2 (77) is controlled by HLC (96) from Surge Drum-1 to regulate inflow, but its primary function is to manage Surge Drum level, not SW Storage high level."
+      "PRV-1 on vent pipe 2 to TO-ATM (relieves overpressure, but not a primary level control safeguard)"
     ],
     "recommendations": [
-      "Install a High Level Alarm (LAH) on SW Storage (57) to alert operators of rising levels.",
-      "Implement a High-High Level Trip (LAHH) on SW Storage (57) to automatically close FCV-2 (77) or trip the SW Feed Pump (62) to prevent overfill.",
-      "Install a flow indicator/alarm (FIA/FAH) on the outflow line from SW Storage to monitor feed to the Stripper system."
+      "Install a high-level switch (LSH) with alarm on SW Storage",
+      "Implement an automatic trip to shut down the SW Feed Pump or close FCV-2 on high-high level in SW Storage to prevent overfilling",
+      "Install a high flow alarm on the inlet to SW Storage",
+      "Provide a dedicated overflow line to a safe containment area (e.g., emergency containment tank, flare system)"
     ]
   },
   {
     "parameter": "Level",
     "guideword": "Less",
     "causes": [
-      "Reduced inflow to SW Storage: SW Feed Pump (62) underperformance, FCV-2 (77) partially closed or failed partially closed, partial blockage in the inflow line, HLC (96) for Surge Drum-1 signaling for reduced flow.",
-      "Increased outflow from SW Storage: FCV-3 (78) fails open or is opened excessively, Stripper feed Pump (63) operates at a higher rate than normal."
+      "Stripper feed Pump continues to operate at a high rate while inlet flow is insufficient",
+      "FCV-3 fails open or sticks open, leading to uncontrolled outflow to Stripper",
+      "FC-1 (Flow Controller for SW feed pipe) fails, sending a continuous open signal to FCV-3",
+      "SW Feed Pump failure (e.g., power loss, mechanical failure) preventing inflow",
+      "FCV-2 fails closed or is manually closed, blocking inflow from Surge Drum-1",
+      "Blockage in SW feed pipe-2, restricting inflow"
     ],
     "consequences": [
-      "Tank level drops below normal operating range, reducing buffer capacity for the downstream stripper.",
-      "Increased risk of cavitation for the Stripper feed Pump (63) as suction head diminishes.",
-      "Potential for loss of feed to the Sour Water Stripper, leading to process instability.",
-      "Exposure of tank internal surfaces to air, potentially leading to increased corrosion."
+      "Stripper feed Pump runs dry, leading to mechanical damage (e.g., cavitation, seal failure)",
+      "Loss of sour water feed to the Stripper OVHD Condenser and Sour Water Stripper, causing process upset or shutdown",
+      "Drawing in of vapors from the vent pipe into the Stripper feed Pump, leading to cavitation and potential damage"
     ],
-    "safeguards": [
-      "NRV-4 (73) on the SW Feed Pump (62) discharge line prevents backflow from SW Storage."
-    ],
+    "safeguards": [],
     "recommendations": [
-      "Install a Low Level Alarm (LAL) on SW Storage (57) to alert operators of low levels.",
-      "Implement a Low-Low Level Trip (LALL) on SW Storage (57) to stop the Stripper feed Pump (63) and/or close FCV-3 (78) to prevent cavitation and maintain minimum inventory.",
-      "Install a flow indicator/alarm (FIA/FAL) on the inflow line to SW Storage."
+      "Install a low-level switch (LLS) with alarm on SW Storage",
+      "Implement an automatic trip to shut down the Stripper feed Pump on low-low level in SW Storage to prevent dry running",
+      "Install a low flow alarm on the outlet from SW Storage to indicate loss of feed to stripper"
     ]
   },
   {
     "parameter": "Flow",
     "guideword": "More",
     "causes": [
-      "Inflow to SW Storage: FCV-2 (77) fails open, SW Feed Pump (62) runs at excessive capacity, HLC (96) from Surge Drum-1 fails and demands maximum flow.",
-      "Outflow from SW Storage: FCV-3 (78) fails open, Stripper feed Pump (63) runs at excessive capacity, FC-1 (98) fails and demands maximum flow."
+      "Inlet Flow (into SW Storage): FCV-2 fails open or sticks open, HLC for Surge Drum-1 malfunctions, SW Feed Pump over-pumps.",
+      "Outlet Flow (out of SW Storage): FCV-3 fails open or sticks open, FC-1 malfunctions, Stripper feed Pump over-pumps due to control or mechanical issue (e.g., higher speed, pump trip interlock failure)."
     ],
     "consequences": [
-      "Rapid level changes (increase for inflow, decrease for outflow) leading to potential overfill or emptying of the tank.",
-      "For excessive inflow: overpressure in tank, PRV-1 (83) lift, release of hazardous materials, environmental contamination.",
-      "For excessive outflow: cavitation of Stripper feed Pump (63), loss of stripper feed, process upset in downstream unit.",
-      "Damage to downstream equipment (e.g., Stripper OVHD Condenser) if flow rates exceed design limits."
+      "Inlet Flow: Rapid increase in SW Storage level, leading to potential overfill, tank overpressure if vent is inadequate.",
+      "Outlet Flow: Rapid decrease in SW Storage level, leading to potential low-level scenario and dry running of Stripper feed Pump. Overfeeding of sour water to Stripper OVHD Condenser and Sour Water Stripper, causing process upset (e.g., flooding, high pressure, reduced efficiency) downstream."
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) protects against overpressure from excessive inflow.",
-      "FCV-2 (77) is controlled by HLC (96) from Surge Drum-1, and FCV-3 (78) by FC-1 (98) from Flow sensor 1 (89) for flow control."
+      "PRV-1 on vent pipe 2 to TO-ATM (mitigates overpressure from inlet overfill)",
+      "Flow sensor 1 and FC-1 (control outlet flow, but not a safeguard against extreme deviation)"
     ],
     "recommendations": [
-      "Install High Level Alarm (LAH) and High-High Level Trip (LAHH) on SW Storage (57).",
-      "Install Low Level Alarm (LAL) and Low-Low Level Trip (LALL) on SW Storage (57).",
-      "Install flow indicators/alarms (FIA/FAH) on both the inlet and outlet lines of SW Storage."
+      "Install high-level alarm/trip on SW Storage (for inlet over-flow)",
+      "Install low-level alarm/trip on SW Storage (for outlet over-flow)",
+      "Install high flow alarm on both inlet and outlet lines of SW Storage",
+      "Implement automatic closure of FCV-2 on high-high level in SW Storage",
+      "Implement automatic closure of FCV-3 or shutdown of Stripper feed Pump on low-low level in SW Storage"
     ]
   },
   {
     "parameter": "Flow",
     "guideword": "Less",
     "causes": [
-      "Inflow to SW Storage: FCV-2 (77) partially closed or failed partially closed, SW Feed Pump (62) underperforms, partial blockage in the inlet line.",
-      "Outflow from SW Storage: FCV-3 (78) partially closed or failed partially closed, Stripper feed Pump (63) underperforms, partial blockage in the outlet line to the Stripper OVHD Condenser."
+      "Inlet Flow (into SW Storage): SW Feed Pump failure, FCV-2 fails closed, blockage in SW feed pipe-2, HLC malfunction (sends close signal), upstream supply interruption from Surge Drum-1.",
+      "Outlet Flow (out of SW Storage): Stripper feed Pump failure, FCV-3 fails closed, blockage in SW from storage pipe or SW feed pipe 1/2, FC-1 malfunction (sends close signal), downstream blockage (e.g., in Stripper OVHD Condenser)."
     ],
     "consequences": [
-      "Reduced level in SW Storage due to insufficient inflow, or increased level due to insufficient outflow, leading to potential low or high level conditions.",
-      "For insufficient inflow: loss of buffer capacity, potential for downstream stripper starvation.",
-      "For insufficient outflow: tank overfill, PRV-1 (83) lift, release of hazardous materials.",
-      "Reduced flow to the stripper affects its efficiency and stability (e.g., if steam-to-feed ratio is affected by low feed flow)."
+      "Inlet Flow: Level in SW Storage decreases, leading to potential low-level scenario and loss of feed to Stripper.",
+      "Outlet Flow: Level in SW Storage increases, leading to potential overfill scenario. Loss of feed to Stripper OVHD Condenser and Sour Water Stripper, causing process upset or shutdown."
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) protects against overpressure from insufficient outflow leading to overfill.",
-      "FCV-2 (77) and FCV-3 (78) are control valves in these lines, but their failure contributes to the deviation."
+      "Pressure sensor on SW Feed Pump (for pump monitoring, not direct tank flow safeguard)",
+      "Pressure sensor on Stripper feed Pump (for pump monitoring, not direct tank flow safeguard)"
     ],
     "recommendations": [
-      "Install High Level Alarm (LAH) and Low Level Alarm (LAL) on SW Storage (57).",
-      "Install flow indicators/alarms (FIA/FAL) on both the inlet and outlet lines of SW Storage.",
-      "Monitor pump discharge pressure (PS-92 for SW Feed Pump, PS-93 for Stripper feed Pump) for indication of low flow/blockage."
+      "Install low-level alarm/trip on SW Storage (for insufficient inlet flow)",
+      "Install high-level alarm/trip on SW Storage (for insufficient outlet flow)",
+      "Install low flow alarm on both inlet and outlet lines of SW Storage",
+      "Implement automatic shutdown of Stripper feed Pump on low-low level in SW Storage (for inlet flow failure)",
+      "Implement automatic shutdown of SW Feed Pump or closure of FCV-2 on high-high level in SW Storage (for outlet flow failure)"
     ]
   },
   {
     "parameter": "Flow",
     "guideword": "No",
     "causes": [
-      "Inflow to SW Storage: FCV-2 (77) fails closed, SW Feed Pump (62) trips or fails completely, full blockage in the inlet line, upstream process (Surge Drum-1) is empty or shut down, operator closes valve.",
-      "Outflow from SW Storage: FCV-3 (78) fails closed, Stripper feed Pump (63) trips or fails completely, full blockage in the outlet line to the Stripper OVHD Condenser, downstream unit (Stripper) is shut down, operator closes valve."
+      "Inlet Flow (into SW Storage): Complete failure of SW Feed Pump, FCV-2 completely closed, severe blockage in SW feed pipe-2, upstream tank (Surge Drum-1) empty.",
+      "Outlet Flow (out of SW Storage): Complete failure of Stripper feed Pump, FCV-3 completely closed, severe blockage in SW from storage pipe or downstream, downstream demand stops."
     ],
     "consequences": [
-      "For no inflow: Tank level drops, eventually emptying, leading to loss of feed to the stripper and potential cavitation of the Stripper feed Pump (63).",
-      "For no outflow: Tank level rises, leading to overfill, PRV-1 (83) lift, release of hazardous materials, environmental contamination.",
-      "Complete disruption of the downstream sour water stripping process."
+      "Inlet Flow: SW Storage tank level drops to empty, Stripper feed Pump runs dry, loss of feed to stripper.",
+      "Outlet Flow: SW Storage tank level rises to overfill, potential for tank overpressure and rupture, loss of feed to stripper."
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) protects against overpressure if there is no outflow and inflow continues.",
-      "NRV-4 (73) prevents backflow to Surge Drum-1, and NRV-5 (74) prevents backflow from Stripper system."
+      "PRV-1 on vent pipe 2 to TO-ATM (mitigates overpressure from no outlet flow)",
+      "NRV-4 on SW feed pipe-1 (prevents reverse flow from tank to Surge Drum-1, not direct no-flow safeguard)",
+      "NRV-5 on SW feed pipe 1 (prevents reverse flow from downstream to tank, not direct no-flow safeguard)"
     ],
     "recommendations": [
-      "Install High Level Alarm (LAH) and High-High Level Trip (LAHH) on SW Storage (57) to respond to no outflow.",
-      "Install Low Level Alarm (LAL) and Low-Low Level Trip (LALL) on SW Storage (57) to respond to no inflow.",
-      "Install flow indicators/alarms (FIA/FAL) on both the inlet and outlet lines of SW Storage.",
-      "Implement interlocks to stop SW Feed Pump (62) on high level in SW Storage, and trip Stripper feed Pump (63) on low level in SW Storage."
+      "Install low-level alarm/trip on SW Storage (for no inlet flow)",
+      "Install high-level alarm/trip on SW Storage (for no outlet flow)",
+      "Install zero flow alarm on both inlet and outlet lines of SW Storage",
+      "Implement automatic shutdown of Stripper feed Pump on low-low level in SW Storage",
+      "Implement automatic shutdown of SW Feed Pump or closure of FCV-2 on high-high level in SW Storage"
     ]
   },
   {
     "parameter": "Flow",
     "guideword": "Reverse",
     "causes": [
-      "From Stripper system to SW Storage: NRV-5 (74) fails or is stuck open, Stripper feed Pump (63) trip causing backflow, higher pressure in Stripper OVHD Condenser or Stripper than in SW Storage.",
-      "From SW Storage to Surge Drum-1: NRV-4 (73) fails or is stuck open, higher pressure in SW Storage than in Surge Drum-1, SW Feed Pump (62) trip."
+      "Reverse flow from SW Storage to Surge Drum-1: Failure of NRV-4 on SW feed pipe-1, higher pressure in SW Storage than Surge Drum-1.",
+      "Reverse flow from Stripper OVHD Condenser/Stripper to SW Storage: Failure of NRV-5 on SW feed pipe 1 (after Stripper feed Pump), higher pressure in downstream system (e.g., due to Stripper upset, sudden shutdown of Stripper feed Pump) than SW Storage."
     ],
     "consequences": [
-      "Contamination of SW Storage with partially stripped or preheated sour water from the downstream unit (higher temperature, different composition, potentially more H2S/NH3 vapors).",
-      "Contamination of Surge Drum-1 with partially treated sour water (less likely, but possible).",
-      "Loss of control over the process, potential for process upset in both upstream and downstream units.",
-      "If hot fluid from the stripper backflows, it could lead to increased tank pressure and PRV-1 (83) lift.",
-      "Loss of efficiency for the NRVs and pumps."
+      "Contamination of Surge Drum-1 contents with sour water from SW Storage (if quality differs).",
+      "Backflow of hot, potentially processed (pre-heated) sour water or even stripper overheads into SW Storage, leading to unexpected temperature increase, increased vapor pressure, and potential for flashing within the tank.",
+      "Upset of upstream/downstream process conditions (e.g., level upset in Surge Drum-1, thermal shock to SW Storage)."
     ],
     "safeguards": [
-      "NRV-4 (73) on the SW Feed Pump (62) discharge line is designed to prevent backflow into Surge Drum-1.",
-      "NRV-5 (74) on the Stripper feed Pump (63) discharge line is designed to prevent backflow from the Stripper system into SW Storage."
+      "NRV-4 on SW feed pipe-1 (prevents reverse flow into Surge Drum-1)",
+      "NRV-5 on SW feed pipe 1 (prevents reverse flow from downstream system)"
     ],
     "recommendations": [
-      "Install pressure differential indicators/alarms across NRV-4 and NRV-5 to detect backflow conditions.",
-      "Regular inspection and maintenance of non-return valves."
+      "Install reverse flow alarm on inlet and/or outlet lines if NRVs are critical and susceptible to failure",
+      "Regular inspection and testing of NRV-4 and NRV-5"
     ]
   },
   {
     "parameter": "Pressure",
     "guideword": "More",
     "causes": [
-      "Excessive inflow without adequate outflow, leading to tank overfill and hydrostatic pressure increase.",
-      "Blockage or restriction in the vapor outlet line from SW Storage (e.g., PRV-1 (83) discharge line blocked or PRV-1 fails to open).",
-      "Rapid vaporization of tank contents due to external fire, sudden temperature increase (e.g., hot fluid backflow from stripper or upstream upset).",
-      "Inadvertent introduction of pressurized gas or liquid into the tank."
+      "Blockage of vent pipe 2 or PRV-1",
+      "PRV-1 failure to open at set point",
+      "Rapid temperature increase of tank contents (e.g., hot fluid ingress, external fire), leading to increased vapor pressure",
+      "Overfilling of the tank with liquid reaching the vent nozzle, restricting vapor space",
+      "Rapid exothermic reaction within the tank (unlikely for sour water but possible with contamination)"
     ],
     "consequences": [
-      "Tank overpressure, leading to structural damage, rupture, or catastrophic failure of the tank.",
-      "Release of large quantities of hazardous sour water, HC-OIL, H2S, and NH3 to the atmosphere.",
-      "Severe environmental contamination and significant personnel safety hazards (toxicity, flammability, explosion risk).",
-      "Activation of PRV-1 (83) to vent to atmosphere, potentially releasing hazardous vapors directly into the environment."
+      "Tank overpressure, leading to structural damage or rupture",
+      "Uncontrolled release of sour water, H2S, and NH3 vapors to atmosphere, posing severe health, safety, and environmental risks (toxic, corrosive, flammable)",
+      "Damage to connected piping and equipment"
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) is explicitly provided to relieve overpressure, venting to TO-ATM (104)."
+      "PRV-1 on vent pipe 2 to TO-ATM (Pressure Relief Valve)"
     ],
     "recommendations": [
-      "Install a Pressure Indicator/Alarm (PIA/PAH) on SW Storage (57) to alert operators of rising pressure.",
-      "Implement a High-High Pressure Trip (PAHH) that could potentially divert inflow or trip the SW Feed Pump (62) if pressure rises rapidly.",
-      "Ensure regular inspection and testing of PRV-1 (83) and verify discharge line integrity."
+      "Install a pressure indicator and high-pressure alarm on SW Storage",
+      "Implement a regular inspection and testing program for PRV-1",
+      "Ensure proper sizing and maintenance of the vent pipe 2 to prevent blockage"
     ]
   },
   {
     "parameter": "Pressure",
     "guideword": "Less",
     "causes": [
-      "Rapid outflow from the tank (e.g., Stripper feed Pump (63) operating at maximum rate, FCV-3 (78) fails open) without adequate air/gas ingress (vacuum relief) through the vent.",
-      "Rapid cooling of tank contents (e.g., introduction of very cold liquid, extreme weather conditions) causing vapor contraction.",
-      "Accidental draining of the tank while the vent is closed or restricted."
+      "Rapid pump-out of liquid from SW Storage without adequate air/vapor ingress through the vent pipe",
+      "Blockage of vent pipe 2 preventing air/vapor ingress (e.g., ice formation, physical obstruction)",
+      "Rapid cooling of tank contents, causing vapor condensation and vacuum formation",
+      "Introduction of a cold fluid into a warm tank, causing rapid condensation"
     ],
     "consequences": [
-      "Tank implosion or collapse due to external atmospheric pressure exceeding internal tank pressure, leading to severe structural damage.",
-      "Loss of containment and release of tank contents.",
-      "Potential for air ingress if tank contents are flammable, forming an explosive mixture.",
-      "Damage to connected piping and equipment."
+      "Tank implosion or collapse due to external atmospheric pressure exceeding internal pressure",
+      "Structural damage to the tank",
+      "Potential for air ingress if contents are flammable or reactive, creating a hazardous mixture (e.g., with H2S)"
     ],
     "safeguards": [
-      "PRV-1 (83) is a pressure relief valve and typically not designed for vacuum relief unless it's a Pressure-Vacuum Relief Valve (PVRV), which is not specified."
+      "PRV-1 (if designed for vacuum relief, which is not explicitly stated for 'PRV')"
     ],
     "recommendations": [
-      "Install a Pressure Indicator/Alarm (PIA/PAL) on SW Storage (57) to alert operators of developing vacuum.",
-      "Install a dedicated Vacuum Breaker Valve (VBV) on SW Storage (57) to prevent vacuum conditions.",
-      "Develop procedures for controlled draining and venting to prevent vacuum."
+      "Install a vacuum relief valve or ensure PRV-1 is designed and maintained for both pressure and vacuum relief",
+      "Install a pressure indicator and low-pressure alarm on SW Storage",
+      "Regular inspection and maintenance of vent pipe 2 to ensure free flow"
     ]
   },
   {
     "parameter": "Temperature",
     "guideword": "More",
     "causes": [
-      "Higher than normal temperature of incoming sour water from Surge Drum-1 (e.g., upstream refinery process upset).",
-      "External fire exposing the tank.",
-      "Exothermic reaction occurring inside the tank (highly unlikely for sour water storage unless severe contamination occurs)."
+      "Ingress of abnormally hot sour water from upstream (e.g., Surge Drum-1 process upset)",
+      "Backflow of hot pre-heated sour water from the Stripper OVHD Condenser/Stripper due to NRV-5 failure combined with Stripper feed Pump stoppage",
+      "External heat source (e.g., adjacent hot equipment, pipeline leak of hot fluid, external fire)",
+      "Malfunction of any heating elements (none mentioned, but a general consideration for tanks)"
     ],
     "consequences": [
-      "Increased vapor pressure of H2S, NH3, and HC-OIL, leading to higher tank pressure and potential PRV-1 (83) lift.",
-      "Increased release of hazardous and flammable vapors to the atmosphere.",
-      "Accelerated corrosion rates of tank materials, particularly in the presence of H2S and NH3.",
-      "Potential for boiling/flashing of sour water, increasing safety risks."
+      "Increased vapor pressure within the tank, leading to potential overpressure and PRV-1 activation or tank damage",
+      "Increased rate of H2S and NH3 release through the vent, increasing HSE risks (toxicity, flammability)",
+      "Accelerated corrosion of tank materials",
+      "Off-spec feed temperature to the Stripper OVHD Condenser/Stripper, affecting heat exchanger performance and stripper efficiency",
+      "Potential for flashing of sour water within the tank or pump suction, leading to cavitation"
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) would open to relieve pressure caused by increased temperature and vaporization."
+      "PRV-1 on vent pipe 2 to TO-ATM (provides overpressure protection)"
     ],
     "recommendations": [
-      "Install a Temperature Indicator/Alarm (TIA/TAH) on SW Storage (57) to monitor and alert operators of high temperatures.",
-      "Implement procedures for emergency cooling or diversion of hot feed if an upstream upset leads to high temperature."
+      "Install a temperature indicator and high-temperature alarm on SW Storage",
+      "Implement emergency response procedures for external fire or other heat sources",
+      "Review material compatibility for higher temperatures if sustained operation at elevated temperatures is possible"
     ]
   },
   {
     "parameter": "Temperature",
     "guideword": "Less",
     "causes": [
-      "Lower than normal temperature of incoming sour water from Surge Drum-1 (e.g., upstream process upset, cold weather conditions).",
-      "Extreme ambient cold temperatures leading to significant heat loss from the tank."
+      "Prolonged exposure to abnormally low ambient temperatures (e.g., severe winter conditions)",
+      "Ingress of abnormally cold fluid (e.g., unintentional cooling water addition, upstream upset causing colder feed)",
+      "Malfunction of any trace heating or insulation system (none mentioned)"
     ],
     "consequences": [
-      "Increased viscosity of HC-OIL, making skimming and pumping (Stripper feed Pump (63)) more difficult.",
-      "Potential for wax or solid formation from HC-OIL, leading to blockages in lines, valves (FCV-3 (78)), and pumps.",
-      "Reduced stripping efficiency in the downstream Sour Water Stripper if the feed enters at a significantly lower temperature.",
-      "Potential for freezing of water if temperatures drop below freezing point, causing damage to equipment."
+      "Increased viscosity of sour water, impacting pumpability and flow rates",
+      "Potential for freezing of sour water, especially if diluted or static, leading to blockages in lines, pumps, or tank damage",
+      "Material embrittlement of tank shell if not designed for low temperatures",
+      "Reduced efficiency of downstream Stripper due to lower feed temperature, requiring more steam"
     ],
     "safeguards": [],
     "recommendations": [
-      "Install a Temperature Indicator/Alarm (TIA/TAL) on SW Storage (57) to monitor and alert operators of low temperatures.",
-      "Consider insulation for the tank and associated piping if operating in cold climates or with low feed temperatures."
+      "Install a temperature indicator and low-temperature alarm on SW Storage",
+      "Provide insulation for the tank and associated piping if low ambient temperatures are a concern",
+      "Consider trace heating for lines and critical equipment if freezing is a risk",
+      "Review material selection for low-temperature service"
     ]
   },
   {
     "parameter": "Temperature",
     "guideword": "Early",
     "causes": [
-      "Rapid or unexpected increase in the temperature of incoming sour water from Surge Drum-1 due to an abrupt upstream process upset.",
-      "Sudden exposure to an external heat source or fire not anticipated at that operational stage."
+      "Rapid and unexpected ingress of hot fluid into the tank (e.g., sudden backflow from a hot process line, batch dumping of hot material).",
+      "Sudden and severe external heat event (e.g., flash fire nearby, sudden heat source exposure).",
+      "Control system malfunction causing excessive heat input (if a heating system existed, which it doesn't explicitly)."
     ],
     "consequences": [
-      "Premature increase in tank pressure and potential PRV-1 (83) lift.",
-      "Unexpected release of H2S, NH3, and HC-OIL vapors, increasing immediate safety and environmental risks.",
-      "Accelerated and unanticipated corrosion of tank internals."
+      "Rapid increase in tank pressure, potentially leading to premature PRV-1 activation or overpressure before manual intervention is possible.",
+      "Accelerated release of H2S/NH3 vapors, overwhelming ventilation or emergency response systems.",
+      "Thermal shock to tank materials and sudden expansion of liquid, potentially causing damage or spills.",
+      "Unanticipated process upset downstream due to sudden feed temperature change."
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) would open to relieve pressure."
+      "PRV-1 on vent pipe 2 to TO-ATM (provides rapid pressure relief, but may not prevent all consequences)."
     ],
     "recommendations": [
-      "Install a Temperature Indicator/Alarm (TIA/TAH) on SW Storage (57) with a high rate-of-change alarm feature.",
-      "Ensure operators are trained to recognize and respond to sudden temperature shifts."
+      "Install a temperature sensor with a rate-of-change alarm on SW Storage to detect sudden temperature excursions.",
+      "Implement an emergency shutdown procedure for immediate isolation of hot incoming streams.",
+      "Ensure PRV-1 is adequately sized for maximum credible heat input scenario."
     ]
   },
   {
     "parameter": "Temperature",
     "guideword": "Late",
     "causes": [
-      "Delayed or prolonged decrease in the temperature of incoming sour water from Surge Drum-1, potentially due to persistent cold upstream conditions or slow recovery from an upset.",
-      "Ineffective or missing insulation leading to continued heat loss over a longer period than expected."
+      "Temperature remains elevated longer than expected after an upset (e.g., hot feed continues for extended period, cooling not as effective).",
+      "Temperature takes longer than expected to reach normal operating or ambient conditions after a process change or shutdown.",
+      "Ineffective heat dissipation from the tank due to compromised insulation or ambient conditions."
     ],
     "consequences": [
-      "Persistence of lower than optimal temperatures, leading to prolonged increased viscosity of HC-OIL and potential for blockages.",
-      "Sustained reduced stripping efficiency in the downstream unit.",
-      "Difficulty in transferring the sour water from the tank due to reduced pumpability over an extended period."
+      "Prolonged release of H2S/NH3 vapors at elevated rates, increasing long-term exposure risks and environmental impact.",
+      "Extended periods of off-spec feed temperature to the stripper, leading to reduced efficiency and potential for sustained process instability.",
+      "Increased corrosion rates over a longer duration.",
+      "Higher utility consumption if a cooling system was intended to bring temperature down."
     ],
     "safeguards": [],
     "recommendations": [
-      "Install a Temperature Indicator/Alarm (TIA/TAL) on SW Storage (57) to identify sustained low temperatures.",
-      "Review and ensure adequate insulation for the tank and associated piping."
+      "Install a temperature sensor and a 'deviation from norm' or 'sustained high/low temperature' alarm on SW Storage.",
+      "Regularly inspect and maintain tank insulation.",
+      "Review the design basis for heat dissipation or cooling requirements."
     ]
   },
   {
     "parameter": "Composition",
     "guideword": "Otherthan",
     "causes": [
-      "Introduction of an entirely different chemical or stream from the refinery unit (101) into Surge Drum-1, then carried over to SW Storage (57).",
-      "Backflow of treated water or stripper products (e.g., acid gas condensate) from downstream into SW Storage due to failed NRV-5 (74) or incorrect line-up during maintenance.",
-      "Contamination during maintenance activities (e.g., introduction of cleaning chemicals, incompatible flushing fluids).",
-      "Accidental addition of an external chemical via a utility connection or operator error."
+      "Contamination from an external source (e.g., incorrect chemical addition during maintenance, backflow from an adjacent line through cross-connection, human error during sampling).",
+      "Carryover of unexpected components from upstream Surge Drum-1 (e.g., excessive sludge, different refinery byproduct).",
+      "Introduction of cleaning agents or maintenance fluids not fully flushed out."
     ],
     "consequences": [
-      "Off-specification feed to the Sour Water Stripper, potentially affecting stripper performance and product quality (treated water, acid gas).",
-      "Unexpected chemical reactions within the tank or downstream, generating heat, pressure, or hazardous byproducts.",
-      "Corrosion or degradation of tank materials and downstream equipment (pumps, stripper, condenser) due to incompatible chemicals.",
-      "Increased toxicity, flammability, or other hazards, posing significant risks to personnel and the environment."
+      "Off-spec feed to the Sour Water Stripper, potentially reducing stripping efficiency or causing damage (e.g., catalyst poisoning if present, corrosion, fouling).",
+      "Unexpected chemical reactions within the tank (e.g., foaming, gas generation, exotherms), leading to pressure build-up or hazardous releases.",
+      "HSE risks due to unknown or highly toxic/flammable contaminants (e.g., H2S release if a strong acid is added).",
+      "Damage to tank materials due to incompatibility with the contaminant."
     ],
-    "safeguards": [
-      "NRV-4 (73) and NRV-5 (74) are designed to prevent backflow and thus some forms of contamination, but can fail."
-    ],
+    "safeguards": [],
     "recommendations": [
-      "Install an online analyzer for key contaminants (e.g., pH, H2S, NH3, specific gravity) or a sampling point on the SW Storage inlet/outlet with a regular lab analysis schedule.",
-      "Implement interlocks to stop feed pump if off-spec composition is detected.",
-      "Strict adherence to Lock-Out/Tag-Out (LOTO) and line-breaking procedures during maintenance."
+      "Install online analyzers for key impurity components (e.g., H2S, NH3, oil content) in the sour water feed to SW Storage.",
+      "Provide dedicated sampling points for regular laboratory analysis of tank contents.",
+      "Implement strict material transfer and chemical handling procedures.",
+      "Review and verify pipe routing to prevent cross-contamination."
     ]
   },
   {
     "parameter": "Composition",
     "guideword": "As Well As",
     "causes": [
-      "Contamination of the sour water feed from the refinery (101) with an additional, unexpected component.",
-      "Ingress of an additional stream into Surge Drum-1 (56) that then flows to SW Storage (57) (e.g., cooling water leak into process).",
-      "Backflow from downstream units adding components not typically present (e.g., a process chemical from the stripper bottom if NRV-5 fails).",
-      "Human error during material transfer or maintenance introducing an extraneous substance."
+      "Increased carryover of HC-OIL from Surge Drum-1 due to upstream process upset or Surge Drum-1 malfunction (e.g., level control failure).",
+      "Ingress of an additional, immiscible liquid phase or solid contaminants (e.g., dirt, scale, other process fluids).",
+      "Accumulation of precipitates or sludge within the tank over time."
     ],
     "consequences": [
-      "Introduction of new hazards (e.g., more flammable, more corrosive, more toxic components) into the SW Storage and downstream process.",
-      "Unexpected reactions, leading to heat generation, pressure buildup, or formation of new hazardous compounds.",
-      "Off-spec feed to the stripper, potentially leading to operational problems, reduced efficiency, or production of off-spec treated water or acid gas.",
-      "Accelerated corrosion or damage to equipment due to incompatible materials."
+      "Fouling of downstream heat exchangers (Stripper OVHD Condenser) and the Sour Water Stripper, reducing efficiency and requiring more frequent cleaning.",
+      "Increased load on downstream waste treatment or oil recovery systems.",
+      "Potential for pump cavitation or damage if solids are ingested.",
+      "HSE hazards, particularly if the additional component is highly flammable (HC-OIL) or toxic, increasing vent emissions or spill risks."
     ],
     "safeguards": [
-      "NRV-4 (73) and NRV-5 (74) help prevent back-contamination."
+      "HC oil skim line to TO-SKIM-RECYCLE (provides a means to remove oil, but may not prevent adverse effects if carryover is excessive)"
     ],
     "recommendations": [
-      "Install online analyzers for specific contaminants if a risk of their presence is identified.",
-      "Implement regular laboratory analysis of sour water samples from the storage tank.",
-      "Review upstream process design and operating procedures to minimize ingress of other materials."
+      "Install an oil-in-water analyzer or interface level detector for HC-OIL in SW Storage.",
+      "Improve upstream separation efficiency in Surge Drum-1.",
+      "Provide a dedicated solids removal system (e.g., bottom drain, filtering) if solid accumulation is anticipated.",
+      "Regular tank cleaning and inspection schedule."
     ]
   },
   {
     "parameter": "Composition",
     "guideword": "Part of",
     "causes": [
-      "Reduced concentration or absence of a normal component in the sour water feed from the refinery (101) or Surge Drum-1 (56) (e.g., lower H2S/NH3 content, less HC-OIL).",
-      "Effective separation and skimming removes too much HC-OIL, or too much H2S/NH3 flashes off if the tank is inadvertently depressurized or heated.",
-      "Dilution of sour water due to accidental water ingress (e.g., cooling water leak) or operator error."
+      "Loss of a desired component or a component present in a lower-than-expected concentration (e.g., pre-stripping of H2S/NH3 in Surge Drum-1, excessive dilution from upstream).",
+      "Settling or precipitation of key components, reducing their concentration in the bulk liquid drawn from the outlet.",
+      "Sampling error indicating lower concentration than actual."
     ],
     "consequences": [
-      "Off-spec feed to the Sour Water Stripper, potentially leading to lower efficiency of the stripping process if operators are unaware.",
-      "If H2S/NH3 are significantly lower, the stripper might operate inefficiently, wasting steam (as FC-2 is based on feed flow, not composition).",
-      "If HC-OIL is significantly lower, it might indicate issues with upstream separation or reduce overall oil recovery.",
-      "Could mask an upstream process issue or a leak if dilution is the cause."
+      "Off-spec feed to the Sour Water Stripper (e.g., if too few impurities, steam is wasted; if water content is unexpectedly low, pump issues).",
+      "Reduced process efficiency or incorrect process material being fed downstream.",
+      "Misleading process data for operators if not detected."
     ],
     "safeguards": [],
     "recommendations": [
-      "Install online analyzers for key components (e.g., H2S, NH3, HC-OIL content) in the sour water feed to the stripper.",
-      "Establish a regular sampling and laboratory analysis program for SW Storage contents.",
-      "Review and verify upstream process conditions and operations."
+      "Install online analyzers for key components (e.g., H2S, NH3 concentration) in the sour water feed to SW Storage.",
+      "Implement regular laboratory analysis of sour water samples.",
+      "Review upstream process conditions to ensure consistent feed quality."
     ]
   },
   {
     "parameter": "Composition",
     "guideword": "Early",
     "causes": [
-      "Sudden and unexpected change in the composition of the incoming sour water from Surge Drum-1, such as an abrupt increase in HC-OIL content or a surge of H2S/NH3 due to an upstream refinery upset.",
-      "Rapid introduction of a new contaminant due to a sudden failure or human error."
+      "Sudden, unexpected change in upstream process conditions leading to an abrupt change in incoming sour water composition (e.g., rapid increase in a specific impurity, sudden introduction of a different stream).",
+      "Human error during a batch transfer or chemical addition, resulting in an immediate compositional change.",
+      "Failure of an upstream separator or control system that quickly alters the feed quality to SW Storage."
     ],
     "consequences": [
-      "Abrupt increase in hazards (flammability, toxicity) or corrosivity of tank contents.",
-      "Rapidly off-spec feed to the stripper, potentially causing immediate operational issues or product quality excursions.",
-      "System upsets before operators can react or adjust to the changing composition."
+      "Rapid off-spec feed to the Stripper, potentially leading to immediate process upset, equipment damage, or product quality issues.",
+      "Sudden generation of hazardous gases or unexpected reactions within SW Storage due to the rapid compositional change.",
+      "Difficulty for operators to react in time if not promptly detected."
     ],
     "safeguards": [],
     "recommendations": [
-      "Install online analyzers with high rate-of-change alarms for critical components (H2S, NH3, HC-OIL) in the SW Storage inlet/outlet.",
-      "Implement improved communication protocols between upstream refinery and sour water stripper operations for process upsets."
+      "Implement online analytical monitoring with fast response times for critical components in the incoming sour water.",
+      "Establish strict procedures for any batch operations or chemical additions upstream of SW Storage.",
+      "Install composition alarms with appropriate response protocols."
     ]
   },
   {
     "parameter": "Composition",
     "guideword": "Late",
     "causes": [
-      "Delayed return to normal composition after an upstream upset (e.g., HC-OIL content remains high for longer than expected).",
-      "Ineffective skimming or separation of HC-OIL, leading to its prolonged presence in the tank.",
-      "Slow or persistent contamination from an upstream source or internal process."
+      "A change in composition occurs much later than anticipated (e.g., contaminants persist in the tank for an extended period after an upset).",
+      "Slow recovery from an upstream upset, causing the feed composition to remain off-spec for prolonged durations.",
+      "Ineffective removal of accumulated contaminants (e.g., oil, solids) from the tank, leading to their prolonged presence."
     ],
     "consequences": [
-      "Prolonged off-spec feed to the stripper, leading to sustained inefficiency or production of off-spec products.",
-      "Continued high loading of certain components (e.g., HC-OIL) in the stripper feed, potentially overloading downstream separation systems.",
-      "Accumulation of undesirable components in the tank over time."
+      "Prolonged feeding of off-spec sour water to the Stripper, leading to sustained reduction in stripping efficiency, chronic fouling, or long-term damage to the stripper and heat exchangers.",
+      "Continuous or intermittent release of undesirable components through the vent or to the environment.",
+      "Increased operational costs due to reduced efficiency and potential for frequent maintenance."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "HC oil skim line to TO-SKIM-RECYCLE (mitigates prolonged oil presence)."
+    ],
     "recommendations": [
-      "Install online analyzers for critical components in the SW Storage outlet to detect prolonged deviations.",
-      "Implement regular manual sampling and lab analysis to track long-term composition trends.",
-      "Review HC-OIL skimming procedures and equipment effectiveness."
+      "Implement long-term trend monitoring for key compositional parameters.",
+      "Review and optimize tank cleaning and skimming procedures.",
+      "Investigate root causes of persistent upstream compositional issues.",
+      "Establish clear hold/divert protocols for off-spec tank contents."
     ]
   },
   {
     "parameter": "Phase",
     "guideword": "Otherthan",
     "causes": [
-      "**Vapor Phase (where liquid expected):** Rapid depressurization of the tank, high temperature leading to flashing of H2S, NH3, or light hydrocarbons (HC-OIL), severe gas entrainment from the incoming sour water feed from Surge Drum-1 (56), inadequate venting leading to accumulation of non-condensable gases.",
-      "**Solid Phase (where liquid expected):** Freezing of water or other components due to extremely low temperatures, precipitation of dissolved solids (e.g., salts if concentration is high), wax formation from HC-OIL at low temperatures, ingress of solid foreign material during maintenance."
+      "Sour water freezing due to abnormally low temperatures (e.g., severe winter, insulation failure), leading to solid phase formation.",
+      "Sour water flashing or boiling due to abnormally high temperatures or low pressures (e.g., hot feed, vacuum formation), leading to vapor phase formation.",
+      "Increased carryover of a separate immiscible liquid phase (e.g., excessive HC-OIL from Surge Drum-1) forming an emulsion or distinct layer.",
+      "Introduction of an immiscible solvent or other liquid/solid not typically present."
     ],
     "consequences": [
-      "**Vapor Phase:** Cavitation and damage to the Stripper feed Pump (63), loss of pump prime, reduced effective liquid volume for storage, increased tank pressure and potential PRV-1 (83) lift, release of hazardous vapors.",
-      "**Solid Phase:** Blockage of lines, valves (FCV-3 (78)), and pump suction, leading to loss of flow to the stripper, mechanical damage to pumps, reduced tank capacity, difficulty in draining or maintenance."
+      "If freezing: Blockage of lines, pumps, and valves; potential for tank rupture due to expansion; loss of flow.",
+      "If flashing/boiling: Cavitation or vapor lock in Stripper feed Pump; overpressure of tank if vent is inadequate; inaccurate level readings; reduced pumping efficiency.",
+      "If immiscible liquid/solid: Fouling of equipment; reduced pump efficiency; incorrect product withdrawal; contamination of downstream units; potential for hazardous layer formation (e.g., dense, corrosive layer at bottom)."
     ],
     "safeguards": [
-      "PRV-1 (83) on SW Storage (57) would open to relieve pressure from excessive vaporization."
+      "PRV-1 on vent pipe 2 to TO-ATM (mitigates overpressure from vapor phase)",
+      "HC oil skim line to TO-SKIM-RECYCLE (mitigates oil phase issues)"
     ],
     "recommendations": [
-      "Install Temperature Indicator/Alarm (TIA/TAL) to prevent freezing or TIA/TAH to prevent flashing.",
-      "Install a Level Indicator (LI) and Low Level Alarm (LAL) to help detect gas entrainment/cavitation (by observing erratic levels).",
-      "Install pump suction pressure monitoring (e.g., PS-93) with a low pressure alarm to detect cavitation.",
-      "Implement procedures for monitoring and maintaining feed temperature to prevent freezing or excessive flashing."
+      "Install temperature sensors with low-temperature alarm to prevent freezing.",
+      "Install temperature and pressure sensors with high/low alarms to prevent flashing/boiling.",
+      "Implement online phase detection or interface level detectors for immiscible liquids.",
+      "Ensure tank and lines are designed for low temperatures if freezing is a risk."
     ]
   },
   {
     "parameter": "Concentration",
     "guideword": "More",
     "causes": [
-      "Higher concentration of H2S, NH3, or HC-OIL in the incoming sour water from the refinery (101) or Surge Drum-1 (56) due to an upstream process upset or change in refinery operations.",
-      "Ineffective or failed skimming of HC-OIL in SW Storage (57), leading to its accumulation and increased concentration in the liquid phase.",
-      "Evaporation of water from the tank (unlikely in a closed tank unless venting system is active), concentrating dissolved components."
+      "Ingress of sour water with higher-than-expected concentrations of H2S, NH3, or other dissolved solids/impurities from upstream (e.g., upset in refinery unit, malfunction in Surge Drum-1).",
+      "Evaporation of water from the tank due to prolonged exposure to high temperatures or inadequate venting, leading to concentration of non-volatile components.",
+      "Accumulation of solids or sludge over time, increasing their local concentration."
     ],
     "consequences": [
-      "Increased hazard (toxicity, flammability, corrosivity) of the tank contents, posing higher risks during releases or maintenance.",
-      "Higher load on the Sour Water Stripper, potentially overwhelming its capacity and leading to off-spec treated water or acid gas.",
-      "Accelerated corrosion of tank and downstream equipment (pumps, stripper, condenser).",
-      "Increased environmental impact if releases occur."
+      "Increased corrosivity of sour water, leading to accelerated degradation of tank and piping materials.",
+      "Higher H2S/NH3 release rates through the vent (PRV-1 or normal venting), increasing HSE risks.",
+      "Increased load on the Sour Water Stripper, potentially overwhelming its capacity or reducing efficiency.",
+      "Potential for precipitation of dissolved solids, leading to fouling or blockages."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "PRV-1 on vent pipe 2 to TO-ATM (provides overpressure relief from increased vapor pressure/release)."
+    ],
     "recommendations": [
-      "Install online analyzers for key contaminants (H2S, NH3, HC-OIL) in the sour water feed to the stripper (Flow sensor 1 (89) location or before).",
-      "Establish a regular sampling and laboratory analysis program for SW Storage contents.",
-      "Implement improved control and monitoring for HC-OIL skimming operations."
+      "Install online analyzers for key component concentrations (e.g., H2S, NH3) in SW Storage.",
+      "Implement high concentration alarms with appropriate operational responses.",
+      "Regularly monitor upstream processes for stable sour water quality.",
+      "Ensure material compatibility for expected (and upset) concentrations."
     ]
   },
   {
     "parameter": "Concentration",
     "guideword": "Less",
     "causes": [
-      "Lower concentration of H2S, NH3, or HC-OIL in the incoming sour water from the refinery (101) or Surge Drum-1 (56) due to an upstream process upset or change in refinery operations.",
-      "Accidental dilution of sour water in the tank, e.g., ingress of cooling water (if a cooling coil were present, not here), rainwater through an open hatch, or misdirected clean water stream.",
-      "Overly effective skimming of HC-OIL, potentially removing too much or operating when unnecessary."
+      "Ingress of diluted sour water from upstream (e.g., upstream upset, accidental water addition, water wash in Surge Drum-1).",
+      "Condensation of steam/water into the tank.",
+      "Process upset leading to the removal or breakdown of key components within the tank (unlikely for storage)."
     ],
     "consequences": [
-      "Off-spec feed to the Sour Water Stripper, which could lead to sub-optimal operation (e.g., excessive steam consumption if FC-2 (97) does not adjust to lower H2S/NH3 load).",
-      "Reduced recovery of HC-OIL if its concentration is too low for efficient skimming.",
-      "Could mask an upstream problem or a dilution source, leading to misinterpretation of process conditions."
+      "Off-spec feed to the Sour Water Stripper with lower-than-required concentrations of H2S/NH3, leading to inefficient use of stripping steam and reduced energy efficiency.",
+      "Potential for downstream process upset if the feed is too dilute for optimal operation.",
+      "Misleading process data for operators, leading to incorrect control actions."
     ],
     "safeguards": [],
     "recommendations": [
-      "Install online analyzers for key contaminants (H2S, NH3, HC-OIL) in the sour water feed to the stripper (Flow sensor 1 (89) location or before).",
-      "Establish a regular sampling and laboratory analysis program for SW Storage contents.",
-      "Implement a water balance monitoring system to detect unexpected water ingress."
+      "Install online analyzers for key component concentrations (e.g., H2S, NH3) in SW Storage.",
+      "Implement low concentration alarms with appropriate operational responses.",
+      "Regularly monitor upstream processes for consistent sour water quality.",
+      "Review the source of incoming sour water for potential dilution events."
     ]
   }
 ]

@@ -1,0 +1,982 @@
+[
+  {
+    "parameter": "Flow \n(Inlet& Outlet)",
+    "guideword": "No",
+    "causes": [
+      "Blockage in the incoming sour water line from the REFINERY Unit.",
+      "Failure of an upstream pump (if present in the REFINERY Unit, not explicitly stated but implied by flow).",
+      "SW Feed Pump failure, preventing sour water transfer to SW Storage.",
+      "Oil Recovery Pump failure, preventing HC-OIL transfer to SLOP-OIL-CRUDE-TANK-WWT.",
+      "FCV-2 fails closed, blocking sour water outlet to SW Storage.",
+      "Blockage in the 'SW out pipe' or 'Slop out pipe' from Surge Drum-1.",
+      "Drain Valve is closed (if it was meant to be open for flow).",
+      "Blockage in the vent pipe to TO-FLARE-SYSTEM, preventing gas flow.",
+      "Operator error: stopping SW Feed Pump or Oil Recovery Pump.",
+      "Operator error: closing FCV-2 or the Drain Valve.",
+      "LLC (Low Level Controller on Surge Drum-1) failure, preventing Oil Recovery Pump operation.",
+      "HLC (High Level Controller on Surge Drum-1) failure, keeping FCV-2 closed."
+    ],
+    "consequences": [
+      "Upstream REFINERY Unit experiences backup and potential overpressure if inlet flow stops.",
+      "Surge Drum-1 eventually empties (if outlet flows continue without inlet) or overfills (if inlet flow continues without outlet).",
+      "SW Feed Pump and Oil Recovery Pump run dry, leading to cavitation, overheating, and mechanical damage.",
+      "Liquid carryover to the vent pipe and TO-FLARE-SYSTEM if overfilled, potentially damaging flare system and releasing hazardous materials.",
+      "Pressure buildup in Surge Drum-1 if the vent pipe is blocked, leading to potential overpressure and rupture.",
+      "Loss of containment and release of hazardous materials (sour water, H2S, NH3, HC-OIL - toxic, flammable, corrosive) to the environment.",
+      "Process shutdown and economic losses."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1), which controls the Oil Recovery Pump.",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC (High Level Controller on Surge Drum-1), which controls FCV-2.",
+      "Vent pipe to TO-FLARE-SYSTEM."
+    ],
+    "recommendations": [
+      "High-High Level Alarm (HHLA) on Surge Drum-1.",
+      "Low-Low Level Alarm (LLLA) on Surge Drum-1.",
+      "Interlock to trip any upstream feed pump or close an upstream valve on HHLA to prevent overfilling.",
+      "Interlock to trip the SW Feed Pump and Oil Recovery Pump on LLLA to prevent dry running.",
+      "Pressure Safety Valve (PSV) on Surge Drum-1, relieving to the TO-FLARE-SYSTEM, to protect against overpressure."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Inlet& Outlet)",
+    "guideword": "Less",
+    "causes": [
+      "Partial blockage in the incoming sour water line or outlet lines.",
+      "Reduced sour water flow from the REFINERY Unit.",
+      "SW Feed Pump or Oil Recovery Pump inefficiency or partial failure.",
+      "FCV-2 partially closed due to control malfunction (HLC error) or operator error.",
+      "Partially blocked vent pipe.",
+      "Reduced suction pressure to downstream pumps."
+    ],
+    "consequences": [
+      "Surge Drum-1 level imbalance (level drops if inlet flow is less, level rises if outlet flow is less).",
+      "Downstream processes (SW Storage, SLOP-OIL-CRUDE-TANK-WWT) may be starved or receive reduced feed.",
+      "SW Feed Pump and Oil Recovery Pump may cavitate or partially run dry, leading to mechanical damage.",
+      "Potential for gradual overfilling/overpressure or vacuum conditions in the drum.",
+      "Reduced separation efficiency for HC-OIL if liquid residence time changes."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1).",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC (High Level Controller on Surge Drum-1)."
+    ],
+    "recommendations": [
+      "High-High Level Alarm (HHLA) and Low-Low Level Alarm (LLLA) on Surge Drum-1.",
+      "Flow indicators/alarms on the inlet and outlet lines (if critical for process control/safety).",
+      "Pressure monitoring on SW Feed Pump and Oil Recovery Pump for performance diagnostics."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Inlet& Outlet)",
+    "guideword": "More",
+    "causes": [
+      "Increased sour water flow from the REFINERY Unit (upstream surge).",
+      "FCV-2 fails open, allowing excessive flow to SW Storage.",
+      "SW Feed Pump or Oil Recovery Pump running faster than required due to control malfunction or operator error.",
+      "Increased vaporization rate of contents (H2S, NH3, HC-OIL) due to higher temperature, leading to more gas flow to vent.",
+      "Increased suction from the TO-FLARE-SYSTEM causing more gas flow from the vent."
+    ],
+    "consequences": [
+      "Surge Drum-1 level imbalance (level rises rapidly if inlet flow is more, level drops rapidly if outlet flow is more).",
+      "Overfilling of Surge Drum-1.",
+      "Liquid carryover to the vent pipe and TO-FLARE-SYSTEM, leading to potential damage to flare system and release of hazardous materials.",
+      "SW Feed Pump and Oil Recovery Pump may run dry or cavitate, leading to mechanical damage, if outlet flow is excessively high.",
+      "Overpressure in Surge Drum-1 if the vent system is overwhelmed or blocked.",
+      "Downstream processes (SW Storage) may receive a surge of liquid, causing operational instability.",
+      "Increased release of hazardous materials (H2S, NH3, HC-OIL - toxic, flammable) to the environment."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1).",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC (High Level Controller on Surge Drum-1).",
+      "Vent pipe to TO-FLARE-SYSTEM."
+    ],
+    "recommendations": [
+      "High-High Level Alarm (HHLA) on Surge Drum-1 with an interlock to trip any upstream pump or close an upstream valve.",
+      "Low-Low Level Alarm (LLLA) on Surge Drum-1 with an interlock to trip the SW Feed Pump and Oil Recovery Pump, or close FCV-2.",
+      "Pressure Safety Valve (PSV) on Surge Drum-1, relieving to the TO-FLARE-SYSTEM, to protect against overpressure."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Inlet& Outlet)",
+    "guideword": "Reverse",
+    "causes": [
+      "Pressure from downstream SW Storage or SLOP-OIL-CRUDE-TANK-WWT exceeding the pressure in Surge Drum-1, causing liquid backflow if FCV-2 is open or if pump is off.",
+      "Upstream REFINERY Unit pressure dropping significantly below Surge Drum-1 pressure, causing backflow into the refinery unit (if no check valve).",
+      "Failure of check valves (NRV-3 and NRV-4 are on pump discharge, not inlet or immediate outlet, so they do not prevent backflow into the drum from downstream pump suction or upstream if pump is off).",
+      "Back pressure from the TO-FLARE-SYSTEM exceeding Surge Drum-1 pressure, causing gas backflow through the vent pipe."
+    ],
+    "consequences": [
+      "Contamination of Surge Drum-1 with contents from SW Storage or SLOP-OIL-CRUDE-TANK-WWT.",
+      "Contamination of the upstream REFINERY Unit if reverse flow occurs there.",
+      "Damage to pumps due to reverse rotation or foreign material ingress.",
+      "Process upset due to uncontrolled mixing of streams.",
+      "Potential for uncontrolled chemical reactions if incompatible materials backflow into the drum.",
+      "Release of hazardous materials (H2S, NH3, HC-OIL) due to uncontrolled mixing or pressure conditions."
+    ],
+    "safeguards": [
+      "NRV-3 (Non-Return Valve) on the discharge of the Oil Recovery Pump.",
+      "NRV-4 (Non-Return Valve) on the discharge of the SW Feed Pump."
+    ],
+    "recommendations": [
+      "Install a check valve on the inlet line to Surge Drum-1 from the REFINERY Unit.",
+      "Install a check valve on the vent pipe to prevent backflow from the TO-FLARE-SYSTEM.",
+      "Install check valves immediately at the outlets from Surge Drum-1 before the pumps (if not already covered by NRV-3/4 placement, or to specifically protect the drum's outlets).",
+      "Differential pressure alarms across lines to detect reverse flow conditions."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "More",
+    "causes": [
+      "Inlet flow rate of sour water exceeds the combined outlet flow rates (liquid and gas).",
+      "Blockage in the vent pipe to TO-FLARE-SYSTEM, preventing gas relief.",
+      "Rapid vaporization of volatile components (H2S, NH3, HC-OIL) within the drum due to external heat input (e.g., fire) or process upset.",
+      "External fire impinging on Surge Drum-1.",
+      "Blockage in the liquid outlet lines ('SW out pipe', 'Slop out pipe') causing liquid to build up and compress the vapor space.",
+      "Operator error, such as closing a valve on the vent line (if one exists, not explicitly stated).",
+      "Failure of FCV-2 in the closed position, leading to liquid accumulation and pressure increase."
+    ],
+    "consequences": [
+      "Overpressure and mechanical failure (rupture) of Surge Drum-1.",
+      "Uncontrolled release of hazardous materials (sour water, H2S, NH3, HC-OIL - toxic, flammable, corrosive) to the atmosphere.",
+      "Severe personnel injury or fatality due to toxic gas exposure, fire/explosion, or impact from vessel fragments.",
+      "Significant environmental contamination.",
+      "Extensive damage to connected piping and equipment.",
+      "Process shutdown and major economic losses."
+    ],
+    "safeguards": [
+      "Vent pipe to TO-FLARE-SYSTEM (provides continuous gas relief, but capacity may be limited for upset conditions).",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC (High Level Controller on Surge Drum-1), which opens FCV-2 to reduce liquid level; this can indirectly mitigate pressure if high level is the cause."
+    ],
+    "recommendations": [
+      "Pressure Indicator/Transmitter (PI/PT) on Surge Drum-1 for continuous monitoring.",
+      "High Pressure Alarm (PHA) on Surge Drum-1.",
+      "Pressure Safety Valve (PSV) on Surge Drum-1, relieving to the TO-FLARE-SYSTEM, designed to handle major overpressure scenarios (e.g., fire, massive inlet surge, vent blockage)."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "Less",
+    "causes": [
+      "Combined outlet flow rate (liquid and gas) exceeds the inlet flow rate.",
+      "Excessive withdrawal of vapor through the vent pipe (e.g., if TO-FLARE-SYSTEM develops high suction).",
+      "Rapid cooling of Surge Drum-1 contents, causing vapor contraction.",
+      "Failure of upstream sour water supply.",
+      "Excessive operation of SW Feed Pump or Oil Recovery Pump (e.g., FCV-2 fails open and pumps run at max).",
+      "Low liquid level in the drum, leading to pump cavitation and drawing air/vapor from the drum head space, creating a vacuum."
+    ],
+    "consequences": [
+      "Vacuum collapse (implosion) of Surge Drum-1 if it is not designed for full vacuum.",
+      "Air ingress into the system, creating a potentially explosive mixture with HC-OIL vapor.",
+      "Introduction of oxygen, which can lead to corrosion or undesirable reactions.",
+      "Cavitation and damage to SW Feed Pump and Oil Recovery Pump.",
+      "Process upset: downstream SW Storage may be starved of feed.",
+      "Loss of containment if drum implodes."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1), which controls the Oil Recovery Pump to prevent drawing too much liquid and potentially creating a vacuum."
+    ],
+    "recommendations": [
+      "Pressure Indicator/Transmitter (PI/PT) on Surge Drum-1 for continuous monitoring.",
+      "Low Pressure Alarm (PLA) on Surge Drum-1.",
+      "Vacuum Breaker (PV) on Surge Drum-1, set to open and admit inert gas (e.g., nitrogen) or air if an internal vacuum occurs, provided air ingress is acceptable."
+    ]
+  },
+  {
+    "parameter": "Concentration",
+    "guideword": "More",
+    "causes": [
+      "Increased concentration of H2S, NH3, or HC-OIL in the sour water feed from the REFINERY Unit.",
+      "Ineffective separation of HC-OIL within Surge Drum-1, leading to its accumulation.",
+      "Failure of the Oil Recovery Pump or blockage in its discharge line, causing HC-OIL to build up in the drum.",
+      "Failure of FCV-2 to open adequately for sour water, leading to longer residence time and potential for further phase separation (could increase HC-OIL concentration in liquid phase if it's not removed quickly)."
+    ],
+    "consequences": [
+      "Increased toxicity and corrosivity of the drum contents.",
+      "Higher partial vapor pressure of H2S, NH3, and HC-OIL in the drum's vapor space, leading to higher drum pressure and increased release of hazardous vapors to the TO-FLARE-SYSTEM.",
+      "Increased flammability hazard within the drum and potential for fire/explosion, especially with higher HC-OIL concentration.",
+      "Contamination of downstream SW Storage with excessive HC-OIL or higher concentrations of H2S/NH3 if carryover occurs.",
+      "Increased health and safety risks for personnel during maintenance, sampling, or if leaks occur."
+    ],
+    "safeguards": [
+      "None explicitly listed for concentration monitoring or control within Surge Drum-1."
+    ],
+    "recommendations": [
+      "Install a continuous online analyzer for H2S/NH3 in the sour water inlet or outlet stream.",
+      "Install a density or interface level measurement device to monitor the HC-OIL layer thickness within Surge Drum-1.",
+      "Install hydrocarbon gas detectors in the vicinity of Surge Drum-1 and its vent to detect leaks or abnormal releases.",
+      "Develop specific operating procedures for managing high concentration sour water and HC-OIL."
+    ]
+  },
+  {
+    "parameter": "Concentration",
+    "guideword": "Less",
+    "causes": [
+      "Reduced concentration of H2S, NH3, or HC-OIL in the sour water feed from the REFINERY Unit (upstream process change).",
+      "More effective than expected separation of HC-OIL (generally not a hazard, but an operational deviation).",
+      "Dilution of drum contents by an unexpected, less concentrated fluid (e.g., water ingress, refer to 'Composition: As Well As')."
+    ],
+    "consequences": [
+      "Reduced immediate hazard from H2S, NH3, and HC-OIL, but indicates an upstream process anomaly.",
+      "Operational issue if HC-OIL recovery is a key objective (less oil to recover).",
+      "Downstream processes (e.g., Sour Water Stripper) may not operate optimally if feed composition deviates significantly from design, leading to inefficient stripping or off-spec products.",
+      "May lead to economic losses if product recovery or process efficiency is impacted."
+    ],
+    "safeguards": [
+      "None explicitly listed for concentration monitoring or control within Surge Drum-1."
+    ],
+    "recommendations": [
+      "Implement regular sampling and laboratory analysis of the incoming sour water feed.",
+      "Consider online analyzers for key components (H2S, NH3, HC-OIL) if deviations in lower concentrations significantly impact downstream operations or economics.",
+      "Develop procedures for handling off-spec feed compositions."
+    ]
+  },
+  {
+    "parameter": "Power",
+    "guideword": "More",
+    "causes": [
+      "Overload of the Oil Recovery Pump or SW Feed Pump motor (e.g., due to pumping higher viscosity fluid if more HC-OIL, increased flow demand against resistance, mechanical failure of the pump like bearing seizure, or impeller blockage).",
+      "Electrical power surge or fault affecting the pump motors or control systems."
+    ],
+    "consequences": [
+      "Damage to the Oil Recovery Pump or SW Feed Pump motors (overheating, winding failure, mechanical damage).",
+      "Damage to the electrical supply system (transformers, switchgear).",
+      "If pumps trip due to overload, this will lead to a 'No Outlet Flow' deviation from Surge Drum-1, causing potential overfilling.",
+      "Process disruption and shutdown of associated equipment."
+    ],
+    "safeguards": [
+      "Pressure sensors connected to all pumps for performance monitoring (may indirectly indicate pump overload)."
+    ],
+    "recommendations": [
+      "Install motor overload protection for the Oil Recovery Pump and SW Feed Pump.",
+      "Install ammeters and power monitors/alarms on pump motors to detect excessive power draw.",
+      "Implement predictive maintenance for pumps (vibration analysis, temperature monitoring)."
+    ]
+  },
+  {
+    "parameter": "Power",
+    "guideword": "Less",
+    "causes": [
+      "Underload of the Oil Recovery Pump or SW Feed Pump motor (e.g., due to cavitation from low liquid level, reduced flow demand, partial blockage in suction line).",
+      "Voltage drop in the electrical supply to the pumps or instrumentation.",
+      "Partial power failure affecting specific circuits."
+    ],
+    "consequences": [
+      "Damage to the Oil Recovery Pump or SW Feed Pump due to cavitation or dry running.",
+      "Reduced or no outlet flow from Surge Drum-1, leading to either a rising or falling level, depending on inlet conditions.",
+      "Process upset due to insufficient or intermittent flow to downstream units.",
+      "Malfunction of instruments or controllers if their power supply is affected."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC, which controls the Oil Recovery Pump (helps prevent low level cavitation).",
+      "Pressure sensors connected to all pumps for performance monitoring (can indicate low discharge pressure from underload)."
+    ],
+    "recommendations": [
+      "Install motor underload protection for the Oil Recovery Pump and SW Feed Pump.",
+      "Install ammeters and power monitors/alarms on pump motors to detect insufficient power draw.",
+      "Implement voltage monitoring and alarms for critical electrical supplies."
+    ]
+  },
+  {
+    "parameter": "Power",
+    "guideword": "No/None",
+    "causes": [
+      "Total electrical power failure to the plant or local area of the unit.",
+      "Circuit breaker trip for the Oil Recovery Pump or SW Feed Pump motors or control circuits.",
+      "Manual emergency shutdown of power to the unit.",
+      "Cable fault or equipment failure in the electrical distribution system."
+    ],
+    "consequences": [
+      "Oil Recovery Pump and SW Feed Pump stop, leading to 'No Outlet Flow' from Surge Drum-1.",
+      "Loss of power to Level sensor 1, Level sensor 2, LLC, and HLC, resulting in a complete loss of level control and monitoring.",
+      "FCV-2 will fail to its designed fail-safe position (e.g., fail closed, fail open, or fail as-is), leading to uncontrolled liquid flow to SW Storage.",
+      "Overfilling of Surge Drum-1 if inlet flow from the REFINERY Unit continues without adequate outlet.",
+      "Damage to pumps due to sudden stop or subsequent dry running.",
+      "Release of hazardous materials (H2S, NH3, HC-OIL) via the vent pipe due to overfilling, posing toxicity and flammability risks.",
+      "Complete process shutdown and significant economic losses."
+    ],
+    "safeguards": [
+      "Vent pipe to TO-FLARE-SYSTEM (provides passive gas relief, but not for liquid overfill)."
+    ],
+    "recommendations": [
+      "Install Uninterruptible Power Supply (UPS) for critical instrumentation (level sensors, LLC, HLC, and FCV-2 if electric/electronic).",
+      "Ensure FCV-2 has a well-defined fail-safe position (e.g., fail-open to prevent overfilling) on loss of power/instrument air.",
+      "Implement High-High Level Alarm (HHLA) and Low-Low Level Alarm (LLLA) with independent power supply for Surge Drum-1.",
+      "Establish an emergency shutdown procedure for power failure scenarios, including clear actions for inlet and outlet streams."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "As Well As",
+    "causes": [
+      "Contamination from the upstream REFINERY Unit due to process upset, improper draining/flushing, or accidental cross-connection introducing unexpected chemicals (e.g., strong acids/bases, other hydrocarbon fractions, solids).",
+      "Maintenance error: incorrect chemical addition during cleaning, or foreign objects (e.g., tools, rags) left inside the drum or lines.",
+      "Accidental cross-connection with utility lines (e.g., steam, cooling water, inert gas) or other process streams not intended for the Surge Drum-1.",
+      "Failure of heat exchanger tube if Surge Drum-1 had one (not explicitly mentioned, but a general cause for 'as well as')."
+    ],
+    "consequences": [
+      "Uncontrolled chemical reactions with existing components (H2S, NH3, HC-OIL, sour water) leading to heat generation, pressure surge, corrosion, or formation of new hazardous compounds.",
+      "Corrosion or damage to Surge Drum-1, piping, and pumps due to incompatible materials.",
+      "Fouling of equipment, precipitation of solids, or emulsion formation, impacting separation efficiency.",
+      "Poisoning of downstream catalysts in the Sour Water Stripper.",
+      "Release of highly toxic or flammable substances (if new compounds are formed or existing hazards are exacerbated).",
+      "Severe process upset and potential for unplanned shutdown."
+    ],
+    "safeguards": [
+      "None explicitly listed for detecting or controlling the presence of additional components."
+    ],
+    "recommendations": [
+      "Implement strict material compatibility checks during design and for any new chemical introduction.",
+      "Establish robust isolation procedures (e.g., Lock Out/Tag Out) and line-breaking permits for maintenance activities.",
+      "Install sampling points for regular or upset condition analysis of the drum contents.",
+      "Consider process interlocks to prevent cross-contamination if accidental connections are a high risk.",
+      "Conduct hazard reviews for any changes to upstream processes that might alter feed composition."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "Otherthan",
+    "causes": [
+      "Significant changes in the REFINERY Unit's sour water feed composition (e.g., very low H2S/NH3 content, unexpectedly high water content, absence of HC-OIL).",
+      "Upstream feed stream being mistakenly diverted or not supplied as expected.",
+      "Failure of the primary separation mechanism within the drum itself, leading to an altered internal composition distribution (e.g., more water in oil layer, more oil in water layer)."
+    ],
+    "consequences": [
+      "Downstream processes (e.g., Sour Water Stripper) may not operate efficiently or may be upset if the feed composition deviates significantly from design specifications.",
+      "Production of off-spec treated water with higher than expected impurities, potentially exceeding environmental discharge limits from the WATER-TREATMENT unit.",
+      "Loss of HC-OIL recovery if the oil content is significantly lower than expected.",
+      "Potential for unexpected operational issues if the physical properties of the fluid change significantly (e.g., density, viscosity, boiling point).",
+      "Economic impact due to reduced efficiency, off-spec products, or operational adjustments."
+    ],
+    "safeguards": [
+      "None explicitly listed for monitoring or controlling 'other than' composition."
+    ],
+    "recommendations": [
+      "Implement regular sampling and laboratory analysis of the incoming sour water feed from the REFINERY Unit.",
+      "Consider online analyzers for key components (H2S, NH3, HC-OIL) if deviations in expected composition significantly impact downstream processes or safety.",
+      "Develop operating procedures for managing off-spec feed compositions, including possible diversion or temporary storage."
+    ]
+  },
+  {
+    "parameter": "Phase",
+    "guideword": "Otherthan",
+    "causes": [
+      "Temperature excursion: increased temperature leading to excessive vaporization of sour water or HC-OIL (more vapor, less liquid); decreased temperature leading to condensation of vapor (more liquid, less vapor) or potential freezing/solidification of components (unlikely for sour water under normal conditions).",
+      "Pressure excursion: decreased pressure leading to flash vaporization; increased pressure leading to condensation.",
+      "Inlet composition change: feed from REFINERY Unit contains unexpected solids or an additional immiscible liquid phase (e.g., a heavier hydrocarbon fraction).",
+      "Loss of separation: Emulsification of HC-OIL and sour water due to high turbulence, presence of emulsifying agents, or process upset preventing proper phase separation."
+    ],
+    "consequences": [
+      "Excessive vapor phase: leads to high pressure, liquid carryover to the vent/flare system, and potential pump cavitation.",
+      "Excessive liquid phase: leads to overfilling, liquid carryover to vent/flare, high level trips, and potential overpressure.",
+      "Presence of solids: causes blockages in lines, pumps, and instruments, leading to equipment damage and flow restrictions.",
+      "Emulsion formation: results in poor separation of HC-OIL, off-spec products, and fouling of downstream equipment.",
+      "Equipment damage due to thermal shock or stress if rapid phase changes occur."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC.",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC.",
+      "Vent pipe to TO-FLARE-SYSTEM."
+    ],
+    "recommendations": [
+      "Install Temperature Indicator/Transmitter (TI/TT) and Pressure Indicator/Transmitter (PI/PT) on Surge Drum-1 with associated alarms.",
+      "Implement interface level detection if the presence of a new or persistent immiscible liquid phase (e.g., emulsion) becomes a critical concern.",
+      "Include visual inspection during maintenance and consider sampling ports for phase analysis.",
+      "Review operating conditions and feed quality to prevent conditions leading to unexpected phases or emulsions."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "No/None",
+    "causes": [
+      "High outlet flow: FCV-2 fails full open, or SW Feed Pump/Oil Recovery Pump operate at maximum capacity.",
+      "Low or no inlet flow: Upstream sour water feed loss or blockage in the inlet line.",
+      "Drain Valve left open by operator error after maintenance or draining.",
+      "Major leak or rupture from Surge Drum-1 or associated piping.",
+      "Instrument or control failure: LLC fails to control the Oil Recovery Pump, leading to continuous emptying; HLC fails to close FCV-2 if upstream flow is low."
+    ],
+    "consequences": [
+      "SW Feed Pump and Oil Recovery Pump run dry, leading to severe cavitation, overheating, and mechanical damage.",
+      "Downstream processes (SW Storage, SLOP-OIL-CRUDE-TANK-WWT) are starved of feed, causing operational instability.",
+      "Air ingress into the drum and suction lines, creating a potentially explosive mixture with HC-OIL vapor.",
+      "Loss of containment and environmental release if a leak/rupture is the cause.",
+      "Process shutdown."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1), which controls the Oil Recovery Pump to prevent low level conditions."
+    ],
+    "recommendations": [
+      "Install a Low-Low Level Alarm (LLLA) on Surge Drum-1, independent of the LLC.",
+      "Implement an interlock to trip the SW Feed Pump and Oil Recovery Pump on LLLA to prevent dry running.",
+      "Implement an interlock to close FCV-2 on LLLA to conserve remaining liquid.",
+      "Implement strict administrative procedures for confirming the closure of the Drain Valve after use."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "More",
+    "causes": [
+      "High inlet flow: Upstream sour water flow surge from the REFINERY Unit.",
+      "Low or no outlet flow: FCV-2 fails closed; SW Feed Pump or Oil Recovery Pump trip or fail; blockage in the outlet lines.",
+      "Instrument or control failure: Level sensor 2 (High) fails; HLC fails to open FCV-2 as required.",
+      "Human factor: Operator manually closes FCV-2 or stops the SW Feed Pump or Oil Recovery Pump.",
+      "Ingress of an unexpected liquid, e.g., from a cross-connection."
+    ],
+    "consequences": [
+      "Overfilling of Surge Drum-1.",
+      "Liquid carryover to the vent pipe and TO-FLARE-SYSTEM, leading to potential damage to the flare system.",
+      "Uncontrolled release of hazardous liquid (sour water, HC-OIL, containing H2S and NH3) to the environment, causing contamination, fire hazard, and toxicity risks.",
+      "Overpressure in Surge Drum-1 if the vent line becomes liquid-blocked or is undersized, leading to potential rupture of the drum.",
+      "Process upset in downstream SW Storage due to uncontrolled slug flow or cessation of flow."
+    ],
+    "safeguards": [
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC (High Level Controller on Surge Drum-1), which controls FCV-2 to open and increase outflow.",
+      "Vent pipe to TO-FLARE-SYSTEM (can vent gas, but not effectively handle liquid overfill)."
+    ],
+    "recommendations": [
+      "Install a High-High Level Alarm (HHLA) on Surge Drum-1, independent of the HLC.",
+      "Implement an interlock to trip any upstream pump or close an upstream valve on HHLA to stop feed to the drum.",
+      "Install a Pressure Safety Valve (PSV) on Surge Drum-1, relieving to the TO-FLARE-SYSTEM, to protect against overpressure in case of liquid overfill blocking the vent."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "Less",
+    "causes": [
+      "High outlet flow: FCV-2 fails open, or SW Feed Pump/Oil Recovery Pump operate at excessive rates.",
+      "Low inlet flow: Reduced sour water feed from the REFINERY Unit or partial blockage in the inlet line.",
+      "Partial leak from Surge Drum-1 or associated piping.",
+      "Instrument or control failure: Level sensor 1 (Low) fails; LLC fails to slow or stop the Oil Recovery Pump as required.",
+      "Human factor: Operator leaves the Drain Valve partially open or manually opens FCV-2 excessively."
+    ],
+    "consequences": [
+      "SW Feed Pump and Oil Recovery Pump may cavitate due to insufficient suction head or start to run dry, leading to mechanical damage.",
+      "Downstream processes (SW Storage, SLOP-OIL-CRUDE-TANK-WWT) may receive intermittent or reduced feed, causing operational instability.",
+      "Air ingress into the drum and suction lines (less severe than 'No Level').",
+      "Loss of containment and environmental release if a leak is the cause."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1), which controls the Oil Recovery Pump to maintain level."
+    ],
+    "recommendations": [
+      "Install a Low-Low Level Alarm (LLLA) on Surge Drum-1, independent of the LLC.",
+      "Implement an interlock to trip the SW Feed Pump and Oil Recovery Pump on LLLA to prevent severe cavitation or dry running.",
+      "Implement an interlock to close FCV-2 on LLLA to conserve liquid.",
+      "Implement leak detection measures (e.g., regular visual inspections, drip pans) if leaks are a known concern."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "No",
+    "causes": [
+      "No Liquid Inlet: Blockage in the incoming sour water line, upstream supply failure.",
+      "No Liquid Outlet: SW Feed Pump failure, Oil Recovery Pump failure, FCV-2 closure, blockage in outlet lines, Drain Valve closed, HLC/LLC failure preventing outlet flow.",
+      "No Gas Outlet (Vent): Blockage in the vent pipe to flare, isolation valve on vent closed (if exists).",
+      "Operator error closing valves or stopping pumps."
+    ],
+    "consequences": [
+      "No Liquid Inlet: Drum eventually empties, pumps run dry.",
+      "No Liquid Outlet (Inlet continues): Drum overfills, liquid carryover to vent.",
+      "No Gas Outlet (Vent Blocked): Pressure buildup, potential for overpressure and drum rupture.",
+      "Release of H2S, NH3, HC-OIL (toxic, flammable) if overpressure/overfill occurs.",
+      "Damage to pumps due to dry running, or to drum due to overpressure/overfill."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) -> LLC.",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) -> HLC.",
+      "Vent pipe to TO-FLARE-SYSTEM."
+    ],
+    "recommendations": [
+      "High-High Level Alarm (HHLA) on Surge Drum-1 with interlock to trip upstream feed.",
+      "Low-Low Level Alarm (LLLA) on Surge Drum-1 with interlock to trip downstream pumps.",
+      "Pressure Indicator/Alarm on Surge Drum-1.",
+      "Pressure Safety Valve (PSV) on Surge Drum-1."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "Less",
+    "causes": [
+      "Less Liquid Inlet: Partial blockage, reduced upstream liquid flow.",
+      "Less Liquid Outlet: Partial blockage, pump inefficiency, FCV-2 partially closed (control or manual error).",
+      "Less Gas Outlet (Vent): Partial blockage in vent pipe, reduced vaporization rate.",
+      "Reduced upstream pressure leading to less liquid/gas flow."
+    ],
+    "consequences": [
+      "Less Liquid Inlet: Drum liquid level drops, pumps cavitate/run dry.",
+      "Less Liquid Outlet (Inlet nominal): Drum liquid level rises, potential overfilling, liquid carryover to vent.",
+      "Less Gas Outlet (Vent restricted): Pressure buildup in vapor space, potential for high pressure alarm/trip.",
+      "Process upset due to imbalanced flows."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) -> LLC.",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) -> HLC."
+    ],
+    "recommendations": [
+      "HHLA/LLLA on Surge Drum-1.",
+      "Pressure Indicator/Alarm on Surge Drum-1.",
+      "Flow indicators/alarms on liquid inlet/outlet lines."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "More",
+    "causes": [
+      "More Liquid Inlet: Increased upstream liquid flow from REFINERY Unit.",
+      "More Liquid Outlet: FCV-2 fails open, SW Feed Pump/Oil Recovery Pump run faster (control or manual error).",
+      "More Gas Flow (Out/Vent): Increased vaporization (high temperature/low pressure), sudden depressurization downstream causing increased suction from vent.",
+      "Over-pressure upstream causing increased liquid/gas flow."
+    ],
+    "consequences": [
+      "More Liquid Inlet (Outlet nominal): Drum liquid level rises rapidly, overfilling, liquid carryover to vent.",
+      "More Liquid Outlet (Inlet nominal): Drum liquid level drops rapidly, pumps run dry, cavitation.",
+      "More Gas Flow (Out/Vent): Rapid pressure drop (if strong suction exists), potential for vacuum. Overloading of flare system. Increased release of hazardous gases (H2S, NH3, HC-OIL)."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) -> LLC.",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) -> HLC.",
+      "Vent pipe to TO-FLARE-SYSTEM."
+    ],
+    "recommendations": [
+      "HHLA/LLLA on Surge Drum-1.",
+      "Pressure Indicator/Alarm on Surge Drum-1.",
+      "Flow indicators/alarms on liquid inlet/outlet lines."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "Reverse",
+    "causes": [
+      "Liquid Reverse Flow: Pressure from downstream SW Storage or SLOP-OIL-CRUDE-TANK-WWT exceeds Surge Drum-1 pressure; upstream process pressure drop; check valve failure (NRV-3, NRV-4 are after pumps, not directly preventing backflow into drum from pump suction).",
+      "Gas Reverse Flow: Back pressure from flare system exceeding drum pressure, or downstream gas system pressure exceeding drum pressure."
+    ],
+    "consequences": [
+      "Contamination of Surge Drum-1 or upstream REFINERY Unit.",
+      "Contamination of the flare system if liquid backflows.",
+      "Upset to process, potential for uncontrolled reactions or release of hazardous materials.",
+      "Damage to pumps due to reverse rotation or foreign material."
+    ],
+    "safeguards": [
+      "NRV-3 (Non-Return Valve) on the discharge of the Oil Recovery Pump.",
+      "NRV-4 (Non-Return Valve) on the discharge of the SW Feed Pump."
+    ],
+    "recommendations": [
+      "Install check valves on the inlet line to Surge Drum-1.",
+      "Install check valve on the vent pipe to prevent reverse flow from the flare system.",
+      "Differential pressure alarms for pump and line operation."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "As Well As",
+    "causes": [
+      "Cross Contamination: Accidental opening of a cross-connection, failure of a utility line (e.g., steam, water, inert gas) leading to its ingress as an unexpected liquid or gas flow.",
+      "Line Break: Rupture of an adjacent line allowing its contents to enter Surge Drum-1.",
+      "Maintenance Error: Incorrect line-up or connection of an external fluid source."
+    ],
+    "consequences": [
+      "Process Upset: Introduction of incompatible chemicals, leading to reactions, foaming, or precipitation. Alteration of phase behavior.",
+      "HSE Impact: Release of hazardous materials if the introduced fluid is hazardous, or if it causes a reaction generating hazardous products (H2S, NH3, HC-OIL).",
+      "Equipment Damage: Corrosion, fouling, thermal shock (e.g., cold water into hot drum).",
+      "Off-spec product or waste streams."
+    ],
+    "safeguards": [
+      "None explicitly listed for 'As Well As' flow."
+    ],
+    "recommendations": [
+      "Administrative controls: e.g., strict operating procedures, line breaking permits.",
+      "Appropriate isolation valves and blinds on connections to non-process lines.",
+      "Process interlocks to prevent opening of critical cross-connections.",
+      "Routine inspection for leaks or unexpected connections."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "More",
+    "causes": [
+      "Inlet flow rate of sour water exceeds the combined outlet flow rates (liquid and gas).",
+      "Blockage in the vent pipe to TO-FLARE-SYSTEM, preventing gas relief.",
+      "Rapid vaporization of volatile components (H2S, NH3, HC-OIL) within the drum due to external heat input (e.g., fire) or process upset.",
+      "External fire impinging on Surge Drum-1.",
+      "Blockage in the liquid outlet lines ('SW out pipe', 'Slop out pipe') causing liquid to build up and compress the vapor space.",
+      "Operator error, such as closing a valve on the vent line (if one exists, not explicitly stated).",
+      "Failure of FCV-2 in the closed position, leading to liquid accumulation and pressure increase."
+    ],
+    "consequences": [
+      "Overpressure and mechanical failure (rupture) of Surge Drum-1.",
+      "Uncontrolled release of hazardous materials (sour water, H2S, NH3, HC-OIL - toxic, flammable, corrosive) to the atmosphere.",
+      "Severe personnel injury or fatality due to toxic gas exposure, fire/explosion, or impact from vessel fragments.",
+      "Significant environmental contamination.",
+      "Extensive damage to connected piping and equipment.",
+      "Process shutdown and major economic losses."
+    ],
+    "safeguards": [
+      "Vent pipe to TO-FLARE-SYSTEM (provides continuous gas relief, but capacity may be limited for upset conditions).",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC (High Level Controller on Surge Drum-1), which opens FCV-2 to reduce liquid level; this can indirectly mitigate pressure if high level is the cause."
+    ],
+    "recommendations": [
+      "Pressure Indicator/Transmitter (PI/PT) on Surge Drum-1 for continuous monitoring.",
+      "High Pressure Alarm (PHA) on Surge Drum-1.",
+      "Pressure Safety Valve (PSV) on Surge Drum-1, relieving to the TO-FLARE-SYSTEM, designed to handle major overpressure scenarios (e.g., fire, massive inlet surge, vent blockage)."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "Less",
+    "causes": [
+      "Combined outlet flow rate (liquid and gas) exceeds the inlet flow rate.",
+      "Excessive withdrawal of vapor through the vent pipe (e.g., if TO-FLARE-SYSTEM develops high suction).",
+      "Rapid cooling of Surge Drum-1 contents, causing vapor contraction.",
+      "Failure of upstream sour water supply.",
+      "Excessive operation of SW Feed Pump or Oil Recovery Pump (e.g., FCV-2 fails open and pumps run at max).",
+      "Low liquid level in the drum, leading to pump cavitation and drawing air/vapor from the drum head space, creating a vacuum."
+    ],
+    "consequences": [
+      "Vacuum collapse (implosion) of Surge Drum-1 if it is not designed for full vacuum.",
+      "Air ingress into the system, creating a potentially explosive mixture with HC-OIL vapor.",
+      "Introduction of oxygen, which can lead to corrosion or undesirable reactions.",
+      "Cavitation and damage to SW Feed Pump and Oil Recovery Pump.",
+      "Process upset: downstream SW Storage may be starved of feed.",
+      "Loss of containment if drum implodes."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1), which controls the Oil Recovery Pump to prevent drawing too much liquid and potentially creating a vacuum."
+    ],
+    "recommendations": [
+      "Pressure Indicator/Transmitter (PI/PT) on Surge Drum-1 for continuous monitoring.",
+      "Low Pressure Alarm (PLA) on Surge Drum-1.",
+      "Vacuum Breaker (PV) on Surge Drum-1, set to open and admit inert gas (e.g., nitrogen) or air if an internal vacuum occurs, provided air ingress is acceptable."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "No/None",
+    "causes": [
+      "High outlet flow: FCV-2 fails full open, or SW Feed Pump/Oil Recovery Pump operate at maximum capacity.",
+      "Low or no inlet flow: Upstream sour water feed loss or blockage in the inlet line.",
+      "Drain Valve left open by operator error after maintenance or draining.",
+      "Major leak or rupture from Surge Drum-1 or associated piping.",
+      "Instrument or control failure: LLC fails to control the Oil Recovery Pump, leading to continuous emptying; HLC fails to close FCV-2 if upstream flow is low."
+    ],
+    "consequences": [
+      "SW Feed Pump and Oil Recovery Pump run dry, leading to severe cavitation, overheating, and mechanical damage.",
+      "Downstream processes (SW Storage, SLOP-OIL-CRUDE-TANK-WWT) are starved of feed, causing operational instability.",
+      "Air ingress into the drum and suction lines, creating a potentially explosive mixture with HC-OIL vapor.",
+      "Loss of containment and environmental release if a leak/rupture is the cause.",
+      "Process shutdown."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1), which controls the Oil Recovery Pump to prevent low level conditions."
+    ],
+    "recommendations": [
+      "Install a Low-Low Level Alarm (LLLA) on Surge Drum-1, independent of the LLC.",
+      "Implement an interlock to trip the SW Feed Pump and Oil Recovery Pump on LLLA to prevent dry running.",
+      "Implement an interlock to close FCV-2 on LLLA to conserve remaining liquid.",
+      "Implement strict administrative procedures for confirming the closure of the Drain Valve after use."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "More",
+    "causes": [
+      "High inlet flow: Upstream sour water flow surge from the REFINERY Unit.",
+      "Low or no outlet flow: FCV-2 fails closed; SW Feed Pump or Oil Recovery Pump trip or fail; blockage in the outlet lines.",
+      "Instrument or control failure: Level sensor 2 (High) fails; HLC fails to open FCV-2 as required.",
+      "Human factor: Operator manually closes FCV-2 or stops the SW Feed Pump or Oil Recovery Pump.",
+      "Ingress of an unexpected liquid, e.g., from a cross-connection."
+    ],
+    "consequences": [
+      "Overfilling of Surge Drum-1.",
+      "Liquid carryover to the vent pipe and TO-FLARE-SYSTEM, leading to potential damage to the flare system.",
+      "Uncontrolled release of hazardous liquid (sour water, HC-OIL, containing H2S and NH3) to the environment, causing contamination, fire hazard, and toxicity risks.",
+      "Overpressure in Surge Drum-1 if the vent line becomes liquid-blocked or is undersized, leading to potential rupture of the drum.",
+      "Process upset in downstream SW Storage due to uncontrolled slug flow or cessation of flow."
+    ],
+    "safeguards": [
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC (High Level Controller on Surge Drum-1), which controls FCV-2 to open and increase outflow.",
+      "Vent pipe to TO-FLARE-SYSTEM (can vent gas, but not effectively handle liquid overfill)."
+    ],
+    "recommendations": [
+      "Install a High-High Level Alarm (HHLA) on Surge Drum-1, independent of the HLC.",
+      "Implement an interlock to trip any upstream pump or close an upstream valve on HHLA to stop feed to the drum.",
+      "Install a Pressure Safety Valve (PSV) on Surge Drum-1, relieving to the TO-FLARE-SYSTEM, to protect against overpressure in case of liquid overfill blocking the vent."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "Less",
+    "causes": [
+      "High outlet flow: FCV-2 fails open, or SW Feed Pump/Oil Recovery Pump operate at excessive rates.",
+      "Low inlet flow: Reduced sour water feed from the REFINERY Unit or partial blockage in the inlet line.",
+      "Partial leak from Surge Drum-1 or associated piping.",
+      "Instrument or control failure: Level sensor 1 (Low) fails; LLC fails to slow or stop the Oil Recovery Pump as required.",
+      "Human factor: Operator leaves the Drain Valve partially open or manually opens FCV-2 excessively."
+    ],
+    "consequences": [
+      "SW Feed Pump and Oil Recovery Pump may cavitate due to insufficient suction head or start to run dry, leading to mechanical damage.",
+      "Downstream processes (SW Storage, SLOP-OIL-CRUDE-TANK-WWT) may receive intermittent or reduced feed, causing operational instability.",
+      "Air ingress into the drum and suction lines (less severe than 'No Level').",
+      "Loss of containment and environmental release if a leak is the cause."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC (Low Level Controller on Surge Drum-1), which controls the Oil Recovery Pump to maintain level."
+    ],
+    "recommendations": [
+      "Install a Low-Low Level Alarm (LLLA) on Surge Drum-1, independent of the LLC.",
+      "Implement an interlock to trip the SW Feed Pump and Oil Recovery Pump on LLLA to prevent severe cavitation or dry running.",
+      "Implement an interlock to close FCV-2 on LLLA to conserve liquid.",
+      "Implement leak detection measures (e.g., regular visual inspections, drip pans) if leaks are a known concern."
+    ]
+  },
+  {
+    "parameter": "Concentration",
+    "guideword": "More",
+    "causes": [
+      "Increased concentration of H2S, NH3, or HC-OIL in the sour water feed from the REFINERY Unit.",
+      "Ineffective separation of HC-OIL within Surge Drum-1, leading to its accumulation.",
+      "Failure of the Oil Recovery Pump or blockage in its discharge line, causing HC-OIL to build up in the drum.",
+      "Failure of FCV-2 to open adequately for sour water, leading to longer residence time and potential for further phase separation (could increase HC-OIL concentration in liquid phase if it's not removed quickly)."
+    ],
+    "consequences": [
+      "Increased toxicity and corrosivity of the drum contents.",
+      "Higher partial vapor pressure of H2S, NH3, and HC-OIL in the drum's vapor space, leading to higher drum pressure and increased release of hazardous vapors to the TO-FLARE-SYSTEM.",
+      "Increased flammability hazard within the drum and potential for fire/explosion, especially with higher HC-OIL concentration.",
+      "Contamination of downstream SW Storage with excessive HC-OIL or higher concentrations of H2S/NH3 if carryover occurs.",
+      "Increased health and safety risks for personnel during maintenance, sampling, or if leaks occur."
+    ],
+    "safeguards": [
+      "None explicitly listed for concentration monitoring or control within Surge Drum-1."
+    ],
+    "recommendations": [
+      "Install a continuous online analyzer for H2S/NH3 in the sour water inlet or outlet stream.",
+      "Install a density or interface level measurement device to monitor the HC-OIL layer thickness within Surge Drum-1.",
+      "Install hydrocarbon gas detectors in the vicinity of Surge Drum-1 and its vent to detect leaks or abnormal releases.",
+      "Develop specific operating procedures for managing high concentration sour water and HC-OIL."
+    ]
+  },
+  {
+    "parameter": "Concentration",
+    "guideword": "Less",
+    "causes": [
+      "Reduced concentration of H2S, NH3, or HC-OIL in the sour water feed from the REFINERY Unit (upstream process change).",
+      "More effective than expected separation of HC-OIL (generally not a hazard, but an operational deviation).",
+      "Dilution of drum contents by an unexpected, less concentrated fluid (e.g., water ingress, refer to 'Composition: As Well As')."
+    ],
+    "consequences": [
+      "Reduced immediate hazard from H2S, NH3, and HC-OIL, but indicates an upstream process anomaly.",
+      "Operational issue if HC-OIL recovery is a key objective (less oil to recover).",
+      "Downstream processes (e.g., Sour Water Stripper) may not operate optimally if feed composition deviates significantly from design, leading to inefficient stripping or off-spec products.",
+      "May lead to economic losses if product recovery or process efficiency is impacted."
+    ],
+    "safeguards": [
+      "None explicitly listed for concentration monitoring or control within Surge Drum-1."
+    ],
+    "recommendations": [
+      "Implement regular sampling and laboratory analysis of the incoming sour water feed.",
+      "Consider online analyzers for key components (H2S, NH3, HC-OIL) if deviations in lower concentrations significantly impact downstream operations or economics.",
+      "Develop procedures for handling off-spec feed compositions."
+    ]
+  },
+  {
+    "parameter": "Utility supply",
+    "guideword": "No/None",
+    "causes": [
+      "Electrical outage: loss of power to SW Feed Pump, Oil Recovery Pump, level sensors (Level sensor 1, Level sensor 2), LLC, HLC, and FCV-2 (if electrically actuated/controlled).",
+      "Instrument air failure: loss of instrument air supply to FCV-2 (if pneumatically actuated).",
+      "Manual shutdown of utilities."
+    ],
+    "consequences": [
+      "Pumps stop, leading to 'No Outlet Flow' from Surge Drum-1.",
+      "Loss of all level control and monitoring functions for Surge Drum-1.",
+      "FCV-2 will fail to its designed fail-safe position (e.g., fail closed, fail open, or fail as-is), leading to uncontrolled liquid flow to SW Storage.",
+      "Overfilling of Surge Drum-1 if inlet flow continues without adequate outlet.",
+      "Damage to pumps and Surge Drum-1 due to loss of control.",
+      "Release of hazardous materials (H2S, NH3, HC-OIL) via the vent pipe due to overfilling, posing toxicity and flammability risks."
+    ],
+    "safeguards": [
+      "None explicitly stated as standalone utility failure safeguards, though the presence of control loops implies reliance on utilities."
+    ],
+    "recommendations": [
+      "Install Uninterruptible Power Supply (UPS) for critical instrumentation (level sensors, LLC, HLC, and FCV-2 if electric/electronic).",
+      "Provide a redundant instrument air supply or an instrument air receiver for FCV-2 to allow for controlled shutdown on air failure.",
+      "Ensure FCV-2 has a well-defined fail-safe position (e.g., fail-open to prevent overfilling) on loss of power/instrument air.",
+      "Install alarms for utility failures (e.g., low instrument air pressure alarm, power failure alarm for control panels)."
+    ]
+  },
+  {
+    "parameter": "Utility supply",
+    "guideword": "More",
+    "causes": [
+      "Voltage surge or overcurrent in the electrical supply to the SW Feed Pump, Oil Recovery Pump, or associated instrumentation and control systems.",
+      "High instrument air pressure due to regulator failure or upstream surge, affecting the FCV-2 actuator."
+    ],
+    "consequences": [
+      "Damage to pump motors (overheating, winding failure) and electrical components of instruments/controllers.",
+      "Damage to FCV-2 actuator, potentially forcing it into an incorrect position (e.g., fully open or closed), leading to uncontrolled level.",
+      "Process disruption and potential safety hazards from uncontrolled flows."
+    ],
+    "safeguards": [
+      "None explicitly stated for utility oversupply conditions."
+    ],
+    "recommendations": [
+      "Install voltage regulators and surge protectors for critical electrical equipment.",
+      "Install pressure relief valves or redundant pressure regulators on the instrument air supply line to prevent overpressurization of actuators.",
+      "Implement overcurrent protection devices (e.g., circuit breakers) for pump motors."
+    ]
+  },
+  {
+    "parameter": "Utility supply",
+    "guideword": "Less",
+    "causes": [
+      "Voltage drop or undercurrent in the electrical supply to the SW Feed Pump, Oil Recovery Pump, or associated instrumentation and control systems.",
+      "Low instrument air pressure due to compressor failure, leak, or upstream demand, affecting the FCV-2 actuator."
+    ],
+    "consequences": [
+      "SW Feed Pump and Oil Recovery Pump operate inefficiently, leading to reduced flow, or may trip, causing 'No Outlet Flow'.",
+      "Instruments and controllers may malfunction or provide inaccurate readings.",
+      "FCV-2 may become sluggish or fail to its fail-safe position (e.g., partially closed or open), leading to uncontrolled level.",
+      "Process upset and potential safety hazards from reduced control and monitoring."
+    ],
+    "safeguards": [
+      "None explicitly stated for utility undersupply conditions."
+    ],
+    "recommendations": [
+      "Implement voltage monitoring and alarms for critical electrical supplies.",
+      "Install a low instrument air pressure alarm for early detection of air supply issues.",
+      "Implement undervoltage protection for pump motors.",
+      "Regular maintenance and leak checks on instrument air systems."
+    ]
+  },
+  {
+    "parameter": "Phase",
+    "guideword": "Otherthan",
+    "causes": [
+      "Temperature excursion: increased temperature leading to excessive vaporization of sour water or HC-OIL (more vapor, less liquid); decreased temperature leading to condensation of vapor (more liquid, less vapor) or potential freezing/solidification of components (unlikely for sour water under normal conditions).",
+      "Pressure excursion: decreased pressure leading to flash vaporization; increased pressure leading to condensation.",
+      "Inlet composition change: feed from REFINERY Unit contains unexpected solids or an additional immiscible liquid phase (e.g., a heavier hydrocarbon fraction).",
+      "Loss of separation: Emulsification of HC-OIL and sour water due to high turbulence, presence of emulsifying agents, or process upset preventing proper phase separation."
+    ],
+    "consequences": [
+      "Excessive vapor phase: leads to high pressure, liquid carryover to the vent/flare system, and potential pump cavitation.",
+      "Excessive liquid phase: leads to overfilling, liquid carryover to vent/flare, high level trips, and potential overpressure.",
+      "Presence of solids: causes blockages in lines, pumps, and instruments, leading to equipment damage and flow restrictions.",
+      "Emulsion formation: results in poor separation of HC-OIL, off-spec products, and fouling of downstream equipment.",
+      "Equipment damage due to thermal shock or stress if rapid phase changes occur."
+    ],
+    "safeguards": [
+      "Level sensor 1 (Low Level Sensor on Surge Drum-1) connected to LLC.",
+      "Level sensor 2 (High Level Sensor on Surge Drum-1) connected to HLC.",
+      "Vent pipe to TO-FLARE-SYSTEM."
+    ],
+    "recommendations": [
+      "Install Temperature Indicator/Transmitter (TI/TT) and Pressure Indicator/Transmitter (PI/PT) on Surge Drum-1 with associated alarms.",
+      "Implement interface level detection if the presence of a new or persistent immiscible liquid phase (e.g., emulsion) becomes a critical concern.",
+      "Include visual inspection during maintenance and consider sampling ports for phase analysis.",
+      "Review operating conditions and feed quality to prevent conditions leading to unexpected phases or emulsions."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "As Well As",
+    "causes": [
+      "Contamination from the upstream REFINERY Unit due to process upset, improper draining/flushing, or accidental cross-connection introducing unexpected chemicals (e.g., strong acids/bases, other hydrocarbon fractions, solids).",
+      "Maintenance error: incorrect chemical addition during cleaning, or foreign objects (e.g., tools, rags) left inside the drum or lines.",
+      "Accidental cross-connection with utility lines (e.g., steam, cooling water, inert gas) or other process streams not intended for the Surge Drum-1.",
+      "Failure of heat exchanger tube if Surge Drum-1 had one (not explicitly mentioned, but a general cause for 'as well as')."
+    ],
+    "consequences": [
+      "Uncontrolled chemical reactions with existing components (H2S, NH3, HC-OIL, sour water) leading to heat generation, pressure surge, corrosion, or formation of new hazardous compounds.",
+      "Corrosion or damage to Surge Drum-1, piping, and pumps due to incompatible materials.",
+      "Fouling of equipment, precipitation of solids, or emulsion formation, impacting separation efficiency.",
+      "Poisoning of downstream catalysts in the Sour Water Stripper.",
+      "Release of highly toxic or flammable substances (if new compounds are formed or existing hazards are exacerbated).",
+      "Severe process upset and potential for unplanned shutdown."
+    ],
+    "safeguards": [
+      "None explicitly listed for detecting or controlling the presence of additional components."
+    ],
+    "recommendations": [
+      "Implement strict material compatibility checks during design and for any new chemical introduction.",
+      "Establish robust isolation procedures (e.g., Lock Out/Tag Out) and line-breaking permits for maintenance activities.",
+      "Install sampling points for regular or upset condition analysis of the drum contents.",
+      "Consider process interlocks to prevent cross-contamination if accidental connections are a high risk.",
+      "Conduct hazard reviews for any changes to upstream processes that might alter feed composition."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "Otherthan",
+    "causes": [
+      "Significant changes in the REFINERY Unit's sour water feed composition (e.g., very low H2S/NH3 content, unexpectedly high water content, absence of HC-OIL).",
+      "Upstream feed stream being mistakenly diverted or not supplied as expected.",
+      "Failure of the primary separation mechanism within the drum itself, leading to an altered internal composition distribution (e.g., more water in oil layer, more oil in water layer)."
+    ],
+    "consequences": [
+      "Downstream processes (e.g., Sour Water Stripper) may not operate efficiently or may be upset if the feed composition deviates significantly from design specifications.",
+      "Production of off-spec treated water with higher than expected impurities, potentially exceeding environmental discharge limits from the WATER-TREATMENT unit.",
+      "Loss of HC-OIL recovery if the oil content is significantly lower than expected.",
+      "Potential for unexpected operational issues if the physical properties of the fluid change significantly (e.g., density, viscosity, boiling point).",
+      "Economic impact due to reduced efficiency, off-spec products, or operational adjustments."
+    ],
+    "safeguards": [
+      "None explicitly listed for monitoring or controlling 'other than' composition."
+    ],
+    "recommendations": [
+      "Implement regular sampling and laboratory analysis of the incoming sour water feed from the REFINERY Unit.",
+      "Consider online analyzers for key components (H2S, NH3, HC-OIL) if deviations in lower concentrations significantly impact downstream operations or safety.",
+      "Develop operating procedures for managing off-spec feed compositions, including possible diversion or temporary storage."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "More",
+    "causes": [
+      "Hotter sour water feed from the REFINERY Unit due to upstream process upset.",
+      "External heat input, such as an external fire impinging on Surge Drum-1.",
+      "Exothermic reaction occurring within the drum due to contamination ('Composition: As Well As' deviation).",
+      "Failure of any cooling system for the drum (though none explicitly specified for Surge Drum-1).",
+      "Failure of temperature control for steam tracing (if present, not specified)."
+    ],
+    "consequences": [
+      "Increased vaporization rate of drum contents (sour water, HC-OIL, H2S, NH3), leading to higher vapor pressure and potential overpressure/rupture if the vent system is inadequate or blocked.",
+      "Increased release of hazardous vapors (H2S, NH3, HC-OIL) to the TO-FLARE-SYSTEM.",
+      "Material degradation or damage to internal coatings or elastomers of Surge Drum-1.",
+      "Reduced density difference between water and oil, potentially leading to poorer separation efficiency for HC-OIL.",
+      "Increased fire/explosion risk, especially with higher HC-OIL vapor concentrations.",
+      "Increased exposure to toxic vapors (H2S, NH3) for personnel if leaks occur."
+    ],
+    "safeguards": [
+      "Vent pipe to TO-FLARE-SYSTEM (can relieve pressure from increased vaporization)."
+    ],
+    "recommendations": [
+      "Install Temperature Indicator/Transmitter (TI/TT) on Surge Drum-1 with a High Temperature Alarm (THA).",
+      "Implement an interlock to trip or divert upstream hot feed to Surge Drum-1 on THA.",
+      "Ensure the Pressure Safety Valve (PSV) (recommended previously) and vent system capacity are adequate to handle vapor loads from elevated temperatures."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "Less",
+    "causes": [
+      "Colder sour water feed from the REFINERY Unit due to upstream process upset or change.",
+      "Extremely cold ambient weather conditions, especially if Surge Drum-1 is not insulated.",
+      "Failure of any heating system (e.g., steam tracing) if present and necessary for Surge Drum-1 (not specified).",
+      "Ingress of an unexpectedly cold fluid (e.g., cooling water from a cross-connection, refer to 'Composition: As Well As')."
+    ],
+    "consequences": [
+      "Increased viscosity of liquid contents, leading to poorer flow, pump cavitation, and reduced separation efficiency for HC-OIL.",
+      "Potential for solidification or freezing of components within Surge Drum-1 or its lines (unlikely for sour water under typical conditions, but depends on specific composition and ambient temperature), causing blockages and equipment damage.",
+      "Material embrittlement of carbon steel drum at very low temperatures, increasing risk of brittle fracture.",
+      "Lower vapor pressure, potentially leading to vacuum conditions if outlet flow exceeds vapor generation rate.",
+      "Process upset due to altered fluid properties and flow characteristics."
+    ],
+    "safeguards": [
+      "None explicitly stated for low temperature conditions."
+    ],
+    "recommendations": [
+      "Install Temperature Indicator/Transmitter (TI/TT) on Surge Drum-1 with a Low Temperature Alarm (TLA).",
+      "Consider insulation for Surge Drum-1 if operating in cold climates or near freezing points of contents.",
+      "Implement heating (e.g., steam tracing) for Surge Drum-1 and associated lines if ambient conditions or fluid properties necessitate it to prevent freezing or high viscosity."
+    ]
+  }
+]

@@ -1,476 +1,987 @@
 [
   {
-    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet ; Reflux line)",
     "guideword": "No",
     "causes": [
-      "Failure of Stripper Feed Pump.",
-      "Blockage in the sour water feed line (FCV-2, FCV-3).",
-      "Complete failure of FCV-4 (Reflux control valve)."
+      "No flow of Sour Water Feed: FCV-3 (on sour water feed line) fails closed, Stripper feed Pump failure, blockage in sour water feed line, upstream SW Storage tank empty, operator error (FCV-3 manually closed, pump stopped), trip interlock on 'Stripper feed Pump'.",
+      "No flow of Steam: FCV-5 fails closed, steam supply failure from 'STEAM-IN', blockage in steam line, operator error (FCV-5 manually closed, steam supply isolated), FC-2 (Flow Controller for steam pipe) failure.",
+      "No flow of Reflux: FCV-4 fails closed, Reflux Pump failure, blockage in reflux line, SWS OVHD Accumulator empty, operator error (FCV-4 manually closed, pump stopped), LC-1 (Level Controller for SWS OVHD Accumulator) failure.",
+      "No flow of Overhead Vapours: Blockage in SWS Overhead pipe, blockage in Stripper OVHD Condenser, loss of vacuum/pressure relief in downstream system.",
+      "No flow of Bottoms Treated Water: FCV-6 fails closed, Bottoms Pump failure, blockage in water pipe, downstream WATER-TREATMENT unit blockage/trip, operator error (FCV-6 manually closed, pump stopped), LC-2 (Level Controller for Sour Water Stripper) failure, trip interlock on 'Bottoms Pump'."
     ],
     "consequences": [
-      "No sour water entering the stripper, leading to a shutdown of the process.",
-      "Build-up of H2S and NH3 in the sour water, potentially leading to corrosion and increased emissions.",
-      "Equipment damage due to lack of reflux and potential dryout of packing/trays."
+      "Loss of column feed/stripping medium/reflux/product.",
+      "Overheating of column internals due to dry operation (no feed, no bottoms).",
+      "Poor separation, off-specification treated water (high H2S/NH3) or acid gas.",
+      "Accumulation of liquid and high level in the column, leading to flooding and liquid carryover to overhead.",
+      "Pressure build-up in the column, leading to PRV-2 activation or mechanical failure.",
+      "Damage to pumps (Stripper feed Pump, Reflux Pump, Bottoms Pump) if run dry or against closed discharge.",
+      "HSE impact: Potential release of toxic and flammable H2S/NH3 if PRV-2 lifts."
     ],
     "safeguards": [
-      "Level sensor 4 (monitors stripper level but does not directly prevent flow cessation)."
+      "FCV-3 (Flow Control Valve on sour water feed line).",
+      "Flow sensor 1 (on sour water feed pipe) and FC-1 (Flow Controller for SW feed pipe) for feed control.",
+      "FCV-5 (Flow Control Valve on steam pipe 2) and FC-2 (Flow Controller for steam pipe) for steam control.",
+      "FCV-4 (Flow Control Valve on reflux pipe 3) and LC-1 (Level Controller for SWS OVHD Accumulator) for reflux control.",
+      "FCV-6 (Flow Control Valve on water pipe 3) and LC-2 (Level Controller for Sour Water Stripper) for bottoms control.",
+      "Level sensor 4 (on Sour Water Stripper) to monitor column level.",
+      "PRV-2 (Pressure Relief Valve on Sour water stripper) for overpressure protection.",
+      "NRV-5 (Non-Return Valve on SW feed pipe 2) to prevent reverse flow of feed.",
+      "NRV-6 (Non-Return Valve on Reflux pipe 2) to prevent reverse flow of reflux.",
+      "NRV-7 (Non-Return Valve on Water pipe 2) to prevent reverse flow of bottoms.",
+      "Trip interlock on 'Stripper feed Pump'.",
+      "Trip interlock on 'Bottoms Pump'."
     ],
     "recommendations": [
-      "Implement low flow alarm on the sour water feed line.",
-      "Install a backup pump for the Stripper Feed Pump.",
-      "Include a high H2S concentration alarm in the sour water feed line.",
-      "Regular inspection and maintenance of the pumps and valves."
+      "Low flow alarm on sour water feed line (Flow sensor 1).",
+      "Low flow alarm on steam line.",
+      "Low flow alarm on reflux line.",
+      "High pressure alarm on Sour Water Stripper.",
+      "High/low level alarms on Level sensor 4 for Sour Water Stripper.",
+      "Low-low level trip on Level sensor 4 to shut off steam (FCV-5) and Bottoms Pump, and/or sour water feed (FCV-3 or Stripper feed Pump)."
     ]
   },
   {
-    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet ; Reflux line)",
     "guideword": "Less",
     "causes": [
-      "Partial failure of Stripper Feed Pump.",
-      "Partial blockage in the sour water feed line.",
-      "Malfunction of FCV-2 or FCV-3 (partially closed).",
-      "Reduced steam flow (FCV-5 malfunction)."
+      "Less flow of Sour Water Feed: FCV-3 throttles too much or partially fails closed, reduced Stripper feed Pump capacity, partial blockage in feed line, reduced sour water availability from SW Storage, operator error, FC-1 malfunction.",
+      "Less flow of Steam: FCV-5 throttles too much or partially fails closed, reduced steam supply pressure, partial blockage in steam line, operator error, FC-2 malfunction.",
+      "Less flow of Reflux: FCV-4 throttles too much or partially fails closed, reduced Reflux Pump capacity, partial blockage in reflux line, lower liquid level in SWS OVHD Accumulator, operator error, LC-1 malfunction.",
+      "Less flow of Overhead Vapours: Partial blockage in SWS Overhead pipe or Stripper OVHD Condenser, reduced heat input (steam flow), reduced sour water feed flow.",
+      "Less flow of Bottoms Treated Water: FCV-6 throttles too much or partially fails closed, reduced Bottoms Pump capacity, partial blockage in water pipe, operator error, LC-2 malfunction."
     ],
     "consequences": [
-      "Reduced stripping efficiency, resulting in higher H2S and NH3 concentrations in the treated water.",
-      "Increased risk of corrosion in the downstream equipment.",
-      "Potential exceedance of emission limits for H2S and NH3.",
-      "Increased energy consumption due to sub-optimal operation."
+      "Reduced stripping capacity/efficiency, leading to higher H2S/NH3 in treated water (bottoms) or acid gas.",
+      "Off-specification treated water to WATER-TREATMENT.",
+      "Lower column temperature (less steam).",
+      "Increased liquid level in the column (less bottoms flow, less vaporization).",
+      "Lower liquid level in the column (less feed, more bottoms).",
+      "Potential for column flooding (less overhead flow, less bottoms flow).",
+      "Reduced overall throughput of the unit."
     ],
     "safeguards": [
-      "Level sensor 4 (partially detects reduced throughput)."
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "FCV-5, FC-2 for steam control (ratio control to feed).",
+      "FCV-4, Level sensor 3, LC-1 for reflux control.",
+      "FCV-6, Level sensor 4, LC-2 for bottoms control.",
+      "PRV-2 for pressure protection (if overhead flow restriction causes pressure increase).",
+      "Trip interlock on 'Bottoms Pump'."
     ],
     "recommendations": [
-      "Implement low flow alarms on the sour water feed and steam lines.",
-      "Install flow meters on the sour water feed and steam lines for continuous monitoring.",
-      "Improve maintenance procedures to reduce blockages and improve valve operation."
+      "Low flow alarm on sour water feed line (Flow sensor 1).",
+      "Low flow alarm on steam line.",
+      "Low flow alarm on reflux line.",
+      "High/low level alarms on Level sensor 4 for Sour Water Stripper.",
+      "Analyzer on treated water (bottoms) for H2S/NH3 concentration.",
+      "Analyzer on overhead vapor for H2S/NH3 concentration (if not existing)."
     ]
   },
   {
-    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet ; Reflux line)",
     "guideword": "More",
     "causes": [
-      "Failure of the level control loop on the Sour Water Stripper (LC-2).",
-      "Failure of the flow control valve FCV-2 or FCV-3 (fully open).",
-      "Malfunction of the Stripper Feed Pump (excessive flow).",
-      "Unexpected high flow from upstream"
+      "More flow of Sour Water Feed: FCV-3 fails open or opens too much, Stripper feed Pump over-speed/oversized, FC-1 malfunction, operator error, incorrect setpoint on FC-1.",
+      "More flow of Steam: FCV-5 fails open or opens too much, increased steam supply pressure, FC-2 malfunction, operator error, incorrect setpoint on FC-2.",
+      "More flow of Reflux: FCV-4 fails open or opens too much, Reflux Pump over-speed/oversized, LC-1 malfunction, operator error, incorrect setpoint on LC-1.",
+      "More flow of Overhead Vapours: Excessive steam flow, higher sour water feed temperature, inlet of lighter components in sour water, Stripper OVHD Condenser tube rupture or cooling failure.",
+      "More flow of Bottoms Treated Water: FCV-6 fails open or opens too much, Bottoms Pump over-speed/oversized, LC-2 malfunction, operator error, incorrect setpoint on LC-2."
     ],
     "consequences": [
-      "Flooding of the Sour Water Stripper, leading to reduced efficiency and carryover of H2S and NH3 into the treated water.",
-      "Potential overflow of the Sour Water Stripper sump.",
-      "Increased load on the Bottoms Pump.",
-      "Increased risk of emissions."
+      "Overloading of the column, potential for flooding, and liquid carryover to overhead.",
+      "Reduced residence time for stripping, leading to poor H2S/NH3 removal and off-spec products.",
+      "Higher pressure in the column (excess steam, overhead overload).",
+      "Increased liquid level in the column (excess feed, excess reflux).",
+      "Low liquid level in the column, exposing reboiler tubes (if present) or damaging packing/trays (excess bottoms flow).",
+      "Overloading of downstream Stripper OVHD Condenser and SWS OVHD Accumulator (excess overhead vapor).",
+      "HSE impact: Potential release of toxic/flammable H2S/NH3 if PRV-2 lifts due to overpressure, environmental contamination.",
+      "Increased utility consumption (excess steam)."
     ],
     "safeguards": [
-      "Level sensor 4 (initiates alarm on high level).",
-      "PRV-2 (pressure relief valve)"
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "FCV-5, FC-2 for steam control.",
+      "FCV-4, Level sensor 3, LC-1 for reflux control.",
+      "FCV-6, Level sensor 4, LC-2 for bottoms control.",
+      "PRV-2 for overpressure protection.",
+      "Temperature sensor 2 (on overhead stream).",
+      "Trip interlock on 'Bottoms Pump'."
     ],
     "recommendations": [
-      "Implement high flow alarms and shutdown on the sour water feed line.",
-      "Improve the level control loop on the Sour Water Stripper, adding a high level alarm with automatic shutdown and possibly interlocks.",
-      "Verify upstream process control mechanisms."
+      "High flow alarm on sour water feed line (Flow sensor 1).",
+      "High flow alarm on steam line.",
+      "High flow alarm on reflux line.",
+      "High/low level alarms on Level sensor 4 for Sour Water Stripper.",
+      "High pressure alarm on Sour Water Stripper.",
+      "Low-low level trip on Level sensor 4 to shut off steam (FCV-5) and Bottoms Pump, and/or feed (FCV-3 or Stripper feed Pump).",
+      "High-high level trip on Level sensor 4 to shut down sour water feed (FCV-3 or Stripper feed Pump) and/or steam (FCV-5)."
     ]
   },
   {
-    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet ; Reflux line)",
     "guideword": "Reverse",
     "causes": [
-      "Failure of a check valve (if present, although not explicitly mentioned in the documentation).",
-      "Incorrect piping configuration."
+      "Reverse flow of Sour Water Feed: Stripper feed Pump stops, higher pressure in SW Storage than in stripper feed line, failure of NRV-5 (on SW feed pipe 2).",
+      "Reverse flow of Steam: Sudden drop in steam header pressure, higher pressure in stripper than in steam supply line, failure of check valve in steam line (not explicitly mentioned).",
+      "Reverse flow of Reflux: Reflux Pump stops, higher pressure in SWS OVHD Accumulator than in reflux line, failure of NRV-6 (on Reflux pipe 2).",
+      "Reverse flow of Overhead Vapours: Sudden pressure drop in stripper, higher pressure in downstream Stripper OVHD Condenser/SWS OVHD Accumulator, back-pressure from ACID-GAS-TO-S-PLANT-EX.",
+      "Reverse flow of Bottoms Treated Water: Bottoms Pump stops, higher pressure in downstream WATER-TREATMENT unit, failure of NRV-7 (on Water pipe 2)."
     ],
     "consequences": [
-      "Contamination of the sour water feed with treated water.",
-      "Reduced stripping efficiency.",
-      "Potential equipment damage."
-    ],
-    "safeguards": [],
-    "recommendations": [
-      "Verify piping and valve configurations.  If reverse flow is a possibility, add check valves on all relevant lines.",
-      "Regular inspection of all valves"
-    ]
-  },
-  {
-    "parameter": "Flow (Liquid/gas ; Inlet& Outlet ; Reflux line)",
-    "guideword": "As Well As",
-    "causes": [
-      "Leak in the sour water feed line causing mixing with another stream.",
-      "Unexpected stream interaction due to faulty valve operation.",
-      "Unintended opening of a normally closed valve."
-    ],
-    "consequences": [
-      "Contamination of the sour water feed with other streams.",
-      "Reduced stripping efficiency.",
-      "Potential equipment damage due to incompatibility.",
-      "Release of hazardous materials."
-    ],
-    "safeguards": [],
-    "recommendations": [
-      "Implement leak detection systems on all lines.",
-      "Regular inspection and testing of valves to ensure proper operation.",
-      "Improve design to minimize chances of unintended interactions of streams."
-    ]
-  },
-  {
-    "parameter": "Temperature",
-    "guideword": "More",
-    "causes": [
-      "Increased steam flow (FCV-5 malfunction or higher demand).",
-      "Malfunction in the Stripper OVHD Condenser (reduced cooling).",
-      "Blockage in the condenser cooling water line."
-    ],
-    "consequences": [
-      "Increased risk of thermal stress on the equipment.",
-      "Potential damage to the column packing/trays.",
-      "Increased energy consumption."
-    ],
-    "safeguards": [],
-    "recommendations": [
-      "Implement high-temperature alarms on the stripper.",
-      "Install a temperature control loop on the steam inlet.",
-      "Regular maintenance of the condenser."
-    ]
-  },
-  {
-    "parameter": "Temperature",
-    "guideword": "Less",
-    "causes": [
-      "Reduced steam flow (FCV-5 malfunction or lower supply).",
-      "Malfunction of the Stripper OVHD Condenser (over-cooling).",
-      "Leak in the steam line."
-    ],
-    "consequences": [
-      "Reduced stripping efficiency.",
-      "Higher H2S and NH3 concentrations in the treated water.",
-      "Potential freezing in cold climates."
-    ],
-    "safeguards": [],
-    "recommendations": [
-      "Implement low-temperature alarms on the stripper.",
-      "Improve insulation of the stripper and its associated piping.",
-      "Implement leak detection system on the steam line."
-    ]
-  },
-  {
-    "parameter": "Pressure",
-    "guideword": "More",
-    "causes": [
-      "Blockage in the overhead vent line.",
-      "Malfunction of PRV-2 (pressure relief valve)."
-    ],
-    "consequences": [
-      "Potential rupture of the Sour Water Stripper.",
-      "Release of H2S and NH3 to the atmosphere.",
-      "Significant safety hazard."
+      "Contamination of upstream systems with stripper contents (H2S/NH3 rich sour water/vapors).",
+      "Loss of feed/steam/reflux/bottoms flow.",
+      "Process upset, poor separation efficiency.",
+      "Corrosion in upstream steam system, contamination of steam header.",
+      "Liquid slugging or flooding in the column top (reverse overhead flow).",
+      "Increased liquid level in the column (reverse bottoms flow).",
+      "Damage to column internals or pumps.",
+      "HSE impact: Release of toxic H2S/NH3 to unintended areas."
     ],
     "safeguards": [
-      "PRV-2 (pressure relief valve)"
+      "NRV-5 (Non-Return Valve on SW feed pipe 2).",
+      "NRV-6 (Non-Return Valve on Reflux pipe 2).",
+      "NRV-7 (Non-Return Valve on Water pipe 2).",
+      "FCV-5 (Flow Control Valve on Steam pipe 2) acts as a block.",
+      "Flow sensor 1 (on sour water feed pipe).",
+      "Level sensor 4 (on Sour Water Stripper).",
+      "Trip interlock on 'Stripper feed Pump'.",
+      "Trip interlock on 'Bottoms Pump'."
     ],
     "recommendations": [
-      "Regular inspection and testing of the PRV.",
-      "Implement high-pressure alarms and shutdown."
+      "Reverse flow alarm on sour water feed line.",
+      "Check valve on steam inlet line (if not present).",
+      "Reverse flow alarm on steam line.",
+      "Reverse flow alarm on reflux line.",
+      "Check valve on overhead vapor line (if not present).",
+      "Reverse flow alarm on bottoms line.",
+      "Low pressure alarm on Sour Water Stripper (if sudden pressure drop causes reverse flow)."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet ; Reflux line)",
+    "guideword": "As Well As",
+    "causes": [
+      "As Well As in Sour Water Feed: Contamination from upstream (e.g., HC-OIL bypasses skimming, non-condensable gases, solids, chlorides), wrong line opened by operator.",
+      "As Well As in Steam: Contaminants in steam supply (e.g., boiler feed water chemicals, dissolved solids, air, excessive condensate).",
+      "As Well As in Reflux: Contamination from SWS OVHD Accumulator (e.g., carryover, dissolved non-condensables).",
+      "As Well As in Overhead Vapours: Liquid carryover from stripper (due to flooding, high level, foaming), entrained solids/fouling from stripper.",
+      "As Well As in Bottoms Treated Water: Carryover of unstripped H2S/NH3 (poor separation), foaming, carryover of suspended solids/HC-OIL from feed."
+    ],
+    "consequences": [
+      "Introduction of unwanted components, leading to fouling, corrosion, or foaming in the column.",
+      "Reduced stripping efficiency and off-specification products (treated water, acid gas).",
+      "Damage to column internals or downstream equipment (e.g., Stripper OVHD Condenser, SWS OVHD Accumulator) due to corrosion, erosion, or slugging.",
+      "Contamination of downstream units (WATER-TREATMENT, ACID-GAS-TO-S-PLANT-EX).",
+      "HSE impact: Potential release of toxic H2S/NH3, fire/explosion risk (hydrocarbons), environmental contamination.",
+      "Water hammering (wet steam).",
+      "Overloading of downstream units."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (on sour water feed pipe).",
+      "Level sensor 4 (on Sour Water Stripper).",
+      "Level sensor 3 (on SWS OVHD Accumulator).",
+      "Temperature sensor 2 (on overhead stream to condenser).",
+      "PRV-2 (if overpressure results from non-condensables or blockages)."
+    ],
+    "recommendations": [
+      "Analyzer on sour water feed for hydrocarbons, solids, or other contaminants.",
+      "Online foam detection in stripper.",
+      "Quality control/monitoring on steam supply.",
+      "Mist eliminator in column overhead.",
+      "Analyzer on bottoms product for H2S/NH3, suspended solids, or hydrocarbons.",
+      "High-high level trip on Level sensor 4 to prevent liquid carryover."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "More",
+    "causes": [
+      "Excessive steam flow (FCV-5 fails open, FC-2 malfunction, operator error).",
+      "Higher steam temperature/pressure.",
+      "Loss of sour water feed or low sour water feed flow (less mass to absorb heat).",
+      "Loss of reflux flow (less cooling in top section).",
+      "Introduction of hot extraneous material (e.g., hot quench fluid - if present, not explicitly mentioned).",
+      "Exothermic reaction (unlikely for normal operation but possible with unusual contaminants)."
+    ],
+    "consequences": [
+      "Increased pressure in the column, leading to PRV-2 activation or mechanical failure.",
+      "Accelerated corrosion of column internals (especially with H2S/NH3).",
+      "Vaporization of normally liquid components, leading to flooding or carryover.",
+      "Damage to heat-sensitive materials (e.g., packing).",
+      "Overloading of downstream Stripper OVHD Condenser and SWS OVHD Accumulator.",
+      "HSE impact: Increased H2S/NH3 emissions if PRV-2 lifts, safety hazard for personnel (thermal burns, toxic gas)."
+    ],
+    "safeguards": [
+      "FCV-5, FC-2 for steam control.",
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "FCV-4, Level sensor 3, LC-1 for reflux control.",
+      "PRV-2 (Pressure Relief Valve on Sour water stripper).",
+      "Temperature sensor 2 (on overhead stream, indicates column top temperature)."
+    ],
+    "recommendations": [
+      "High temperature alarm on Sour Water Stripper (e.g., near steam inlet/bottom).",
+      "High temperature trip to cut off steam (FCV-5) and/or reduce feed (FCV-3).",
+      "High pressure alarm on Sour Water Stripper."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "Less",
+    "causes": [
+      "Reduced steam flow (FCV-5 fails closed, FC-2 malfunction, operator error).",
+      "Lower steam temperature/pressure.",
+      "Excessive sour water feed flow (too much cold liquid).",
+      "Excessive reflux flow (too much cold liquid in top section).",
+      "Stripper OVHD Condenser over-cooling (leading to colder feed, less pre-heat, not directly for column but affects feed temp)."
+    ],
+    "consequences": [
+      "Reduced stripping efficiency, leading to higher H2S/NH3 in bottoms product and off-specification treated water.",
+      "Increased liquid level in the column (less vaporization).",
+      "Potential for condensation of steam, leading to water hammer.",
+      "Increased viscosity of sour water, affecting tray performance.",
+      "Potential for hydrate formation or freezing if extremely cold feed and high H2S concentration (unlikely but possible)."
+    ],
+    "safeguards": [
+      "FCV-5, FC-2 for steam control.",
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "FCV-4, Level sensor 3, LC-1 for reflux control.",
+      "Temperature sensor 2 (on overhead stream)."
+    ],
+    "recommendations": [
+      "Low temperature alarm on Sour Water Stripper.",
+      "Low temperature trip to increase steam flow (FCV-5) or reduce feed flow (FCV-3)."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "More",
+    "causes": [
+      "Excessive steam flow (FCV-5 fails open, FC-2 malfunction, operator error).",
+      "Blockage in the overhead vapor line (SWS Overhead pipe, Stripper OVHD Condenser, acid gas pipe).",
+      "Downstream pressure surge from ACID-GAS-TO-S-PLANT-EX.",
+      "Loss of cooling in Stripper OVHD Condenser (reduces condensation, more vapor load).",
+      "Inlet of highly volatile/non-condensable components in sour water feed.",
+      "Operator error (e.g., closing block valves in overhead line)."
+    ],
+    "consequences": [
+      "Activation of PRV-2, leading to release of H2S/NH3 (toxic, flammable) and environmental contamination.",
+      "If PRV-2 fails, overpressure and mechanical failure of the column.",
+      "Reduced stripping efficiency (higher partial pressure of H2S/NH3).",
+      "Column flooding.",
+      "Damage to column internals.",
+      "HSE impact: Toxic gas release, fire/explosion risk, environmental contamination."
+    ],
+    "safeguards": [
+      "PRV-2 (Pressure Relief Valve on Sour water stripper).",
+      "FCV-5, FC-2 for steam control.",
+      "Temperature sensor 2 (if overhead temperature increases due to pressure)."
+    ],
+    "recommendations": [
+      "High pressure alarm on Sour Water Stripper.",
+      "High-high pressure trip to shut off steam (FCV-5) and/or sour water feed (FCV-3 or Stripper feed Pump), and/or activate emergency shutdown."
     ]
   },
   {
     "parameter": "Pressure",
     "guideword": "Less",
     "causes": [
-      "Leak in the Sour Water Stripper.",
-      "Vacuum condition in the stripper."
+      "Loss of steam flow (FCV-5 fails closed, FC-2 malfunction, operator error).",
+      "Rupture or leak in the column or associated piping.",
+      "Loss of sour water feed (less vaporization).",
+      "Malfunction of overhead control (if a valve existed to control overhead pressure, none explicitly mentioned)."
     ],
     "consequences": [
-      "Reduced stripping efficiency.",
-      "Potential ingress of air, compromising the integrity of the stripping process.",
-      "Equipment damage due to vacuum conditions."
+      "Reduced stripping efficiency due to lower operating temperature (boiling point depression).",
+      "Flash vaporization if pressure drops too quickly.",
+      "Air ingress into the column (if below atmospheric pressure), leading to potential explosive mixture if hydrocarbons are present.",
+      "Column damage due to external pressure (implosion) if significant vacuum is created.",
+      "Process upset."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "FCV-5, FC-2 for steam control.",
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "Temperature sensor 2 (on overhead stream)."
+    ],
     "recommendations": [
-      "Implement low-pressure alarms and shutdown.",
-      "Regular inspection for leaks."
+      "Low pressure alarm on Sour Water Stripper.",
+      "Vacuum relief valve (if risk of implosion exists)."
     ]
   },
   {
     "parameter": "Level",
     "guideword": "No/None",
     "causes": [
-      "Failure of Level Sensor 4.",
-      "Instrumentation error."
+      "Loss of sour water feed (No Flow of sour water feed).",
+      "Excessive bottoms flow (More Flow of bottoms treated water).",
+      "Excessive vaporization (More Flow of steam, More Temperature).",
+      "LC-2 (Level Controller for Sour Water Stripper) malfunction, sending open signal to FCV-6.",
+      "FCV-6 fails open or stuck open.",
+      "Operator error (FCV-6 manually opened too much, feed stopped).",
+      "Bottoms Pump running dry/cavitation."
     ],
     "consequences": [
-      "Loss of level indication.",
-      "Potential for overfilling or running dry of the stripper."
+      "Exposure of column internals (trays/packing) to dry running and overheating from steam, leading to damage.",
+      "Bottoms Pump cavitation and damage.",
+      "Loss of process containment if internals fail due to overheating.",
+      "Poor separation due to insufficient liquid holdup.",
+      "HSE impact: Release of flammable/toxic vapor from exposed hot surfaces."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "Level sensor 4 (on Sour Water Stripper).",
+      "LC-2 (Level Controller for Sour Water Stripper) adjusts FCV-6.",
+      "Trip interlock on 'Bottoms Pump'."
+    ],
     "recommendations": [
-      "Install redundant level sensors.",
-      "Regular calibration and maintenance of level sensors."
+      "Low level alarm on Level sensor 4.",
+      "Low-low level trip on Level sensor 4 to shut down steam (FCV-5) and Bottoms Pump, and/or sour water feed (FCV-3 or Stripper feed Pump)."
     ]
   },
   {
     "parameter": "Level",
     "guideword": "More",
     "causes": [
-      "Failure of the level control loop (LC-2).",
-      "Malfunction of the Bottoms Pump."
+      "Excessive sour water feed flow (More Flow of sour water feed).",
+      "No or less bottoms flow (No/Less Flow of bottoms treated water).",
+      "Insufficient vaporization (Less Flow of steam, Less Temperature).",
+      "LC-2 malfunction, sending close signal to FCV-6.",
+      "FCV-6 fails closed or stuck closed.",
+      "Operator error (FCV-6 manually closed, feed not reduced).",
+      "Downstream blockage in WATER-TREATMENT unit.",
+      "Excessive reflux flow (More Flow of reflux).",
+      "Loss of overhead vapor flow (No/Less Flow of overhead vapours)."
     ],
     "consequences": [
-      "Overflow of the Sour Water Stripper sump.",
-      "Potential release of H2S and NH3 to the atmosphere.",
-      "Increased load on the Bottoms Pump."
+      "Column flooding, leading to poor separation and liquid carryover with overhead vapors.",
+      "Damage to downstream equipment (Stripper OVHD Condenser, SWS OVHD Accumulator) due to liquid slugging, corrosion (H2S/NH3 rich liquid).",
+      "Contamination of acid gas product.",
+      "Overloading of downstream sulfur recovery unit.",
+      "Potential for overpressure if liquid blocks vapor outlet.",
+      "HSE impact: Environmental release if PRV-2 activates due to overpressure, toxic gas release."
     ],
     "safeguards": [
-      "Level sensor 4 (high level alarm)."
+      "Level sensor 4 (on Sour Water Stripper).",
+      "LC-2 (Level Controller for Sour Water Stripper) adjusts FCV-6.",
+      "PRV-2 (if overpressure occurs).",
+      "Trip interlock on 'Bottoms Pump'."
     ],
     "recommendations": [
-      "Improve the level control loop, adding high level alarm and shutdown.",
-      "Install high level alarm with automatic shutdown."
+      "High level alarm on Level sensor 4.",
+      "High-high level trip on Level sensor 4 to shut down sour water feed (FCV-3 or Stripper feed Pump) and/or steam (FCV-5), and ensure FCV-6 is open."
     ]
   },
   {
     "parameter": "Level",
     "guideword": "Less",
     "causes": [
-      "Failure of the level control loop (LC-2).",
-      "Malfunction of the Bottoms Pump."
+      "Loss of sour water feed (Less Flow of sour water feed).",
+      "Excessive bottoms flow (More Flow of bottoms treated water).",
+      "Excessive vaporization (More Flow of steam, More Temperature).",
+      "LC-2 malfunction, sending open signal to FCV-6.",
+      "FCV-6 fails open or stuck open.",
+      "Operator error (FCV-6 manually opened too much, feed not increased).",
+      "Bottoms Pump running dry/cavitation."
     ],
     "consequences": [
-      "Potential for the stripper to run dry.",
-      "Equipment damage due to overheating."
+      "Exposure of column internals (trays/packing) to dry running and overheating from steam, leading to damage.",
+      "Bottoms Pump cavitation and damage.",
+      "Poor stripping efficiency due to reduced liquid holdup and residence time.",
+      "Off-specification treated water.",
+      "HSE impact: Potential for fire/explosion if hydrocarbons are present and surfaces overheat."
     ],
     "safeguards": [
-      "Level sensor 4 (low level alarm)"
+      "Level sensor 4 (on Sour Water Stripper).",
+      "LC-2 (Level Controller for Sour Water Stripper) adjusts FCV-6.",
+      "Trip interlock on 'Bottoms Pump'."
     ],
     "recommendations": [
-      "Improve the level control loop, adding low level alarm and shutdown.",
-      "Install low level alarm with automatic shutdown."
+      "Low level alarm on Level sensor 4.",
+      "Low-low level trip on Level sensor 4 to shut down steam (FCV-5) and Bottoms Pump, and/or sour water feed (FCV-3 or Stripper feed Pump)."
     ]
   },
   {
     "parameter": "Composition",
     "guideword": "As Well As",
     "causes": [
-      "Contamination of the sour water feed.",
-      "Unexpected chemical reactions."
+      "Unexpected contaminants in sour water feed (e.g., higher concentration of hydrocarbons, heavier components, solids, chlorides, phenolics).",
+      "Back-contamination from upstream units due to process upsets.",
+      "Improper cleaning/startup with residual chemicals.",
+      "Operator error (e.g., routing wrong stream to sour water feed header)."
     ],
     "consequences": [
-      "Reduced stripping efficiency.",
-      "Potential formation of hazardous byproducts.",
-      "Corrosion of the equipment."
+      "Formation of foam (hydrocarbons, surface-active agents), leading to flooding and liquid carryover.",
+      "Increased corrosion of column internals (chlorides, acidic components).",
+      "Fouling of column internals (solids, heavy hydrocarbons).",
+      "Poisoning of downstream catalysts (if present in sulfur recovery).",
+      "Off-specification treated water or acid gas.",
+      "HSE impact: Toxic, flammable contaminants present safety hazards, environmental contamination.",
+      "Damage to equipment due to corrosion/fouling."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "Flow sensor 1 (if density changes significantly and affects flow measurement).",
+      "Temperature sensor 2 (if boiling point changes and affects overhead temperature).",
+      "PRV-2 (if vapor pressure increases due to additional volatile components)."
+    ],
     "recommendations": [
-      "Implement compositional analysis of the feed water.",
-      "Regular cleaning and maintenance of the equipment."
+      "Analyzer on sour water feed for key contaminants (e.g., hydrocarbons, pH, chlorides).",
+      "Online foam detection system.",
+      "Manual sampling and laboratory analysis program for feed."
     ]
   },
   {
     "parameter": "Composition",
     "guideword": "Otherthan",
     "causes": [
-      "Contamination of the sour water feed.",
-      "Unexpected chemical reactions."
+      "Changes in H2S/NH3 concentration in sour water feed (e.g., reduced due to upstream improvements, increased due to upstream upset).",
+      "Steam quality issues (e.g., too much non-condensable gas in steam, or unexpected chemicals from boiler feed water).",
+      "Malfunction of upstream treatment leading to altered components."
     ],
     "consequences": [
-      "Reduced stripping efficiency.",
-      "Potential formation of hazardous byproducts.",
-      "Corrosion of the equipment."
+      "Reduced H2S/NH3 in feed: can lead to over-stripping, wasted steam, and process inefficiency.",
+      "Increased H2S/NH3 in feed: overloading of stripper, off-specification bottoms product, overloading of sulfur recovery unit.",
+      "Poor steam quality: reduced stripping efficiency, potential for corrosion, or overpressure from non-condensables.",
+      "Off-specification treated water or acid gas."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "FCV-3, Flow sensor 1, FC-1 (for feed flow control).",
+      "FCV-5, FC-2 (for steam flow control based on feed flow).",
+      "Level sensor 4, LC-2 (for column level control).",
+      "Temperature sensor 2 (for overhead temperature monitoring)."
+    ],
     "recommendations": [
-      "Implement compositional analysis of the feed water.",
-      "Regular cleaning and maintenance of the equipment."
-    ]
-  },
-  {
-    "parameter": "Composition",
-    "guideword": "Part of",
-    "causes": [
-      "Partial loss of a component in the feed.",
-      "Incomplete mixing of components."
-    ],
-    "consequences": [
-      "Reduced stripping efficiency.",
-      "Potential formation of hazardous byproducts."
-    ],
-    "safeguards": [],
-    "recommendations": [
-      "Improved mixing of the feed components.",
-      "Regular analysis of the feed composition."
+      "Analyzer on sour water feed for H2S/NH3 content.",
+      "Analyzer on treated water (bottoms) for residual H2S/NH3.",
+      "Analyzer on acid gas for H2S/NH3 content.",
+      "Monitoring of steam quality."
     ]
   },
   {
     "parameter": "Phase",
     "guideword": "Otherthan",
     "causes": [
-      "Unexpected phase separation within the column.",
-      "Temperature or pressure deviations."
+      "Vapor instead of Liquid (e.g., in sour water feed): Superheated feed or flashing in feed line due to low pressure/high temperature.",
+      "Liquid instead of Vapor (e.g., in steam feed): Wet steam or condensate slugging due to steam trap failure or poor insulation.",
+      "Liquid carryover in overhead vapor: Column flooding, high liquid level, foaming in the stripper.",
+      "Vapor entrainment in bottoms liquid: Excessive boiling, pump cavitation (Bottoms Pump), high vapor velocity."
     ],
     "consequences": [
-      "Reduced stripping efficiency.",
-      "Potential for foaming or slugging.",
-      "Equipment damage."
+      "Reduced feed rate, mal-distribution, pump cavitation (Stripper feed Pump) if vapor in feed.",
+      "Water hammer, damage to FCV-5 and steam line, reduced effective heat transfer, column flooding if liquid in steam.",
+      "Damage to Stripper OVHD Condenser/SWS OVHD Accumulator, contamination of acid gas, overloading downstream if liquid carryover.",
+      "Pump cavitation (Bottoms Pump), poor level measurement, two-phase flow in discharge if vapor in bottoms.",
+      "Reduced stripping efficiency, process instability, equipment damage."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "Flow sensor 1 (may detect abnormal flow if two-phase).",
+      "Level sensor 4 (if foaming, or carryover).",
+      "Temperature sensor 2 (if liquid carryover reduces overhead temperature).",
+      "PRV-2 (if phase changes cause overpressure).",
+      "FCV-5 (for steam flow control).",
+      "Trip interlocks on 'Stripper feed Pump' and 'Bottoms Pump'."
+    ],
     "recommendations": [
-      "Improved temperature and pressure control.",
-      "Regular inspection of the column internals."
+      "Temperature sensors on feed line to detect superheat/flashing.",
+      "Steam trap upstream of FCV-5 (if not already present).",
+      "Differential pressure sensors across column for fouling/foaming detection.",
+      "Sight glasses for visual observation of foaming/carryover (if applicable to design)."
     ]
   },
   {
-    "parameter": "Flow (For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.))",
+    "parameter": "Flow \n\nFor all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",
     "guideword": "No",
     "causes": [
-      "Complete blockage in any of the lines.",
-      "Failure of any pump or valve."
+      "No flow through PRV-2 (when required): PRV-2 mechanical failure (stuck closed), blockage in the pressure relief pipe to/from PRV-2."
     ],
     "consequences": [
-      "Process shutdown.",
-      "Equipment damage.",
-      "Safety hazard (H2S release)."
+      "Overpressure of the Sour Water Stripper, leading to potential mechanical failure of the column.",
+      "Uncontrolled release of H2S/NH3 to atmosphere or adjacent equipment from weakest point.",
+      "HSE impact: Severe safety hazard (toxic gas exposure, fire/explosion), catastrophic equipment damage."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "PRV-2 (Pressure Relief Valve on Sour water stripper) is the only safeguard for overpressure relief."
+    ],
     "recommendations": [
-      "Implement comprehensive leak detection system.",
-      "Regular maintenance and inspection of all equipment."
+      "Routine inspection and testing program for PRV-2.",
+      "High pressure alarm on Sour Water Stripper.",
+      "High-high pressure trip to emergency shutdown (e.g., shut off steam (FCV-5) and sour water feed (FCV-3))."
     ]
   },
   {
-    "parameter": "Flow (For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.))",
+    "parameter": "Flow \n\nFor all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",
     "guideword": "More",
     "causes": [
-      "Rupture or failure in any line.",
-      "Valve malfunction."
+      "More flow through PRV-2 (unintended): PRV-2 lifts prematurely (e.g., faulty spring, incorrect setpoint), external fire impinging on the column, process upset causing overpressure."
     ],
     "consequences": [
-      "Release of hazardous materials.",
-      "Equipment damage.",
-      "Environmental impact."
+      "Unintended release of H2S/NH3 to atmosphere or flare, leading to product loss.",
+      "HSE impact: Environmental contamination, safety hazard (toxic gas cloud, potential for fire/explosion).",
+      "Loss of containment and process efficiency."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "PRV-2 itself is designed to relieve pressure.",
+      "FCV-5, FC-2 (for steam control, can reduce heat input in case of overpressure)."
+    ],
     "recommendations": [
-      "Implement high flow alarms and shutdown on all lines.",
-      "Regular maintenance of all equipment."
+      "Pressure sensor on Sour Water Stripper with high pressure alarm.",
+      "PRV discharge monitoring (e.g., pressure switch or acoustic sensor to detect lifting).",
+      "Regular calibration and maintenance of PRV-2."
     ]
   },
   {
-    "parameter": "Flow (For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.))",
+    "parameter": "Flow \n\nFor all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",
     "guideword": "Less",
     "causes": [
-      "Partial blockage in any line.",
-      "Valve malfunction.",
-      "Pump failure."
+      "Less flow through PRV-2 (when required): Partial blockage of PRV-2 or its discharge line, PRV-2 partially stuck."
     ],
     "consequences": [
-      "Reduced process efficiency.",
-      "Potential for equipment damage."
+      "Inadequate overpressure relief, still posing a risk of column overpressure and mechanical damage.",
+      "Limited release of H2S/NH3, but with the potential for sudden, larger uncontrolled release if equipment fails.",
+      "HSE impact: Residual risk of toxic gas exposure, fire/explosion, equipment damage."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "PRV-2 (Pressure Relief Valve on Sour water stripper)."
+    ],
     "recommendations": [
-      "Implement low flow alarms on all lines.",
-      "Regular maintenance of all equipment."
+      "Routine inspection and testing program for PRV-2.",
+      "Pressure sensor on Sour Water Stripper with high pressure alarm."
     ]
   },
   {
-    "parameter": "Flow (For all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.))",
+    "parameter": "Flow \n\nFor all lines existing (reactant, product, purge, heating/cooling, vent, sampling, nitrogen etc.)",
     "guideword": "Reverse",
     "causes": [
-      "Check valve failure (if present).",
-      "Piping error."
+      "Not applicable for a discharge line like PRV-2, which is designed for one-way flow out of the equipment upon reaching set pressure."
+    ],
+    "consequences": [],
+    "safeguards": [],
+    "recommendations": []
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "More",
+    "causes": [
+      "Excessive steam flow (FCV-5 fails open, FC-2 malfunction, operator error).",
+      "Higher steam temperature/pressure.",
+      "Loss of sour water feed or low sour water feed flow (less mass to absorb heat).",
+      "Loss of reflux flow (less cooling in top section).",
+      "Exothermic reaction (unlikely for normal operation but possible with unusual contaminants)."
     ],
     "consequences": [
-      "Contamination of process streams.",
-      "Reduced efficiency.",
-      "Potential equipment damage."
+      "Increased pressure in the column, leading to PRV-2 activation or mechanical failure.",
+      "Accelerated corrosion of column internals (especially with H2S/NH3 at high temperatures).",
+      "Vaporization of normally liquid components, leading to flooding or carryover.",
+      "Damage to heat-sensitive materials (e.g., packing).",
+      "Overloading of downstream Stripper OVHD Condenser and SWS OVHD Accumulator.",
+      "HSE impact: Increased H2S/NH3 emissions if PRV-2 lifts, safety hazard for personnel (thermal burns, toxic gas)."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "FCV-5, FC-2 for steam control.",
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "FCV-4, Level sensor 3, LC-1 for reflux control.",
+      "PRV-2 (Pressure Relief Valve on Sour water stripper).",
+      "Temperature sensor 2 (on overhead stream, indicates column top temperature)."
+    ],
     "recommendations": [
-      "Install check valves where necessary.",
-      "Regular inspection of all valves and piping."
+      "High temperature alarm on Sour Water Stripper (e.g., near steam inlet/bottom).",
+      "High temperature trip to cut off steam (FCV-5) and/or reduce feed (FCV-3).",
+      "High pressure alarm on Sour Water Stripper."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "Less",
+    "causes": [
+      "Reduced steam flow (FCV-5 fails closed, FC-2 malfunction, operator error).",
+      "Lower steam temperature/pressure.",
+      "Excessive sour water feed flow (too much cold liquid).",
+      "Excessive reflux flow (too much cold liquid in top section).",
+      "Stripper OVHD Condenser over-cooling (leading to colder feed, less pre-heat, not directly for column but affects feed temp)."
+    ],
+    "consequences": [
+      "Reduced stripping efficiency, leading to higher H2S/NH3 in bottoms product and off-specification treated water.",
+      "Increased liquid level in the column (less vaporization).",
+      "Potential for condensation of steam, leading to water hammer.",
+      "Increased viscosity of sour water, affecting tray performance.",
+      "Potential for hydrate formation or freezing if extremely cold feed and high H2S concentration (unlikely but possible)."
+    ],
+    "safeguards": [
+      "FCV-5, FC-2 for steam control.",
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "FCV-4, Level sensor 3, LC-1 for reflux control.",
+      "Temperature sensor 2 (on overhead stream)."
+    ],
+    "recommendations": [
+      "Low temperature alarm on Sour Water Stripper.",
+      "Low temperature trip to increase steam flow (FCV-5) or reduce feed flow (FCV-3)."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "More",
+    "causes": [
+      "Excessive steam flow (FCV-5 fails open, FC-2 malfunction, operator error).",
+      "Blockage in the overhead vapor line (SWS Overhead pipe, Stripper OVHD Condenser, acid gas pipe).",
+      "Downstream pressure surge from ACID-GAS-TO-S-PLANT-EX.",
+      "Loss of cooling in Stripper OVHD Condenser (reduces condensation, more vapor load).",
+      "Inlet of highly volatile/non-condensable components in sour water feed.",
+      "Operator error (e.g., closing block valves in overhead line)."
+    ],
+    "consequences": [
+      "Activation of PRV-2, leading to release of H2S/NH3 (toxic, flammable) and environmental contamination.",
+      "If PRV-2 fails, overpressure and mechanical failure of the column.",
+      "Reduced stripping efficiency (higher partial pressure of H2S/NH3).",
+      "Column flooding.",
+      "Damage to column internals.",
+      "HSE impact: Toxic gas release, fire/explosion risk, environmental contamination."
+    ],
+    "safeguards": [
+      "PRV-2 (Pressure Relief Valve on Sour water stripper).",
+      "FCV-5, FC-2 for steam control.",
+      "Temperature sensor 2 (if overhead temperature increases due to pressure)."
+    ],
+    "recommendations": [
+      "High pressure alarm on Sour Water Stripper.",
+      "High-high pressure trip to shut off steam (FCV-5) and/or sour water feed (FCV-3 or Stripper feed Pump), and/or activate emergency shutdown."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "Less",
+    "causes": [
+      "Loss of steam flow (FCV-5 fails closed, FC-2 malfunction, operator error).",
+      "Rupture or leak in the column or associated piping.",
+      "Loss of sour water feed (less vaporization).",
+      "Malfunction of overhead control (if a valve existed to control overhead pressure, none explicitly mentioned)."
+    ],
+    "consequences": [
+      "Reduced stripping efficiency due to lower operating temperature (boiling point depression).",
+      "Flash vaporization if pressure drops too quickly.",
+      "Air ingress into the column (if below atmospheric pressure), leading to potential explosive mixture if hydrocarbons are present.",
+      "Column damage due to external pressure (implosion) if significant vacuum is created.",
+      "Process upset."
+    ],
+    "safeguards": [
+      "FCV-5, FC-2 for steam control.",
+      "FCV-3, Flow sensor 1, FC-1 for feed control.",
+      "Temperature sensor 2 (on overhead stream)."
+    ],
+    "recommendations": [
+      "Low pressure alarm on Sour Water Stripper.",
+      "Vacuum relief valve (if risk of implosion exists)."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "No/None",
+    "causes": [
+      "Loss of sour water feed (No Flow of sour water feed).",
+      "Excessive bottoms flow (More Flow of bottoms treated water).",
+      "Excessive vaporization (More Flow of steam, More Temperature).",
+      "LC-2 (Level Controller for Sour Water Stripper) malfunction, sending open signal to FCV-6.",
+      "FCV-6 fails open or stuck open.",
+      "Operator error (FCV-6 manually opened too much, feed stopped).",
+      "Bottoms Pump running dry/cavitation."
+    ],
+    "consequences": [
+      "Exposure of column internals (trays/packing) to dry running and overheating from steam, leading to damage.",
+      "Bottoms Pump cavitation and damage.",
+      "Loss of process containment if internals fail due to overheating.",
+      "Poor separation due to insufficient liquid holdup.",
+      "HSE impact: Release of flammable/toxic vapor from exposed hot surfaces."
+    ],
+    "safeguards": [
+      "Level sensor 4 (on Sour Water Stripper).",
+      "LC-2 (Level Controller for Sour Water Stripper) adjusts FCV-6.",
+      "Trip interlock on 'Bottoms Pump'."
+    ],
+    "recommendations": [
+      "Low level alarm on Level sensor 4.",
+      "Low-low level trip on Level sensor 4 to shut down steam (FCV-5) and Bottoms Pump, and/or sour water feed (FCV-3 or Stripper feed Pump)."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "More",
+    "causes": [
+      "Excessive sour water feed flow (More Flow of sour water feed).",
+      "No or less bottoms flow (No/Less Flow of bottoms treated water).",
+      "Insufficient vaporization (Less Flow of steam, Less Temperature).",
+      "LC-2 malfunction, sending close signal to FCV-6.",
+      "FCV-6 fails closed or stuck closed.",
+      "Operator error (FCV-6 manually closed, feed not reduced).",
+      "Downstream blockage in WATER-TREATMENT unit.",
+      "Excessive reflux flow (More Flow of reflux).",
+      "Loss of overhead vapor flow (No/Less Flow of overhead vapours)."
+    ],
+    "consequences": [
+      "Column flooding, leading to poor separation and liquid carryover with overhead vapors.",
+      "Damage to downstream equipment (Stripper OVHD Condenser, SWS OVHD Accumulator) due to liquid slugging, corrosion (H2S/NH3 rich liquid).",
+      "Contamination of acid gas product.",
+      "Overloading of downstream sulfur recovery unit.",
+      "Potential for overpressure if liquid blocks vapor outlet.",
+      "HSE impact: Environmental release if PRV-2 activates due to overpressure, toxic gas release."
+    ],
+    "safeguards": [
+      "Level sensor 4 (on Sour Water Stripper).",
+      "LC-2 (Level Controller for Sour Water Stripper) adjusts FCV-6.",
+      "PRV-2 (if overpressure occurs).",
+      "Trip interlock on 'Bottoms Pump'."
+    ],
+    "recommendations": [
+      "High level alarm on Level sensor 4.",
+      "High-high level trip on Level sensor 4 to shut down sour water feed (FCV-3 or Stripper feed Pump) and/or steam (FCV-5), and ensure FCV-6 is open."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "Less",
+    "causes": [
+      "Loss of sour water feed (Less Flow of sour water feed).",
+      "Excessive bottoms flow (More Flow of bottoms treated water).",
+      "Excessive vaporization (More Flow of steam, More Temperature).",
+      "LC-2 malfunction, sending open signal to FCV-6.",
+      "FCV-6 fails open or stuck open.",
+      "Operator error (FCV-6 manually opened too much, feed not increased).",
+      "Bottoms Pump running dry/cavitation."
+    ],
+    "consequences": [
+      "Exposure of column internals (trays/packing) to dry running and overheating from steam, leading to damage.",
+      "Bottoms Pump cavitation and damage.",
+      "Poor stripping efficiency due to reduced liquid holdup and residence time.",
+      "Off-specification treated water.",
+      "HSE impact: Potential for fire/explosion if hydrocarbons are present and surfaces overheat."
+    ],
+    "safeguards": [
+      "Level sensor 4 (on Sour Water Stripper).",
+      "LC-2 (Level Controller for Sour Water Stripper) adjusts FCV-6.",
+      "Trip interlock on 'Bottoms Pump'."
+    ],
+    "recommendations": [
+      "Low level alarm on Level sensor 4.",
+      "Low-low level trip on Level sensor 4 to shut down steam (FCV-5) and Bottoms Pump, and/or sour water feed (FCV-3 or Stripper feed Pump)."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "Otherthan",
+    "causes": [
+      "Changes in H2S/NH3 concentration in sour water feed (e.g., reduced due to upstream improvements, increased due to upstream upset).",
+      "Steam quality issues (e.g., too much non-condensable gas in steam, or unexpected chemicals from boiler feed water).",
+      "Malfunction of upstream treatment leading to altered components."
+    ],
+    "consequences": [
+      "Reduced H2S/NH3 in feed: can lead to over-stripping, wasted steam, and process inefficiency.",
+      "Increased H2S/NH3 in feed: overloading of stripper, off-specification bottoms product, overloading of sulfur recovery unit.",
+      "Poor steam quality: reduced stripping efficiency, potential for corrosion, or overpressure from non-condensables.",
+      "Off-specification treated water or acid gas."
+    ],
+    "safeguards": [
+      "FCV-3, Flow sensor 1, FC-1 (for feed flow control).",
+      "FCV-5, FC-2 (for steam flow control based on feed flow).",
+      "Level sensor 4, LC-2 (for column level control).",
+      "Temperature sensor 2 (for overhead temperature monitoring)."
+    ],
+    "recommendations": [
+      "Analyzer on sour water feed for H2S/NH3 content.",
+      "Analyzer on treated water (bottoms) for residual H2S/NH3.",
+      "Analyzer on acid gas for H2S/NH3 content.",
+      "Monitoring of steam quality."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "As Well As",
+    "causes": [
+      "Unexpected contaminants in sour water feed (e.g., higher concentration of hydrocarbons, heavier components, solids, chlorides, phenolics).",
+      "Back-contamination from upstream units due to process upsets.",
+      "Improper cleaning/startup with residual chemicals.",
+      "Operator error (e.g., routing wrong stream to sour water feed header)."
+    ],
+    "consequences": [
+      "Formation of foam (hydrocarbons, surface-active agents), leading to flooding and liquid carryover.",
+      "Increased corrosion of column internals (chlorides, acidic components).",
+      "Fouling of column internals (solids, heavy hydrocarbons).",
+      "Poisoning of downstream catalysts (if present in sulfur recovery).",
+      "Off-specification treated water or acid gas.",
+      "HSE impact: Toxic, flammable contaminants present safety hazards, environmental contamination.",
+      "Damage to equipment due to corrosion/fouling."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (if density changes significantly and affects flow measurement).",
+      "Temperature sensor 2 (if boiling point changes and affects overhead temperature).",
+      "PRV-2 (if vapor pressure increases due to additional volatile components)."
+    ],
+    "recommendations": [
+      "Analyzer on sour water feed for key contaminants (e.g., hydrocarbons, pH, chlorides).",
+      "Online foam detection system.",
+      "Manual sampling and laboratory analysis program for feed."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "Part of",
+    "causes": [
+      "Sour water feed contains only a part of expected components (e.g., reduced H2S or NH3 concentration, or missing minor components).",
+      "Partial stripping due to insufficient steam or temperature, meaning only a part of the target impurities (H2S/NH3) are removed.",
+      "Upstream process upset leading to altered feed composition (e.g., lower concentration of specific impurities)."
+    ],
+    "consequences": [
+      "Reduced stripping duty, potentially leading to wasted steam if control system doesn't adapt.",
+      "Off-specification treated water (e.g., high residual H2S/NH3) or acid gas (if removal is incomplete).",
+      "Process upset and reduced overall efficiency."
+    ],
+    "safeguards": [
+      "FCV-3, Flow sensor 1, FC-1 (for feed flow control).",
+      "FCV-5, FC-2 (for steam flow control based on feed flow).",
+      "Level sensor 4, LC-2 (for column level control).",
+      "Temperature sensor 2 (for overhead temperature monitoring)."
+    ],
+    "recommendations": [
+      "Analyzer on sour water feed for specific components (e.g., H2S, NH3).",
+      "Analyzer on treated water (bottoms) for residual H2S/NH3 to ensure removal targets are met."
     ]
   },
   {
     "parameter": "pH",
     "guideword": "High",
     "causes": [
-      "Unexpectedly high concentration of ammonia in the feed.",
-      "Improper neutralization of acidic components."
+      "Higher-than-expected concentration of basic components (e.g., NH3) in sour water feed.",
+      "Reduced H2S concentration in feed.",
+      "Contamination with alkaline chemicals (e.g., caustic from upstream operations).",
+      "Excessive removal of acidic components without corresponding removal of basic components (unlikely in a stripper unless process is highly imbalanced)."
     ],
     "consequences": [
-      "Corrosion of equipment.",
-      "Environmental concerns related to high pH discharge."
+      "Increased corrosion of column internals or downstream equipment if pH goes above material limits (e.g., high pH stress corrosion cracking).",
+      "Reduced stripping efficiency for H2S (favors sulfide dissociation at higher pH).",
+      "Potential for scale formation if calcium/magnesium salts are present in the alkaline environment.",
+      "Off-specification treated water for downstream WATER-TREATMENT."
     ],
     "safeguards": [],
     "recommendations": [
-      "Continuous pH monitoring of feed and effluent streams.",
-      "Implementation of pH control system."
+      "pH analyzer on sour water feed to the stripper.",
+      "pH analyzer on treated water (bottoms) product.",
+      "High pH alarm/trip to adjust operating conditions (e.g., adjust steam, or divert feed) or initiate investigation."
     ]
   },
   {
     "parameter": "pH",
     "guideword": "Low",
     "causes": [
-      "Unexpectedly high concentration of H2S in the feed.",
-      "Leakage of acidic components into the system."
+      "Higher-than-expected concentration of acidic components (e.g., H2S, CO2) in sour water feed.",
+      "Reduced NH3 concentration in feed.",
+      "Contamination with acidic chemicals (e.g., mineral acids).",
+      "Insufficient steam, leading to less removal of acidic components."
     ],
     "consequences": [
-      "Corrosion of equipment.",
-      "Environmental concerns related to low pH discharge."
+      "Severe corrosion of column internals and downstream equipment (acidic corrosion, especially with H2S).",
+      "Increased H2S solubility, making stripping more difficult and requiring more steam.",
+      "Potential for hydrogen blistering/embrittlement in carbon steel components.",
+      "Off-specification treated water for downstream WATER-TREATMENT.",
+      "HSE impact: Enhanced release of H2S if pressure is released from low pH liquid."
     ],
     "safeguards": [],
     "recommendations": [
-      "Continuous pH monitoring of feed and effluent streams.",
-      "Implementation of pH control system."
+      "pH analyzer on sour water feed to the stripper.",
+      "pH analyzer on treated water (bottoms) product.",
+      "Low pH alarm/trip to adjust operating conditions (e.g., increase steam, or divert feed) or initiate investigation.",
+      "Review material selection for low pH conditions."
     ]
   },
   {
-    "parameter": "Utility supply (Water/ steam/oil/chilled water/ brine/ electricity)",
+    "parameter": "Phase",
+    "guideword": "Otherthan",
+    "causes": [
+      "Vapor instead of Liquid (e.g., in sour water feed): Superheated feed or flashing in feed line due to low pressure/high temperature.",
+      "Liquid instead of Vapor (e.g., in steam feed): Wet steam or condensate slugging due to steam trap failure or poor insulation.",
+      "Liquid carryover in overhead vapor: Column flooding, high liquid level, foaming in the stripper.",
+      "Vapor entrainment in bottoms liquid: Excessive boiling, pump cavitation (Bottoms Pump), high vapor velocity."
+    ],
+    "consequences": [
+      "Reduced feed rate, mal-distribution, pump cavitation (Stripper feed Pump) if vapor in feed.",
+      "Water hammer, damage to FCV-5 and steam line, reduced effective heat transfer, column flooding if liquid in steam.",
+      "Damage to Stripper OVHD Condenser/SWS OVHD Accumulator, contamination of acid gas, overloading downstream if liquid carryover.",
+      "Pump cavitation (Bottoms Pump), poor level measurement, two-phase flow in discharge if vapor in bottoms.",
+      "Reduced stripping efficiency, process instability, equipment damage."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (may detect abnormal flow if two-phase).",
+      "Level sensor 4 (if foaming, or carryover).",
+      "Temperature sensor 2 (if liquid carryover reduces overhead temperature).",
+      "PRV-2 (if phase changes cause overpressure).",
+      "FCV-5 (for steam flow control).",
+      "Trip interlocks on 'Stripper feed Pump' and 'Bottoms Pump'."
+    ],
+    "recommendations": [
+      "Temperature sensors on feed line to detect superheat/flashing.",
+      "Steam trap upstream of FCV-5 (if not already present).",
+      "Differential pressure sensors across column for fouling/foaming detection.",
+      "Sight glasses for visual observation of foaming/carryover (if applicable to design)."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Water/ steam/oil/chilled water/ brine/ electricity)",
     "guideword": "No/None",
     "causes": [
-      "Steam supply failure.",
-      "Power outage."
+      "No Steam supply: Steam supply failure from 'STEAM-IN', FCV-5 fails closed, steam header isolation (e.g., by operator error or upstream trip)."
     ],
     "consequences": [
-      "Process shutdown.",
-      "Potential for hazardous conditions due to the presence of H2S."
+      "Loss of stripping medium, leading to immediate reduction in stripping efficiency.",
+      "Increased H2S/NH3 concentration in the treated water (bottoms product), making it off-specification.",
+      "Increased liquid level in the Sour Water Stripper.",
+      "Process shutdown or upset.",
+      "Potential for corrosion if untreated sour water sits in the column for extended periods."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "FCV-5 (Flow Control Valve on steam pipe 2) and FC-2 (Flow Controller for steam pipe) for steam control (FC-2 aims to maintain flow, but cannot if supply fails)."
+    ],
     "recommendations": [
-      "Redundant steam supply.",
-      "Emergency power generator."
+      "Low pressure alarm on the steam header supplying the stripper.",
+      "Low flow alarm on the steam inlet line to the stripper.",
+      "Automatic trip to close FCV-3 (feed) and FCV-6 (bottoms) if no steam flow is detected, to protect the column and prevent off-spec product."
     ]
   },
   {
-    "parameter": "Utility supply (Water/ steam/oil/chilled water/ brine/ electricity)",
+    "parameter": "Utility supply\n(Water/ steam/oil/chilled water/ brine/ electricity)",
     "guideword": "More",
     "causes": [
-      "Excessive steam supply.",
-      "Power surge."
+      "More Steam supply: Excessive steam flow (FCV-5 fails open, FC-2 malfunction), increased steam supply pressure from 'STEAM-IN', operator error (FCV-5 manually opened too much)."
     ],
     "consequences": [
-      "Overheating of the equipment.",
-      "Increased energy consumption.",
-      "Potential damage to the equipment."
+      "Excessive stripping, leading to potential dry out of the column and wasted utility (steam).",
+      "Higher pressure in the column, leading to PRV-2 activation and release of H2S/NH3.",
+      "Higher column temperature.",
+      "Increased overhead vapor flow, potentially overloading Stripper OVHD Condenser and SWS OVHD Accumulator.",
+      "HSE impact: Release of toxic/flammable H2S/NH3 if PRV-2 lifts."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "FCV-5 (Flow Control Valve on steam pipe 2) and FC-2 (Flow Controller for steam pipe) for steam flow control.",
+      "PRV-2 (Pressure Relief Valve on Sour water stripper) for overpressure protection.",
+      "Level sensor 4 and LC-2 (Level Controller for Sour Water Stripper) to control bottoms flow, might react to level drop."
+    ],
     "recommendations": [
-      "Implement high steam flow alarm and automatic shutdown.",
-      "Install surge protection devices."
+      "High flow alarm on the steam inlet line to the stripper.",
+      "High pressure alarm on the Sour Water Stripper.",
+      "Low level alarm on Level sensor 4 (to detect dry out)."
     ]
   },
   {
-    "parameter": "Utility supply (Water/ steam/oil/chilled water/ brine/ electricity)",
+    "parameter": "Utility supply\n(Water/ steam/oil/chilled water/ brine/ electricity)",
     "guideword": "Less",
     "causes": [
-      "Reduced steam supply.",
-      "Power failure."
+      "Less Steam supply: Reduced steam supply pressure from 'STEAM-IN', FCV-5 throttles too much or partially fails closed, partial blockage in the steam line, FC-2 malfunction."
     ],
     "consequences": [
-      "Reduced stripping efficiency.",
-      "Potential for equipment damage."
+      "Reduced stripping efficiency, leading to higher H2S/NH3 concentration in the treated water (bottoms product).",
+      "Off-specification treated water to WATER-TREATMENT.",
+      "Lower column temperature.",
+      "Increased liquid level in the Sour Water Stripper (less vaporization)."
     ],
-    "safeguards": [],
+    "safeguards": [
+      "FCV-5 (Flow Control Valve on steam pipe 2) and FC-2 (Flow Controller for steam pipe) for steam flow control.",
+      "Level sensor 4 and LC-2 (Level Controller for Sour Water Stripper) to control bottoms flow (will open FCV-6 if level rises)."
+    ],
     "recommendations": [
-      "Implement low steam flow alarm.",
-      "Redundant steam supply."
+      "Low flow alarm on the steam inlet line to the stripper.",
+      "Low pressure alarm on the steam header supplying the stripper.",
+      "Analyzer on treated water (bottoms) for H2S/NH3 concentration."
     ]
   }
 ]

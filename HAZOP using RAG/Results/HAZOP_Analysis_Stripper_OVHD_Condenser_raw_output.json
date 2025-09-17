@@ -1,0 +1,1073 @@
+[
+  {
+    "parameter": "Flow \n(Hot side , cold side)",
+    "guideword": "No",
+    "causes": [
+      "**Hot Side (Overhead Vapour from Stripper):**",
+      "Process & Material Issues: Complete shutdown of the Sour Water Stripper, leading to no overhead vapour production.",
+      "Process & Material Issues: Full blockage in the 'SWS Overhead pipe' upstream of the condenser (e.g., hydrate formation, wax deposition, foreign object).",
+      "**Cold Side (Sour Water Feed, Cooling Medium):**",
+      "Instrument & Control Failure: 'FCV-3' (Flow Control Valve) fails closed due to instrument air loss or malfunction.",
+      "Instrument & Control Failure: Failure of 'FC-1' (Flow Controller) or 'Flow sensor 1' signal, causing FCV-3 to fully close.",
+      "Instrument & Control Failure: 'Stripper feed Pump' fails to start or trips (e.g., power failure, mechanical failure, trip interlock activation).",
+      "Process & Material Issues: No sour water supply from 'SW Storage'.",
+      "Process & Material Issues: Complete blockage in 'SW feed pipe 2' or condenser tubes (e.g., fouling, debris)."
+    ],
+    "consequences": [
+      "**Hot Side No Flow:**",
+      "Equipment Damage: Potential overpressure of the 'Sour Water Stripper' due to no outlet if steam feed continues.",
+      "Equipment Damage: Condenser tubes may overheat if the hot stream stagnates without cooling and cold flow continues.",
+      "**Cold Side No Flow:**",
+      "Chemical Hazards: Incomplete condensation of 'Hydrogen sulfide vapour' and 'Ammonia vapour' (H2S, NH3), leading to higher temperature and pressure in the condenser and 'SWS OVHD Accumulator'.",
+      "Chemical Hazards: Increased carryover of H2S/NH3 to 'ACID-GAS-TO-S-PLANT-EX', potentially overloading downstream units and increasing release risk.",
+      "Equipment Damage: Overheating of condenser tubes and shell on the hot side due to loss of cooling.",
+      "HSE Impact: Elevated risk of H2S/NH3 release to atmosphere if downstream systems are overwhelmed or if pressure relief device activates."
+    ],
+    "safeguards": [
+      "Temperature sensor 2 (on Overhead stream to Stripper OVHD Condenser) will show increased temperature if cold side flow is lost.",
+      "Temperature sensor 1 (on sour water Feed to Stripper OVHD Condenser) will show no flow/abnormal temperature on cold side inlet if no flow.",
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) will indicate no cold side flow.",
+      "FC-1 (Flow Controller for SW feed pipe) will try to open FCV-3 to maintain flow.",
+      "Trip interlock on 'Stripper feed Pump'."
+    ],
+    "recommendations": [
+      "Install a low flow alarm on 'Flow sensor 1' (cold side inlet).",
+      "Install a high temperature alarm on 'Temperature sensor 2' (hot side inlet/outlet).",
+      "Install a high pressure alarm on the condenser hot side / 'SWS OVHD Accumulator'.",
+      "Implement an interlock to reduce or stop steam flow to 'Sour Water Stripper' and/or trip 'Stripper feed Pump' on sustained low or no cooling flow."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Hot side , cold side)",
+    "guideword": "More",
+    "causes": [
+      "**Hot Side (Overhead Vapour from Stripper):**",
+      "Instrument & Control Failure: Upstream control system malfunction (e.g., 'FC-2' (Steam Flow Controller) malfunction, 'FCV-5' (Steam Flow Control Valve) fails open), leading to increased steam flow to the 'Sour Water Stripper' and thus more overhead vapour.",
+      "Process & Material Issues: Increased feed rate to 'Sour Water Stripper' without proportional increase in cooling capacity.",
+      "Human Factors: Operator increases steam flow to the stripper or stripper feed rate excessively.",
+      "**Cold Side (Sour Water Feed, Cooling Medium):**",
+      "Instrument & Control Failure: 'FCV-3' (Flow Control Valve) fails open or is commanded open excessively by 'FC-1' due to instrument malfunction or incorrect signal from 'Flow sensor 1'.",
+      "Process & Material Issues: Lower than expected pressure drop across the condenser cold side tubes (e.g., newly cleaned exchanger).",
+      "Human Factors: Operator manually overrides 'FC-1' to open 'FCV-3' more, or a bypass valve (if present, none explicit) is opened too much."
+    ],
+    "consequences": [
+      "**Hot Side More Flow:**",
+      "Chemical Hazards: Incomplete condensation of H2S/NH3 due to overloaded cooling, leading to higher temperature and increased carryover to 'ACID-GAS-TO-S-PLANT-EX'.",
+      "Equipment Damage: High pressure in condenser and 'SWS OVHD Accumulator' due to increased vapour load, potentially exceeding design pressure.",
+      "Equipment Damage: Erosion damage to condenser tubes due to higher velocity vapours.",
+      "HSE Impact: Increased release of H2S/NH3 if downstream system is overloaded or pressure relief activates.",
+      "**Cold Side More Flow:**",
+      "Equipment Damage: Overcooling of stripper overheads, leading to excessive condensation and potentially flooding the 'SWS OVHD Accumulator' or even backing liquid into the condenser shell side.",
+      "Equipment Damage: Erosion/vibration of condenser tubes due to excessively high flow velocities.",
+      "Process & Material Issues: Lower temperature of pre-heated sour water feed to the 'Sour Water Stripper', requiring more steam in the stripper for efficient operation."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) will detect high cold side flow.",
+      "FC-1 (Flow Controller for SW feed pipe) will attempt to close FCV-3 on high flow.",
+      "Temperature sensor 2 (on Overhead stream) will show increased temperature if hot side load exceeds cooling capacity, or decreased temperature if cold flow is excessive.",
+      "Temperature sensor 1 (on sour water Feed) will show lower outlet temperature (if outlet sensed) with excessive cold flow."
+    ],
+    "recommendations": [
+      "Install a high flow alarm on 'Flow sensor 1'.",
+      "Install a high pressure alarm on the condenser hot side / 'SWS OVHD Accumulator'.",
+      "Install a high level alarm in the 'SWS OVHD Accumulator' (due to excessive condensation)."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Hot side , cold side)",
+    "guideword": "Less",
+    "causes": [
+      "**Hot Side (Overhead Vapour from Stripper):**",
+      "Instrument & Control Failure: Upstream control system malfunction (e.g., 'FCV-5' fails closed, 'FC-2' malfunction), leading to reduced steam flow to 'Sour Water Stripper' and thus less overhead vapour.",
+      "Process & Material Issues: Reduced feed rate to 'Sour Water Stripper'.",
+      "Process & Material Issues: Partial blockage in the 'SWS Overhead pipe' (e.g., fouling, scaling).",
+      "Human Factors: Operator reduces steam flow to stripper or stripper feed rate.",
+      "**Cold Side (Sour Water Feed, Cooling Medium):**",
+      "Instrument & Control Failure: 'FCV-3' (Flow Control Valve) fails closed or is commanded closed excessively by 'FC-1' due to instrument malfunction or incorrect signal from 'Flow sensor 1'.",
+      "Instrument & Control Failure: 'Stripper feed Pump' malfunction (e.g., reduced speed, cavitation due to low suction pressure).",
+      "Process & Material Issues: Partial blockage in 'SW feed pipe 2' or condenser tubes (e.g., fouling).",
+      "Process & Material Issues: Insufficient sour water supply from 'SW Storage'.",
+      "Human Factors: Operator manually throttles 'FCV-3' too much or closes a bypass valve (if present) excessively."
+    ],
+    "consequences": [
+      "**Hot Side Less Flow:**",
+      "Process & Material Issues: Reduced heat load on the condenser, leading to lower pre-heat of the sour water feed to the stripper.",
+      "Process & Material Issues: Insufficient condensation, leading to reduced liquid reflux for the 'Sour Water Stripper' (if 'SWS OVHD Accumulator' level drops too low).",
+      "Equipment Damage: Potential for 'Reflux Pump' cavitation if 'SWS OVHD Accumulator' liquid level is too low.",
+      "**Cold Side Less Flow:**",
+      "Chemical Hazards: Insufficient cooling of stripper overheads, leading to higher temperature and pressure in the condenser and 'SWS OVHD Accumulator'.",
+      "Chemical Hazards: Reduced condensation, leading to increased carryover of H2S/NH3 to 'ACID-GAS-TO-S-PLANT-EX', potentially overloading downstream units and increasing release risk.",
+      "Equipment Damage: Overheating of condenser tubes and shell on the hot side due to insufficient cooling."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) will detect low cold side flow.",
+      "FC-1 (Flow Controller for SW feed pipe) will attempt to open FCV-3 on low flow.",
+      "Temperature sensor 2 (on Overhead stream) will show increased temperature if cooling is insufficient, or decreased temperature if hot side load is reduced.",
+      "Temperature sensor 1 (on sour water Feed) will show higher outlet temperature (if outlet sensed) with insufficient cold flow (too much heat transfer per unit mass of coolant)."
+    ],
+    "recommendations": [
+      "Install a low flow alarm on 'Flow sensor 1'.",
+      "Install a high temperature alarm on 'Temperature sensor 2'.",
+      "Install a low pressure alarm on the condenser hot side / 'SWS OVHD Accumulator'.",
+      "Install a low level alarm in the 'SWS OVHD Accumulator'."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Hot side , cold side)",
+    "guideword": "Reverse",
+    "causes": [
+      "**Hot Side (Overhead Vapour from Stripper):**",
+      "Process & Material Issues: Lower pressure in 'Sour Water Stripper' (e.g., sudden depressurization) relative to 'SWS OVHD Accumulator' (e.g., downstream blockage creating backpressure).",
+      "Human Factors: Incorrect operation of manual isolation valves during startup/shutdown, creating an adverse pressure differential.",
+      "**Cold Side (Sour Water Feed, Cooling Medium):**",
+      "Process & Material Issues: Failure of 'NRV-5' (Non-Return Valve) on 'SW feed pipe 1' combined with higher pressure downstream (e.g., in 'Sour Water Stripper' or cold side of condenser) than upstream.",
+      "Process & Material Issues: 'Stripper feed Pump' failure (e.g., power loss) allowing backflow through the pump.",
+      "Human Factors: Incorrect operation of manual isolation valves, creating a reverse pressure differential."
+    ],
+    "consequences": [
+      "**Hot Side Reverse Flow:**",
+      "Equipment Damage: Hot, partially condensed vapours from 'SWS OVHD Accumulator' flowing back to the 'Sour Water Stripper', potentially damaging internals (trays) or causing hydraulic upset.",
+      "Equipment Damage: Liquid accumulation in the condenser, leading to water hammer or tube damage.",
+      "**Cold Side Reverse Flow:**",
+      "Chemical Hazards: Hot sour water (possibly partially stripped or pre-heated) flowing back towards 'SW Storage', potentially overheating the storage tank or contaminating its contents.",
+      "Chemical Hazards: Loss of cooling for the condenser, leading to consequences of 'No Cold Side Flow'.",
+      "Equipment Damage: Damage to 'Stripper feed Pump' if reverse flow occurs through it.",
+      "HSE Impact: Release of hazardous substances if equipment fails due to thermal shock or overpressure."
+    ],
+    "safeguards": [
+      "NRV-5 (Non-Return Valve) on 'SW feed pipe 1' is an existing safeguard against cold side reverse flow.",
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) might indicate reverse flow if capable, or zero flow when pump is supposed to be running."
+    ],
+    "recommendations": [
+      "Install a check valve in the 'SWS Overhead pipe' to prevent reverse flow to the stripper.",
+      "Install a pressure differential alarm between 'Sour Water Stripper' overhead and 'SWS OVHD Accumulator'.",
+      "Install a reverse flow alarm on 'Flow sensor 1' if instrument has this capability."
+    ]
+  },
+  {
+    "parameter": "Pressure\n(Hot / cold side)",
+    "guideword": "More",
+    "causes": [
+      "**Hot Side (Overhead Vapour):**",
+      "Instrument & Control Failure: 'FCV-3' (cold side flow) fails closed or 'FC-1'/'Flow sensor 1' failure leads to reduced cooling flow.",
+      "Process & Material Issues: Insufficient cooling (e.g., low cold side flow, high cold side inlet temp, fouling on cold side heat transfer surfaces).",
+      "Process & Material Issues: Increased heat load from 'Sour Water Stripper' (e.g., higher steam rate, higher feed flow, or upset conditions generating more vapour).",
+      "Process & Material Issues: Blockage in the outlet line of 'SWS OVHD Accumulator' ('Acid gas pipe' or 'Reflux pipe 1').",
+      "Process & Material Issues: Buildup of non-condensable gases in the hot side.",
+      "Human Factors: Operator reduces cooling flow or closes downstream valve in 'Acid gas pipe'."
+    ],
+    "consequences": [
+      "Chemical Hazards: Overpressure of condenser and 'SWS OVHD Accumulator', potentially leading to rupture and uncontrolled release of H2S/NH3 vapours.",
+      "Equipment Damage: Damage or rupture of condenser tubes and/or shell.",
+      "Equipment Damage: Activation of pressure relief device (PRV) on 'SWS OVHD Accumulator' (if present) or 'Sour Water Stripper' (PRV-2).",
+      "HSE Impact: Major release of highly toxic and flammable H2S/NH3 vapours, posing severe risk of personnel exposure, fire, and explosion.",
+      "HSE Impact: Environmental contamination from H2S/NH3 release.",
+      "Equipment Damage: Damage to downstream 'ACID-GAS-TO-S-PLANT-EX' if high pressure gas is sent.",
+      "**Cold Side (Sour Water Feed):**",
+      "Instrument & Control Failure: 'FCV-3' fails closed or is excessively throttled by 'FC-1'.",
+      "Process & Material Issues: Blockage/fouling in the cold side tubes of the condenser or 'SW feed pipe' downstream (before stripper inlet).",
+      "Process & Material Issues: Surge from 'Stripper feed Pump' due to upset or control malfunction.",
+      "Human Factors: Operator closes downstream valve to the stripper (if manual) or excessively throttles 'FCV-3'."
+    ],
+    "safeguards": [
+      "Pressure sensors are connected to all pumps, including 'Stripper feed Pump' (discharge pressure monitoring).",
+      "Temperature sensor 2 (on Overhead stream) would show higher temperature due to reduced heat transfer if cold side flow is compromised.",
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) might show low flow if 'FCV-3' is excessively closed or if blockage occurs."
+    ],
+    "recommendations": [
+      "Install a high pressure alarm on the hot side of the condenser / 'SWS OVHD Accumulator'.",
+      "Install a Pressure Relief Valve (PRV) on the hot side of the condenser / 'SWS OVHD Accumulator' to protect against overpressure.",
+      "Install a high pressure alarm on the cold side of the condenser.",
+      "Install a Pressure Relief Valve (PRV) on the cold side of the condenser to protect against overpressure.",
+      "Implement an interlock to reduce steam flow to 'Sour Water Stripper' and/or trip 'Stripper feed Pump' on high hot side pressure.",
+      "Implement an interlock to trip 'Stripper feed Pump' on high discharge pressure."
+    ]
+  },
+  {
+    "parameter": "Pressure\n(Hot / cold side)",
+    "guideword": "Less",
+    "causes": [
+      "**Hot Side (Overhead Vapour):**",
+      "Instrument & Control Failure: 'FCV-4' (Reflux flow control) fails open, drawing too much liquid from accumulator, thus reducing backpressure.",
+      "Process & Material Issues: Reduced vapour flow from 'Sour Water Stripper' (e.g., low feed, low steam).",
+      "Process & Material Issues: Large leak or rupture in hot side piping, condenser, or 'SWS OVHD Accumulator' / 'Acid gas pipe'.",
+      "Process & Material Issues: Excessive cooling (e.g., very high cold side flow, very low cold side inlet temperature).",
+      "Human Factors: Operator opens a downstream valve too much, or reduces stripper load significantly.",
+      "**Cold Side (Sour Water Feed):**",
+      "Instrument & Control Failure: 'Stripper feed Pump' failure (e.g., cavitation, motor trip, suction blockage).",
+      "Instrument & Control Failure: 'FCV-3' fails wide open or is commanded wide open by 'FC-1'.",
+      "Process & Material Issues: Upstream supply pressure from 'SW Storage' is too low.",
+      "Process & Material Issues: Rupture or leak in cold side tubing or piping.",
+      "Human Factors: Operator closes an upstream manual valve to 'Stripper feed Pump' or 'FCV-3'."
+    ],
+    "consequences": [
+      "**Hot Side Less Pressure:**",
+      "Chemical Hazards: Vacuum formation if pressure drops below atmospheric, potentially leading to air ingress and formation of explosive H2S-air mixture.",
+      "Equipment Damage: Equipment implosion if not designed for vacuum.",
+      "Process & Material Issues: Reduced driving force for acid gas to 'ACID-GAS-TO-S-PLANT-EX', affecting downstream operations.",
+      "Process & Material Issues: Inefficient operation of 'SWS OVHD Accumulator' and reflux system.",
+      "**Cold Side Less Pressure:**",
+      "Equipment Damage: Cavitation of 'Stripper feed Pump' and potential damage.",
+      "Process & Material Issues: Loss of cooling for the condenser, leading to consequences of 'Less Cold Side Flow'.",
+      "Process & Material Issues: Reduced flow of sour water to 'Sour Water Stripper'.",
+      "Process & Material Issues: Potential for flashing of sour water feed if pressure drops too low, leading to two-phase flow and inefficient heat transfer."
+    ],
+    "safeguards": [
+      "Pressure sensors on 'Stripper feed Pump' for performance monitoring.",
+      "Trip interlock on 'Stripper feed Pump'.",
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) would show low flow for cold side."
+    ],
+    "recommendations": [
+      "Install a low pressure alarm on the hot side of the condenser / 'SWS OVHD Accumulator'.",
+      "Install a vacuum relief valve on the hot side if not designed for vacuum operation.",
+      "Install a low pressure alarm on the cold side inlet of the condenser and/or 'Stripper feed Pump' suction.",
+      "Implement an interlock to trip 'Stripper feed Pump' on low suction pressure.",
+      "Implement an interlock to reduce cooling flow ('FCV-3') on low hot side pressure."
+    ]
+  },
+  {
+    "parameter": "Temperature\n(Hot / cold)",
+    "guideword": "More",
+    "causes": [
+      "**Hot Side (Overhead Vapour):**",
+      "Instrument & Control Failure: 'FCV-3' (cooling water flow) fails closed or 'FC-1'/'Flow sensor 1' failure leads to reduced cooling flow.",
+      "Process & Material Issues: Insufficient cooling (e.g., low cold side flow, high cold side inlet temperature, fouling on cold side heat transfer surfaces).",
+      "Process & Material Issues: Increased heat load from 'Sour Water Stripper' (e.g., higher steam rate, higher feed flow, or upset conditions).",
+      "Process & Material Issues: Loss of reflux to 'Sour Water Stripper' (upstream issue, leads to higher temperature overheads).",
+      "Human Factors: Operator reduces cooling flow or increases steam flow to stripper.",
+      "**Cold Side (Sour Water Feed):**",
+      "Process & Material Issues: Higher than design inlet temperature of sour water feed from 'SW Storage' (e.g., upstream process upset, solar heating of tank, insufficient cooling in upstream units).",
+      "Process & Material Issues: Extremely low cold side flow while hot side flow is high, allowing for more heat transfer per unit mass of coolant (resulting in higher outlet temp of coolant, but not necessarily higher inlet temp). This deviation focuses on the *inlet* temperature on the cold side."
+    ],
+    "consequences": [
+      "**Hot Side More Temperature:**",
+      "Chemical Hazards: Incomplete condensation of stripper overheads, leading to higher vapour temperature in 'SWS OVHD Accumulator' and 'Acid gas pipe'.",
+      "Chemical Hazards: Increased carryover of water vapour, H2S, NH3 to 'ACID-GAS-TO-S-PLANT-EX', potentially overloading downstream units and increasing release risk.",
+      "Equipment Damage: Increased pressure in condenser/accumulator, potentially leading to rupture.",
+      "Equipment Damage: Damage to downstream equipment not designed for high temperature vapours (e.g., instruments, plastic components).",
+      "HSE Impact: Elevated risk of H2S/NH3 release due to overpressure or equipment failure.",
+      "**Cold Side More Temperature:**",
+      "Process & Material Issues: Reduced temperature differential, leading to less effective cooling of stripper overheads.",
+      "Chemical Hazards: Higher temperature of 'SWS OVHD Accumulator' and uncondensed vapours, leading to consequences similar to 'Hot Side More Temperature'.",
+      "Process & Material Issues: Increased temperature of sour water feed entering the 'Sour Water Stripper', which may cause flashing in the line if pressure is not sufficient."
+    ],
+    "safeguards": [
+      "Temperature sensor 2 (on Overhead stream to Stripper OVHD Condenser) will detect high hot side temperature.",
+      "Temperature sensor 1 (on sour water Feed to Stripper OVHD Condenser) will detect high cold side inlet temperature."
+    ],
+    "recommendations": [
+      "Install a high temperature alarm on 'Temperature sensor 2'.",
+      "Install a high temperature alarm on 'Temperature sensor 1'.",
+      "Implement an interlock to increase cooling flow ('FCV-3') or reduce steam flow to stripper ('FCV-5') on high hot side temperature.",
+      "Install a high pressure alarm on the hot side."
+    ]
+  },
+  {
+    "parameter": "Temperature\n(Hot / cold)",
+    "guideword": "Less",
+    "causes": [
+      "**Hot Side (Overhead Vapour):**",
+      "Instrument & Control Failure: 'FCV-3' (cooling water flow) fails open or 'FC-1'/'Flow sensor 1' failure leads to increased cooling flow.",
+      "Process & Material Issues: Excessive cooling (e.g., high cold side flow, very low cold side inlet temperature).",
+      "Process & Material Issues: Reduced heat load from 'Sour Water Stripper' (e.g., low feed, low steam).",
+      "Human Factors: Operator increases cooling flow or reduces steam flow to stripper.",
+      "**Cold Side (Sour Water Feed):**",
+      "Process & Material Issues: Lower than design inlet temperature of sour water feed from 'SW Storage' (e.g., colder ambient conditions, upstream cooling operating excessively)."
+    ],
+    "consequences": [
+      "**Hot Side Less Temperature:**",
+      "Process & Material Issues: Overcooling of stripper overheads, leading to excessive condensation and potentially high liquid level in 'SWS OVHD Accumulator'.",
+      "Process & Material Issues: Increased reflux to stripper, potentially upsetting column hydraulics (though 'LC-1' and 'FCV-4' should manage this).",
+      "Equipment Damage: Potential for freezing if water content is high and ambient temperature is very low (less likely for sour water systems, but general hazard).",
+      "Process & Material Issues: Lower pressure in condenser/accumulator.",
+      "**Cold Side Less Temperature:**",
+      "Process & Material Issues: Improved cooling efficiency, leading to lower hot side temperature and increased condensation.",
+      "Process & Material Issues: Reduced pre-heating of the sour water feed to the 'Sour Water Stripper', requiring more steam in the stripper for efficient operation.",
+      "Equipment Damage: Potential for thermal stress in the stripper if feed enters much colder than designed."
+    ],
+    "safeguards": [
+      "Temperature sensor 2 (on Overhead stream to Stripper OVHD Condenser) will detect low hot side temperature.",
+      "Temperature sensor 1 (on sour water Feed to Stripper OVHD Condenser) will detect low cold side inlet temperature.",
+      "LC-1 (Level Controller for SWS OVHD Accumulator) and FCV-4 (Reflux flow) are designed to manage liquid level."
+    ],
+    "recommendations": [
+      "Install a low temperature alarm on 'Temperature sensor 2'.",
+      "Install a low temperature alarm on 'Temperature sensor 1'.",
+      "Install a high level alarm in the 'SWS OVHD Accumulator'."
+    ]
+  },
+  {
+    "parameter": "Phase  (Hot / cold)",
+    "guideword": "Otherthan",
+    "causes": [
+      "**Hot Side (Overhead Vapour from Stripper):**",
+      "Process & Material Issues: *Vapour only (no condensation)*: Insufficient cooling (e.g., high cold side inlet temp, low cold side flow, severe fouling on cold side).",
+      "Process & Material Issues: *Liquid only (liquid carryover)*: Upstream 'Sour Water Stripper' operating abnormally (e.g., foaming, flooding, excessive liquid level), leading to liquid entrainment in overhead vapour.",
+      "Process & Material Issues: *Incorrect vapour/liquid ratio/slugging*: Fluctuation in stripper operation or unstable cooling, causing erratic condensation.",
+      "**Cold Side (Sour Water Feed):**",
+      "Process & Material Issues: *Vapour presence (flashing)*: Low pressure on cold side (e.g., pump cavitation, leak, FCV-3 wide open) combined with high temperature, causing sour water to flash.",
+      "Process & Material Issues: *Solid presence*: Fouling or crystallization of salts (e.g., ammonium bisulfide at high concentrations/low temperatures) in sour water feed.",
+      "Process & Material Issues: *Oil carryover*: Failure of upstream separation (Surge Drum-1 or SW Storage), leading to oil presence in sour water feed."
+    ],
+    "consequences": [
+      "**Hot Side Otherthan Phase:**",
+      "Chemical Hazards: *Vapour only*: Overloading downstream 'ACID-GAS-TO-S-PLANT-EX' with high temperature H2S/NH3 vapours, potential for high pressure and release.",
+      "Chemical Hazards: *Liquid only/slugging*: Liquid carryover to 'ACID-GAS-TO-S-PLANT-EX', causing water hammer, corrosion, or damage to downstream equipment.",
+      "Equipment Damage: Reduced heat transfer efficiency, vibration, potential for water hammer and damage to condenser tubes.",
+      "**Cold Side Otherthan Phase:**",
+      "Process & Material Issues: *Vapour presence*: Inefficient heat transfer, vibration, increased pressure drop, reduced cooling capacity.",
+      "Process & Material Issues: *Solid presence*: Blockage of tubes, increased pressure drop, reduced heat transfer, tube erosion.",
+      "Process & Material Issues: *Oil carryover*: Fouling of condenser tubes, reduced heat transfer efficiency, potential for undesirable chemical reactions."
+    ],
+    "safeguards": [
+      "Temperature sensor 2 (on Overhead stream) and Temperature sensor 1 (on sour water Feed) would show abnormal temperatures.",
+      "LC-1 (Level Controller for SWS OVHD Accumulator) and FCV-4 (Reflux flow) would respond to abnormal liquid levels (hot side).",
+      "Flow sensor 1 might show erratic readings due to two-phase flow or blockage (cold side).",
+      "Pressure sensors on 'Stripper feed Pump' might show abnormal readings (cold side)."
+    ],
+    "recommendations": [
+      "Install a liquid detection/alarm in the 'SWS Overhead pipe' before the condenser (for liquid carryover).",
+      "Install a differential pressure monitoring across the condenser for fouling/blockage detection.",
+      "Install vibration monitoring on the condenser for two-phase flow or slugging issues.",
+      "Implement an online analyzer for oil content in sour water feed if oil carryover is a concern.",
+      "Install a high/low level alarm in 'SWS OVHD Accumulator'."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "Otherthan",
+    "causes": [
+      "Process & Material Issues: **Cross-contamination (Leak)**: Failure of condenser tubes or tube-sheet, leading to leakage between the hot and cold streams.",
+      "Process & Material Issues: Upstream process upset changing the composition of sour water feed or stripper overheads (e.g., different refinery unit effluent, presence of unexpected impurities like hydrocarbons, corrosion inhibitors).",
+      "Process & Material Issues: Inadvertent introduction of cleaning chemicals or maintenance fluids during operation.",
+      "Process & Material Issues: Corrosion products forming and entering the streams."
+    ],
+    "consequences": [
+      "**Hot Side to Cold Side Leakage (Overhead into Sour Water Feed):**",
+      "Chemical Hazards: Sour water feed becomes more concentrated in H2S/NH3, potentially altering pH, increasing corrosion risk in downstream cold side piping and 'Stripper feed Pump'.",
+      "Process & Material Issues: Overloading of the 'Sour Water Stripper' with recycled H2S/NH3.",
+      "**Cold Side to Hot Side Leakage (Sour Water Feed into Overhead):**",
+      "Chemical Hazards: Sour water (liquid) enters the hot overhead vapour stream, leading to liquid carryover to 'ACID-GAS-TO-S-PLANT-EX', potentially causing water hammer, corrosion, or damage to downstream equipment.",
+      "Process & Material Issues: Dilution of acid gas, affecting efficiency of downstream sulfur recovery unit.",
+      "**General Consequences:**",
+      "Equipment Damage: Fouling of tubes if incompatible substances mix and react.",
+      "Equipment Damage: Material degradation (corrosion) if unexpected chemicals are present.",
+      "Process & Material Issues: Off-spec products (treated water, acid gas).",
+      "HSE Impact: Potential for release of more toxic/flammable mixtures, unexpected reactions, increased corrosion leading to ruptures."
+    ],
+    "safeguards": [
+      "Temperature sensor 1 and 2 might show abnormal readings if a leak significantly changes heat transfer.",
+      "Pressure sensors on 'Stripper feed Pump' might show abnormal readings.",
+      "Flow sensor 1 might show abnormal flow if a leak occurs."
+    ],
+    "recommendations": [
+      "Install pressure differential monitoring across condenser shell and tube sides with alarm (ensuring hot side pressure is typically higher to contain H2S/NH3 within the hot side in case of leak).",
+      "Install continuous online analyzer for H2S/NH3 on the pre-heated sour water feed to the stripper or on the acid gas outlet to detect cross-contamination.",
+      "Implement regular inspection and maintenance program for tube integrity.",
+      "Install corrosion monitoring (e.g., coupons, online probes)."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "As Well As",
+    "causes": [
+      "Process & Material Issues: **Cross-contamination (Leak)**: Failure of condenser tubes or tube-sheet (as described in 'Otherthan Composition').",
+      "Process & Material Issues: Corrosion products from equipment degradation (e.g., iron sulfides).",
+      "Process & Material Issues: Fouling agents (e.g., scales, polymers, biological growth).",
+      "Process & Material Issues: Inadvertent introduction of inert gases (e.g., nitrogen during purging) during operation, diluting process streams.",
+      "Process & Material Issues: Upstream process upsets introducing new components (e.g., hydrocarbons from refinery unit, treatment chemicals)."
+    ],
+    "consequences": [
+      "Consequences are similar to 'Composition - Otherthan', focusing on the detrimental effects of additional components:",
+      "Chemical Hazards: Contamination of streams, potentially creating new hazardous mixtures.",
+      "Equipment Damage: Accelerated corrosion, fouling of heat transfer surfaces (reducing efficiency and increasing pressure drop), or unexpected reactions causing damage.",
+      "Process & Material Issues: Off-spec products (treated water, acid gas).",
+      "HSE Impact: Increased risk of fire, explosion, toxicity, or environmental harm due to unexpected or hazardous components."
+    ],
+    "safeguards": [
+      "Temperature sensors (1 & 2) and 'Flow sensor 1' might indicate issues indirectly (fouling -> reduced heat transfer -> abnormal temps, or blockage -> abnormal flow/pressure).",
+      "Pressure sensors on pumps might show abnormal readings."
+    ],
+    "recommendations": [
+      "Refer to recommendations for 'Composition - Otherthan' (pressure differential monitoring, online analyzers, integrity checks).",
+      "Implement regular chemical analysis of sour water feed and stripper overhead products.",
+      "Install filters or strainers on critical inlet streams if particulate fouling is a concern."
+    ]
+  },
+  {
+    "parameter": "Level  (If exists)",
+    "guideword": "More",
+    "causes": [
+      "**Hot Side (Liquid accumulation backing up into condenser from SWS OVHD Accumulator):**",
+      "Instrument & Control Failure: 'LC-1' (Level Controller for SWS OVHD Accumulator) failure causing 'FCV-4' (Reflux flow) to close or open insufficiently to remove liquid.",
+      "Instrument & Control Failure: 'FCV-4' fails closed or is throttled excessively.",
+      "Instrument & Control Failure: 'Level sensor 3' (on SWS OVHD Accumulator) failure leading to incorrect control action (e.g., low reading, so LC-1 doesn't open FCV-4 enough).",
+      "Process & Material Issues: Excessive condensation due to overcooling (high cold side flow, very low cold side inlet temperature).",
+      "Process & Material Issues: Blockage in 'Reflux pipe 1' or 'Acid gas pipe' leading from 'SWS OVHD Accumulator'.",
+      "Process & Material Issues: Increased water content in overheads from stripper, leading to more condensate.",
+      "Human Factors: Operator manually closes 'FCV-4' or downstream valves from 'SWS OVHD Accumulator'."
+    ],
+    "consequences": [
+      "Chemical Hazards: Liquid carryover to 'ACID-GAS-TO-S-PLANT-EX' (if accumulator overflows), causing water hammer, corrosion, or damage to downstream equipment.",
+      "Equipment Damage: Liquid accumulation (flooding) in the condenser hot side tubes, reducing heat transfer surface and causing less efficient cooling.",
+      "Equipment Damage: Increased pressure drop on the hot side, potentially leading to increased pressure in the 'Sour Water Stripper' due to backpressure.",
+      "HSE Impact: Equipment damage, potential release of H2S/NH3 due to overpressure or rupture."
+    ],
+    "safeguards": [
+      "LC-1 (Level Controller for SWS OVHD Accumulator) and FCV-4 (Reflux flow) are designed to control this level.",
+      "Level sensor 3 (on SWS OVHD Accumulator) provides input to LC-1.",
+      "Temperature sensor 2 (on Overhead stream) might show abnormal temperature due to reduced heat transfer."
+    ],
+    "recommendations": [
+      "Install a high level alarm on 'SWS OVHD Accumulator'.",
+      "Install a high-high level trip on 'SWS OVHD Accumulator' to close steam to 'Sour Water Stripper' or trip 'Stripper feed Pump' to reduce vapour load.",
+      "Ensure a Pressure Relief Valve (PRV) is present and adequately sized for the 'SWS OVHD Accumulator'."
+    ]
+  },
+  {
+    "parameter": "Level  (If exists)",
+    "guideword": "Less",
+    "causes": [
+      "**Hot Side (Liquid level in SWS OVHD Accumulator becoming too low):**",
+      "Instrument & Control Failure: 'LC-1' (Level Controller for SWS OVHD Accumulator) failure causing 'FCV-4' (Reflux flow) to open too much.",
+      "Instrument & Control Failure: 'FCV-4' fails open or is commanded open excessively.",
+      "Instrument & Control Failure: 'Level sensor 3' (on SWS OVHD Accumulator) failure leading to incorrect control action (e.g., high reading, so LC-1 opens FCV-4 too much).",
+      "Process & Material Issues: Insufficient condensation (e.g., too little hot side flow, undercooling, or high non-condensables).",
+      "Process & Material Issues: Leak in 'SWS OVHD Accumulator' or its liquid outlet lines.",
+      "Human Factors: Operator manually opens 'FCV-4' or downstream valves excessively."
+    ],
+    "consequences": [
+      "Equipment Damage: 'Reflux Pump' may cavitate or run dry, leading to pump damage.",
+      "Process & Material Issues: Loss of reflux to the 'Sour Water Stripper', reducing stripping efficiency and potentially affecting product quality.",
+      "Chemical Hazards: Lower pressure in the condenser and 'SWS OVHD Accumulator', potentially leading to vacuum and air ingress (forming an explosive mixture with H2S).",
+      "Process & Material Issues: Increased carryover of uncondensed vapours to 'ACID-GAS-TO-S-PLANT-EX'."
+    ],
+    "safeguards": [
+      "LC-1 (Level Controller for SWS OVHD Accumulator) and FCV-4 (Reflux flow) are designed to control this level.",
+      "Level sensor 3 (on SWS OVHD Accumulator) provides input to LC-1."
+    ],
+    "recommendations": [
+      "Install a low level alarm on 'SWS OVHD Accumulator'.",
+      "Install a low-low level trip on 'SWS OVHD Accumulator' to trip the 'Reflux Pump' to prevent cavitation.",
+      "Implement an interlock to reduce hot side flow (steam to stripper) if reflux is lost or low."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "No",
+    "causes": [
+      "This deviation is covered by 'Flow (Hot side , cold side) - No'."
+    ],
+    "consequences": [
+      "Refer to 'Flow (Hot side , cold side) - No'."
+    ],
+    "safeguards": [
+      "Refer to 'Flow (Hot side , cold side) - No'."
+    ],
+    "recommendations": [
+      "Refer to 'Flow (Hot side , cold side) - No'."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "Less",
+    "causes": [
+      "This deviation is covered by 'Flow (Hot side , cold side) - Less'."
+    ],
+    "consequences": [
+      "Refer to 'Flow (Hot side , cold side) - Less'."
+    ],
+    "safeguards": [
+      "Refer to 'Flow (Hot side , cold side) - Less'."
+    ],
+    "recommendations": [
+      "Refer to 'Flow (Hot side , cold side) - Less'."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "More",
+    "causes": [
+      "This deviation is covered by 'Flow (Hot side , cold side) - More'."
+    ],
+    "consequences": [
+      "Refer to 'Flow (Hot side , cold side) - More'."
+    ],
+    "safeguards": [
+      "Refer to 'Flow (Hot side , cold side) - More'."
+    ],
+    "recommendations": [
+      "Refer to 'Flow (Hot side , cold side) - More'."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "Reverse",
+    "causes": [
+      "This deviation is covered by 'Flow (Hot side , cold side) - Reverse'."
+    ],
+    "consequences": [
+      "Refer to 'Flow (Hot side , cold side) - Reverse'."
+    ],
+    "safeguards": [
+      "Refer to 'Flow (Hot side , cold side) - Reverse'."
+    ],
+    "recommendations": [
+      "Refer to 'Flow (Hot side , cold side) - Reverse'."
+    ]
+  },
+  {
+    "parameter": "Flow \n(Liquid/gas ; Inlet& Outlet",
+    "guideword": "As Well As",
+    "causes": [
+      "**Hot Side Inlet (SWS Overhead pipe):**",
+      "Process & Material Issues: Carryover of liquid from 'Sour Water Stripper' (e.g., foaming, flooding, excessive level in stripper), resulting in simultaneous vapour and liquid flow.",
+      "Process & Material Issues: Cross-leakage from cold side (sour water liquid) into hot side vapour.",
+      "**Cold Side Inlet (SW feed pipe 2 before FCV-3):**",
+      "Process & Material Issues: Carryover of oil from 'SW Storage' (sour water + oil).",
+      "Process & Material Issues: Flashing of sour water due to low pressure/high temperature, causing sour water liquid + vapour mixture.",
+      "Process & Material Issues: Cross-leakage from hot side (H2S/NH3 vapour) into cold side liquid."
+    ],
+    "consequences": [
+      "**Hot Side Inlet As Well As:**",
+      "Equipment Damage: Liquid slugs and water hammer in condenser tubes and piping.",
+      "Process & Material Issues: Reduced heat transfer efficiency.",
+      "Chemical Hazards: Contamination of acid gas sent to 'ACID-GAS-TO-S-PLANT-EX'.",
+      "**Cold Side Inlet As Well As:**",
+      "Equipment Damage: Fouling of condenser tubes, reduced heat transfer efficiency.",
+      "Equipment Damage: Vibration and erosion in condenser tubes due to two-phase flow.",
+      "Chemical Hazards: Contamination of stripper feed (e.g., with oil or H2S vapour)."
+    ],
+    "safeguards": [
+      "Temperature sensor 2 (on Overhead stream) might show erratic readings (hot side).",
+      "LC-2 (Level Controller for Sour Water Stripper) should manage stripper level to prevent liquid carryover.",
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) might show erratic readings (cold side).",
+      "Temperature sensor 1 (on sour water Feed) would show inlet temperature (cold side)."
+    ],
+    "recommendations": [
+      "Install liquid detection/alarm in 'SWS Overhead pipe' before the condenser.",
+      "Install an online analyzer for oil content in sour water feed if oil carryover is a significant concern.",
+      "Install a vapour detection system or pressure/temperature monitoring to prevent flashing on the cold side."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "More",
+    "causes": [
+      "This deviation is covered by 'Pressure (Hot / cold side) - More'."
+    ],
+    "consequences": [
+      "Refer to 'Pressure (Hot / cold side) - More'."
+    ],
+    "safeguards": [
+      "Refer to 'Pressure (Hot / cold side) - More'."
+    ],
+    "recommendations": [
+      "Refer to 'Pressure (Hot / cold side) - More'."
+    ]
+  },
+  {
+    "parameter": "Pressure",
+    "guideword": "Less",
+    "causes": [
+      "This deviation is covered by 'Pressure (Hot / cold side) - Less'."
+    ],
+    "consequences": [
+      "Refer to 'Pressure (Hot / cold side) - Less'."
+    ],
+    "safeguards": [
+      "Refer to 'Pressure (Hot / cold side) - Less'."
+    ],
+    "recommendations": [
+      "Refer to 'Pressure (Hot / cold side) - Less'."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "More",
+    "causes": [
+      "This deviation is covered by 'Temperature (Hot / cold) - More'."
+    ],
+    "consequences": [
+      "Refer to 'Temperature (Hot / cold) - More'."
+    ],
+    "safeguards": [
+      "Refer to 'Temperature (Hot / cold) - More'."
+    ],
+    "recommendations": [
+      "Refer to 'Temperature (Hot / cold) - More'."
+    ]
+  },
+  {
+    "parameter": "Temperature",
+    "guideword": "Less",
+    "causes": [
+      "This deviation is covered by 'Temperature (Hot / cold) - Less'."
+    ],
+    "consequences": [
+      "Refer to 'Temperature (Hot / cold) - Less'."
+    ],
+    "safeguards": [
+      "Refer to 'Temperature (Hot / cold) - Less'."
+    ],
+    "recommendations": [
+      "Refer to 'Temperature (Hot / cold) - Less'."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "More",
+    "causes": [
+      "This deviation is covered by 'Level (If exists) - More'."
+    ],
+    "consequences": [
+      "Refer to 'Level (If exists) - More'."
+    ],
+    "safeguards": [
+      "Refer to 'Level (If exists) - More'."
+    ],
+    "recommendations": [
+      "Refer to 'Level (If exists) - More'."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "Less",
+    "causes": [
+      "This deviation is covered by 'Level (If exists) - Less'."
+    ],
+    "consequences": [
+      "Refer to 'Level (If exists) - Less'."
+    ],
+    "safeguards": [
+      "Refer to 'Level (If exists) - Less'."
+    ],
+    "recommendations": [
+      "Refer to 'Level (If exists) - Less'."
+    ]
+  },
+  {
+    "parameter": "Composition",
+    "guideword": "Other than",
+    "causes": [
+      "This deviation is covered by 'Composition - Otherthan'."
+    ],
+    "consequences": [
+      "Refer to 'Composition - Otherthan'."
+    ],
+    "safeguards": [
+      "Refer to 'Composition - Otherthan'."
+    ],
+    "recommendations": [
+      "Refer to 'Composition - Otherthan'."
+    ]
+  },
+  {
+    "parameter": "Phase",
+    "guideword": "Other than",
+    "causes": [
+      "This deviation is covered by 'Phase (Hot / cold) - Otherthan'."
+    ],
+    "consequences": [
+      "Refer to 'Phase (Hot / cold) - Otherthan'."
+    ],
+    "safeguards": [
+      "Refer to 'Phase (Hot / cold) - Otherthan'."
+    ],
+    "recommendations": [
+      "Refer to 'Phase (Hot / cold) - Otherthan'."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Water/ steam/ electricity)",
+    "guideword": "More",
+    "causes": [
+      "**Cooling Medium (Sour Water Feed - acting as internal utility):**",
+      "Instrument & Control Failure: 'FCV-3' fails open or is commanded open excessively by 'FC-1' due to malfunction.",
+      "Instrument & Control Failure: 'Stripper feed Pump' overspeed (if VSD) or control malfunction.",
+      "Human Factors: Operator manually overrides 'FC-1' to open 'FCV-3' more.",
+      "**Electricity to 'Stripper feed Pump':**",
+      "Process & Material Issues: Pump motor overload due to excessive current draw (e.g., pumping against high pressure drop/blockage).",
+      "Instrument & Control Failure: Electrical fault leading to overcurrent/overvoltage."
+    ],
+    "consequences": [
+      "**More Cooling Medium:**",
+      "Equipment Damage: Overcooling of stripper overheads, leading to excessive condensation and potentially flooding the 'SWS OVHD Accumulator'.",
+      "Equipment Damage: Erosion/vibration of condenser tubes due to excessively high flow velocities.",
+      "Process & Material Issues: Lower pre-heat of sour water feed to stripper, requiring more steam in the stripper.",
+      "**More Electricity:**",
+      "Equipment Damage: 'Stripper feed Pump' motor damage due to overheating or mechanical stress.",
+      "Equipment Damage: Electrical system overload and tripping of upstream protective devices."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) will detect high cooling medium flow.",
+      "FC-1 (Flow Controller for SW feed pipe) will attempt to close FCV-3 on high flow.",
+      "Trip interlock on 'Stripper feed Pump'.",
+      "Pressure sensors on 'Stripper feed Pump' for performance monitoring."
+    ],
+    "recommendations": [
+      "Install a high flow alarm on 'Flow sensor 1'.",
+      "Install overcurrent protection (circuit breakers, motor protection relays) for 'Stripper feed Pump'.",
+      "Install a high level alarm in 'SWS OVHD Accumulator'."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Water/ steam/ electricity)",
+    "guideword": "Less",
+    "causes": [
+      "**Cooling Medium (Sour Water Feed - acting as internal utility):**",
+      "Instrument & Control Failure: 'FCV-3' fails closed or is commanded closed excessively by 'FC-1'.",
+      "Instrument & Control Failure: 'Stripper feed Pump' underperformance (e.g., reduced speed, cavitation, partial power loss).",
+      "Process & Material Issues: Partial blockage in 'SW feed pipe 2' or condenser tubes (fouling).",
+      "Process & Material Issues: Insufficient sour water supply from 'SW Storage'.",
+      "Human Factors: Operator manually throttles 'FCV-3' too much.",
+      "**Electricity to 'Stripper feed Pump':**",
+      "Process & Material Issues: Low voltage in electrical supply.",
+      "Instrument & Control Failure: Partial power failure affecting the pump motor."
+    ],
+    "consequences": [
+      "**Less Cooling Medium:**",
+      "Chemical Hazards: Insufficient cooling of stripper overheads, leading to higher temperature and pressure in the condenser and 'SWS OVHD Accumulator'.",
+      "Chemical Hazards: Increased carryover of H2S/NH3 to 'ACID-GAS-TO-S-PLANT-EX', overloading downstream units.",
+      "Equipment Damage: Overheating of condenser tubes and shell on the hot side due to insufficient cooling.",
+      "**Less Electricity:**",
+      "Equipment Damage: Reduced 'Stripper feed Pump' speed or performance, leading to less cooling flow and potential pump damage.",
+      "HSE Impact: Consequences of 'Less Cooling Medium' will follow."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) will detect low cooling medium flow.",
+      "FC-1 (Flow Controller for SW feed pipe) will attempt to open FCV-3 on low flow.",
+      "Temperature sensor 2 (on Overhead stream) will show increased temperature due to insufficient cooling.",
+      "Trip interlock on 'Stripper feed Pump'."
+    ],
+    "recommendations": [
+      "Install a low flow alarm on 'Flow sensor 1'.",
+      "Install a high temperature alarm on 'Temperature sensor 2'.",
+      "Install low voltage alarm for 'Stripper feed Pump' power supply.",
+      "Install a high pressure alarm on the hot side."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Water/ steam/ electricity)",
+    "guideword": "No",
+    "causes": [
+      "**Cooling Medium (Sour Water Feed - acting as internal utility):**",
+      "Instrument & Control Failure: 'FCV-3' fails closed or 'FC-1'/'Flow sensor 1' failure leads to no flow.",
+      "Instrument & Control Failure: Complete failure of 'Stripper feed Pump' (e.g., power loss, mechanical failure, trip).",
+      "Process & Material Issues: Complete blockage in 'SW feed pipe 2' or condenser tubes.",
+      "Process & Material Issues: No sour water supply from 'SW Storage'.",
+      "**Electricity to 'Stripper feed Pump':**",
+      "Process & Material Issues: Power outage to the unit.",
+      "Human Factors: Emergency shutdown procedure cutting power to pump."
+    ],
+    "consequences": [
+      "**No Cooling Medium:**",
+      "Chemical Hazards: No cooling, leading to high hot side temperature and pressure, incomplete condensation, and increased carryover of H2S/NH3.",
+      "Equipment Damage: Overheating and potential rupture of condenser tubes and shell.",
+      "HSE Impact: High risk of H2S/NH3 release, equipment damage, and personnel exposure.",
+      "Process & Material Issues: No pre-heated sour water feed to the 'Sour Water Stripper'.",
+      "**No Electricity:**",
+      "Equipment Damage: 'Stripper feed Pump' stops, leading to 'No Cooling Medium' with all associated consequences."
+    ],
+    "safeguards": [
+      "Flow sensor 1 (on SW feed pipe 2 before FCV-3) will detect no cooling medium flow.",
+      "Temperature sensor 2 (on Overhead stream) will show rapidly increasing temperature.",
+      "Trip interlock on 'Stripper feed Pump'."
+    ],
+    "recommendations": [
+      "Install a low flow alarm on 'Flow sensor 1'.",
+      "Install a high temperature alarm on 'Temperature sensor 2'.",
+      "Implement an interlock to reduce/stop steam flow to 'Sour Water Stripper' and/or trip 'Stripper feed Pump' on no cooling flow.",
+      "Provide backup power supply (e.g., UPS) for critical control systems and potentially for essential pumps if deemed necessary."
+    ]
+  },
+  {
+    "parameter": "Operator sequence",
+    "guideword": "Not carried out",
+    "causes": [
+      "Human Factors: Operator oversight, forgetfulness, lack of training, or distraction leading to omission of a required manual step.",
+      "Human Factors: Failure to manually open/close necessary isolation valves during startup/shutdown or maintenance (e.g., inlet/outlet bypass valves, drains, vents, if present).",
+      "Human Factors: Failure to correctly set control loops to auto or manual as required."
+    ],
+    "consequences": [
+      "Process & Material Issues: No cooling flow, leading to high hot side temperature and pressure (if cooling valve not opened).",
+      "Process & Material Issues: No hot side flow, leading to stripper overpressure or shutdown (if hot side isolation valve not opened).",
+      "Equipment Damage: Improper startup or shutdown sequence causing thermal shock, pressure surges, or mechanical damage to the condenser.",
+      "HSE Impact: Potential for equipment damage, H2S/NH3 release, and personnel exposure due to uncontrolled conditions."
+    ],
+    "safeguards": [
+      "Temperature sensor 1 and 2, Flow sensor 1 provide real-time process data.",
+      "FCV-3 (automatic control) acts as a safeguard against manual omission once in auto mode."
+    ],
+    "recommendations": [
+      "Provide detailed, step-by-step operating procedures for startup, shutdown, and normal operation.",
+      "Implement comprehensive operator training and competency verification programs.",
+      "Utilize pre-startup safety reviews (PSSR) and checklists to ensure readiness.",
+      "Implement automated interlocks for critical conditions where manual action is prone to error (e.g., ensuring cooling flow before hot flow)."
+    ]
+  },
+  {
+    "parameter": "Operator sequence",
+    "guideword": "Early",
+    "causes": [
+      "Human Factors: Operator rushing, misunderstanding procedure, or making premature actions during startup, shutdown, or maintenance.",
+      "Human Factors: Opening 'FCV-3' (or a manual isolation valve for cold flow) too early during startup before hot side flow is established.",
+      "Human Factors: Closing cooling flow too early during shutdown, trapping hot vapours in the condenser."
+    ],
+    "consequences": [
+      "Process & Material Issues: Premature cooling when hot flow is not established can lead to unstable operation, pressure fluctuations, or even vacuum conditions.",
+      "Process & Material Issues: Closing cooling flow too early on shutdown can lead to residual hot vapours overheating the condenser or 'SWS OVHD Accumulator'.",
+      "Equipment Damage: Thermal shock to equipment due to sudden temperature changes.",
+      "Equipment Damage: Potential for water hammer if hot vapours contact premature cold liquid."
+    ],
+    "safeguards": [
+      "Temperature sensor 1 and 2, Flow sensor 1 provide real-time process data.",
+      "Alarms on critical parameters (e.g., low pressure, high temperature) would alert operators."
+    ],
+    "recommendations": [
+      "Implement interlocks to prevent premature actions (e.g., 'FCV-3' cannot open until hot side pressure/temperature is within a safe range).",
+      "Ensure clear, unambiguous, and sequentially logical operating procedures.",
+      "Provide simulator training for operators to practice startup/shutdown sequences and upset conditions."
+    ]
+  },
+  {
+    "parameter": "Operator sequence",
+    "guideword": "Late",
+    "causes": [
+      "Human Factors: Operator delay, distraction, or slow response to required actions during startup, shutdown, or upset conditions.",
+      "Human Factors: Opening 'FCV-3' (or a manual isolation valve for cold flow) too late during startup when hot flow is already established.",
+      "Human Factors: Delayed response to high temperature/pressure alarms during an upset condition.",
+      "Human Factors: Closing cooling flow too late during shutdown, leading to unnecessary energy consumption or overcooling."
+    ],
+    "consequences": [
+      "Process & Material Issues: Late opening of cooling flow leads to condenser overheating, high hot side temperature/pressure, incomplete condensation, and increased carryover of H2S/NH3.",
+      "HSE Impact: Exacerbated consequences of an upset, e.g., high pressure escalates to PRV lift or rupture, leading to release of H2S/NH3.",
+      "Process & Material Issues: Reduced pre-heating efficiency of sour water feed if cooling is late."
+    ],
+    "safeguards": [
+      "Temperature sensor 1 and 2, Flow sensor 1 provide real-time process data.",
+      "Alarms on critical parameters (high temperature, high pressure, low flow) are in place to alert operators.",
+      "FC-1 (Flow Controller) and FCV-3 (Flow Control Valve) will attempt to correct flow automatically."
+    ],
+    "recommendations": [
+      "Ensure alarms have appropriate setpoints and are integrated with clear response procedures.",
+      "Implement automated shutdown/interlock systems for critical parameters to mitigate consequences of delayed operator action.",
+      "Provide refresher training and simulator practice for operators on responding to upset conditions."
+    ]
+  },
+  {
+    "parameter": "Operator sequence",
+    "guideword": "Reverse",
+    "causes": [
+      "Human Factors: Operator misunderstanding procedure, performing steps in the wrong order during startup, shutdown, or maintenance.",
+      "Human Factors: Opening an outlet valve before an inlet valve, or vice-versa, creating unintended pressure differentials or reverse flow."
+    ],
+    "consequences": [
+      "Process & Material Issues: Reverse flow in process lines (e.g., hot side vapours from accumulator backing into stripper, or sour water feed backing up to storage).",
+      "Equipment Damage: Pressure surges, vacuum conditions, or water hammer in piping and equipment.",
+      "Equipment Damage: Damage to equipment (e.g., check valve slamming, thermal shock to tubes).",
+      "HSE Impact: Potential for uncontrolled release of hazardous materials (H2S/NH3) due to equipment failure."
+    ],
+    "safeguards": [
+      "NRV-5 (Non-Return Valve) on 'SW feed pipe 1' provides protection against reverse flow on the cold side.",
+      "Temperature, pressure, and flow sensors would detect abnormal conditions caused by reversed sequence."
+    ],
+    "recommendations": [
+      "Implement sequential interlocking of valves for critical startup and shutdown operations to enforce correct order.",
+      "Provide detailed, unambiguous operating procedures with clear step order and consequences of incorrect steps.",
+      "Conduct thorough operator training focusing on procedural adherence and understanding of system hydraulics."
+    ]
+  },
+  {
+    "parameter": "Oxygen (Air) Ingress",
+    "guideword": "As well as",
+    "causes": [
+      "Process & Material Issues: Vacuum condition on hot side (e.g., due to excessive cooling, or reduced stripper load) drawing in air through leaks (flanges, seals, vents, relief valves not seating properly).",
+      "Process & Material Issues: Improper purging procedures during startup or shutdown operations.",
+      "Human Factors: Operator inadvertently opening vents or drains to atmosphere while system is under vacuum or depressurized."
+    ],
+    "consequences": [
+      "Chemical Hazards: Formation of an explosive mixture with H2S (LEL of H2S is 4.3% by volume), leading to risk of fire or explosion.",
+      "Chemical Hazards: Increased corrosion (e.g., H2S, water, and oxygen react to form sulfuric acid).",
+      "Chemical Hazards: Contamination of acid gas sent to sulfur recovery unit, affecting catalyst or process efficiency.",
+      "HSE Impact: Severe risk of fire and explosion, equipment damage, and environmental contamination."
+    ],
+    "safeguards": [
+      "Low pressure alarm on hot side of condenser / 'SWS OVHD Accumulator' could indirectly indicate potential for vacuum."
+    ],
+    "recommendations": [
+      "Install an inert gas (e.g., nitrogen) purge/blanketing system for startup/shutdown and to maintain positive pressure on the hot side.",
+      "Install a vacuum breaker if the system can go into vacuum.",
+      "Install low pressure alarm with interlock to initiate N2 purge.",
+      "Install gas detectors for H2S/LEL in the vicinity of the condenser and accumulator to detect leaks and potential explosive atmospheres."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Air/ cooler other other utilities)",
+    "guideword": "More",
+    "causes": [
+      "**Instrument Air (for FCV-3):**",
+      "Instrument & Control Failure: Instrument air compressor malfunction leading to overpressure in the air header.",
+      "Instrument & Control Failure: Regulator failure allowing higher than design instrument air pressure to FCV-3.",
+      "**Cooling Medium (Sour Water Feed - acting as internal utility):**",
+      "This is covered by 'Utility supply (Water/ steam/ electricity) - More'."
+    ],
+    "consequences": [
+      "**More Instrument Air:**",
+      "Equipment Damage: Damage to FCV-3 actuator or associated instrumentation due to overpressure.",
+      "Equipment Damage: 'FCV-3' may fail to operate correctly, leading to 'More' or 'Less' cooling flow than desired.",
+      "**More Cooling Medium:**",
+      "Refer to 'Utility supply (Water/ steam/ electricity) - More'."
+    ],
+    "safeguards": [
+      "FCV-3, FC-1, Flow sensor 1, Temperature sensor 1, Temperature sensor 2 (for cooling medium flow).",
+      "Pressure sensors on pumps."
+    ],
+    "recommendations": [
+      "Install a high pressure alarm on the instrument air supply to 'FCV-3'.",
+      "Install a pressure relief valve on the instrument air line to protect FCV-3 actuator.",
+      "Refer to 'Utility supply (Water/ steam/ electricity) - More' for cooling medium recommendations."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Air/ cooler other other utilities)",
+    "guideword": "Less",
+    "causes": [
+      "**Instrument Air (for FCV-3):**",
+      "Instrument & Control Failure: Partial failure of instrument air supply (e.g., compressor partially down, leak in main air header).",
+      "Process & Material Issues: Leak in instrument air line to FCV-3.",
+      "**Cooling Medium (Sour Water Feed - acting as internal utility):**",
+      "This is covered by 'Utility supply (Water/ steam/ electricity) - Less'."
+    ],
+    "consequences": [
+      "**Less Instrument Air:**",
+      "Equipment Damage: 'FCV-3' may fail to operate correctly, defaulting to its fail-safe position (e.g., fail closed, fail open, or stay-put), leading to 'Less' or 'No' cooling flow.",
+      "Process & Material Issues: Loss of accurate control of sour water feed flow.",
+      "**Less Cooling Medium:**",
+      "Refer to 'Utility supply (Water/ steam/ electricity) - Less'."
+    ],
+    "safeguards": [
+      "FCV-3, FC-1, Flow sensor 1, Temperature sensor 1, Temperature sensor 2 (for cooling medium flow).",
+      "Trip interlock on 'Stripper feed Pump'."
+    ],
+    "recommendations": [
+      "Install a low pressure alarm on the instrument air supply to 'FCV-3'.",
+      "Refer to 'Utility supply (Water/ steam/ electricity) - Less' for cooling medium recommendations."
+    ]
+  },
+  {
+    "parameter": "Utility supply\n(Air/ cooler other other utilities)",
+    "guideword": "No/None",
+    "causes": [
+      "**Instrument Air (for FCV-3):**",
+      "Instrument & Control Failure: Complete instrument air failure (e.g., main compressor trip, rupture of main air header).",
+      "**Cooling Medium (Sour Water Feed - acting as internal utility):**",
+      "This is covered by 'Utility supply (Water/ steam/ electricity) - No'."
+    ],
+    "consequences": [
+      "**No Instrument Air:**",
+      "Equipment Damage: 'FCV-3' will go to its fail-safe position (e.g., fail closed, fail open), resulting in 'No' cooling flow (or 'More' depending on design).",
+      "Process & Material Issues: Loss of control of sour water feed flow, leading to 'No Cooling Medium' consequences.",
+      "**No Cooling Medium:**",
+      "Refer to 'Utility supply (Water/ steam/ electricity) - No'."
+    ],
+    "safeguards": [
+      "FCV-3, FC-1, Flow sensor 1, Temperature sensor 1, Temperature sensor 2 (for cooling medium flow).",
+      "Trip interlock on 'Stripper feed Pump'."
+    ],
+    "recommendations": [
+      "Install a low-low pressure alarm on the instrument air supply, with an interlock to activate an emergency air receiver or initiate a safe shutdown.",
+      "Ensure FCV-3's fail-safe action is appropriate for the system's safety (e.g., fail open for maximum cooling or fail closed to prevent flow).",
+      "Refer to 'Utility supply (Water/ steam/ electricity) - No' for cooling medium recommendations."
+    ]
+  },
+  {
+    "parameter": "Level",
+    "guideword": "No/None",
+    "causes": [
+      "This deviation is covered by 'Level (If exists) - Less' and specifically refers to a complete absence of liquid in the 'SWS OVHD Accumulator'."
+    ],
+    "consequences": [
+      "**Hot Side (No liquid level in SWS OVHD Accumulator):**",
+      "Equipment Damage: 'Reflux Pump' will run dry, causing severe damage.",
+      "Process & Material Issues: Complete loss of reflux to the 'Sour Water Stripper', severely impacting stripping efficiency and product quality.",
+      "Chemical Hazards: Potential for vacuum formation and air ingress in the hot side system, leading to an explosive H2S-air mixture.",
+      "Process & Material Issues: Uncondensed vapours will be carried over at higher rates to 'ACID-GAS-TO-S-PLANT-EX'."
+    ],
+    "safeguards": [
+      "LC-1 (Level Controller for SWS OVHD Accumulator) and FCV-4 (Reflux flow) are designed to maintain liquid level.",
+      "Level sensor 3 (on SWS OVHD Accumulator) provides input to LC-1."
+    ],
+    "recommendations": [
+      "Install a low-low level alarm on 'SWS OVHD Accumulator'.",
+      "Install a low-low level trip on 'SWS OVHD Accumulator' to trip the 'Reflux Pump' and prevent damage.",
+      "Implement an interlock to reduce hot side flow (steam to stripper) if accumulator level drops to low-low."
+    ]
+  },
+  {
+    "parameter": "Concentration",
+    "guideword": "More",
+    "causes": [
+      "**Hot Side (H2S/NH3 vapours):**",
+      "Process & Material Issues: Upstream 'Sour Water Stripper' malfunction causing higher concentration of H2S/NH3 in overhead (e.g., operating at higher temperature/pressure or with less water).",
+      "Process & Material Issues: Lower than expected water content in overheads, concentrating H2S/NH3.",
+      "**Cold Side (Sour water feed):**",
+      "Process & Material Issues: Upstream sour water feed quality issues (e.g., from refinery) with higher H2S/NH3/other contaminants.",
+      "Process & Material Issues: Evaporation of water in upstream tanks ('SW Storage') leading to concentrated sour water feed."
+    ],
+    "consequences": [
+      "Chemical Hazards: Increased corrosion risk in condenser tubes/shell from higher H2S/NH3 concentrations.",
+      "Chemical Hazards: Overloading of 'ACID-GAS-TO-S-PLANT-EX' if acid gas concentration is too high, leading to release or reduced efficiency.",
+      "HSE Impact: Higher toxicity and flammability risk on release of concentrated H2S/NH3 mixtures.",
+      "Process & Material Issues: Increased heat load on condenser (if more H2S/NH3 condenses or requires more cooling)."
+    ],
+    "safeguards": [
+      "Temperature sensors (1 & 2) and pressure readings might show indirect effects of increased concentration (e.g., higher heat release)."
+    ],
+    "recommendations": [
+      "Install an online analyzer for H2S/NH3 concentration in stripper overhead.",
+      "Implement regular laboratory analysis of sour water feed from 'SW Storage'.",
+      "Ensure material selection for the condenser is appropriate for potentially higher concentrations of corrosive species."
+    ]
+  },
+  {
+    "parameter": "Concentration",
+    "guideword": "Less",
+    "causes": [
+      "**Hot Side (H2S/NH3 vapours):**",
+      "Process & Material Issues: Upstream 'Sour Water Stripper' operating at lower efficiency (e.g., less H2S/NH3 in overhead, but more water).",
+      "Process & Material Issues: Dilution of overheads with inert gas or unexpected water vapour.",
+      "**Cold Side (Sour water feed):**",
+      "Process & Material Issues: Upstream sour water feed quality issues with lower H2S/NH3 (less contaminated sour water) or excessive dilution."
+    ],
+    "consequences": [
+      "Process & Material Issues: Reduced heat load on condenser (less H2S/NH3 to condense).",
+      "Process & Material Issues: Lower efficiency of 'ACID-GAS-TO-S-PLANT-EX' if feed is too dilute.",
+      "Process & Material Issues: Potential for higher water content in acid gas stream, affecting downstream units.",
+      "Process & Material Issues: Potential for lower reflux flow to stripper, affecting stripper stability (if H2S/NH3 are the primary condensing components)."
+    ],
+    "safeguards": [
+      "Temperature sensors (1 & 2) and pressure readings might show indirect effects of decreased concentration."
+    ],
+    "recommendations": [
+      "Install an online analyzer for H2S/NH3 concentration in stripper overhead.",
+      "Implement regular laboratory analysis of sour water feed from 'SW Storage'."
+    ]
+  },
+  {
+    "parameter": "Phase",
+    "guideword": "Otherthan",
+    "causes": [
+      "This deviation is covered by 'Phase (Hot / cold) - Otherthan'."
+    ],
+    "consequences": [
+      "Refer to 'Phase (Hot / cold) - Otherthan'."
+    ],
+    "safeguards": [
+      "Refer to 'Phase (Hot / cold) - Otherthan'."
+    ],
+    "recommendations": [
+      "Refer to 'Phase (Hot / cold) - Otherthan'."
+    ]
+  }
+]
