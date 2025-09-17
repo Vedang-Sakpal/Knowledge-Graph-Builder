@@ -24,6 +24,7 @@ HAZOP using RAG/
 │
 ├── Process Description/                          # Process description in Markdown
 │   ├── <process_description>.md
+│   ├── <process_description>.txt                 # Process description generated using storage tank ontology only
 │
 ├── Results/                                      # Output HAZOP reports and Generated Process Description 
 │   ├── HAZOP_Analysis_Equipment_name.xlsx
