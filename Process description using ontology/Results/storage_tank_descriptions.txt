@@ -1,0 +1,85 @@
+STORAGE TANK PROCESS DESCRIPTIONS
+==================================================
+Generated from P&ID Database Analysis
+Total Storage Tanks Analyzed: 1
+==================================================
+
+=== STORAGE TANK ANALYSIS: SW Storage ===
+
+BASIC INFORMATION:
+Tank Name: SW Storage
+Tank Type: Storage Tank
+Node ID: 45
+
+TANK PROPERTIES:
+
+ONTOLOGY CLASSIFICATION:
+According to the storage tank ontology:
+  Storage tanks serve as buffer vessels in process plants, enabling continuous operation by decoupling flow rates between process units.
+
+PROCESS FUNCTION:
+This tank functions as a distribution vessel, supplying
+multiple downstream process units.
+
+INLET STREAMS:
+  1. FROM: SW Feed Pump
+     TO: SW Storage
+     Connection Type: CONNECTED_TO
+     Pipeline: Sw to storage pipe
+
+
+OUTLET STREAMS:
+  1. FROM: SW Storage
+     TO: Stripper feed Pump
+     Connection Type: CONNECTED_TO
+     Pipeline: SW from storage pipe
+
+  2. FROM: SW Storage
+     TO: TO-SKIM-RECYCLE
+     Connection Type: CONNECTED_TO
+     Pipeline: HC oil skim 
+
+
+SAFETY SYSTEMS:
+  1. PRV-1 (Pressure Relief Valve)
+     Function: Provides overpressure protection
+
+
+INSTRUMENTATION & CONTROL:
+This tank is equipped with the following instruments for monitoring and control:
+  • FCV-2 (Flow Control Valve)
+
+
+CHEMICALS IN TANK (INFERRED FROM INLETS):
+  • Sour water
+
+UPSTREAM PROCESS FLOW AND CHEMICALS:
+  • Chemical 'Sour water' originates from:
+    PATH: REFINERY Unit -[SW from refinery pipe]-> Surge Drum-1 -[SW out pipe]-> SW Feed Pump -[SW feed pipe-1]-> NRV-4 -[SW feed pipe-2]-> FCV-2 -[Sw to storage pipe]-> SW Storage
+
+DOWNSTREAM PROCESS FLOW AND CHEMICALS:
+  • Contents are sent to sink 'ACID-GAS-TO-S-PLANT-EX' which contains 'Ammonia vapour':
+    PATH: SW Storage -[SW from storage pipe]-> Stripper feed Pump -[SW feed pipe 1 ]-> NRV-5 -[SW feed pipe 2 ]-> Flow sensor 1 -[SW feed pipe 2 ]-> FCV-3 -[SW feed pipe 3 ]-> Stripper OVHD Condenser -[SW feed pipe 4 ]-> Sour Water Stripper -[ SWS Overhead pipe ]-> Stripper OVHD Condenser -[Overhead Accumulator feed pipe ]-> SWS OVHD Accumulator -[Acid gas pipe]-> ACID-GAS-TO-S-PLANT-EX
+  • Contents are sent to sink 'ACID-GAS-TO-S-PLANT-EX' which contains 'Ammonia vapour':
+    PATH: SW Storage -[SW from storage pipe]-> Stripper feed Pump -[SW feed pipe 1 ]-> NRV-5 -[SW feed pipe 2 ]-> Flow sensor 1 -[SW feed pipe 2 ]-> FCV-3 -[SW feed pipe 3 ]-> Stripper OVHD Condenser -[Overhead Accumulator feed pipe ]-> SWS OVHD Accumulator -[Acid gas pipe]-> ACID-GAS-TO-S-PLANT-EX
+  • Contents are sent to sink 'TO-SKIM-RECYCLE' which contains 'HC-OIL':
+    PATH: SW Storage -[HC oil skim ]-> TO-SKIM-RECYCLE
+  • Contents are sent to sink 'ACID-GAS-TO-S-PLANT-EX' which contains 'Hydrogen sulfide vapour':
+    PATH: SW Storage -[SW from storage pipe]-> Stripper feed Pump -[SW feed pipe 1 ]-> NRV-5 -[SW feed pipe 2 ]-> Flow sensor 1 -[SW feed pipe 2 ]-> FCV-3 -[SW feed pipe 3 ]-> Stripper OVHD Condenser -[SW feed pipe 4 ]-> Sour Water Stripper -[ SWS Overhead pipe ]-> Stripper OVHD Condenser -[Overhead Accumulator feed pipe ]-> SWS OVHD Accumulator -[Acid gas pipe]-> ACID-GAS-TO-S-PLANT-EX
+  • Contents are sent to sink 'ACID-GAS-TO-S-PLANT-EX' which contains 'Hydrogen sulfide vapour':
+    PATH: SW Storage -[SW from storage pipe]-> Stripper feed Pump -[SW feed pipe 1 ]-> NRV-5 -[SW feed pipe 2 ]-> Flow sensor 1 -[SW feed pipe 2 ]-> FCV-3 -[SW feed pipe 3 ]-> Stripper OVHD Condenser -[Overhead Accumulator feed pipe ]-> SWS OVHD Accumulator -[Acid gas pipe]-> ACID-GAS-TO-S-PLANT-EX
+  • Contents are sent to sink 'WATER-TREATMENT' which contains 'Water':
+    PATH: SW Storage -[SW from storage pipe]-> Stripper feed Pump -[SW feed pipe 1 ]-> NRV-5 -[SW feed pipe 2 ]-> Flow sensor 1 -[SW feed pipe 2 ]-> FCV-3 -[SW feed pipe 3 ]-> Stripper OVHD Condenser -[SW feed pipe 4 ]-> Sour Water Stripper -[Water pipe 1 ]-> Bottoms Pump -[Water pipe 2 ]-> NRV-7 -[Water pipe 3 ]-> FCV-6 -[Water pipe 4 ]-> WATER-TREATMENT
+  • Contents are sent to sink 'TO-ATM' which contains 'None':
+    PATH: SW Storage -[vent pipe 2]-> PRV-1 -[vent to atm]-> TO-ATM
+
+PROCESS INTEGRATION:
+Upstream Integration: Receives material from:
+  • SW Feed Pump
+Downstream Integration: Supplies material to:
+  • Stripper feed Pump
+  • TO-SKIM-RECYCLE
+
+This storage tank serves as a critical buffer in the process,
+enabling continuous operation and flow rate management.
+============================================================

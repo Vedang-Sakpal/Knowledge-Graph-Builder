@@ -1,0 +1,832 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology/"
+     xml:base="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology">
+        <rdfs:comment>This ontology is a formal, machine-readable representation of knowledge specific to storage tanks in chemical engineering and process plants. Its primary purpose is to model the components, functions, relationships, and instrumentation of a storage tank system as typically depicted on a Piping and Instrumentation Diagram (P&amp;ID).</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Connected_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Connected_to">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_Process_Connection"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Equipments"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Controls -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Controls">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Control_Valves"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measures -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measures">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measuring_Instruments/Sensors"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Supplied_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Supplied_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Utilities"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Jacket"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Blanket_Gas_System"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Supplied_via -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Supplied_via">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Utilities"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Utility_Lines"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Transfered_via -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Transfered_via">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Inputs_(Inflows)"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Outputs_(Outflows)"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Process_lines"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_Parameters -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_Parameters">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_Process_Connection -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_Process_Connection">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Process_Connection"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_auxiliary_systems -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_auxiliary_systems">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_setpoint -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_setpoint">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Setpoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_types -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_types">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Roof"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Fixed_roof"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Floating_roof"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#manipulates -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#manipulates">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Control_Valves"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Flow"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#send_data_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#send_data_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Instrument"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Inlet -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Inlet">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_Process_Connection"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Inputs_(Inflows)"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Instruments -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Instruments">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Instrument"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Internal_Components -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Internal_Components">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Outlet -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Outlet">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#has_Process_Connection"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Outputs_(Outflows)"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Safety_System -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Safety_System">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Design_Pressure -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Design_Pressure">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Design_Temperature -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Design_Temperature">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Material_of_Construction -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Material_of_Construction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Product_Stored -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Product_Stored">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Volume -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#has_Volume">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Analytical_Instruments -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Analytical_Instruments">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measuring_Instruments/Sensors"/>
+        <rdfs:comment>Analytical instruments (AI, AIT) are used to monitor product quality and ensure compliance. These can include a variety of sensors, such as density meters, pH sensors, conductivity sensors, and oxygen sensors.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Control_Valves -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Control_Valves">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Valves"/>
+        <rdfs:comment>A type of valve that automatically modulates its opening to manipulate the flow of a fluid (inflow or outflow) based on a signal from a controller. It is the final control element in a control loop.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Dip_pipes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Dip_pipes">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Process_lines"/>
+        <rdfs:comment>A pipe that enters the tank from the top and extends down near the bottom. Used to introduce a liquid below the surface to minimize splashing, vapor generation, or electrostatic discharge</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Equipments -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Equipments">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Process_Connection"/>
+        <rdfs:comment>External process equipment that a storage tank is connected to, such as pumps, heat exchangers, or other vessels. This class represents the destination or source for the tank&apos;s inflows and outflows.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Flow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Flow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Operating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Gas_detection -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Gas_detection">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System"/>
+        <rdfs:comment>A network of fixed sensors that continuously monitor the atmosphere around a storage tank for the presence of flammable or toxic gases. It is a critical preventive safety system designed to provide early warning of dangerous leaks before they reach a hazardous concentration. Upon detection, it triggers alarms, activates ventilation, and can initiate plant-wide emergency shutdowns to prevent fire, explosion, or toxic exposure.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Inflow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Inflow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Flow"/>
+        <rdfs:comment>The stream of material entering the storage tank. This can be the main feed, a return line, or a utility stream like nitrogen for padding.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Jacket -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Jacket">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System"/>
+        <rdfs:comment>A jacket is an auxiliary system that consists of an external shell or cavity built around a storage tank (or reactor) through which a heat transfer fluid is circulated. Its primary purpose is to add or remove heat from the tank&apos;s contents.
+Unlike internal coils that are submerged in the product, a jacket surrounds the outer wall of the vessel. This makes it ideal for applications where internal components are undesirable, such as when storing viscous fluids, slurries, or products that must be kept free of internal obstructions for cleaning or purity reasons.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Level -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Level">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Operating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Operating -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Operating">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Setpoint"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Parameter"/>
+        <rdfs:comment>A parameter that is actively involved in the day-to-day control and functioning of the tank, as opposed to a fixed design parameter. Level, flow, pressure, and temperature are typical operating parameters.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Outflow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Outflow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Flow"/>
+        <rdfs:comment>The stream of material exiting the storage tank, typically the main product discharge to a pump or a recirculation line.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Parameter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Parameter">
+        <rdfs:comment>A measurable physical or chemical property that defines the state or condition of the process within the tank, such as level, temperature, pressure, or flow. These are the variables that are monitored and controlled.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Pipelines -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Pipelines">
+        <rdfs:comment>A pipeline is an industrial infrastructure system that transports liquids and gases like crude oil, natural gas, and refined petroleum products between different locations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Pressure -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Pressure">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Operating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Process_lines -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Process_lines">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Pipelines"/>
+        <rdfs:comment>Carries the primary product, raw materials, or intermediates being processed, stored, or transferred. It is directly involved in the production pathway and its contents are often measured for custody transfer or quality control.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Relief_Valve -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Relief_Valve">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Relief"/>
+        <rdfs:comment>A relief valve is a reusable, mechanical device that opens at a predefined set pressure to release excess pressure from a vessel and recloses once normal pressure is restored.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Rupture_Disc -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Rupture_Disc">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Relief"/>
+        <rdfs:comment>A rupture disc is a non-reusable, one-time-use safety membrane that bursts at a precise burst pressure to provide immediate, full-area relief for major overpressure events (like a fire or chemical reaction). It remains open after activation and must be replaced, serving as a ultimate safeguard against catastrophic failure.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Sample_Points -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Sample_Points">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System"/>
+        <rdfs:comment>Sample Points are connections used to obtain representative samples for quality control and analytical purposes. The sampling method is crucial for ensuring the sample accurately reflects the entire batch, which may require taking samples from multiple depths to check for stratification.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Setpoint -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Setpoint">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Parameter"/>
+        <rdfs:comment>The desired target value for a controlled process parameter (e.g., level, pressure). The control system continuously adjusts its outputs to maintain the measured variable at this value.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Sitting_Well -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Sitting_Well">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components"/>
+        <rdfs:comment>a Stilling Well—a vertical pipe or sleeve—is installed to provide a calm surface for the measurement instrument</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Temperature -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Temperature">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Operating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Utilities -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Utilities">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Process_Connection"/>
+        <rdfs:comment>Utilities refer to the supporting services and auxiliary systems that are essential for the safe, efficient, and controlled operation of the main process equipment</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Utility_Lines -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Utility_Lines">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Pipelines"/>
+        <rdfs:comment>Carries the supporting services (steam, water, air, nitrogen) required for the safe and efficient operation of the process equipment. It enables functions like heating, cooling, cleaning, inerting, and instrumentation but does not carry the main product.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Valves -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Valves">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Instrument"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Vent_pipes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Vent_pipes">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Process_lines"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measuring_Instruments/Sensors -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measuring_Instruments/Sensors">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Instrument"/>
+        <rdfs:comment>Devices that detect and quantify a physical property or chemical composition. They convert a process parameter (e.g., level, pressure) into a signal that can be read by an operator or an instrument (e.g., 4-20 mA, digital signal).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Agitator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Agitator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components"/>
+        <rdfs:comment>Agitators, as they create forced convection that significantly improves heat transfer efficiency over natural convection. Agitators are also essential for ensuring product homogeneity and preventing solid particles from settling at the tank bottom. The selection of an agitator&apos;s impeller (e.g., axial, radial, or tangential) depends on the fluid properties and desired flow pattern.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Atmospheric_Tank -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Atmospheric_Tank">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System">
+        <rdfs:comment>ystems that support the primary function of the storage tank but are not part of the core containment or process flow. These include utilities for product quality, maintenance, and environmental control.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Blanket_Gas_System -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Blanket_Gas_System">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System"/>
+        <rdfs:comment>A blanket gas system is a critical utility for many tanks, particularly those storing flammable or sensitive products. Its primary function is to fill the vapor space with an inert gas, such as nitrogen, to prevent the formation of a flammable atmosphere by displacing oxygen. This also protects the product from oxidation and reduces corrosion inside the tank.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Bund_Wall -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Bund_Wall">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System"/>
+        <rdfs:comment>Bund Walls or dikes are physical barriers built around a tank to provide secondary containment in the event of a primary containment failure. These structures are engineered to contain a full tank spill, preventing the spread of hazardous liquids and environmental contamination.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop">
+        <rdfs:comment>A control loop is an automated system that maintains a process variable (e.g., level, pressure, temperature) at a desired setpoint. It consists of a sensor to measure the variable, a controller to compute the error from the setpoint, and a final control element (e.g., a valve) to manipulate the process.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Cryogenic_Tank -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Cryogenic_Tank">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:comment>Cryogenic tanks, a specialized subset of pressurized tanks, are designed for storing extremely low-temperature liquids like liquefied natural gas (LNG)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Drain_Points -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Drain_Points">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System"/>
+        <rdfs:comment>Drain Points, located at the tank bottom, are used to remove accumulated water, sludge, or other contaminants that settle out of the product. Automation of this process is a growing trend to prevent product loss and human error during manual draining.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#ESD_Valves -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#ESD_Valves">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System"/>
+        <rdfs:comment>An Emergency Shutdown Valve (SDV) is an active safety component that rapidly isolates the tank in response to a trigger signal. The SDV is part of a larger Safety Instrumented System (SIS) that is triggered by a parameter monitored by the control system, such as a high-high level or high-high pressure.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Fire_Protection -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Fire_Protection">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System"/>
+        <rdfs:comment>Fixed Foam Deluge Systems and Water Spray Rings are deployed to suppress fires or cool the tank in a fire event</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Fixed_roof -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Fixed_roof">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Atmospheric_Tank"/>
+        <rdfs:comment>Fixed-roof tanks, with their permanently affixed cone- or dome-shaped tops, are a common design</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Floating_roof -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Floating_roof">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Atmospheric_Tank"/>
+        <rdfs:comment>floating-roof tanks have a roof that floats directly on the liquid surface to minimize vapor space and prevent the accumulation of flammable vapors</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Instrument -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Instrument">
+        <rdfs:comment>A general class representing any device used for measuring, monitoring, or controlling process variables. This includes sensors, transmitters, analyzers, and control valves.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Heating_Coil -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Heating_Coil">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components"/>
+        <rdfs:comment>nternal Heating Coils are commonly used for the batch-based heating or cooling of a liquid, with the primary function of maintaining a product&apos;s viscosity or temperature for efficient transfer or reaction control.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components">
+        <rdfs:comment>Physical structures and devices located inside the tank shell that are integral to its operation, such as roofs, heaters, mixers, and baffles. These components directly interact with the stored product.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Level_Control_Loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Level_Control_Loop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Level_Measurements -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Level_Measurements">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measuring_Instruments/Sensors"/>
+        <rdfs:comment>Level instruments provide critical data for inventory management, pump protection, and overfill prevention. They can provide either continuous or discrete point measurements.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Control_Loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Control_Loop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Measurements -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Measurements">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measuring_Instruments/Sensors"/>
+        <rdfs:comment>Pressure instruments (PI, PIT) monitor the tank&apos;s internal pressure, a crucial function for regulating blanket gas systems and ensuring the tank operates within its design limits.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Relief -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressure_Relief">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System"/>
+        <rdfs:comment>These passive devices, governed by standards like API 2000, protect the tank from over- or under-pressurization. A Conservation Vent or breather valve handles normal breathing events, such as thermal expansion or contraction, or changes in liquid level. In contrast, an Emergency Relief Valve or Rupture Disk is designed to prevent catastrophic failure from abnormal or emergency events, such as an external fire.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressurized_Tank -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Pressurized_Tank">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank"/>
+        <rdfs:comment>Pressurized tanks are designed to contain liquids or gases at pressures significantly above atmospheric, with common shapes including spherical and cylindrical vessels.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Primary_Discharge_Line -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Primary_Discharge_Line">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Outputs_(Outflows)"/>
+        <rdfs:comment>The main pipeline used to empty the tank, feeding product to a downstream unit or a loading bay.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Primary_Fill_Line -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Primary_Fill_Line">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Inputs_(Inflows)"/>
+        <rdfs:comment>The main pipeline used to fill the tank, typically from a production unit or a transport vehicle.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Process_Connection -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Process_Connection">
+        <rdfs:comment>A physical nozzle or connection point on the tank shell for the transfer of material (liquid or vapor) into or out of the vessel. This is the interface between the tank and the rest of the process piping.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Recirculation_Line -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Recirculation_Line">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Outputs_(Outflows)"/>
+        <rdfs:comment>A line that pumps product from the bottom of the tank back to the top to maintain mixture homogeneity or prevent temperature stratification.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Return_Line -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Return_Line">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Inputs_(Inflows)"/>
+        <rdfs:comment>A line that returns product to the tank, often from a recirculation loop or a pump&apos;s minimum flow bypass to prevent pump overheating.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Roof -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Roof">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components"/>
+        <rdfs:comment>Roof protects the product from external contamination.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Safety_System">
+        <rdfs:comment>Components and systems designed to protect personnel, equipment, and the environment. They function to prevent accidents or mitigate their consequences and can be passive (e.g., bund walls) or active (e.g., emergency shutdown valves).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Storage_tank">
+        <rdfs:comment>The storage tank is a foundational component in a process plant, acting as a buffer to ensure continuous operation of interconnected units by decoupling their flow rates. This allows for asynchronous operations such as batch holding, mixing, or settling.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Temperature_Control_Loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Temperature_Control_Loop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Control_Loop"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Temperature_Measurements -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Temperature_Measurements">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Storage_Tank_ontology#Measuring_Instruments/Sensors"/>
+        <rdfs:comment>Temperature instruments (TI, TIT) monitor product temperature, which is essential for quality control and for controlling heating or cooling systems. High-accuracy multipoint sensors can be used to measure a temperature profile across the tank, which enables more accurate mass and density calculations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Utility_Inlets -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Utility_Inlets">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Inputs_(Inflows)"/>
+        <rdfs:comment>Connections for auxiliary fluids, such as nitrogen for inerting or water/chemicals for cleaning.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Vapour_Recovery_Unit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Vapour_Recovery_Unit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Auxiliary_System"/>
+        <rdfs:comment>A Vapor Recovery Unit (VRU) captures and recovers displaced vapors during filling operations. VRUs are essential for environmental compliance, often mandated by regulations to capture harmful volatile organic compounds (VOCs) and methane before they can escape into the atmosphere. The system offers a dual benefit by not only protecting the environment but also recovering valuable hydrocarbons that can be re-injected into the process stream, providing an economic return on the investment.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Vent_Line -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Vent_Line">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Outputs_(Outflows)"/>
+        <rdfs:comment>A line that connects the tank&apos;s vapor space to a vapor management system, allowing displaced gas to exit during filling or thermal expansion.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Vortex_Breaker -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Vortex_Breaker">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Internal_Tank_Components"/>
+        <rdfs:comment>a Vortex Breaker is a simple but critical device used to prevent the formation of a vortex during drainage. This is essential to prevent vapor entrainment, which can lead to pump cavitation and poor separation in downstream processes.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Inputs_(Inflows) -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Inputs_(Inflows)">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Process_Connection"/>
+        <rdfs:comment>A category of process connections dedicated to all incoming streams to the storage tank.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Outputs_(Outflows) -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Outputs_(Outflows)">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/untitled-ontology-9#Process_Connection"/>
+        <rdfs:comment>A category of process connections dedicated to all outgoing streams from the storage tank.</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

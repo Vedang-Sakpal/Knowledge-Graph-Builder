@@ -1,0 +1,85 @@
+REACTOR DESCRIPTIONS (v2)
+================================================================================
+Total Reactors: 2
+
+REACTOR: Reactor
+Node ID: 189
+Reactor Type: Continuous Stirred Tank Reactor
+
+Properties:
+  - id: RX-101
+  - Op_temp: 150 degree C
+  - Op_pressure: 5 MPa
+  - Volume: 4.14 m3
+
+PROCESS ROLE / FUNCTION:
+  - Continuous stirred-tank reactor: mixing-driven, likely liquid phase; internal mixing device may exist (agitator).
+
+INLET STREAMS (equipment sources only):
+  1. FROM EQUIPMENT: HCl
+  2. FROM EQUIPMENT: NaOH
+
+OUTLET STREAMS (equipment sinks only):
+  1. TO EQUIPMENT: Tank
+  2. TO EQUIPMENT: Heat Exchanger
+  4. TO EQUIPMENT: Reactor
+
+INFERRED FEED CHEMICALS: none detected
+
+INFERRED PRODUCT CHEMICALS: none detected
+
+INSTRUMENTATION & CONTROL (separate):
+  - PIA (Pressure Indicator Alarm)
+  - TIA (Temperature Indicator Alarm)
+  - TT (Temperature Transmitter)
+  - pHIA (pH Indicator Alarm)
+  - pHT (pH Transmitter)
+  - LT (Level Transmitter)
+
+PROCESS PARAMETERS / ENGINEERING REMARKS:
+  - Vessel volume: 4.14 m3
+
+PROCESS INTEGRATION (summary):
+  - Receives feed from: HCl, NaOH
+  - Supplies: Heat Exchanger, Reactor, Tank
+
+--------------------------------------------------------------------------------
+
+REACTOR: Reactor
+Node ID: 190
+Reactor Type: Catalytic Packed Bed Reactor
+
+Properties:
+  - id: RX-102
+  - Op_temp: 180 degree C
+  - Op_pressure: 5.5 MPa
+
+PROCESS ROLE / FUNCTION:
+  - Packed bed reactor: likely contains packing or catalyst bed (internal packing/catalyst bed).
+
+INLET STREAMS (equipment sources only):
+  1. FROM EQUIPMENT: Heat Exchanger
+  2. FROM EQUIPMENT: NaOH
+
+OUTLET STREAMS (equipment sinks only):
+  1. TO EQUIPMENT: Tank
+  2. TO EQUIPMENT: Heat Exchanger
+
+INFERRED FEED CHEMICALS: none detected
+
+INFERRED PRODUCT CHEMICALS: none detected
+
+INSTRUMENTATION & CONTROL (separate):
+  - pHIA (pH Indicator Alarm)
+  - TIA (Temperature Indicator Alarm)
+  - PIA (Pressure Indicator Alarm)
+  - LT (Level Transmitter)
+
+PROCESS PARAMETERS / ENGINEERING REMARKS:
+  - Vessel volume: not specified in graph properties
+
+PROCESS INTEGRATION (summary):
+  - Receives feed from: Heat Exchanger, NaOH
+  - Supplies: Heat Exchanger, Tank
+
+--------------------------------------------------------------------------------

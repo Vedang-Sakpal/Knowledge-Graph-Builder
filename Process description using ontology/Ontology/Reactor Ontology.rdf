@@ -1,0 +1,708 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/a/ontologies/2025/8/"
+     xml:base="http://www.semanticweb.org/a/ontologies/2025/8/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Controls -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Controls">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_Valve"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utilities"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Thermal_Jacket"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_via -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_via">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utilities"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utility_line"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Transfered_via -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Transfered_via">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Chemical_reaction"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_line"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#connected_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#connected_to">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Equipment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contain -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contain">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Outlet"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Products"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contains">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Inlet"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactants"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_auxiliary_systems -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_auxiliary_systems">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Auxiliary_system"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_inlet -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_inlet">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Inlet"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactants"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_instruments -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_instruments">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_internal_components -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_internal_components">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_outlet -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_outlet">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Outlet"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Products"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_parameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_parameter">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_safety_system -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_safety_system">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Safety_system"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#made_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#made_of">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Catalyst_bed"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Catalyst"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#measures -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#measures">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#sends_data_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#sends_data_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Agitator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Agitator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components"/>
+        <rdfs:comment>An agitator is a mechanical device inside a reactor that mixes the contents to ensure homogeneity, improve heat transfer, and increase reaction rates. The design, such as the impeller type (e.g., axial, radial), depends on the fluid&apos;s viscosity and the required mixing intensity.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Alarms -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Alarms">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Safety_system"/>
+        <rdfs:comment>Alarms are a crucial component of the safety system. They provide audible or visual warnings to operators when a process variable, such as temperature, pressure, or level, deviates from its safe operating limits, signaling a potential hazard or malfunction.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Analytical_Instruments -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Analytical_Instruments">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:comment>Analytical Instruments are devices used for real-time or offline measurement of the chemical composition or physical properties of the reactor&apos;s contents. Examples include pH meters, gas chromatographs, and spectrometers, which are vital for monitoring reaction progress and ensuring product quality.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Auxiliary_system -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Auxiliary_system">
+        <rdfs:comment>An auxiliary system comprises supporting equipment essential for the reactor&apos;s operation but not part of the primary reaction vessel itself. This includes systems for heating, cooling, feeding reactants, and removing products.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Batch -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Batch">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:comment>A Batch reactor is a type of reactor where reactants are charged into the vessel at the start of the process. The reaction proceeds for a set time, after which the products are discharged. This mode of operation is ideal for small-scale production, testing new processes, or for reactions with long completion times.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#CSTR -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#CSTR">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Continuous"/>
+        <rdfs:comment>A CSTR is a type of continuous reactor where reactants are constantly fed into a well-mixed vessel, and the product mixture is continuously withdrawn. The internal conditions are assumed to be uniform, and the outlet composition is identical to the composition within the reactor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Catalyst -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Catalyst">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Chemical_reaction"/>
+        <rdfs:comment>A catalyst is a substance that increases the rate of a chemical reaction without being consumed. Catalysts are fundamental to many industrial processes, allowing reactions to occur at lower temperatures and pressures. They can be homogeneous (dissolved in the reactants) or heterogeneous (existing as a separate phase).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Catalyst_bed -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Catalyst_bed">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components"/>
+        <rdfs:comment>A catalyst bed is an internal component, typically in a packed-bed reactor, containing solid catalyst particles. Reactants flow through the bed, which provides a large surface area for the chemical reaction to occur efficiently.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Chemical_reaction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Chemical_reaction">
+        <rdfs:comment>A chemical reaction is a process that leads to the chemical transformation of one set of chemical substances to another, reactants are transformed into new substances called products.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Concentration -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Concentration">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+        <rdfs:comment>Concentration is a parameter representing the amount of a substance (like a reactant or product) within a defined volume of the reaction mixture. It is a key variable that directly influences the reaction rate.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Continuous -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Continuous">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:comment>A Continuous reactor is a type of reactor where reactants are continuously fed in and products are continuously removed. These reactors operate at a steady state and are best suited for large-scale, high-volume production.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_Valve -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_Valve">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Valves"/>
+        <rdfs:comment>A Control Valve is an instrument that modulates the flow of a fluid (such as reactants, products, or utilities) based on a signal from a controller. It acts as the final control element to manipulate process variables like temperature, pressure, or flow rate.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop">
+        <rdfs:comment>A control loop is an automated system designed to maintain a process variable at a desired setpoint. It typically consists of a sensor, a controller, and a final control element (like a control valve) that work together to regulate reactor conditions.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Drain_points -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Drain_points">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Auxiliary_system"/>
+        <rdfs:comment>Drain points are nozzles or connections, usually located at the bottom of the reactor, used for completely emptying the vessel for maintenance, cleaning, or product removal after a batch reaction is complete.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#ESD_valve -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#ESD_valve">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Safety_system"/>
+        <rdfs:comment>An ESD (Emergency Shutdown) Valve is a safety device designed to rapidly shut off the flow of reactants or isolate the reactor during an emergency, such as a runaway reaction, to prevent a catastrophic event.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Equipment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Equipment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection"/>
+        <rdfs:comment>Equipment represents other major process units connected to the reactor, such as feed tanks, separators, heat exchangers, or downstream purification columns. It defines the reactor&apos;s interfaces within the broader process plant.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+        <rdfs:comment>Flow is a parameter representing the rate at which material is transferred into or out of the reactor. This can refer to the flow of reactants, products, or utility streams like cooling water or steam.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow_Valve -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow_Valve">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Valves"/>
+        <rdfs:comment>A Flow Valve is a specific type of valve used to manually or automatically control the flow rate of a process stream connected to the reactor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Inlet -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Inlet">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection"/>
+        <rdfs:comment>An inlet is a process connection or nozzle through which reactants or other substances are introduced into the reactor vessel.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments">
+        <rdfs:comment>Instruments is a general class for all devices used to measure, monitor, and control the reactor&apos;s operation, including sensors, valves, transmitters, and analyzers.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_Baffles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_Baffles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components"/>
+        <rdfs:comment>Internal baffles are plates or partitions installed inside a reactor to disrupt swirling or vortex formation caused by an agitator. They enhance mixing efficiency by promoting top-to-bottom fluid movement rather than simple rotation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components">
+        <rdfs:comment>Internal components are physical structures located within the reactor vessel that are essential for its function. This category includes agitators, baffles, catalyst beds, spargers, and heating/cooling coils.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+        <rdfs:comment>Level is a parameter indicating the height of the liquid or solid contents within the reactor. Monitoring level is crucial for preventing overfilling, ensuring internal components are properly immersed, and managing material inventory in batch processes.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level_Control_Loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level_Control_Loop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop"/>
+        <rdfs:comment>A Level Control Loop is a specific control loop that automatically maintains the liquid level in a reactor at a setpoint, typically by manipulating the inlet or outlet flow rate.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level_Measurement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level_Measurement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:comment>Level Measurement refers to an instrument or sensor used to measure the level of the contents inside the reactor. Common types include differential pressure transmitters, radar sensors, and ultrasonic sensors.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Outlet -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Outlet">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection"/>
+        <rdfs:comment>An outlet is a process connection or nozzle through which products or unreacted materials are withdrawn from the reactor vessel.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#PFR -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#PFR">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Continuous"/>
+        <rdfs:comment>A PFR, often tubular in shape, is a type of continuous reactor where fluid flows in an orderly manner with no mixing in the axial direction. The concentration of reactants changes progressively along the length of the reactor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter">
+        <rdfs:comment>A parameter is any measurable physical or chemical property that defines the state of the reaction system. This includes key variables like temperature, pressure, concentration, and flow, which are constantly monitored and controlled.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Phase -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Phase">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+        <rdfs:comment>Phase refers to the state of matter (e.g., gas, liquid, solid) of the reactants and products within the reactor. The reaction phase (e.g., gas-phase, liquid-phase, heterogeneous) is a critical factor in reactor design and operation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pipelines -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pipelines">
+        <rdfs:comment>Pipelines is a general class for the conduits, pipes, and tubes used to transport fluids to and from the reactor and its associated auxiliary systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+        <rdfs:comment>Pressure is a parameter representing the force exerted by the reactor&apos;s contents on its walls. Controlling pressure is critical for safety and for influencing reaction rates and equilibrium, especially in gas-phase reactions.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_Control_Loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_Control_Loop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop"/>
+        <rdfs:comment>A Pressure Control Loop is a dedicated control loop designed to maintain the pressure inside the reactor at a desired setpoint, often by manipulating a vent valve or adjusting the flow of an inert gas.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_Measurement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_Measurement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:comment>Pressure Measurement refers to an instrument or sensor, such as a pressure gauge or transmitter, used to measure the internal pressure of the reactor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_relief -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_relief">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Safety_system"/>
+        <rdfs:comment>Pressure relief is a safety system designed to prevent catastrophic failure from over-pressurization. It includes devices that automatically vent the reactor contents when the pressure exceeds a safe design limit.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_relief_valve -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_relief_valve">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_relief"/>
+        <rdfs:comment>A Pressure Relief Valve is a reusable safety device that automatically opens at a predetermined set pressure to release excess pressure and then re-closes once the pressure returns to a safe level.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection">
+        <rdfs:comment>A process connection is any physical nozzle on the reactor vessel used for connecting pipelines, instruments, or other equipment. This includes inlets, outlets, and utility connections.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_line -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_line">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pipelines"/>
+        <rdfs:comment>A process line is a pipeline that carries the primary reactants, intermediates, or products that are directly involved in the chemical reaction.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Products -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Products">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Chemical_reaction"/>
+        <rdfs:comment>Products are the chemical species that are formed as a result of the chemical reaction taking place within the reactor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactants -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactants">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Chemical_reaction"/>
+        <rdfs:comment>Reactants are the initial chemical species fed into the reactor to undergo a chemical transformation into products</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reaction_rate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reaction_rate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+        <rdfs:comment>The reaction rate is a parameter that quantifies the speed at which reactants are converted into products. It is heavily influenced by variables such as temperature, pressure, concentration, and the presence of a catalyst.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor">
+        <rdfs:comment>Reactor Type is a classification based on the reactor&apos;s mode of operation (e.g., batch, continuous) or its characteristic flow pattern (e.g., CSTR, PFR).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Rupture_disc -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Rupture_disc">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_relief"/>
+        <rdfs:comment>A rupture disc is a non-reusable, single-use safety device consisting of a thin membrane designed to burst at a specific pressure. It provides rapid, full-bore relief during a severe overpressure event.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Safety_system -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Safety_system">
+        <rdfs:comment>A safety system is a collection of components and systems engineered to prevent hazardous conditions (like a runaway reaction) or to mitigate their consequences. It includes alarms, ESD valves, and pressure relief systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Semi-batch -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Semi-batch">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
+        <rdfs:comment>A Semi-batch reactor is a type of reactor that combines features of batch and continuous operation. Typically, one reactant is initially charged into the vessel, while another is fed in continuously over time to control the reaction rate or heat generation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Spragers -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Spragers">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components"/>
+        <rdfs:comment>a sparger is a device that introduces gas into a liquid. It&apos;s typically a tube or pipe with perforations that breaks up a gas stream into small bubbles. This process increases the surface area of contact between the gas and the liquid, enhancing the efficiency of processes like aeration, fermentation, or gas-liquid reactions.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
+        <rdfs:comment>Temperature is a critical parameter representing the degree of heat within the reactor. It strongly influences reaction rate and selectivity and must be carefully controlled to ensure safety and desired product quality.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature_Control_Loop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature_Control_Loop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop"/>
+        <rdfs:comment>A Temperature Control Loop is a control system that maintains the reactor temperature at a specific setpoint, usually by manipulating the flow of a heating or cooling medium through a thermal jacket or internal coils.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature_Measurement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature_Measurement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:comment>Temperature Measurement refers to an instrument, such as a thermocouple or an RTD (Resistance Temperature Detector), used to measure the temperature inside the reactor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Thermal_Jacket -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Thermal_Jacket">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Auxiliary_system"/>
+        <rdfs:comment>A thermal jacket is an auxiliary system consisting of an external shell around the reactor. A heat transfer fluid (like steam, water, or thermal oil) is circulated through the space between the shell and the reactor wall to add or remove heat from the reaction mass.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utilities -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utilities">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection"/>
+        <rdfs:comment>Utilities are the supporting services required for the reactor&apos;s operation, such as steam, cooling water, instrument air, or inert gas. These are supplied to the reactor system via process connections.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utility_line -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utility_line">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pipelines"/>
+        <rdfs:comment>A utility line is a pipeline that carries supporting fluids (utilities) to or from the reactor, as distinct from a process line that carries reactants or products.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Valves -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Valves">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments"/>
+        <rdfs:comment>Valves is a general class of mechanical devices used to control, regulate, or direct the flow of fluids in pipelines connected to the reactor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#inlet -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#inlet">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow"/>
+        <rdfs:comment>An inlet is a process connection or nozzle through which reactants or other substances are introduced into the reactor vessel.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#outlet -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#outlet">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow"/>
+        <rdfs:comment>An outlet is a process connection or nozzle through which products or unreacted materials are withdrawn from the reactor vessel.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments"/>
+        <rdfs:comment>A Measuring Instrument or Sensor is a device that detects and measures a physical parameter (like temperature, pressure, or level) and converts it into a transmittable signal (e.g., 4-20 mA) that can be read by a control system or indicator.</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
