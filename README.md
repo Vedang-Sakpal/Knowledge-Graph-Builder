@@ -1,21 +1,123 @@
-# HAZOP Modernization: KG Creation and RAG-based Automation
+# HAZOP Modernization: KG Creation, RAG-based Automation & Ontology-driven Process Description
 
-This repository is dedicated to advancing Hazard and Operability (HAZOP) studies through two innovative approaches: creating knowledge graphs from historical data and automating the HAZOP process using advanced AI techniques.
-
----
-
-## 1. Knowledge Graph (KG) Builder from Existing HAZOP Reports 📂
-
-This component focuses on structuring the invaluable information contained within legacy HAZOP reports. By parsing these documents, we extract key entities (like equipment, deviations, causes, consequences, and safeguards) and their relationships to construct a comprehensive knowledge graph. This structured data can then be used for advanced analytics, querying, and providing deeper insights into plant safety.
-
-* **Purpose**: To convert unstructured text from past HAZOP reports into a structured, queryable knowledge graph.
-* **Location**: All relevant scripts and resources for this task can be found in the `KG_builder` folder.
+This repository advances Hazard and Operability (HAZOP) studies through three parallel innovations: creating knowledge graphs from historical HAZOP reports, automating HAZOP analysis using advanced AI (RAG), and generating ontology-driven process descriptions for key equipment. The structure and code are designed for process safety researchers or engineers aiming for automation, deeper analytics, and semantic documentation.
 
 ---
 
-## 2. HAZOP Automation using RAG 🤖
+## Repository Structure
+```
+Knowledge-Graph-Builder/
+│
+├── HAZOP using RAG/
+├── KG Database/
+├── Process description using ontology/
+├── README.md
+```
 
-This section explores the automation of the HAZOP study process itself. We leverage a **Retrieval-Augmented Generation (RAG)** model, which combines the power of large language models with a knowledge base retrieved from process documentation (like P&IDs and control narratives). The system can intelligently identify potential deviations and predict their consequences, significantly speeding up and enhancing the consistency of HAZOP studies.
+---
 
-* **Purpose**: To automate the generation of HAZOP study outputs by using a RAG model that queries relevant engineering documents.
-* **Location**: All code, models, and documentation for the RAG-based HAZOP automation are located in the `HAZOP_using_RAG` folder.
+## 1. HAZOP Automation using RAG (`HAZOP using RAG/`)
+
+This module implements an **Ontology-Driven HAZOP automation pipeline** using **Retrieval-Augmented Generation (RAG)**. It combines process data, a formal HAZOP ontology, chemical property data (MSDS), typical causes/consequences, and large language model (LLM) reasoning. The pipeline produces detailed, professional HAZOP reports.
+
+### Substructure and Key Files
+
+- **Context for RAG/**: Extracted, normalized knowledge (parameters, causes, consequences, safeguards) from HAZOP reports.
+- **MSDS/**: Chemical property and safety sheets.
+- **P&ID/**: Instrumentation diagrams in Cypher for Neo4j.
+- **Process Description/**: MarkDown/TXT files summarizing the process analyzed.
+- **Results/**: Output HAZOP reports, detailed process descriptions, deviations.
+- **HAZOP_Ontology_CLEAN.rdf**: Formal HAZOP ontology.
+- **requirements.txt**: Required Python packages.
+- **main.py**: **Pipeline orchestrator** — runs all automation stages in sequence.
+
+### Main Python Scripts and Their Purpose
+
+- `01_parsing_P&ID.py`: Clears any existing graph database and loads new P&ID process structure from Cypher files.
+- `02_ontology_loader.py`: Loads HAZOP ontology and enforces schema/uniqueness in Neo4j.
+- `03_semantic_enrichment.py`: Uses LLMs to extract and normalize chemical hazard/parameter data.
+- `04_equipment_node.py`: Creates one node per piece of equipment for graph construction.
+- `05_Understanding_process_using_LLM.py`: Expands process descriptions with LLM, making them more equipment-specific.
+- `06_Generate_applicable_deviations.py`: Generates likely deviations for each equipment type.
+- `07_HAZOP_analysis.py`: Automated HAZOP analysis, producing consequences, causes, safeguards, and outputs them in .xlsx/.json for review.
+- `08_verify_accuracy.py`: Compares generated output to real reports using semantic similarity for accuracy.
+- `config.py`: Stores credentials, API keys, and all data/file locations.
+
+### How to Use
+
+1. Install dependencies:
+    ``` bash 
+    pip install -r requirements.txt
+    ```
+2. Ensure Neo4j is running and all required input data (P&ID Cypher, MSDS, CSVs) is present.
+3. Set up `config.py` with appropriate paths and credentials.
+4. Run the full automation:
+    ``` bash 
+    python main.py
+    ```
+5. Review results in the `Results/` folder.
+
+---
+
+## 2. Knowledge Graph (KG) Builder from Reports (`KG Database/`)
+
+This module is for constructing **knowledge graphs directly from HAZOP report tables**. It enables advanced querying, visualization, and relationship analysis within Neo4j.
+
+### Key Files and Purpose
+
+- **KG_Builder.ipynb**: Jupyter notebook for the entire transformation pipeline—reads the CSV HAZOP table, processes it, and generates Cypher code for Neo4j.
+- **HAZOP_006.csv**: Sample HAZOP report data (tabular).
+- **hazop_knowledge_graph.cypher**: Main Cypher script generated by the notebook. "Corrected" and "new" variants are refinements.
+- **README.md**: Instructions for graph building and usage.
+
+### How to Use
+
+- Open `KG_Builder.ipynb` and execute the cells.
+- Import the generated `.cypher` script into Neo4j via browser or command line.
+- Visualize and query your structured HAZOP knowledge graph.
+
+### Output
+
+A Neo4j knowledge graph representing causes, consequences, safeguards, etc., and their relationships from historical HAZOP data.
+
+---
+## 3. Automated Process Description using Ontology (`Process description using ontology/`)
+
+This module automatically generates detailed, human-readable descriptions of process equipment (e.g., Reactors, Storage Tanks) by fusing P&ID graph data from Neo4j with formal OWL ontologies. 🧪
+
+### Key Files and Purpose
+
+- **Ontology/**: Contains the formal knowledge bases.
+    - `Reactor Ontology.rdf`: Defines concepts, properties, and relationships for chemical reactors.
+    - `Storage Tank Ontology.rdf`: Defines concepts for storage tanks.
+- **Results/**: The output directory for the generated text files.
+    - `reactor_descriptions.txt`
+    - `storage_tank_descriptions.txt`
+- **`Reactor_description_generator.py`**: The script for analyzing reactors.
+- **`Storage_tank_description_generator.py`**: The script for analyzing storage tanks.
+
+### How It Works
+
+The scripts connect to a Neo4j database containing P&ID data and parse the relevant ontology. They then identify target equipment and analyze its connections, using graph traversal to find the true upstream and downstream equipment. The final description is a rich, structured report that explains the equipment's function, process flows, control loops, and safety systems by integrating semantic definitions directly from the ontology.
+
+### How to Use
+
+1. Ensure your P&ID data is loaded in a running Neo4j instance.
+2. Edit the Neo4j connection details and file paths at the bottom of the Python scripts (`Reactor_description_generator.py` or `Storage_tank_description_generator.py`).
+3. Run the desired script:
+    ```bash
+    python Reactor_description_generator.py
+    ```
+4. Review the detailed descriptions in the `Results/` folder.
+
+## Project Purpose Summary
+- **Automated HAZOP**: Uses AI to generate, analyze, and verify HAZOP reports, increasing speed and depth of review.
+- **Knowledge Graphs**: Enables pattern discovery, querying, and analytics from past HAZOPs, helping prevent incident recurrence and discover systemic weaknesses.
+- **Ontology-powered Documentation**: Generates deep, semantic process descriptions from P&ID data for training, documentation, and safety analysis.
+
+
+---
+
+## Disclaimer
+
+*This system assists in drafting HAZOP reports. All generated content must be reviewed by certified process safety engineers before field use.*
