@@ -10,6 +10,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
 # Assuming config.py exists with your API keys and Neo4j credentials
 import config
+import argparse # Import argparse
 
 
 def get_driver() -> GraphDatabase.driver:
@@ -135,7 +136,7 @@ def save_and_parse_llm_json(llm_raw_text: str, equipment_name: str) -> Optional[
             })
         return normalized
     except json.JSONDecodeError as e:
-        print(f"❌ Critical Error: Failed to parse JSON from the LLM's response. {e}")
+        print(f" Critical Error: Failed to parse JSON from the LLM's response. {e}")
         print(f"   Please check the raw output file for issues: {raw_filename}")
         return None
 
@@ -289,62 +290,55 @@ def save_hazop_report_excel(equipment_name: str, analysis_data: List[Dict[str, A
 
     try:
         wb.save(filename)
-        print(f"\n✅ HAZOP analysis saved to Excel: {filename}")
+        print(f"\n HAZOP analysis saved to Excel: {filename}")
     except IOError as e:
-        print(f"❌ Error saving Excel file: {e}")
+        print(f" Error saving Excel file: {e}")
 
 
 def main():
-    """Main function to run the HAZOP analysis tool."""
-    print("=== Professional HAZOP Analysis Tool ===\n")
-    
+    """
+    Main function to run HAZOP analysis for a *single, specified* piece of equipment.
+    """
+    # --- Add Argument Parser ---
+    parser = argparse.ArgumentParser(description="Run HAZOP analysis for a specific piece of equipment.")
+    parser.add_argument("--equipment-name", required=True, help="The name of the equipment to analyze (e.g., 'V-101').")
+    parser.add_argument("--equipment-type", required=True, help="The type of the equipment (e.g., 'Separator').")
+    args = parser.parse_args()
+
+    print(f"=== Starting HAZOP Analysis for: {args.equipment_name} ===\n")
+
     model = configure_llm()
     process_description = load_process_description()
-    
+
     driver = get_driver()
     try:
         with driver.session() as session:
-            equipments = fetch_equipment_nodes(session)
-            if not equipments:
-                print("No equipment found in the database.")
-                return
-            
-            while True:
-                display_equipment_list(equipments)
-                selected_equipment = get_equipment_selection(equipments)
-                if selected_equipment is None:
-                    break
-                
-                equipment_name = selected_equipment["name"]
-                print(f"\n--- Starting HAZOP for: {equipment_name} ---\n")
-                
-                print("1. Fetching P&ID context from Neo4j...")
-                context = fetch_equipment_context(session, equipment_name)
-                
-                print("2. Loading applicable deviations from CSV...")
-                deviations = load_applicable_deviations(equipment_name)
-                if not deviations:
-                    print("   -> No specific deviations found. Using a generic deviation for analysis.")
-                    deviations = [{"parameter": "Process", "guideword": "General Malfunction", "rationale": "Generic analysis due to lack of specific deviations."}]
-                
-                print("3. Conducting HAZOP analysis with LLM... (This may take a moment)")
-                analysis = conduct_hazop_analysis(model, selected_equipment, context, deviations, process_description)
+            selected_equipment = {"name": args.equipment_name, "type": args.equipment_type}
 
-                if analysis:
-                    print("4. Saving HAZOP report to Excel...")
-                    save_hazop_report_excel(equipment_name, analysis)
-                else:
-                    print("\nSkipping report generation due to an error in the analysis step.")
+            print("1. Fetching P&ID context from Neo4j...")
+            context = fetch_equipment_context(session, selected_equipment["name"])
 
-                another = input("\nAnalyze another piece of equipment? (y/n): ").strip().lower()
-                if another != 'y':
-                    break
-                
+            print("2. Loading applicable deviations from CSV...")
+            deviations = load_applicable_deviations(selected_equipment["name"])
+            if not deviations:
+                print("   -> No specific deviations found. Using a generic deviation.")
+                deviations = [{"parameter": "Process", "guideword": "General Malfunction", "rationale": "Generic"}]
+
+            print("3. Conducting HAZOP analysis with LLM...")
+            analysis = conduct_hazop_analysis(model, selected_equipment, context, deviations, process_description)
+
+            if analysis:
+                print("4. Saving HAZOP report to Excel...")
+                save_hazop_report_excel(selected_equipment["name"], analysis)
+            else:
+                print("\nSkipping report generation due to an error in the analysis step.")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
     finally:
         driver.close()
-    
-    print("\nHAZOP analysis complete!")
 
+    print(f"\nHAZOP analysis for {args.equipment_name} complete!")
 
 if __name__ == "__main__":
     main()

@@ -3,3 +3,5 @@ OpenAI\__pycache__/
 config.py
 hazop_cache/
 api_cache/
+config.py.backup 
+config_updater.py

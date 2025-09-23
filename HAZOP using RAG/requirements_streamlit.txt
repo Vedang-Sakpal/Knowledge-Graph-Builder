@@ -1,0 +1,47 @@
+# Streamlit HAZOP Analysis Application Requirements
+
+# Core Streamlit and Web Framework
+streamlit>=1.28.0
+plotly>=5.15.0
+
+# Database and Graph
+neo4j>=5.12.0
+
+# LLM and AI
+google-generativeai>=0.3.0
+sentence-transformers>=2.2.2
+
+# Data Processing and Analysis
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+xlsxwriter>=3.1.0
+
+# Machine Learning and NLP
+scikit-learn>=1.3.0
+faiss-cpu>=1.7.0
+
+# RDF and Ontology
+rdflib>=7.0.0
+
+# File Processing
+PyMuPDF>=1.23.0  # For PDF processing (fitz)
+python-docx>=0.8.11
+
+# Utilities
+tqdm>=4.65.0
+python-dotenv>=1.0.0
+
+# Additional Streamlit Components
+streamlit-option-menu>=0.3.6
+streamlit-aggrid>=0.3.4
+streamlit-ace>=0.1.1
+
+# Visualization
+seaborn>=0.12.0
+matplotlib>=3.7.0
+
+# Development and Testing
+pytest>=7.4.0
+black>=23.7.0
+flake8>=6.0.0

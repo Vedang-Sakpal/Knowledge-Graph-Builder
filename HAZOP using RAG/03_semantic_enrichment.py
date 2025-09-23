@@ -6,371 +6,607 @@ import json
 import os
 import fitz
 import time
-import hashlib
-import pickle
 
-# --- Helper Functions ---
-def flatten_dict(d, parent_key='', sep='_'):
+class PIDChemicalProcessor:
     """
-    Recursively flattens a nested dictionary.
-    Example: {'a': 1, 'b': {'c': 2}} becomes {'a': 1, 'b_c': 2}.
-    This is useful for setting properties on Neo4j nodes, which don't support nested objects.
+    A specialized processor for P&ID boundary analysis and chemical node creation.
+    This class handles:
+    1. Processing P&ID boundaries to extract chemical information
+    2. Creating Chemical nodes with appropriate relationships
+    3. Extracting detailed chemical properties from MSDS files
+    4. Updating Neo4j database with structured chemical data
     """
-    items = []
-    for k, v in d.items():
-        # Clean up the key by replacing common special characters with underscores.
-        sanitized_key = k.replace(' ', '_').replace('/', '_').replace('-', '_').replace('.', '_')
-        new_key = parent_key + sep + sanitized_key if parent_key else sanitized_key
-        # If the value is a dictionary itself, recurse deeper.
-        if isinstance(v, dict):
-            items.extend(flatten_dict(v, new_key, sep=sep).items())
-        else:
-            # Handle None values as empty strings.
-            if v is None:
-                items.append((new_key, ''))
-            # Keep standard data types as they are.
-            elif isinstance(v, (str, int, float, bool)):
-                items.append((new_key, v))
-            # Convert any other type (like lists) to a string representation.
-            else:
-                items.append((new_key, str(v)))
-    return dict(items)
-
-# --- Main Class ---
-class SemanticEnricher:
-    """
-    This class connects to a Neo4j database, uses an LLM (Gemini) to extract structured
-    information from text files, and then "enriches" the graph with this new data.
-    It includes caching and API usage limits to be efficient and cost-effective.
-    """
+    
     def __init__(self, uri, user, password):
-        """
-        Initializes the enricher, setting up database and API connections.
-        """
-        # Initialize the Neo4j database driver.
+        """Initialize the processor with Neo4j and Gemini API connections."""
+        # Neo4j database connection
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
-
-        # --- Initialize Gemini API (new client) ---
+        
+        # Gemini API setup
         self.genai_client = genai.Client(api_key=config.GEMINI_API_KEY)
-        self.model_name = getattr(config, 'GEMINI_MODEL_NAME', 'gemini-1.5-pro')
+        self.model_name = getattr(config, 'GEMINI_MODEL_NAME', 'gemini-2.5-flash')
         self.generation_config = GenerateContentConfig(
             temperature=0.1,
-            max_output_tokens=1500,
+            max_output_tokens=2000,
         )
-
-        # --- Initialize Caching System ---
-        # Caching saves API results to avoid making the same expensive call multiple times.
-        self.cache_dir = "api_cache"
-        os.makedirs(self.cache_dir, exist_ok=True) # Create the cache directory if it doesn't exist.
-        self.api_call_count = 0
-        # Set a limit on API calls per run to control costs. Default to 10 if not in config.
-        self.max_api_calls = getattr(config, 'MAX_API_CALLS_PER_RUN', 10)
-
+        
+        
+        # Track processed data for final report
+        self.processed_chemicals = []
+        self.created_relationships = []
+    
     def close(self):
-        """Closes the Neo4j database connection and prints a summary."""
+        """Close database connection and print session summary."""
         self.driver.close()
-        print(f"Total API calls made in this session: {self.api_call_count}")
-
-    # --- Caching Methods ---
-    def _get_cache_key(self, content, prompt_template):
-        """Generate a unique MD5 hash for the content and prompt combination to use as a filename."""
-        combined = f"{prompt_template}\n{content}"
-        return hashlib.md5(combined.encode()).hexdigest()
-
-    def _save_to_cache(self, cache_key, result):
-        """Save an API result to a file using pickle."""
-        cache_file = os.path.join(self.cache_dir, f"{cache_key}.pkl")
-        with open(cache_file, 'wb') as f:
-            pickle.dump(result, f)
-
-    def _load_from_cache(self, cache_key):
-        """Load an API result from the cache if the file exists."""
-        cache_file = os.path.join(self.cache_dir, f"{cache_key}.pkl")
-        if os.path.exists(cache_file):
-            with open(cache_file, 'rb') as f:
-                return pickle.load(f)
-        return None
-
-    # --- File Reading Method ---
-    def get_text_from_file(self, file_path):
-        """Extracts plain text from PDF, TXT, or MD files."""
+        print("\nSession Summary:")
+        #print(f"Total API calls made: {self.api_call_count}")
+        print(f"Chemicals processed: {len(self.processed_chemicals)}")
+        print(f"Relationships created: {len(self.created_relationships)}")
+    
+    # --- File Processing Methods ---
+    def read_msds_file(self, file_path):
+        """Extract text from MSDS files (PDF, TXT, MD)."""
         try:
-            # Handle PDF files using the fitz library.
             if file_path.lower().endswith('.pdf'):
                 doc = fitz.open(file_path)
-                # PyMuPDF's Page.get_text exists at runtime; suppress type checker noise for this attribute.
-                pages_text = []
+                text = ""
                 for page in doc:
-                    pages_text.append(page.get_text("text"))  # pyright: ignore[reportAttributeAccessIssue]
-                text = "".join(pages_text)
+                    text += page.get_text("text")
                 doc.close()
                 return text
-            # Handle plain text or markdown files.
             elif file_path.lower().endswith(('.txt', '.md')):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     return f.read()
             else:
+                print(f"Unsupported file format: {file_path}")
                 return None
         except Exception as e:
             print(f"Error reading file {file_path}: {e}")
             return None
+    
+    def extract_with_llm(self, content, prompt, prompt_type):
+        """Extract information using Gemini LLM with caching."""
+#        if self.api_call_count >= self.max_api_calls:
+#            print(f"API call limit ({self.max_api_calls}) reached.")
+#            return None
+        
+        
+#        print(f"Making API call {self.api_call_count + 1}/{self.max_api_calls} for {prompt_type}")
+        
+        # Truncate content if too long
+        max_length = getattr(config, 'MAX_CONTEXT_LENGTH', 10000)
+        if len(content) > max_length:
+            content = content[:max_length] + "...[truncated]"
+        
+        full_prompt = f"""You are an expert data extraction specialist. Extract information in valid JSON format only.
 
-    # --- Core LLM Extraction Method ---
-    def extract_info_with_llm(self, context, prompt_template):
-        """
-        Extracts structured information from text using the Gemini LLM.
-        It uses caching to avoid redundant API calls.
-        """
-        # First, check if we have reached the self-imposed API call limit.
-        if self.api_call_count >= self.max_api_calls:
-            print(f"API call limit ({self.max_api_calls}) reached. Skipping this extraction.")
-            return None
+{prompt}
 
-        # Check the cache before making an expensive API call.
-        cache_key = self._get_cache_key(context, prompt_template)
-        cached_result = self._load_from_cache(cache_key)
+---CONTENT---
+{content}
 
-        if cached_result is not None:
-            print("Using cached result instead of making API call.")
-            return cached_result
-
-        print(f"Making API call {self.api_call_count + 1}/{self.max_api_calls} to Gemini...")
-
-        # Truncate the context if it's too long to save on token costs.
-        max_context_length = getattr(config, 'MAX_CONTEXT_LENGTH', 8000)
-        if len(context) > max_context_length:
-            print(f"Context too long ({len(context)} chars), truncating to {max_context_length} chars")
-            context = context[:max_context_length] + "...[truncated]"
-
-        # Construct the full prompt for the LLM, clearly stating the required JSON format.
-        full_prompt = f"""You are a data extraction expert. Extract information in structured JSON format. Be concise but accurate.
-
-{prompt_template}
-
----CONTEXT---
-{context}
-
-Please provide your response as a valid JSON object only, with no additional text or explanations."""
-
+Respond with valid JSON only, no additional text or explanations."""
+        
         try:
-            # Make the actual API call to the Gemini model.
             response = self.genai_client.models.generate_content(
                 model=self.model_name,
                 contents=full_prompt,
                 config=self.generation_config,
             )
-
-            # --- Extract JSON from the model's response ---
-            # LLMs sometimes wrap JSON in markdown backticks, so we need to clean it up.
+            
             response_text = (response.text or "").strip()
+            
+            # Clean JSON response
             if response_text.startswith('```json'):
-                response_text = response_text[7:-3] # Remove ```json and ```
+                response_text = response_text[7:-3]
             elif response_text.startswith('```'):
-                response_text = response_text[3:-3] # Remove ``` and ```
-
-            # Parse the cleaned text into a Python dictionary.
-            extracted_json = json.loads(response_text)
-            self.api_call_count += 1
-
-            # Save the successful result to the cache for future use.
-            self._save_to_cache(cache_key, extracted_json)
-
-            print("Successfully extracted information from Gemini API.")
-            return extracted_json
-
+                response_text = response_text[3:-3]
+            
+            result = json.loads(response_text)
+#            self.api_call_count += 1
+            
+            
+            return result
+            
         except json.JSONDecodeError as e:
-            # Handle cases where the LLM response is not valid JSON.
-            print(f"JSON decoding error: {e}")
+            print(f"JSON decode error: {e}")
             print(f"Raw response: {response.text}")
-            self.api_call_count += 1
+#            self.api_call_count += 1
             return None
         except Exception as e:
-            # Handle other potential API errors.
-            print(f"An error occurred during Gemini API call: {e}")
-            self.api_call_count += 1 # Count failed calls towards the limit.
+            print(f"API call error: {e}")
+#            self.api_call_count += 1
             return None
-
-    # --- Synonym Enrichment and Mapping ---
-    def enrich_chemicals_with_synonyms(self):
-        """
-        Finds chemicals in the DB without a 'synonyms' property, uses an LLM
-        to find synonyms, and updates the node.
-        """
-        print("\n--- Starting Chemical Synonym Enrichment ---")
+    
+    # --- P&ID Boundary Processing ---
+    def find_boundary_nodes(self):
+        """Find all boundary nodes in the Neo4j database with tag and type information."""
+        print("\n=== Step 1: Finding P&ID Boundary Nodes ===")
+        
         with self.driver.session() as session:
-            # Find chemicals that haven't been enriched with synonyms yet.
-            result = session.run("MATCH (c:Chemical) WHERE c.synonyms IS NULL RETURN c.name AS name")
-            chemicals_to_enrich = [record["name"] for record in result]
-
-            if not chemicals_to_enrich:
-                print("All chemical nodes are already enriched with synonyms.")
-                return
-
-            print(f"Found {len(chemicals_to_enrich)} chemicals to enrich with synonyms.")
-
-            # --- IMPROVED PROMPT 1: Asks for commercial/brand names ---
-            synonym_prompt_template = """
-            For the substance identified as "{chemical_name}", provide a list of its common names, synonyms, formulas, and any major commercial or brand names.
-            Include the original name in the list.
-            Return a single JSON object with a key "synonyms" containing a list of strings.
-            Example: For "Whey Permeate", return {{"synonyms": ["Whey Permeate", "deproteinized whey", "dairy solids", "wheyco permeate"]}}.
+            # Updated query to match your data structure
+            query = """
+            MATCH (b:Boundary)
+            RETURN b.name as tag, 
+                   b.type as boundary_type, 
+                   b.chemical as chemical,
+                   b.data as data,
+                   properties(b) as all_properties,
+                   elementId(b) as node_id
+            ORDER BY b.name
             """
-
-            for name in chemicals_to_enrich:
-                if self.api_call_count >= self.max_api_calls:
-                    print("API limit reached, stopping synonym enrichment.")
-                    break
-
-                print(f"Getting synonyms for: {name}")
-                # Use the template to create the final prompt for each chemical
-                final_prompt = synonym_prompt_template.format(chemical_name=name)
-                response = self.extract_info_with_llm(name, final_prompt)
-
-                try:
-                    if response and 'synonyms' in response and isinstance(response['synonyms'], list):
-                        synonyms = response['synonyms']
-                        # Ensure all synonyms are strings and lowercase for consistent matching
-                        synonyms_lower = list(set([str(s).lower() for s in synonyms]))
-
-                        # Add the original name to the list if not present, in lowercase
-                        if name.lower() not in synonyms_lower:
-                            synonyms_lower.append(name.lower())
-
-                        session.run(
-                            "MATCH (c:Chemical {name: $name}) SET c.synonyms = $synonyms",
-                            name=name,
-                            synonyms=synonyms_lower
-                        )
-                        print(f"Successfully added synonyms for '{name}': {synonyms_lower}")
-                    else:
-                        print(f"Could not retrieve or parse synonyms for '{name}'. Response received: {response}")
-
-                except KeyError:
-                    # This block will catch the specific error and provide better debug info
-                    print(f"KeyError while processing '{name}'. The AI response did not contain the expected 'synonyms' key.")
-                    print(f"Raw response dictionary keys: {response.keys() if isinstance(response, dict) else 'Not a dict'}")
-                    print(f"Full response: {response}")
-
-                time.sleep(2) # Rate limiting
-
-    def get_synonym_to_canonical_map(self):
-        """
-        Creates a dictionary mapping every synonym to its canonical chemical name.
-        """
-        print("\nBuilding synonym map from database...")
+            
+            result = session.run(query)
+            boundaries = []
+            
+            for record in result:
+                boundary_data = {
+                    'tag': record['tag'],
+                    'boundary_type': record['boundary_type'],
+                    'chemical': record['chemical'],
+                    'data': record['data'],
+                    'properties': record['all_properties'],
+                    'node_id': record['node_id']
+                }
+                boundaries.append(boundary_data)
+            
+            print(f"Found {len(boundaries)} boundary nodes to process")
+            
+            # Print details of found boundaries for debugging
+            for boundary in boundaries:
+                print(f"  - {boundary['tag']}: type='{boundary['boundary_type']}', chemical='{boundary['chemical']}'")
+            
+            return boundaries
+    
+    def extract_chemical_from_boundary(self, boundary_data):
+        """Extract chemical information from boundary node properties."""
+        # For your data structure, the chemical name is directly available in the 'chemical' property
+        chemical_name = boundary_data.get('chemical')
+        
+        if chemical_name:
+            tag = boundary_data['tag']
+            print(f"Found chemical '{chemical_name}' in boundary {tag}")
+            return chemical_name.strip()
+        
+        # Fallback to original logic if no direct chemical property
+        properties = boundary_data['properties']
+        tag = boundary_data['tag']
+        
+        # Common fields that might contain chemical names
+        chemical_fields = [
+            'chemical', 'chemical_name', 'substance', 'material', 'fluid',
+            'component', 'stream_name', 'stream', 'feed', 'product',
+            'description', 'name', 'content', 'medium'
+        ]
+        
+        # First, check direct chemical fields
+        for field in chemical_fields:
+            if field in properties and properties[field]:
+                chemical_name = str(properties[field]).strip()
+                if len(chemical_name) > 2:  # Valid chemical name
+                    print(f"Found chemical '{chemical_name}' in field '{field}' for boundary {tag}")
+                    return chemical_name
+        
+        # If no direct field, look in all string properties
+        for key, value in properties.items():
+            if isinstance(value, str) and value.strip():
+                # Skip obviously non-chemical properties
+                skip_fields = ['tag', 'type', 'id', 'node_id', 'x', 'y', 'width', 'height', 'label', 'name', 'data']
+                if key.lower() not in skip_fields and len(value.strip()) > 2:
+                    chemical_name = value.strip()
+                    print(f"Extracted chemical '{chemical_name}' from property '{key}' for boundary {tag}")
+                    return chemical_name
+        
+        print(f"No chemical information found for boundary {tag}")
+        return None
+    
+    def create_chemical_nodes_and_relationships(self, boundaries):
+        """Create Chemical nodes and relationships based on boundary types."""
+        print("\n=== Step 2: Creating Chemical Nodes and Relationships ===")
+        
         with self.driver.session() as session:
-            # UNWIND expands the list of synonyms into individual rows
-            result = session.run("""
-                MATCH (c:Chemical) WHERE c.synonyms IS NOT NULL
-                UNWIND c.synonyms AS synonym
-                RETURN synonym, c.name AS canonicalName
-            """)
-            # The map uses lowercase synonyms as keys for case-insensitive matching
-            synonym_map = {record["synonym"].lower(): record["canonicalName"] for record in result}
-            print(f"Built map with {len(synonym_map)} synonym entries.")
-            return synonym_map
-
-    # --- MSDS Processing Method ---
-    def process_msds_files(self, msds_dir, synonym_map, max_files=None):
-        """
-        Process MSDS files, using the synonym map to match them to canonical chemicals.
-        """
-        if not os.path.isdir(msds_dir):
-            print(f"MSDS directory not found at {msds_dir}. Skipping MSDS enrichment.")
-            return
-
-        msds_files = [f for f in os.listdir(msds_dir) if f.lower().endswith((".txt", ".pdf"))]
-
-        if max_files:
-            msds_files = msds_files[:max_files]
-            print(f"Limited to processing a maximum of {max_files} MSDS files.")
-
-        print("\n--- Starting MSDS Processing using Synonym Map ---")
-        print(f"Found {len(msds_files)} MSDS files to process.")
-
-        # --- IMPROVED PROMPT 2: Guides the AI to find the generic name ---
-        msds_prompt = """
-        You are an expert chemical safety specialist extracting critical hazard data from a Safety Data Sheet (SDS) or product specification sheet.
-        From the provided content, extract the following data for the substance.
-
-        Identify:
-        1.  `chemicalName`: The most common or generic chemical/substance name. If a brand name is present (e.g., 'wheyco Permeate'), extract the generic part (e.g., 'Whey Permeate'). Also identify the `casNumber` if available.
-        2.  `signalWord`: The hazard signal word (e.g., "Danger", "Warning").
-        3.  `physicalAndChemicalProperties`: Key physical data.
-        4.  `stabilityAndReactivity`: Information on reactivity hazards.
-        5.  `toxicologicalInformation`: Key toxicity data.
-
-        Provide your response as a single, valid JSON object.
-        """
-
-        for filename in msds_files:
-            if self.api_call_count >= self.max_api_calls:
-                print("API limit reached, stopping further MSDS processing.")
-                break
-
-            file_path = os.path.join(msds_dir, filename)
-            msds_text = self.get_text_from_file(file_path)
-
-            if not msds_text:
-                continue
-
-            extracted_data = self.extract_info_with_llm(msds_text, msds_prompt)
-
-            if extracted_data and isinstance(extracted_data, dict):
-                chem_name_from_msds = extracted_data.get('chemicalName')
-                if chem_name_from_msds:
-                    # Check if the extracted name (or its lowercase version) is in our synonym map
-                    canonical_name = synonym_map.get(chem_name_from_msds.lower())
-
-                    if canonical_name:
-                        print(f"Match found: '{chem_name_from_msds}' from '{filename}' maps to canonical chemical '{canonical_name}'. Enriching...")
-                        self.enrich_graph_with_chemical_data(extracted_data, canonical_name)
-                    else:
-                        print(f"Skipping: Chemical '{chem_name_from_msds}' from '{filename}' does not match any known chemical in the database.")
+            for boundary in boundaries:
+                tag = boundary['tag']
+                boundary_type = str(boundary['boundary_type']).lower() if boundary['boundary_type'] else 'unknown'
+                
+                # Extract chemical name
+                chemical_name = self.extract_chemical_from_boundary(boundary)
+                
+                if not chemical_name:
+                    continue
+                
+                print(f"\nProcessing: {tag} (type: {boundary_type}) -> Chemical: {chemical_name}")
+                
+                # Create or merge Chemical node
+                chemical_query = """
+                MERGE (c:Chemical {name: $chemical_name})
+                ON CREATE SET c.created_from_pid = true, c.created_timestamp = timestamp()
+                RETURN c
+                """
+                session.run(chemical_query, chemical_name=chemical_name)
+                
+                # Create relationships based on boundary type
+                relationship_created = False
+                
+                if boundary_type == 'source' or 'source' in boundary_type:
+                    # Source boundary: Chemical -[INLET]-> Boundary
+                    relationship_query = """
+                    MATCH (c:Chemical {name: $chemical_name})
+                    MATCH (b:Boundary) WHERE elementId(b) = $node_id
+                    MERGE (c)-[r:INLET]->(b)
+                    ON CREATE SET r.created_timestamp = timestamp()
+                    RETURN type(r) as rel_type
+                    """
+                    session.run(relationship_query, chemical_name=chemical_name, node_id=boundary['node_id'])
+                    relationship_type = "INLET"
+                    relationship_direction = f"{chemical_name} -[INLET]-> {tag}"
+                    relationship_created = True
+                    print(f"Created relationship: {relationship_direction}")
+                    
+                elif boundary_type == 'sink' or 'sink' in boundary_type:
+                    # Sink boundary: Boundary -[OUTLET]-> Chemical
+                    relationship_query = """
+                    MATCH (c:Chemical {name: $chemical_name})
+                    MATCH (b:Boundary) WHERE elementId(b) = $node_id
+                    MERGE (b)-[r:OUTLET]->(c)
+                    ON CREATE SET r.created_timestamp = timestamp()
+                    RETURN type(r) as rel_type
+                    """
+                    session.run(relationship_query, chemical_name=chemical_name, node_id=boundary['node_id'])
+                    relationship_type = "OUTLET"
+                    relationship_direction = f"{tag} -[OUTLET]-> {chemical_name}"
+                    relationship_created = True
+                    print(f"Created relationship: {relationship_direction}")
+                    
                 else:
-                    print(f"Skipping '{filename}': Could not extract a chemical name from the document.")
-
-            time.sleep(3) # Be respectful of API rate limits.
-
-    # --- Graph Update Method ---
-    def enrich_graph_with_chemical_data(self, chemical_data, canonical_name):
+                    # Default case - try to infer from context or create bidirectional
+                    print(f"Unknown boundary type '{boundary_type}', creating default CONNECTED relationship")
+                    relationship_query = """
+                    MATCH (c:Chemical {name: $chemical_name})
+                    MATCH (b:Boundary) WHERE elementId(b) = $node_id
+                    MERGE (c)-[r:CONNECTED]-(b)
+                    ON CREATE SET r.created_timestamp = timestamp()
+                    RETURN type(r) as rel_type
+                    """
+                    session.run(relationship_query, chemical_name=chemical_name, node_id=boundary['node_id'])
+                    relationship_type = "CONNECTED"
+                    relationship_direction = f"{chemical_name} -[CONNECTED]- {tag}"
+                    relationship_created = True
+                    print(f"Created relationship: {relationship_direction}")
+                
+                # Track processed data
+                chemical_data = {
+                    'name': chemical_name,
+                    'boundary_tag': tag,
+                    'boundary_type': boundary_type,
+                    'relationship_type': relationship_type,
+                    'relationship_direction': relationship_direction,
+                    'properties': {}
+                }
+                self.processed_chemicals.append(chemical_data)
+                
+                if relationship_created:
+                    self.created_relationships.append({
+                        'chemical': chemical_name,
+                        'boundary': tag,
+                        'type': relationship_type,
+                        'direction': relationship_direction
+                    })
+    
+    # --- MSDS Processing ---
+    def process_msds_files(self, msds_directory):
+        """Process MSDS files to extract detailed chemical properties."""
+        print(f"\n=== Step 3: Processing MSDS Files from {msds_directory} ===")
+        
+        if not os.path.exists(msds_directory):
+            print(f"MSDS directory not found: {msds_directory}")
+            return
+        
+        msds_files = [f for f in os.listdir(msds_directory) 
+                      if f.lower().endswith(('.pdf', '.txt', '.md'))]
+        
+        max_files = getattr(config, 'MAX_MSDS_FILES', 10)
+        if len(msds_files) > max_files:
+            msds_files = msds_files[:max_files]
+            print(f"Processing first {max_files} MSDS files")
+        
+        print(f"Found {len(msds_files)} MSDS files to process")
+        
+        # Enhanced MSDS extraction prompt
+        msds_prompt = """
+        Extract detailed chemical properties from this Safety Data Sheet (SDS/MSDS).
+        
+        Required properties:
+        1. `name`: Chemical/substance name (prefer generic over brand names)
+        2. `type`: Material classification (e.g., 'Main input Feed', 'Intermediate', 'Product', 'Waste', 'Raw Material')
+        3. `material_type`: Category (e.g., 'raw-material', 'intermediate', 'product', 'waste', 'catalyst')
+        4. `physical_state`: State at room temperature ('solid', 'liquid', 'gas', 'mixture')
+        5. `corrosive_nature`: Corrosiveness assessment ('corrosive', 'not-corrosive', 'mildly-corrosive')
+        6. `flammable_nature`: Flammability assessment ('flammable', 'not-flammable', 'highly-flammable')
+        7. `volatile_nature`: Volatility assessment ('volatile', 'non-volatile', 'semi-volatile')
+        8. `toxic_nature`: Toxicity assessment ('toxic', 'non-toxic', 'mildly-toxic')
+        9. `viscous_nature`: Viscosity assessment ('viscous', 'non-viscous', 'highly-viscous')
+        
+        Additional properties (if available):
+        10. `cas_number`: CAS registry number
+        11. `molecular_formula`: Chemical formula
+        12. `molecular_weight`: Molecular weight with units
+        13. `density`: Density value with units
+        14. `boiling_point`: Boiling point with units
+        15. `melting_point`: Melting point with units
+        16. `flash_point`: Flash point with units
+        17. `ph_value`: pH value or range
+        18. `vapor_pressure`: Vapor pressure with units
+        19. `solubility`: Solubility information
+        20. `hazard_class`: Hazard classification
+        
+        Return as JSON object with all available properties.
         """
-        Takes the structured JSON for a single chemical and updates its canonical node in Neo4j.
-        """
-        print(f"Enriching the Neo4j graph for canonical chemical: {canonical_name}...")
+        
+        for filename in msds_files:
+#            if self.api_call_count >= self.max_api_calls:
+#                print("API call limit reached, stopping MSDS processing")
+#                break
+            
+            file_path = os.path.join(msds_directory, filename)
+            print(f"\nProcessing MSDS: {filename}")
+            
+            # Read file content
+            msds_content = self.read_msds_file(file_path)
+            if not msds_content:
+                continue
+            
+            # Extract properties using LLM
+            extracted_data = self.extract_with_llm(msds_content, msds_prompt, f"MSDS_{filename}")
+            
+            if extracted_data and isinstance(extracted_data, dict):
+                chemical_name = extracted_data.get('name')
+                if chemical_name:
+                    self.update_chemical_with_properties(chemical_name, extracted_data, filename)
+                else:
+                    print(f"No chemical name extracted from {filename}")
+            else:
+                print(f"Failed to extract data from {filename}")
+            
+            time.sleep(2)  # Rate limiting
+    
+    def update_chemical_with_properties(self, chemical_name, properties, msds_filename):
+        """Update Chemical node with extracted properties from MSDS."""
+        print(f"Updating chemical '{chemical_name}' with MSDS properties")
+        
         with self.driver.session() as session:
-            # Flatten the nested dictionary for Neo4j properties.
-            params = flatten_dict(chemical_data)
-
-            # This query finds the canonical chemical by its primary name and adds/updates its properties.
-            # Using 'SET n += $params' ensures we only add/update data without overwriting the node
-            # and its existing relationships.
-            query = "MERGE (n:Chemical {name: $canonical_name}) SET n += $params"
-            session.run(query, canonical_name=canonical_name, params=params)
-            print(f"Enriched Chemical Node '{canonical_name}' with new properties.")
+            # Find the chemical and its connected boundaries
+            boundary_query = """
+            MATCH (c:Chemical {name: $chemical_name})
+            OPTIONAL MATCH (c)-[:INLET]->(b:Boundary)
+            OPTIONAL MATCH (b2:Boundary)-[:OUTLET]->(c)
+            RETURN c, b.tag as inlet_boundary, b2.tag as outlet_boundary
+            """
+            
+            result = session.run(boundary_query, chemical_name=chemical_name)
+            record = result.single()
+            
+            if record:
+                # Add source information from connected boundaries
+                inlet_boundary = record.get('inlet_boundary')
+                outlet_boundary = record.get('outlet_boundary')
+                source_boundary = inlet_boundary or outlet_boundary
+                
+                if source_boundary:
+                    properties['source'] = source_boundary
+                
+                # Flatten nested properties for Neo4j
+                flattened_props = self._flatten_properties(properties)
+                
+                # Add metadata
+                flattened_props['msds_source'] = msds_filename
+                flattened_props['last_updated'] = int(time.time())
+                
+                # Update the chemical node
+                update_query = """
+                MATCH (c:Chemical {name: $chemical_name})
+                SET c += $properties
+                RETURN c
+                """
+                
+                session.run(update_query, chemical_name=chemical_name, properties=flattened_props)
+                
+                print(f"Updated chemical '{chemical_name}' with {len(flattened_props)} properties")
+                
+                # Update tracking data
+                for chem in self.processed_chemicals:
+                    if chem['name'] == chemical_name:
+                        chem['properties'].update(flattened_props)
+                        chem['msds_source'] = msds_filename
+                        break
+            else:
+                print(f"Chemical '{chemical_name}' not found in database, creating new node")
+                # Create new chemical node
+                flattened_props = self._flatten_properties(properties)
+                flattened_props['msds_source'] = msds_filename
+                flattened_props['created_from_msds'] = True
+                flattened_props['created_timestamp'] = int(time.time())
+                
+                create_query = """
+                CREATE (c:Chemical $properties)
+                RETURN c
+                """
+                
+                session.run(create_query, properties=flattened_props)
+                
+                # Add to tracking
+                self.processed_chemicals.append({
+                    'name': chemical_name,
+                    'properties': flattened_props,
+                    'msds_source': msds_filename,
+                    'created_new': True
+                })
+    
+    def _flatten_properties(self, props):
+        """Flatten nested properties for Neo4j storage."""
+        flattened = {}
+        for key, value in props.items():
+            if isinstance(value, dict):
+                for sub_key, sub_value in value.items():
+                    flattened[f"{key}_{sub_key}"] = sub_value
+            elif isinstance(value, list):
+                flattened[key] = str(value)
+            else:
+                flattened[key] = value
+        return flattened
+    
+    # --- Final Report Generation ---
+    def generate_final_report(self):
+        """Generate comprehensive final report of all processed chemicals and relationships."""
+        print("\n" + "="*100)
+        print("FINAL REPORT: P&ID CHEMICAL PROCESSING RESULTS")
+        print("="*100)
+        
+        if not self.processed_chemicals:
+            print("No chemicals were processed in this session.")
+            return
+        
+        print(f"\nTOTAL CHEMICALS PROCESSED: {len(self.processed_chemicals)}")
+        print(f"TOTAL RELATIONSHIPS CREATED: {len(self.created_relationships)}")
+        
+        # Section 1: Chemical Nodes and Properties
+        print("\n" + "-"*50)
+        print("CHEMICAL NODES AND PROPERTIES")
+        print("-"*50)
+        
+        for i, chemical in enumerate(self.processed_chemicals, 1):
+            print(f"\n[{i}] CHEMICAL: {chemical['name']}")
+            print(f"    └─ Boundary Connection: {chemical.get('boundary_tag', 'N/A')}")
+            print(f"    └─ Boundary Type: {chemical.get('boundary_type', 'N/A')}")
+            print(f"    └─ Relationship: {chemical.get('relationship_direction', 'N/A')}")
+            
+            if chemical.get('msds_source'):
+                print(f"    └─ MSDS Source: {chemical['msds_source']}")
+            
+            if chemical['properties']:
+                print(f"    └─ Properties ({len(chemical['properties'])} total):")
+                
+                # Group properties by category
+                basic_props = {}
+                physical_props = {}
+                safety_props = {}
+                other_props = {}
+                
+                for prop, value in chemical['properties'].items():
+                    if prop in ['name', 'type', 'material_type', 'source']:
+                        basic_props[prop] = value
+                    elif prop in ['physical_state', 'density', 'boiling_point', 'melting_point', 'molecular_weight']:
+                        physical_props[prop] = value
+                    elif 'nature' in prop or prop in ['hazard_class', 'cas_number', 'flash_point']:
+                        safety_props[prop] = value
+                    else:
+                        other_props[prop] = value
+                
+                if basic_props:
+                    print("        ├─ Basic Properties:")
+                    for prop, value in basic_props.items():
+                        print(f"        │  • {prop}: {value}")
+                
+                if physical_props:
+                    print("        ├─ Physical Properties:")
+                    for prop, value in physical_props.items():
+                        print(f"        │  • {prop}: {value}")
+                
+                if safety_props:
+                    print("        ├─ Safety Properties:")
+                    for prop, value in safety_props.items():
+                        print(f"        │  • {prop}: {value}")
+                
+                if other_props:
+                    print("        └─ Other Properties:")
+                    for prop, value in other_props.items():
+                        print(f"           • {prop}: {value}")
+        
+        # Section 2: Relationship Summary
+        print("\n" + "-"*50)
+        print("RELATIONSHIP SUMMARY")
+        print("-"*50)
+        
+        relationship_types = {}
+        for rel in self.created_relationships:
+            rel_type = rel['type']
+            if rel_type not in relationship_types:
+                relationship_types[rel_type] = []
+            relationship_types[rel_type].append(rel)
+        
+        for rel_type, relationships in relationship_types.items():
+            print(f"\n{rel_type} Relationships ({len(relationships)}):")
+            for rel in relationships:
+                print(f"  • {rel['direction']}")
+        
+        # Section 3: Database Statistics
+        print("\n" + "-"*50)
+        print("DATABASE STATISTICS")
+        print("-"*50)
+        
+        with self.driver.session() as session:
+            # Count total chemicals
+            result = session.run("MATCH (c:Chemical) RETURN count(c) as total")
+            total_chemicals = result.single()['total']
+            
+            # Count chemicals with properties
+            result = session.run("MATCH (c:Chemical) WHERE size(keys(c)) > 1 RETURN count(c) as enriched")
+            enriched_chemicals = result.single()['enriched']
+            
+            # Count relationships
+            result = session.run("MATCH ()-[r:INLET|OUTLET|CONNECTED]->() RETURN count(r) as total_rels")
+            total_relationships = result.single()['total_rels']
+            
+            print(f"Total Chemical Nodes in Database: {total_chemicals}")
+            print(f"Enriched Chemical Nodes: {enriched_chemicals}")
+            print(f"Total Chemical-Boundary Relationships: {total_relationships}")
+            print(f"Chemicals Processed This Session: {len(self.processed_chemicals)}")
+            print(f"New Relationships This Session: {len(self.created_relationships)}")
+        
+        print("\n" + "="*100)
+        print("PROCESSING COMPLETE")
+        print("="*100)
 
 
 def main():
-    """Main execution function to run the semantic enrichment process."""
-    enricher = SemanticEnricher(config.NEO4J_URI, config.NEO4J_USERNAME, config.NEO4J_PASSWORD)
+    """Main execution function."""
+    print("Starting P&ID Chemical Processing System")
+    print("="*60)
+    
+    # Initialize processor
+    processor = PIDChemicalProcessor(
+        config.NEO4J_URI,
+        config.NEO4J_USERNAME,
+        config.NEO4J_PASSWORD
+    )
+    
+    try:
+        # Step 1: Find boundary nodes in P&ID
+        boundaries = processor.find_boundary_nodes()
+        
+        if boundaries:
+            # Step 2: Create chemical nodes and relationships
+            processor.create_chemical_nodes_and_relationships(boundaries)
+            
+            # Step 3: Process MSDS files for detailed properties
+            if hasattr(config, 'MSDS_DIRECTORY_PATH') and os.path.exists(config.MSDS_DIRECTORY_PATH):
+                processor.process_msds_files(config.MSDS_DIRECTORY_PATH)
+            else:
+                print("MSDS directory not configured or not found. Skipping MSDS processing.")
+            
+            # Step 4: Generate final comprehensive report
+            processor.generate_final_report()
+        else:
+            print("No boundary nodes found in the database.")
+    
+    except Exception as e:
+        print(f"An error occurred during processing: {e}")
+        import traceback
+        traceback.print_exc()
+    
+    finally:
+        processor.close()
 
-    # --- Step 1: Pre-process the database to ensure all chemicals have synonym lists ---
-    enricher.enrich_chemicals_with_synonyms()
 
-    # --- Step 2: Build a map from any synonym to its canonical chemical name ---
-    synonym_map = enricher.get_synonym_to_canonical_map()
-
-    # --- Step 3: Process MSDS files using the synonym map for matching ---
-    if synonym_map:
-        max_msds_files = getattr(config, 'MAX_MSDS_FILES', 10)
-        enricher.process_msds_files(config.MSDS_DIRECTORY_PATH, synonym_map, max_msds_files)
-    else:
-        print("Could not build a synonym map. Skipping MSDS processing.")
-
-    # --- Step 4: Clean up ---
-    enricher.close()
-    print("\nPhase 2: Semantic Enrichment complete.")
-
-# Standard Python entry point.
 if __name__ == "__main__":
     main()

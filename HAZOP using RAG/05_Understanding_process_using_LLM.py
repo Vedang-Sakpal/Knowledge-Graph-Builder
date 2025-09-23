@@ -1,6 +1,7 @@
 import google.generativeai as genai
 import config
 from neo4j import GraphDatabase, exceptions # Import the Neo4j driver
+import argparse # Import argparse
 
 def get_graph_data_from_neo4j():
     """
@@ -19,21 +20,22 @@ def get_graph_data_from_neo4j():
     cypher_script_from_db = ""
     
     # This APOC query exports the entire database into a single Cypher script.
-    # The {stream:true} config is added to send the output directly to the client instead of a file, bypassing the server's security setting.
+    # The {stream:true} config is added to send the output directly to the
+    # client instead of a file, bypassing the server's security setting.
     # --- THIS IS THE MODIFIED LINE ---
     query = "CALL apoc.export.cypher.all(null, {stream:true, format:'plain', useOptimizations: {type: 'none'}})"
 
     with driver.session() as session:
-        print("🔍 Querying Neo4j database to retrieve P&ID graph data...")
+        print(" Querying Neo4j database to retrieve P&ID graph data...")
         try:
             result = session.run(query)
             # The result is a stream of records; we concatenate them.
             for record in result:
                 cypher_script_from_db += record["cypherStatements"]
-            print("✅ Successfully retrieved graph data from Neo4j.")
+            print(" Successfully retrieved graph data from Neo4j.")
         except exceptions.ClientError as e:
             if "Unknown procedure" in e.message:
-                print("🚨 Error: The APOC procedure 'apoc.export.cypher.all' was not found.")
+                print(" Error: The APOC procedure 'apoc.export.cypher.all' was not found.")
                 print("Please ensure the APOC plugin is correctly installed in your Neo4j database.")
                 return None
             else:
@@ -42,7 +44,7 @@ def get_graph_data_from_neo4j():
     driver.close()
     return cypher_script_from_db
 
-def get_llm_process_analysis(cypher_script_content):
+def get_llm_process_analysis(cypher_script_content, process_description_content):
     """
     Uses a Generative LLM to analyze and describe a process flow.
     (This function remains unchanged from your original script)
@@ -65,6 +67,10 @@ def get_llm_process_analysis(cypher_script_content):
     {cypher_script_content}
     --- END OF CYPHER SCRIPT ---
 
+    --- PROCESS DESCRIPTION (MARKDOWN) ---
+    {process_description_content}
+    --- END OF PROCESS DESCRIPTION ---
+
     Based on BOTH documents provided above, please perform the following analysis:
 
     1.  **Identify Main Material Streams**: Trace the primary flow paths from their source, through all major equipment, to their final sink. Describe what is happening at each stage.
@@ -72,12 +78,10 @@ def get_llm_process_analysis(cypher_script_content):
     3.  **Detail the Control and Energy Flows**: Explain how the process is controlled. Describe the key control loops, mentioning the sensor, the controller, and the final control element (like a valve or pump) it operates.
     4.  **Summarize Inputs and Outputs**: List the main chemical inputs to the entire process and all the final products or waste streams leaving the system.
 
-    **Important Instruction:** The Cypher script uses temporary aliases like `(_0)` or `(n1)` to define nodes. **Ignore these aliases in your final report.** Refer to all equipment and components only by their properties, such as `name` or `tag`.
-
     Format your response using clear Markdown headings for each section.
     """
 
-    print("🤖 Sending consolidated data to the LLM for analysis...")
+    print(" Sending consolidated data to the LLM for analysis...")
     model = genai.GenerativeModel(config.GEMINI_MODEL_NAME)
     response = model.generate_content(prompt)
     
@@ -85,11 +89,16 @@ def get_llm_process_analysis(cypher_script_content):
 
 # --- Main execution block ---
 if __name__ == '__main__':
+    # --- Add Argument Parser ---
+    parser = argparse.ArgumentParser(description="Generate a process understanding document using an LLM.")
+    parser.add_argument("--description-file", required=True, help="Path to the process description Text file (.txt).")
+    args = parser.parse_args()
+    
     # Configure the Generative AI model
     try:
         genai.configure(api_key=config.GEMINI_API_KEY)
     except AttributeError:
-        print("🚨 Error: GEMINI_API_KEY not found in config.py.")
+        print(" Error: GEMINI_API_KEY not found in config.py.")
         print("Please set your API key to run this script.")
         exit()
 
@@ -99,27 +108,32 @@ if __name__ == '__main__':
         if not cypher_content: # Exit if the database query failed
             print("Could not retrieve data from Neo4j. Aborting analysis.")
             exit()
+            
+        # 2. Read the user-selected process description file
+        print(f"Reading process description from: {args.description_file}")
+        with open(args.description_file, "r") as f:
+            md_content = f.read()
 
     except FileNotFoundError as e:
-        print(f"🚨 Error: Could not find the process description file: {e.filename}")
+        print(f" Error: Could not find the process description file: {e.filename}")
         exit()
     except exceptions.AuthError:
-        print("🚨 Error: Neo4j authentication failed. Please check your credentials in config.py.")
+        print(" Error: Neo4j authentication failed. Please check your credentials in config.py.")
         exit()
     except Exception as e:
-        print(f"🚨 An unexpected error occurred: {e}")
+        print(f" An unexpected error occurred: {e}")
         exit()
 
     # Get the analysis from the LLM
-    llm_analysis = get_llm_process_analysis(cypher_content)
+    llm_analysis = get_llm_process_analysis(cypher_content, md_content)
 
     # Print and save the result
-    print("\n✅ LLM Analysis Complete. Here is the generated report:")
+    print("\n LLM Analysis Complete. Here is the generated report:")
     print("========================= GENERATED LLM ANALYSIS =========================")
     #print(llm_analysis)
     
     output_filename = "Results/Generated_process_description.md"
     with open(output_filename, "w", encoding="utf-8") as f:
         f.write(llm_analysis)
-    print(f"\n✅ Analysis has been saved to {output_filename}")
+    print(f"\n Analysis has been saved to {output_filename}")
     print("========================================================================")

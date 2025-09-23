@@ -248,7 +248,7 @@ def write_applicable_to_csv(output_path: str, rows: List[Dict[str, Any]]):
 
 def main():
     # Load deviation rules
-    rules_by_equipment = load_deviation_rules_from_csv("Equipment_and_Deviation .csv")
+    rules_by_equipment = load_deviation_rules_from_csv("Context for RAG\\Equipment_and_Deviation.csv")
 
     # Configure LLM
     model = configure_llm()

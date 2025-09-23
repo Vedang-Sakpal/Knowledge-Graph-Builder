@@ -35,7 +35,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_to -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_to">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utilities"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Thermal_Jacket"/>
     </owl:ObjectProperty>
@@ -45,7 +44,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_via -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Supplied_via">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utilities"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Utility_line"/>
     </owl:ObjectProperty>
@@ -55,7 +53,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Transfered_via -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Transfered_via">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Chemical_reaction"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_line"/>
     </owl:ObjectProperty>
@@ -66,7 +63,6 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#connected_to">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Equipment"/>
     </owl:ObjectProperty>
@@ -76,7 +72,7 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contain -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contain">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_inlet"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Outlet"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Products"/>
     </owl:ObjectProperty>
@@ -86,7 +82,7 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contains -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#contains">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_outlet"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Inlet"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactants"/>
     </owl:ObjectProperty>
@@ -96,7 +92,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_auxiliary_systems -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_auxiliary_systems">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Auxiliary_system"/>
     </owl:ObjectProperty>
@@ -107,10 +102,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_inlet">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Inlet"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactants"/>
     </owl:ObjectProperty>
     
 
@@ -118,7 +111,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_instruments -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_instruments">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments"/>
     </owl:ObjectProperty>
@@ -128,7 +120,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_internal_components -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_internal_components">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Internal_components"/>
     </owl:ObjectProperty>
@@ -139,7 +130,6 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_outlet">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Outlet"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Products"/>
@@ -150,7 +140,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_parameter -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_parameter">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
     </owl:ObjectProperty>
@@ -160,7 +149,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_process_connections">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Process_connection"/>
     </owl:ObjectProperty>
@@ -170,7 +158,6 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_safety_system -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#has_safety_system">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Reactor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Safety_system"/>
     </owl:ObjectProperty>
@@ -190,8 +177,7 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#measures -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#measures">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Parameter"/>
     </owl:ObjectProperty>
     
@@ -200,8 +186,7 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#sends_data_to -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#sends_data_to">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Control_loop"/>
     </owl:ObjectProperty>
     
@@ -239,7 +224,7 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Analytical_Instruments -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Analytical_Instruments">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor"/>
         <rdfs:comment>Analytical Instruments are devices used for real-time or offline measurement of the chemical composition or physical properties of the reactor&apos;s contents. Examples include pH meters, gas chromatographs, and spectrometers, which are vital for monitoring reaction progress and ensuring product quality.</rdfs:comment>
     </owl:Class>
     
@@ -432,8 +417,17 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level_Measurement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Level_Measurement">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor"/>
         <rdfs:comment>Level Measurement refers to an instrument or sensor used to measure the level of the contents inside the reactor. Common types include differential pressure transmitters, radar sensors, and ultrasonic sensors.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments"/>
+        <rdfs:comment>A Measuring Instrument or Sensor is a device that detects and measures a physical parameter (like temperature, pressure, or level) and converts it into a transmittable signal (e.g., 4-20 mA) that can be read by a control system or indicator.</rdfs:comment>
     </owl:Class>
     
 
@@ -502,7 +496,7 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_Measurement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Pressure_Measurement">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor"/>
         <rdfs:comment>Pressure Measurement refers to an instrument or sensor, such as a pressure gauge or transmitter, used to measure the internal pressure of the reactor.</rdfs:comment>
     </owl:Class>
     
@@ -634,7 +628,7 @@
     <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature_Measurement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Temperature_Measurement">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments_or_Sensor"/>
         <rdfs:comment>Temperature Measurement refers to an instrument, such as a thermocouple or an RTD (Resistance Temperature Detector), used to measure the temperature inside the reactor.</rdfs:comment>
     </owl:Class>
     
@@ -672,33 +666,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Valves">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments"/>
         <rdfs:comment>Valves is a general class of mechanical devices used to control, regulate, or direct the flow of fluids in pipelines connected to the reactor.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#inlet -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#inlet">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow"/>
-        <rdfs:comment>An inlet is a process connection or nozzle through which reactants or other substances are introduced into the reactor vessel.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#outlet -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#outlet">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Flow"/>
-        <rdfs:comment>An outlet is a process connection or nozzle through which products or unreacted materials are withdrawn from the reactor vessel.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Measuring_Instruments/Sensor">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/a/ontologies/2025/8/Reactor-Ontology#Instruments"/>
-        <rdfs:comment>A Measuring Instrument or Sensor is a device that detects and measures a physical parameter (like temperature, pressure, or level) and converts it into a transmittable signal (e.g., 4-20 mA) that can be read by a control system or indicator.</rdfs:comment>
     </owl:Class>
 </rdf:RDF>
 
