@@ -3,7 +3,7 @@
 CREATE (ms1: Boundary {name:'Make up Water', id:'TS78-P-PID-011', type: 'source'})
 CREATE (t1: Equipment {tag:'T-200', type: 'storage tank', name:'Hot Water Tank', capacity:'290 m3', op_volume:'250 m3', size:'7670 mm (ID) x 6285 mm (H)', manway_1_size:'24""', manway_2_size:'24""'})
 CREATE (e1: Equipment {name:'E-500', type:'Vapour Condensor', heat_duty:'127 kW', design_pres:'2 barg', design_temp:'120 degree C', tube_capacity:'0.056 kg/s'})
-CREATE (ms2: Boundary {name:'From CNG Heat Exchanger (E-200)', chemical:'Circulating Water', id:'TS78-P-PID-005_2', type: 'source'})
+CREATE (ms2: Boundary {name:'From CNG Heat Exchanger (E-200)', chemical:'Water', id:'TS78-P-PID-005_2', type: 'source'})
 CREATE (ms1)-[:Connected_to{type:'Process piping', id:'HW-2""-1G-012', location:'N2 on Tank'}]->(t1)
 CREATE (ms2)-[:Connected_to{type:'Process piping', id:'HW-6""-1C-007-H', location:'N1 on Tank'}]->(t1)
 CREATE (t1)-[:Has_instrument]->(li1: Instrument {name:'LI-0701', type:'Level Indicator', function:'Detects level in tank', location:'N7 on Tank'})
